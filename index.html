@@ -6,832 +6,899 @@
 <title>Kilometre Paris</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --rouge: #B82928;
-    --bleu: #2F3E86;
-    --jaune: #FFF8BD;
-    --creme: #FAF9F4;
-    --noir: #1a1a1a;
-    --gris: #6b6b6b;
-  }
+:root {
+  --rouge: #B82928;
+  --bleu: #2F3E86;
+  --jaune: #FFF8BD;
+  --blanc: #ffffff;
+  --noir: #1a1a1a;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--creme);
-    color: var(--noir);
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--blanc);
+  color: var(--noir);
+  overflow-x: hidden;
+}
 
-  /* =====================
-     NAV
-  ===================== */
+/* =====================
+   NAV
+===================== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.5rem;
+  background: var(--blanc);
+  border-bottom: 1px solid rgba(47,62,134,0.12);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bleu);
+  text-decoration: none;
+  position: relative;
+  z-index: 1002;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--noir);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--rouge); }
+
+.nav-cta {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--bleu);
+  color: var(--blanc) !important;
+  padding: 0.55rem 1.3rem;
+  border-radius: 0;
+  transition: background 0.2s;
+}
+
+.nav-cta:hover { background: var(--rouge) !important; }
+
+.burger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 1002;
+}
+
+.burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--bleu);
+  margin: 6px auto;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.burger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3rem 4rem 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--bleu);
+  margin-bottom: 2rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--rouge);
+}
+
+.hero-sub {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: rgba(0,0,0,0.6);
+  max-width: 380px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  background: var(--rouge);
+  color: var(--blanc);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover { background: var(--bleu); transform: translateY(-1px); }
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  border: 1px solid var(--bleu);
+  color: var(--bleu);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover { background: var(--bleu); color: var(--blanc); }
+
+.hero-right {
+  position: relative;
+  background: var(--bleu);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-stripes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.stripe { flex: 1; height: 100%; }
+.stripe-1 { background: var(--bleu); }
+.stripe-2 { background: var(--rouge); width: 8px; flex: none; }
+.stripe-3 { background: var(--jaune); opacity: 0.6; }
+
+.hero-quote {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--blanc);
+  line-height: 1.5;
+  max-width: 380px;
+}
+
+.hero-quote span {
+  display: block;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-top: 1.5rem;
+  font-style: normal;
+}
+
+/* =====================
+   MARQUEE
+===================== */
+.marquee-bar {
+  background: var(--bleu);
+  color: var(--jaune);
+  padding: 0.85rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-inner span {
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.marquee-dot { color: var(--rouge); }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* =====================
+   SECTION ABOUT
+===================== */
+.section-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
+}
+
+.about-visual {
+  background: var(--jaune);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-globe {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--bleu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.about-globe::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  top: 50%;
+}
+
+.about-globe::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  left: 50%;
+}
+
+.globe-inner {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  color: var(--blanc);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  line-height: 1;
+}
+
+.globe-sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.about-dots {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px dashed rgba(47,62,134,0.3);
+  border-radius: 50%;
+  animation: spin 40s linear infinite;
+}
+
+.about-dots-2 {
+  width: 380px;
+  height: 380px;
+  border: 1px dashed rgba(47,62,134,0.15);
+  animation-duration: 60s;
+  animation-direction: reverse;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.about-content {
+  padding: 5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--bleu);
+  margin-bottom: 1.8rem;
+}
+
+.section-title em { font-style: italic; color: var(--rouge); }
+
+.section-body {
+  font-size: 0.88rem;
+  line-height: 2;
+  color: rgba(0,0,0,0.6);
+  max-width: 440px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.stats-row {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--bleu);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.6);
+  margin-top: 0.3rem;
+}
+
+/* =====================
+   OUR TRAVELS
+===================== */
+.section-travels {
+  padding: 6rem 2.5rem;
+  background: var(--blanc);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.travels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.travel-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3/4;
+  text-decoration: none;
+  display: block;
+}
+
+.travel-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.travel-card:hover .travel-bg { transform: scale(1.05); }
+
+.tc-melbourne .travel-bg  { background: linear-gradient(135deg, var(--bleu) 0%, var(--rouge) 100%); }
+.tc-tbilisi .travel-bg    { background: linear-gradient(135deg, var(--rouge) 0%, var(--jaune) 100%); }
+.tc-la .travel-bg         { background: linear-gradient(135deg, var(--bleu) 0%, var(--jaune) 100%); }
+.tc-addis .travel-bg      { background: linear-gradient(135deg, var(--rouge) 0%, var(--bleu) 100%); }
+.tc-brussels .travel-bg   { background: linear-gradient(135deg, var(--bleu) 0%, var(--jaune) 50%, var(--rouge) 100%); }
+.tc-mallorca .travel-bg   { background: linear-gradient(135deg, var(--jaune) 0%, var(--bleu) 100%); }
+
+.travel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 1.8rem;
+  transition: background 0.3s;
+}
+
+.travel-card:hover .travel-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%);
+}
+
+.travel-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.1);
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  line-height: 1;
+}
+
+.travel-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-bottom: 0.5rem;
+}
+
+.travel-city {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.travel-country {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+}
+
+.travel-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blanc);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s;
+}
+
+.travel-card:hover .travel-arrow { opacity: 1; transform: translateY(0); }
+.travel-arrow::after { content: '→'; font-size: 0.9rem; }
+
+/* =====================
+   PHILOSOPHY
+===================== */
+.section-philosophy {
+  background: var(--bleu);
+  padding: 7rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.phil-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(6rem, 15vw, 18rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+
+.phil-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.phil-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.phil-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--blanc);
+  line-height: 1.4;
+  margin-bottom: 2.5rem;
+}
+
+.phil-body {
+  font-size: 0.85rem;
+  line-height: 2;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+.phil-divider {
+  width: 50px;
+  height: 2px;
+  background: var(--rouge);
+  margin: 2.5rem auto;
+}
+
+.values-row {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.value-item { text-align: center; }
+
+.value-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.2rem;
+  color: var(--jaune);
+}
+
+.value-name {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* =====================
+   NEWSLETTER
+===================== */
+.section-newsletter {
+  background: var(--jaune);
+  padding: 5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.nl-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.nl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--bleu);
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.nl-sub {
+  font-size: 0.85rem;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.nl-form {
+  display: flex;
+  gap: 0;
+  max-width: 420px;
+  width: 100%;
+}
+
+.nl-input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--bleu);
+  background: var(--blanc);
+  font-size: 0.82rem;
+  outline: none;
+  font-family: 'Barlow', sans-serif;
+}
+
+.nl-btn {
+  padding: 0.9rem 1.8rem;
+  background: var(--bleu);
+  color: var(--blanc);
+  border: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.nl-btn:hover { background: var(--rouge); }
+
+.nl-note {
+  font-size: 0.72rem;
+  color: rgba(0,0,0,0.6);
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+  background: var(--bleu);
+  padding: 4rem 2.5rem 2rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--blanc);
+  margin-bottom: 1rem;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  max-width: 280px;
+  font-weight: 300;
+}
+
+.footer-col h4 {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.6rem; }
+
+.footer-col a {
+  font-size: 0.78rem;
+  color: var(--jaune);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+
+.footer-col a:hover { color: var(--blanc); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy { font-size: 0.7rem; font-weight: 300; }
+
+.footer-social { display: flex; gap: 1.2rem; }
+
+.footer-social a {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover { color: var(--jaune); }
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 2.5rem;
-    background: var(--creme);
-    border-bottom: 1px solid rgba(47,62,134,0.12);
+    padding: 1rem 1.2rem;
   }
 
   .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--bleu);
-    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    max-width: 70%;
+  }
+
+  .burger {
+    display: block;
   }
 
   .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 78%;
+    max-width: 340px;
+    height: 100vh;
+    background: var(--blanc);
+    border-left: 1px solid rgba(47,62,134,0.12);
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
-    list-style: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -20px 0 40px rgba(0,0,0,0.08);
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
   }
 
   .nav-links a {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--noir);
-    text-decoration: none;
-    font-weight: 400;
-    transition: color 0.2s;
+    font-size: 0.8rem;
   }
-
-  .nav-links a:hover { color: var(--rouge); }
 
   .nav-cta {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    background: var(--bleu);
-    color: white !important;
-    padding: 0.55rem 1.3rem;
-    border-radius: 0;
-    transition: background 0.2s;
+    padding: 0.8rem 1.5rem;
   }
 
-  .nav-cta:hover { background: var(--rouge) !important; }
+  body.menu-open {
+    overflow: hidden;
+  }
 
-  /* =====================
-     HERO
-  ===================== */
   .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 72px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 3rem 4rem 2.5rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rouge);
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--bleu);
-    margin-bottom: 2rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--rouge);
-  }
-
-  .hero-sub {
-    font-size: 0.9rem;
-    line-height: 1.9;
-    color: var(--gris);
-    max-width: 380px;
-    margin-bottom: 3rem;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    padding: 0.9rem 2.2rem;
-    background: var(--rouge);
-    color: white;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.2s, transform 0.2s;
-  }
-
-  .btn-primary:hover { background: var(--bleu); transform: translateY(-1px); }
-
-  .btn-outline {
-    display: inline-block;
-    padding: 0.9rem 2.2rem;
-    border: 1px solid var(--bleu);
-    color: var(--bleu);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-
-  .btn-outline:hover { background: var(--bleu); color: white; }
-
-  .hero-right {
-    position: relative;
-    background: var(--bleu);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-stripes {
-    position: absolute;
-    inset: 0;
-    display: flex;
-  }
-
-  .stripe { flex: 1; height: 100%; }
-  .stripe-1 { background: var(--bleu); }
-  .stripe-2 { background: var(--rouge); width: 8px; flex: none; }
-  .stripe-3 { background: var(--jaune); opacity: 0.6; }
-
-  /* ----- REMPLACER PAR UNE IMAGE : hero-right ----- */
-  /* Pour mettre une vraie photo en fond du bloc droit :
-     .hero-right {
-       background-image: url('votre-photo.jpg');
-       background-size: cover;
-       background-position: center;
-     }
-     et supprimez les .hero-stripes et .hero-quote si souhaité */
-
-  .hero-quote {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 2rem;
-  }
-
-  .hero-quote p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.4rem, 3vw, 2.4rem);
-    font-weight: 300;
-    font-style: italic;
-    color: white;
-    line-height: 1.5;
-    max-width: 380px;
-  }
-
-  .hero-quote span {
-    display: block;
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--jaune);
-    margin-top: 1.5rem;
-    font-style: normal;
-  }
-
-  /* =====================
-     MARQUEE (bandeau défilant)
-  ===================== */
-  .marquee-bar {
-    background: var(--bleu);
-    color: var(--jaune);
-    padding: 0.85rem 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .marquee-inner {
-    display: inline-flex;
-    gap: 3rem;
-    animation: marquee 25s linear infinite;
-  }
-
-  /* Pour ajouter/retirer des villes dans le bandeau,
-     modifiez les <span> dans le HTML du .marquee-inner */
-
-  .marquee-inner span {
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .marquee-dot { color: var(--rouge); }
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* =====================
-     SECTION ABOUT
-  ===================== */
-  .section-about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70vh;
-  }
-
-  .about-visual {
-    background: var(--jaune);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* ----- REMPLACER PAR UNE IMAGE : about-visual ----- */
-  /* .about-visual {
-       background-image: url('votre-photo-atelier.jpg');
-       background-size: cover;
-       background-position: center;
-     } */
-
-  .about-globe {
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: var(--bleu);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .about-globe::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: rgba(255,255,255,0.2);
-    top: 50%;
-  }
-
-  .about-globe::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 100%;
-    background: rgba(255,255,255,0.2);
-    left: 50%;
-  }
-
-  .globe-inner {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.5rem;
-    color: white;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    line-height: 1;
-  }
-
-  .globe-sub {
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--jaune);
-    display: block;
-    margin-top: 0.3rem;
-  }
-
-  .about-dots {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border: 1px dashed rgba(47,62,134,0.3);
-    border-radius: 50%;
-    animation: spin 40s linear infinite;
-  }
-
-  .about-dots-2 {
-    width: 380px;
-    height: 380px;
-    border: 1px dashed rgba(47,62,134,0.15);
-    animation-duration: 60s;
-    animation-direction: reverse;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .about-content {
-    padding: 5rem 3.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .section-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rouge);
-    margin-bottom: 1.2rem;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--bleu);
-    margin-bottom: 1.8rem;
-  }
-
-  .section-title em { font-style: italic; color: var(--rouge); }
-
-  .section-body {
-    font-size: 0.88rem;
-    line-height: 2;
-    color: var(--gris);
-    max-width: 440px;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
-
-  .stats-row {
-    display: flex;
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--bleu);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gris);
-    margin-top: 0.3rem;
-  }
-
-  /* =====================
-     OUR TRAVELS
-  ===================== */
-  .section-travels {
-    padding: 6rem 2.5rem;
-    background: var(--creme);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .travels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .travel-card {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 3/4;
-    text-decoration: none;
-    display: block;
-  }
-
-  .travel-bg {
-    position: absolute;
-    inset: 0;
-    transition: transform 0.6s ease;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .travel-card:hover .travel-bg { transform: scale(1.05); }
-
-  /* ----- REMPLACER LES DÉGRADÉS PAR VOS PHOTOS ----- */
-  /* Pour chaque carte, remplacez le dégradé par :
-     .tc-melbourne .travel-bg { background-image: url('melbourne.jpg'); }
-     etc. */
-
-  .tc-melbourne .travel-bg  { background: linear-gradient(135deg, #1a3a5c 0%, #2F3E86 50%, #B82928 100%); }
-  .tc-tbilisi .travel-bg    { background: linear-gradient(135deg, #6b3a2a 0%, #B82928 50%, #FFF8BD 100%); }
-  .tc-la .travel-bg         { background: linear-gradient(135deg, #2a4a6b 0%, #4a90d9 50%, #FFF8BD 100%); }
-  .tc-addis .travel-bg      { background: linear-gradient(135deg, #3a5a1a 0%, #5a8a2a 50%, #B82928 100%); }
-  .tc-brussels .travel-bg   { background: linear-gradient(135deg, #4a3a6b 0%, #2F3E86 50%, #FFF8BD 100%); }
-  .tc-mallorca .travel-bg   { background: linear-gradient(135deg, #1a5a4a 0%, #2a8a6a 50%, #FFF8BD 100%); }
-
-  .travel-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem 1.8rem;
-    transition: background 0.3s;
-  }
-
-  .travel-card:hover .travel-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%);
-  }
-
-  .travel-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.1);
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    line-height: 1;
-  }
-
-  .travel-tag {
-    font-size: 0.62rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--jaune);
-    margin-bottom: 0.5rem;
-  }
-
-  .travel-city {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: white;
-    line-height: 1.1;
-    margin-bottom: 0.4rem;
-  }
-
-  .travel-country {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 1rem;
-  }
-
-  .travel-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: white;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: all 0.3s;
-  }
-
-  .travel-card:hover .travel-arrow { opacity: 1; transform: translateY(0); }
-  .travel-arrow::after { content: '→'; font-size: 0.9rem; }
-
-  /* =====================
-     PHILOSOPHY
-  ===================== */
-  .section-philosophy {
-    background: var(--bleu);
-    padding: 7rem 2.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .phil-bg-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(6rem, 15vw, 18rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.04);
-    white-space: nowrap;
-    pointer-events: none;
-    letter-spacing: -0.05em;
-  }
-
-  .phil-content {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .phil-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--jaune);
-    margin-bottom: 2rem;
-    font-weight: 500;
-  }
-
-  .phil-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 300;
-    font-style: italic;
-    color: white;
-    line-height: 1.4;
-    margin-bottom: 2.5rem;
-  }
-
-  .phil-body {
-    font-size: 0.85rem;
-    line-height: 2;
-    color: rgba(255,255,255,0.65);
-    font-weight: 300;
-    margin-bottom: 3rem;
-  }
-
-  .phil-divider {
-    width: 50px;
-    height: 2px;
-    background: var(--rouge);
-    margin: 2.5rem auto;
-  }
-
-  .values-row {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-  }
-
-  .value-item { text-align: center; }
-
-  .value-icon {
-    width: 48px;
-    height: 48px;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-    font-size: 1.2rem;
-    color: var(--jaune);
-  }
-
-  .value-name {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-  }
-
-  /* =====================
-     NEWSLETTER
-  ===================== */
-  .section-newsletter {
-    background: var(--jaune);
-    padding: 5rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .nl-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rouge);
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-
-  .nl-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    color: var(--bleu);
-    margin-bottom: 0.8rem;
-    line-height: 1.2;
-  }
-
-  .nl-sub {
-    font-size: 0.85rem;
-    color: var(--gris);
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
-
-  .nl-form {
-    display: flex;
-    gap: 0;
-    max-width: 420px;
-    width: 100%;
-  }
-
-  .nl-input {
-    flex: 1;
-    padding: 0.9rem 1.2rem;
-    border: 1px solid var(--bleu);
-    background: white;
-    font-size: 0.82rem;
-    outline: none;
-    font-family: 'Barlow', sans-serif;
-  }
-
-  .nl-btn {
-    padding: 0.9rem 1.8rem;
-    background: var(--bleu);
-    color: white;
-    border: none;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    transition: background 0.2s;
-  }
-
-  .nl-btn:hover { background: var(--rouge); }
-
-  .nl-note {
-    font-size: 0.72rem;
-    color: var(--gris);
-    margin-top: 1rem;
-    font-weight: 300;
-  }
-
-  /* =====================
-     FOOTER
-  ===================== */
-  footer {
-    background: var(--bleu);
-    padding: 4rem 2.5rem 2rem;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: white;
-    margin-bottom: 1rem;
-  }
-
-  .footer-tagline {
-    font-size: 0.8rem;
-    line-height: 1.9;
-    max-width: 280px;
-    font-weight: 300;
-  }
-
-  .footer-col h4 {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #FFF8BD;
-    margin-bottom: 1.2rem;
-    font-weight: 500;
-  }
-
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 0.6rem; }
-
-  .footer-col a {
-    font-size: 0.78rem;
-    color: #FFF8BD;
-    text-decoration: none;
-    transition: color 0.2s;
-    font-weight: 300;
-  }
-
-  .footer-col a:hover { color: var(--jaune); }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-copy { font-size: 0.7rem; font-weight: 300; }
-
-  .footer-social { display: flex; gap: 1.2rem; }
-
-  .footer-social a {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-social a:hover { color: var(--jaune); }
-
-  /* =====================
-     RESPONSIVE
-  ===================== */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.2rem; }
-    .nav-links { display: none; }
-
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 3rem 1.5rem; }
-    .hero-right { height: 50vw; min-height: 220px; }
-
-    .section-about { grid-template-columns: 1fr; }
-    .about-visual { padding: 3rem 1.5rem; min-height: 300px; }
-    .about-content { padding: 3rem 1.5rem; }
-
-    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-    .stats-row { flex-wrap: wrap; gap: 1.5rem; }
-    .nl-form { flex-direction: column; }
-    .nl-input, .nl-btn { width: 100%; }
-  }
-
-  /* =====================
-     ANIMATIONS
-  ===================== */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 74px;
+  }
+
+  .hero-left { padding: 3rem 1.5rem; }
+  .hero-right { height: 50vw; min-height: 220px; }
+
+  .section-about { grid-template-columns: 1fr; }
+  .about-visual { padding: 3rem 1.5rem; min-height: 300px; }
+  .about-content { padding: 3rem 1.5rem; }
+
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .stats-row { flex-wrap: wrap; gap: 1.5rem; }
+  .nl-form { flex-direction: column; }
+  .nl-input, .nl-btn { width: 100%; }
+}
+
+/* =====================
+   ANIMATIONS
+===================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
 
 <!-- =====================
      NAV
-     Modifier les liens href selon vos URLs
 ===================== -->
 <nav>
   <a href="#" class="nav-logo">Kilometre · Paris</a>
+
+  <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <ul class="nav-links">
     <li><a href="#about">La Maison</a></li>
     <li><a href="#travels">Our Travels</a></li>
@@ -842,7 +909,6 @@
 
 <!-- =====================
      HERO
-     Modifier : hero-label, hero-title, hero-sub, boutons
 ===================== -->
 <section class="hero">
   <div class="hero-left">
@@ -861,9 +927,6 @@
     </div>
   </div>
   <div class="hero-right">
-    <!-- Remplacer ce bloc par une image si besoin :
-         <img src="votre-photo.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Kilometre Paris">
-         et supprimer hero-stripes + hero-quote -->
     <div class="hero-stripes">
       <div class="stripe stripe-1"></div>
       <div class="stripe stripe-2"></div>
@@ -878,8 +941,6 @@
 
 <!-- =====================
      BANDEAU DÉFILANT
-     Ajouter/retirer des villes en dupliquant les <span>
-     (garder les mêmes villes en double pour que la boucle soit fluide)
 ===================== -->
 <div class="marquee-bar" aria-hidden="true">
   <div class="marquee-inner">
@@ -891,7 +952,6 @@
     <span>Mallorca</span><span class="marquee-dot">✦</span>
     <span>Pozzo · Corsica</span><span class="marquee-dot">✦</span>
     <span>Paris</span><span class="marquee-dot">✦</span>
-    <!-- Doublon pour boucle fluide -->
     <span>Melbourne</span><span class="marquee-dot">✦</span>
     <span>Tbilisi</span><span class="marquee-dot">✦</span>
     <span>Los Angeles</span><span class="marquee-dot">✦</span>
@@ -904,14 +964,10 @@
 </div>
 
 <!-- =====================
-     LA MAISON (ABOUT)
-     Modifier les textes et les stats
+     LA MAISON
 ===================== -->
 <section class="section-about" id="about">
   <div class="about-visual">
-    <!-- Remplacer par une photo :
-         <img src="atelier.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Atelier">
-         et ajouter position:relative; overflow:hidden; à .about-visual -->
     <div class="about-dots about-dots-2"></div>
     <div class="about-dots"></div>
     <div class="about-globe">
@@ -950,11 +1006,6 @@
 
 <!-- =====================
      OUR TRAVELS
-     Pour ajouter une destination :
-     1. Dupliquer un bloc .travel-card
-     2. Changer la classe tc-XXX et le href
-     3. Ajouter le style CSS .tc-XXX .travel-bg { background-image: url(...); }
-     4. Modifier num, tag, city, country
 ===================== -->
 <section class="section-travels" id="travels">
   <div class="section-header fade-in">
@@ -965,7 +1016,6 @@
   </div>
   <div class="travels-grid">
 
-    <!-- MELBOURNE -->
     <a href="melbourne.html" class="travel-card tc-melbourne">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
@@ -977,7 +1027,6 @@
       </div>
     </a>
 
-    <!-- TBILISI -->
     <a href="tbilisi.html" class="travel-card tc-tbilisi">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
@@ -989,7 +1038,6 @@
       </div>
     </a>
 
-    <!-- LOS ANGELES -->
     <a href="los-angeles.html" class="travel-card tc-la">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
@@ -1001,7 +1049,6 @@
       </div>
     </a>
 
-    <!-- ADDIS ABABA -->
     <a href="addis-ababa.html" class="travel-card tc-addis">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
@@ -1013,7 +1060,6 @@
       </div>
     </a>
 
-    <!-- BRUSSELS -->
     <a href="brussels.html" class="travel-card tc-brussels">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
@@ -1025,7 +1071,6 @@
       </div>
     </a>
 
-    <!-- MALLORCA -->
     <a href="mallorca.html" class="travel-card tc-mallorca">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
@@ -1037,27 +1082,44 @@
       </div>
     </a>
 
-    <!-- AJOUTER UNE DESTINATION ICI (exemple) :
-    <a href="tokyo.html" class="travel-card tc-tokyo">
+    <a href="paris.html" class="travel-card tc-paris">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">07</div>
-        <p class="travel-tag">Japon</p>
-        <h3 class="travel-city">Tokyo</h3>
-        <p class="travel-country">Japan</p>
+        <p class="travel-tag">France</p>
+        <h3 class="travel-city">Paris</h3>
+        <p class="travel-country">France</p>
         <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
-    Et dans le CSS ajouter :
-    .tc-tokyo .travel-bg { background-image: url('tokyo.jpg'); }
-    -->
+    
+    <a href="venice.html" class="travel-card tc-venice">
+      <div class="travel-bg"></div>
+      <div class="travel-overlay">
+        <div class="travel-num">08</div>
+        <p class="travel-tag">Italy</p>
+        <h3 class="travel-city">Venice</h3>
+        <p class="travel-country">Italie</p>
+        <span class="travel-arrow">Découvrir</span>
+      </div>
+    </a>
+
+    <a href="ibiza.html" class="travel-card tc-ibiza">
+      <div class="travel-bg"></div>
+      <div class="travel-overlay">
+        <div class="travel-num">09</div>
+        <p class="travel-tag">Spain</p>
+        <h3 class="travel-city">Ibiza</h3>
+        <p class="travel-country">Spain</p>
+        <span class="travel-arrow">Découvrir</span>
+      </div>
+    </a>
 
   </div>
 </section>
 
 <!-- =====================
      PHILOSOPHIE / ADN
-     Modifier la citation et le texte
 ===================== -->
 <section class="section-philosophy" id="philosophy">
   <div class="phil-bg-text" aria-hidden="true">VOYAGE</div>
@@ -1094,7 +1156,6 @@
 
 <!-- =====================
      NEWSLETTER
-     Modifier le texte et connecter à votre service email (Klaviyo, Mailchimp...)
 ===================== -->
 <section class="section-newsletter">
   <p class="nl-label">Club des Voyageurs</p>
@@ -1109,7 +1170,6 @@
 
 <!-- =====================
      FOOTER
-     Modifier les liens et le copyright
 ===================== -->
 <footer>
   <div class="footer-top">
@@ -1147,6 +1207,29 @@
 </footer>
 
 <script>
+  // Menu burger mobile
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  const navItems = document.querySelectorAll('.nav-links a');
+
+  burger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('active');
+    burger.classList.toggle('active', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen);
+    burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+
+  navItems.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      burger.classList.remove('active');
+      document.body.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Ouvrir le menu');
+    });
+  });
+
   // Animation au scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
