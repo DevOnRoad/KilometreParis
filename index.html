@@ -467,18 +467,25 @@ nav {
   position: absolute;
   inset: 0;
   transition: transform 0.6s ease;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--bleu);
 }
 
-.travel-card:hover .travel-bg { transform: scale(1.05); }
+.travel-card:hover .travel-bg {
+  transform: scale(1.02);
+}
 
-.tc-melbourne .travel-bg  { background: linear-gradient(135deg, var(--bleu) 0%, var(--rouge) 100%); }
-.tc-tbilisi .travel-bg    { background: linear-gradient(135deg, var(--rouge) 0%, var(--jaune) 100%); }
-.tc-la .travel-bg         { background: linear-gradient(135deg, var(--bleu) 0%, var(--jaune) 100%); }
-.tc-addis .travel-bg      { background: linear-gradient(135deg, var(--rouge) 0%, var(--bleu) 100%); }
-.tc-brussels .travel-bg   { background: linear-gradient(135deg, var(--bleu) 0%, var(--jaune) 50%, var(--rouge) 100%); }
-.tc-mallorca .travel-bg   { background: linear-gradient(135deg, var(--jaune) 0%, var(--bleu) 100%); }
+.tc-melbourne .travel-bg  {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300");}
+.tc-tbilisi .travel-bg    {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_7198_WEB.jpg?v=1737982004"); }
+.tc-la .travel-bg         {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/owen1insta.jpg?v=1739970825"); }
+.tc-addis .travel-bg      {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7264.jpg?v=1742478861"); }
+.tc-brussels .travel-bg   {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ZEPHIR_-_PIECE_UNIQUE_Wat_Phra_Chetupon_Bangkok_Thailand_Jakkai_Siributr_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS828_TAE_WEB.jpg?v=1744963706"); }
+.tc-mallorca .travel-bg   {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/cata.jpg?v=1752660770"); }
+.tc-paris .travel-bg      {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05297_JULIE_GAYET.jpg?v=1756473305"); }
+.tc-venice .travel-bg     {     background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Anthonia_Sautter_CARAVAN__DSC5006.jpg?v=1776418987"); }
+.tc-ibiza .travel-bg      {     background-image: url(""); }
 
 .travel-overlay {
   position: absolute;
@@ -953,6 +960,8 @@ footer {
     <span>Mallorca</span><span class="marquee-dot">✦</span>
     <span>Pozzo · Corsica</span><span class="marquee-dot">✦</span>
     <span>Paris</span><span class="marquee-dot">✦</span>
+    <span>Venice</span><span class="marquee-dot">✦</span>
+    <span>Ibiza</span><span class="marquee-dot">✦</span>
     <span>Melbourne</span><span class="marquee-dot">✦</span>
     <span>Tbilisi</span><span class="marquee-dot">✦</span>
     <span>Los Angeles</span><span class="marquee-dot">✦</span>
@@ -961,6 +970,8 @@ footer {
     <span>Mallorca</span><span class="marquee-dot">✦</span>
     <span>Pozzo · Corsica</span><span class="marquee-dot">✦</span>
     <span>Paris</span><span class="marquee-dot">✦</span>
+    <span>Venice</span><span class="marquee-dot">✦</span>
+    <span>Ibiza</span><span class="marquee-dot">✦</span>
   </div>
 </div>
 
