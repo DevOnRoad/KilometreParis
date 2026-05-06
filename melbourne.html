@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .custom-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 10vh;
+        }
+
+        .container-unique {
+            max-width: 1660px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .title-unique {
+            font-size: 5em;
+            color: #e63946;
+            margin: 0 0 10px;
+            text-align: center;
+            font-weight: bold !important;
+        }
+
+        .subtitle-unique {
+            font-size: 1.5em;
+            margin: 0 0 40px;
+        }
+
+        .grid-unique {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) 1fr;
+            grid-template-rows: repeat(2, 350px);
+            gap: 20px;
+        }
+
+        .item-unique {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-unique img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .caption-unique {
+            font-size: 1em;
+            position: absolute;
+            bottom: 14px;
+            left: 36px;
+            right: 36px;
+            background-color: rgba(255, 255, 255, 1);
+            text-align: center;
+            padding: 10px;
+            font-weight: 1000 !important;
+            color: #e63946;
+        }
+
+        .item-long-unique {
+            grid-column: 4 / 5;
+            grid-row: 1 / 3;
+        }
+
+        .photo-credit {
+            position: relative;
+            text-align: right;
+            margin-top: 10px;
+            font-size: 2.5em;
+            color: #e63946;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        /* Ajout des cercles rouges */
+        .circle-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .circle-section .circle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7vw;
+            margin-top: 10px;
+        }
+
+        .circle-section .circle {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #e63946;
+            background-color: transparent;
+        }
+
+        .circle-section .circle.filled {
+            background-color: #e63946;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --rouge: #B82928;
+  --bleu: #2F3E86;
+  --jaune: #FFF8BD;
+  --blanc: #ffffff;
+  --noir: #1a1a1a;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--blanc);
+  color: var(--noir);
+  line-height: 1.6;
+}
+
+/* Container principal */
+.artisan-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* Bloc texte (gauche) */
+.artisan-text {
+  padding: 4rem 5rem;
+  background: var(--blanc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.artisan-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: var(--rouge);
+  margin-bottom: 2.5rem;
+  line-height: 1.1;
+}
+
+.artisan-paragraph {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--bleu);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.artisan-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Bloc image (droite) */
+.artisan-image {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 600px;
+}
+
+.artisan-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.editorial-gallery-wrapper {
+  width: 100%;
+  padding: 6rem 2rem;
+  background: #f5f5f1;
+  overflow: hidden;
+}
+
+.editorial-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.editorial-item {
+  position: relative;
+  overflow: hidden;
+  background: #eae7df;
+}
+
+.editorial-item img {
+  width: 100%;
+  height: 900px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   MOBILE HORIZONTAL SCROLL
+========================= */
+
+@media (max-width: 968px) {
+
+  .editorial-gallery-wrapper {
+    overflow-x: auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .editorial-gallery {
+    display: flex;
+    gap: 1.2rem;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .editorial-item {
+    flex: 0 0 85vw;
+  }
+
+  .editorial-item img {
+    height: 70vh;
+  }
+
+  /* scrollbar clean */
+
+  .editorial-gallery-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .editorial-gallery-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .editorial-gallery-wrapper::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 999px;
+  
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Section principale avec les images -->
+    <div class="custom-content">
+        <div class="container-unique">
+            <h1 class="title-unique">MELBOURNE</h1>
+
+            <!-- Section des cercles rouges -->
+            <div class="circle-section">
+                <div class="circle-container">
+                    <div class="circle filled"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-unique">
+        <div class="grid-unique">
+            <div class="item-unique item-1">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/043_SF_Kilometre.Paris_240212.jpg?v=1735642005">
+                <div class="caption-unique caption-1">Will Hanigan & Iskra Galic</div>
+            </div>
+            <div class="item-unique item-2">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300" alt="DUO pu">
+                <div class="caption-unique caption-2">Joe & Tobias</div>
+            </div>
+            <div class="item-unique item-3">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/027_SF_Kilometre.Paris_240212.jpg?v=1735571301" alt="Sarah Nedovic">
+                <div class="caption-unique caption-3">Sarah Nedovic</div>
+            </div>
+            <div class="item-unique item-4">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/007_SF_Kilometre.Paris_240212.jpg?v=1735571299" alt="Fiorina">
+                <div class="caption-unique caption-4">Fiorina Golotta</div>
+            </div>
+            <div class="item-unique item-5">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ISKRA_GALIC_-_PIECE_UNIQUE_OLYMPIC_STADIUM_-_BY_SARA_FORGIE_-_CARAVAN_MELBOURNE53.jpg?v=1735571295" alt="Iskra Galic & baby Rhea">
+                <div class="caption-unique caption-5">Iskra Galic & baby Rhea</div>
+            </div>
+            <div class="item-unique item-6">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/021_SF_Kilometre.Paris_240212.jpg?v=1735571299" alt="PHOEBE MUNRO">
+                <div class="caption-unique caption-6">Phoebe Munro</div>
+            </div>
+            <div class="item-unique item-long-unique">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/240212_KILOMETREPARIS_SF0462.jpg?v=1735571299" alt="Sandra Powell">
+                <div class="caption-unique caption-long">Sandra Powell</div>
+            </div>
+        </div>
+
+        <div class="photo-credit">
+            Photos by <span>Sara Forgie</span>
+        </div>
+    </div>
+
+    <div class="artisan-section">
+        <div class="artisan-text">
+          <h2 class="artisan-name">Iskra Galic</h2>
+          <p class="artisan-paragraph">
+            Iskra Galic defines herself as a Heartist—and we wholeheartedly agree! Our muse of the day is a young Australian painter, a bit of a magician. Thanks to her PhD in Psychology, Isra has gained access to many in need of healing, developing a unique partnership between conventional methods, energy work and artistic channelling.
+          </p>
+          <p class="artisan-paragraph">
+            From her hands emerge colorful canvases that place femininity at the center of her aesthetic. Iskra is like Cocteau making love to Picasso, or Matisse meeting Niki de Saint Phalle.
+          </p>
+          <p class="artisan-paragraph">
+            In her Brentwood studio, we stepped into the universe of this woman, for whom every canvas is destined to become a portal to healing. She develops her art not only to heal humans through a cathartic artistic process but also through the power of her own hands.
+          </p>
+        </div>
+      
+        <div class="artisan-image">
+          <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos2.jpg?v=1736966574" alt="Iskra Galic">
+        </div>
+      </div>
+      
+      <!-- =====================
+           ARTISAN 2 : Exemple avec image à gauche
+           Ajoute la classe "reverse"
+      ===================== -->
+      <div class="artisan-section reverse">
+
+        <div class="artisan-image">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos3.jpg?v=1736966574" alt="Tobias Churcher">
+          </div>
+        <div class="artisan-text">
+          <h2 class="artisan-name">Tobias Churcher</h2>
+      
+          <p class="artisan-paragraph">
+            Tobias Churcher moves within the equally select yet punk & queer sphere.
+            This psychologist & marketing consultant, who heads the company Bendelta,
+            hasn’t forgotten to be handsome.
+          </p>
+      
+          <p class="artisan-paragraph">
+            While a sharp mind lies beneath the angelic face of this golden boy, our project
+            « Caravan Melbourne » will mostly remember his sex-appeal & his versatile beauty.
+            It was therefore impossible not to have him wear our Piece Unique, original XIXth
+            century men uniform.
+          </p>
+        </div>
+      
+        
+      </div>
+      
+      <section class="editorial-gallery">
+        <div class="editorial-item">
+          <img src="https://kilometre.paris/cdn/shop/files/Madame-Fleur_-Valle-Del-Sol-Piece-unique-Piece-Unique-151420343.png?v=1744038578&width=900" alt="Look 1">
+        </div>
+      
+        <div class="editorial-item">
+          <img src="https://kilometre.paris/cdn/shop/files/048_SF_Kilometre.Paris_240212_2.jpg?v=1735815865&width=720" alt="Look 2">
+        </div>
+      
+        <div class="editorial-item">
+          <img src="https://kilometre.paris/cdn/shop/files/056_SF_Kilometre.Paris_240212.jpg?v=1735815865&width=720" alt="Look 3">
+        </div>
+      </section>
+      <!-- =====================
+           ARTISAN 3 : Ajoute autant que tu veux
+           Alterne avec/sans "reverse"
+      ===================== -->
+      <div class="artisan-section">
+        <div class="artisan-text">
+          <h2 class="artisan-name">Joe</h2>
+          <p class="artisan-paragraph">
+            Joe is undeniably a handsome young man. He burst onto the scene like a gust of wind through the window of our Caravan Melbourne project. Joe is not just a model with unapologetically queer vibes. This aesthete & nature lover is the mastermind behind the Rtreet project, offering luxury retreats in the Australian bush.
+         </p>
+          <p class="artisan-paragraph">
+            Caravan Melbourne couldn’t miss the chance to meet this angelic figure who so perfectly embodies the spirit of our timeless Piece Unique.
+        </p>
+          
+        </div>
+      
+        <div class="artisan-image">
+          <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos4.jpg?v=1736966573" alt="Yuki Tanaka">
+        </div>
+      </div>
+
+
+     
+      
+</body>
+</html>
