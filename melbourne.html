@@ -3,56 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Melbourne - Piece Unique</title>
+    <!-- ✅ FIX 1: Police Barlow correctement importée -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
+        /* --- RESET & VARIABLES --- */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
         }
 
-        .custom-content {
+        :root {
+            --rouge: #e63946;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-clair: #f9f9f9;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Barlow', Arial, sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* --- EN-TÊTE --- */
+        .title-unique {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--rouge);
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .circle-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 10vh;
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
-        .container-unique {
-            max-width: 1660px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--rouge);
         }
 
-        .title-unique {
-            font-size: 5em;
-            color: #e63946;
-            margin: 0 0 10px;
-            text-align: center;
-            font-weight: bold !important;
-        }
+        .circle.filled { background-color: var(--rouge); }
 
-        .subtitle-unique {
-            font-size: 1.5em;
-            margin: 0 0 40px;
-        }
-
+        /* --- GRILLES --- */
         .grid-unique {
             display: grid;
-            grid-template-columns: repeat(3, 1fr) 1fr;
-            grid-template-rows: repeat(2, 350px);
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 350px;
             gap: 20px;
+            margin-bottom: 20px;
         }
 
         .item-unique {
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .item-unique img {
@@ -61,347 +86,351 @@
             object-fit: cover;
         }
 
-        .caption-unique {
-            font-size: 1em;
-            position: absolute;
-            bottom: 14px;
-            left: 36px;
-            right: 36px;
-            background-color: rgba(255, 255, 255, 1);
-            text-align: center;
-            padding: 10px;
-            font-weight: 1000 !important;
-            color: #e63946;
-        }
-
+        /* ✅ FIX 2: grid-column relatif (-1 / -2) au lieu de hardcodé (4 / 5) */
         .item-long-unique {
-            grid-column: 4 / 5;
+            grid-column: -1 / -2;
             grid-row: 1 / 3;
         }
 
-        .photo-credit {
-            position: relative;
-            text-align: right;
-            margin-top: 10px;
-            font-size: 2.5em;
-            color: #e63946;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            pointer-events: none;
-        }
-
-        /* Ajout des cercles rouges */
-        .circle-section {
+        .caption-unique {
+            position: absolute;
+            bottom: 15px; left: 15px; right: 15px;
+            background: white;
+            padding: 10px;
             text-align: center;
-            margin-bottom: 30px;
+            color: var(--rouge);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
-        .circle-section .circle-container {
-            display: flex;
-            justify-content: center;
+        .photo-credit {
+            text-align: right;
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+            color: var(--rouge);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --- SECTIONS ARTISANS --- */
+        .artisan-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
             align-items: center;
-            gap: 7vw;
-            margin-top: 10px;
+            margin-bottom: 120px;
         }
 
-        .circle-section .circle {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 2px solid #e63946;
-            background-color: transparent;
+        /* ✅ FIX 3: Remplacement de direction:rtl par flex order — plus robuste */
+        .artisan-section.reverse .artisan-text { order: 2; }
+        .artisan-section.reverse .artisan-image { order: 1; }
+
+        .artisan-text { display: flex; flex-direction: column; }
+
+        .artisan-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--rouge);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
 
-        .circle-section .circle.filled {
-            background-color: #e63946;
+        .artisan-paragraph {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--bleu);
+            margin-bottom: 1.2rem;
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --rouge: #B82928;
-  --bleu: #2F3E86;
-  --jaune: #FFF8BD;
-  --blanc: #ffffff;
-  --noir: #1a1a1a;
-}
-
-body {
-  font-family: 'Barlow', sans-serif;
-  background: var(--blanc);
-  color: var(--noir);
-  line-height: 1.6;
-}
-
-/* Container principal */
-.artisan-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  min-height: 100vh;
-  align-items: center;
-}
-
-/* Bloc texte (gauche) */
-.artisan-text {
-  padding: 4rem 5rem;
-  background: var(--blanc);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.artisan-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 400;
-  color: var(--rouge);
-  margin-bottom: 2.5rem;
-  line-height: 1.1;
-}
-
-.artisan-paragraph {
-  font-size: 0.95rem;
-  line-height: 2;
-  color: var(--bleu);
-  margin-bottom: 1.5rem;
-  font-weight: 300;
-}
-
-.artisan-paragraph:last-child {
-  margin-bottom: 0;
-}
-
-/* Bloc image (droite) */
-.artisan-image {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  min-height: 600px;
-}
-
-.artisan-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.editorial-gallery-wrapper {
-  width: 100%;
-  padding: 6rem 2rem;
-  background: #f5f5f1;
-  overflow: hidden;
-}
-
-.editorial-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 100%;
-  margin: 0 auto;
-}
-
-.editorial-item {
-  position: relative;
-  overflow: hidden;
-  background: #eae7df;
-}
-
-.editorial-item img {
-  width: 100%;
-  height: 900px;
-  object-fit: cover;
-  display: block;
-}
-
-/* =========================
-   MOBILE HORIZONTAL SCROLL
-========================= */
-
-@media (max-width: 968px) {
-
-  .editorial-gallery-wrapper {
-    overflow-x: auto;
-    padding: 3rem 1.5rem;
-  }
-
-  .editorial-gallery {
-    display: flex;
-    gap: 1.2rem;
-    width: max-content;
-    min-width: 100%;
-  }
-
-  .editorial-item {
-    flex: 0 0 85vw;
-  }
-
-  .editorial-item img {
-    height: 70vh;
-  }
-
-  /* scrollbar clean */
-
-  .editorial-gallery-wrapper::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .editorial-gallery-wrapper::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .editorial-gallery-wrapper::-webkit-scrollbar-thumb {
-    background: #c7c7c7;
-    border-radius: 999px;
-  
+        .artisan-image img {
+            width: 100%;
+            height: auto;
+            max-height: 850px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
-    }
+
+        /* --- GALERIE COULISSANTE --- */
+        .editorial-gallery-wrapper {
+            background: var(--gris-clair);
+            padding: 80px 0;
+            margin: 80px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%; right: 50%;
+            margin-left: -50vw; margin-right: -50vw;
+        }
+
+        .editorial-gallery {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 40px;
+        }
+
+        .editorial-item img {
+            width: 100%;
+            height: 750px;
+            object-fit: cover;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-unique { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; gap: 10px; }
+
+            /* Sur mobile, item-long revient à la normale */
+            .item-long-unique { grid-column: span 2; grid-row: auto; height: 350px; }
+
+            /* ✅ FIX 3 mobile: on remet l'ordre naturel */
+            .artisan-section,
+            .artisan-section.reverse {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .artisan-section.reverse .artisan-text { order: 2; }
+            .artisan-section.reverse .artisan-image { order: 1; }
+            .artisan-section .artisan-image { order: -1; }
+
+            /* ✅ FIX 4: Galerie mobile avec indicateurs visuels */
+            .editorial-gallery {
+                display: flex;
+                overflow-x: auto;
+                padding: 0 20px 20px;
+                gap: 15px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            .editorial-item {
+                flex: 0 0 85vw;
+                scroll-snap-align: center;
+            }
+            .editorial-item img { height: 50vh; }
+            .editorial-gallery::-webkit-scrollbar { display: none; }
+
+            /* Indicateur de scroll discret */
+            .editorial-gallery-wrapper::after {
+                content: '← swipe →';
+                display: block;
+                text-align: center;
+                font-size: 0.75rem;
+                color: #aaa;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-top: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Section principale avec les images -->
-    <div class="custom-content">
-        <div class="container-unique">
-            <h1 class="title-unique">MELBOURNE</h1>
 
-            <!-- Section des cercles rouges -->
-            <div class="circle-section">
-                <div class="circle-container">
-                    <div class="circle filled"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                </div>
-            </div>
+    <div class="section-container">
+        <h1 class="title-unique">MELBOURNE</h1>
+        <div class="circle-container" aria-hidden="true">
+            <div class="circle filled"></div>
+            <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+            <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+            <div class="circle"></div><div class="circle"></div>
         </div>
+
+        <!-- GRILLE DU HAUT -->
+        <!-- ✅ FIX 5: alt ajoutés sur toutes les images -->
+        <div class="grid-unique" role="list" aria-label="Galerie Melbourne">
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/043_SF_Kilometre.Paris_240212.jpg?v=1735642005" alt="Will Hanigan et Iskra Galic portant une Pièce Unique"><div class="caption-unique">Will Hanigan & Iskra Galic</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300" alt="Joe et Tobias portant une Pièce Unique"><div class="caption-unique">Joe & Tobias</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/027_SF_Kilometre.Paris_240212.jpg?v=1735571301" alt="Sarah Nedovic portant une Pièce Unique"><div class="caption-unique">Sarah Nedovic</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/007_SF_Kilometre.Paris_240212.jpg?v=1735571299" alt="Fiorina Golotta portant une Pièce Unique"><div class="caption-unique">Fiorina Golotta</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ISKRA_GALIC_-_PIECE_UNIQUE_OLYMPIC_STADIUM_-_BY_SARA_FORGIE_-_CARAVAN_MELBOURNE53.jpg?v=1735571295" alt="Iskra Galic et son bébé Rhea au stade olympique de Melbourne"><div class="caption-unique">Iskra Galic & baby Rhea</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/021_SF_Kilometre.Paris_240212.jpg?v=1735571299" alt="Phoebe Munro portant une Pièce Unique"><div class="caption-unique">Phoebe Munro</div></div>
+            <div class="item-unique item-long-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/240212_KILOMETREPARIS_SF0462.jpg?v=1735571299" alt="Sandra Powell portant une Pièce Unique"><div class="caption-unique">Sandra Powell</div></div>
+        </div>
+        <p class="photo-credit">Photos by Sara Forgie</p>
+
+        <!-- INTRO -->
+        <div class="artisan-intro">
+            <h2 class="artisan-intro-title">Caravan: An Inspiring Journey<br>with Kilometre Paris</h2>
+            <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+            <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+            <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong> and with the eyes of talented photographers such as <strong>Sarah Forgie, Bennu Gerede & Julie Ansiau</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating at our creations. This First edition of Caravan takes place in <strong>Melbourne</strong>, with 13 inspiring muses, each of whom enrich our adventure. Join us for an experience wherein fashion and creativity offer to take you on the journey of a lifetime.</p>
+        </div>
+
+        <section class="artisan-section" aria-label="Profil artisan : Will Hanigan">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Will Hanigan</h2>
+                <p class="artisan-paragraph">Riding in 4x4 to the wild northern Australian beaches between Broome and Darwin with Will Hanigan seems like the adventure of a lifetime.</p>
+                <p class="artisan-paragraph">Founder of the jewelry brand @willhaniganpearls, advises taking mushrooms before a trip to Melbourne's botanical gardens while ending with a game of Frisbee with his friends at Sandringham Beach seems like a day well spent. Let's discover Melbourne through the eyes of one of our young, talented, and handsomely charming Will Hanigan.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/038_SF_Kilometre.Paris_240212.jpg?v=1735817835&width=720" alt="Portrait de Will Hanigan portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section reverse" aria-label="Profil artisan : Iskra Galic">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Iskra Galic</h2>
+                <p class="artisan-paragraph">Iskra Galic defines herself as a Heartist—and we wholeheartedly agree! Our muse of the day is a young Australian painter, a bit of a magician. Thanks to her PhD in Psychology, Iskra has gained access to many in need of healing, developing a unique partnership between conventional methods, energy work and artistic channelling.</p>
+                <p class="artisan-paragraph">From her hands emerge colorful canvases that place femininity at the center of her aesthetic. Iskra is like Cocteau making love to Picasso, or Matisse meeting Niki de Saint Phalle.</p>
+                <p class="artisan-paragraph">In her Brentwood studio, we stepped into the universe of this woman, for whom every canvas is destined to become a portal to healing. She develops her art not only to heal humans through a cathartic artistic process but also through the power of her own hands.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos2.jpg?v=1736966574" alt="Portrait d'Iskra Galic portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section" aria-label="Profil artisan : Tobias Churcher">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Tobias Churcher</h2>
+                <p class="artisan-paragraph">Tobias Churcher moves within the equally select yet punk & queer sphere. This psychologist & marketing consultant, whom heads the company Bendelta, hasn't forgotten to be handsome.</p>
+                <p class="artisan-paragraph">While a sharp mind lies beneath the angelic face of this golden boy, our project « Caravan Melbourne » will mostly remember his sex-appeal & his versatile beauty. It was therefore impossible not to have him wear our Piece Unique, original XIXth century men uniform.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos3.jpg?v=1736966574" alt="Portrait de Tobias Churcher portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
     </div>
 
-    <div class="container-unique">
-        <div class="grid-unique">
-            <div class="item-unique item-1">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/043_SF_Kilometre.Paris_240212.jpg?v=1735642005">
-                <div class="caption-unique caption-1">Will Hanigan & Iskra Galic</div>
-            </div>
-            <div class="item-unique item-2">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300" alt="DUO pu">
-                <div class="caption-unique caption-2">Joe & Tobias</div>
-            </div>
-            <div class="item-unique item-3">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/027_SF_Kilometre.Paris_240212.jpg?v=1735571301" alt="Sarah Nedovic">
-                <div class="caption-unique caption-3">Sarah Nedovic</div>
-            </div>
-            <div class="item-unique item-4">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/007_SF_Kilometre.Paris_240212.jpg?v=1735571299" alt="Fiorina">
-                <div class="caption-unique caption-4">Fiorina Golotta</div>
-            </div>
-            <div class="item-unique item-5">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ISKRA_GALIC_-_PIECE_UNIQUE_OLYMPIC_STADIUM_-_BY_SARA_FORGIE_-_CARAVAN_MELBOURNE53.jpg?v=1735571295" alt="Iskra Galic & baby Rhea">
-                <div class="caption-unique caption-5">Iskra Galic & baby Rhea</div>
-            </div>
-            <div class="item-unique item-6">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/021_SF_Kilometre.Paris_240212.jpg?v=1735571299" alt="PHOEBE MUNRO">
-                <div class="caption-unique caption-6">Phoebe Munro</div>
-            </div>
-            <div class="item-unique item-long-unique">
-                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/240212_KILOMETREPARIS_SF0462.jpg?v=1735571299" alt="Sandra Powell">
-                <div class="caption-unique caption-long">Sandra Powell</div>
-            </div>
+    <!-- GALERIE COULISSANTE -->
+    <section class="editorial-gallery-wrapper" aria-label="Galerie éditoriale Melbourne">
+        <div class="editorial-gallery">
+            <div class="editorial-item"><img src="https://kilometre.paris/cdn/shop/files/Madame-Fleur_-Valle-Del-Sol-Piece-unique-Piece-Unique-151420343.png?v=1744038578&width=900" alt="Pièce Unique portée en extérieur, édition Melbourne"></div>
+            <div class="editorial-item"><img src="https://kilometre.paris/cdn/shop/files/048_SF_Kilometre.Paris_240212_2.jpg?v=1735815865&width=720" alt="Photo éditoriale Melbourne Kilometre Paris"></div>
+            <div class="editorial-item"><img src="https://kilometre.paris/cdn/shop/files/056_SF_Kilometre.Paris_240212.jpg?v=1735815865&width=720" alt="Photo éditoriale Melbourne Kilometre Paris"></div>
         </div>
+    </section>
 
-        <div class="photo-credit">
-            Photos by <span>Sara Forgie</span>
-        </div>
-    </div>
+    <div class="section-container">
 
-    <div class="artisan-section">
-        <div class="artisan-text">
-          <h2 class="artisan-name">Iskra Galic</h2>
-          <p class="artisan-paragraph">
-            Iskra Galic defines herself as a Heartist—and we wholeheartedly agree! Our muse of the day is a young Australian painter, a bit of a magician. Thanks to her PhD in Psychology, Isra has gained access to many in need of healing, developing a unique partnership between conventional methods, energy work and artistic channelling.
-          </p>
-          <p class="artisan-paragraph">
-            From her hands emerge colorful canvases that place femininity at the center of her aesthetic. Iskra is like Cocteau making love to Picasso, or Matisse meeting Niki de Saint Phalle.
-          </p>
-          <p class="artisan-paragraph">
-            In her Brentwood studio, we stepped into the universe of this woman, for whom every canvas is destined to become a portal to healing. She develops her art not only to heal humans through a cathartic artistic process but also through the power of her own hands.
-          </p>
-        </div>
-      
-        <div class="artisan-image">
-          <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos2.jpg?v=1736966574" alt="Iskra Galic">
-        </div>
-      </div>
-      
-      <!-- =====================
-           ARTISAN 2 : Exemple avec image à gauche
-           Ajoute la classe "reverse"
-      ===================== -->
-      <div class="artisan-section reverse">
+        <section class="artisan-section" aria-label="Profil artisan : Joe">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Joe</h2>
+                <p class="artisan-paragraph">Joe is undeniably a handsome young man. He burst onto the scene like a gust of wind through the window of our Caravan Melbourne project. Joe is not just a model with unapologetically queer vibes. This aesthete & nature lover is the mastermind behind the Rtreet project, offering luxury retreats in the Australian bush.</p>
+                <p class="artisan-paragraph">Caravan Melbourne couldn't miss the chance to meet this angelic figure who so perfectly embodies the spirit of our timeless Piece Unique.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos4.jpg?v=1736966573" alt="Portrait de Joe portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
 
-        <div class="artisan-image">
-            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos3.jpg?v=1736966574" alt="Tobias Churcher">
-          </div>
-        <div class="artisan-text">
-          <h2 class="artisan-name">Tobias Churcher</h2>
-      
-          <p class="artisan-paragraph">
-            Tobias Churcher moves within the equally select yet punk & queer sphere.
-            This psychologist & marketing consultant, who heads the company Bendelta,
-            hasn’t forgotten to be handsome.
-          </p>
-      
-          <p class="artisan-paragraph">
-            While a sharp mind lies beneath the angelic face of this golden boy, our project
-            « Caravan Melbourne » will mostly remember his sex-appeal & his versatile beauty.
-            It was therefore impossible not to have him wear our Piece Unique, original XIXth
-            century men uniform.
-          </p>
-        </div>
-      
+        <section class="artisan-section reverse" aria-label="Profil artisan : Stanislava Pinchuk">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Stanislava Pinchuk</h2>
+                <p class="artisan-paragraph">Leave everything behind and head to Sarajevo with Stanislava Pinchuk, a place that is the homeliest of all destinations for her. Climb aboard a cable car to overlook the valley and talk about the magic of craft with this committed young Ukrainian artist @stanislava__pinchuk.</p>
+                <p class="artisan-paragraph">Her work revolves around data mapping with the evolution of topographies of war & conflict zones. When you find yourself in Melbourne, count on her to take you for a cold beer at the Napier Pub before leading us to some secret places (that will remain secret) because after all...what happens in Melbourne stays in Melbourne.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/031_SF_Kilometre.Paris_240212.jpg?v=1735827111&width=540" alt="Portrait de Stanislava Pinchuk portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section" aria-label="Profil artisan : Lisa Fox">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Lisa Fox</h2>
+                <p class="artisan-paragraph">Lisa Fox is a family person. Rather than getting lost in the hustle and bustle of the city, this homebody invites us to have a drink at home with her nearest and dearest. After you find time to leave the comfort of her home, spending 24 hours in Melbourne with her would be a stroll through the alternative maze of Fitzroy in search of a little unnecessary pleasure.</p>
+                <p class="artisan-paragraph">This patron of the arts and collector of rare fabrics will take us on a tour of Portsea Beach with the necessary stop at the National Gallery of Victoria (with which Lisa often collaborates), and the Melbourne Botanic Gardens. To finish with a hint of the Français, she would surprise us with the best pepper steak in town at Chez France-Soir (in South Yarra), a place at which she always orders the same meal (because it's just THAT good).</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos6.jpg?v=1736966575&width=900" alt="Portrait de Lisa Fox portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section reverse" aria-label="Profil artisan : Sarah Nedovic">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Sarah Nedovic</h2>
+                <p class="artisan-paragraph">Caravan Melbourne takes us to meet Sarah Nedovic. Sarah is light—or rather, the entire process that leads us there. This brilliant ceramicist puts her expertise at the service of raw materials, from which she draws out delicacy.</p>
+                <p class="artisan-paragraph">An investigator of traditional techniques, Sarah invited us into her universe, one that is both organic and minimalist. She explores form and function, the creative process, and the purpose of her work. Through her creations, she brings forth light and clarity, illuminating our Australian journey.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos7.jpg?v=1736966574&width=900" alt="Portrait de Sarah Nedovic portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section" aria-label="Profil artisan : Phoebe Munro">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Phoebe Munro</h2>
+                <p class="artisan-paragraph">Founder of Pan After, Phoebe is a passionate lover of art and craftsmanship. She travels the globe in search of authentic decorative pieces.</p>
+                <p class="artisan-paragraph">A fervent advocate for ancestral techniques, she takes us on a journey into her world, as eclectic as it is committed.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos8.jpg?v=1736966575&width=360" alt="Portrait de Phoebe Munro portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section reverse" aria-label="Profil artisan : Sandra Powell">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Sandra Powell</h2>
+                <p class="artisan-paragraph">Sandra Powell is a street art collector, an innovative force in the art world, and, ultimately, the queen of curators. As a creative figure in the art world, she works alongside her husband, Andrew King, and is celebrated for her unique ability to blend high art with urban aesthetics. She challenges traditional boundaries and expectations.</p>
+                <p class="artisan-paragraph">This former fashion industry figure turned to street art after falling in love with the works of artists like Banksy and Blek le Rat. Together, the couple, known as "Sandrew," has amassed Australia's largest collection of urban artists. Sandra embodies artistic activism, proving that art doesn't stagnate in dusty old museums.</p>
+                <p class="artisan-paragraph">From the hidden gems of Byron Bay to a world-renowned farm-to-table restaurant called Harvest to a tasteful shopping spree in Bangalo, our muse takes us into her universe—whimsical, sprawling, and as vibrant as her personality.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/240212_KILOMETREPARIS_SF0462.jpg?v=1735571299&width=900" alt="Portrait de Sandra Powell portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section" aria-label="Profil artisan : Lynn Burmeister">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Lynn Burmeister</h2>
+                <p class="artisan-paragraph">Today, Caravan Melbourne shines a spotlight on Lynn Burmeister. The fertility doctor welcomed us into her laboratory, where a maze of machines and test tubes coexists with the infectious joy of this vibrant woman. The founder of Melbourne's No.1 Fertility laboratory shared her enthusiasm and creative energy, which she dedicates to supporting women.</p>
+                <p class="artisan-paragraph">In this sense, Lynn Burmeister is undoubtedly cultivating one of the most vital and essential forms of craftsmanship!</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos10.jpg?v=1736966574&width=720" alt="Portrait de Lynn Burmeister portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section reverse" aria-label="Profil artisan : Kate Alstergen">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Kate Alstergen</h2>
+                <p class="artisan-paragraph">Today, we're revealing the secret spot of Kate Alstergen, the captain of @satelliteisland, whom we met in southern Melbourne. With her words, she takes us around Satelli Head Island, located on Tasmania's southeast coast.</p>
+                <p class="artisan-paragraph">It always feels like the perfect time for an outdoor escape on an Oceanic island with this lover of all things sea, nature, and wide open spaces.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos11.jpg?v=1736966574&width=900" alt="Portrait de Kate Alstergen portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section" aria-label="Profil artisan : Skye McCardle">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Skye McCardle</h2>
+                <p class="artisan-paragraph">Skye is funny, unpredictable, generous and gorgeous. This art enthusiast, completely offbeat, takes us into her colorful universe, where nothing ever goes as planned. Skye is passionate about art, fashion & decoration.</p>
+                <p class="artisan-paragraph">From MCM House, which she saw come to life alongside Charles Hinckfuss, to her role as the right-hand of her late husband & Australian art guru Tim Klingender, she has always been immersed in aesthetics, and it suits her perfectly.</p>
+                <p class="artisan-paragraph">The beautiful Australian is vibrant, colorful, & a little crazy, and that's why our project « Caravan Melbourne » couldn't have gone without her as a muse. Divine in our Piece Unique.</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos12.jpg?v=1736966574&width=1600" alt="Portrait de Skye McCardle portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <section class="artisan-section reverse" aria-label="Profil artisan : Fiorina Golotta">
+            <div class="artisan-text">
+                <h2 class="artisan-name">Fiorina Golotta</h2>
+                <p class="artisan-paragraph">Fiorina Golotta, the founder of the jewelry brand @fiorinajewellery takes us to Airlie Beach to experience the salt water as a means of healing.</p>
+                <p class="artisan-paragraph">Between her religious connection to the ocean, her tight links with handwork, and craft that she sees as mantras, Bibi gives us some heartfelt places to retreat to for a breath of fresh air.</p>
+                <p class="artisan-paragraph">Through a nibble at Carter Lovett for breakfast or a decadent plate of pasta at Cafe Di Stasio, we find ourselves stuffed full of food made with love. Since her clubbing days are over, 24 hours in her company is perfect for all foodies!</p>
+            </div>
+            <div class="artisan-image">
+                <img src="https://kilometre.paris/cdn/shop/files/Kilometre-Caravan-Site-Photos13.jpg?v=1736966574&width=720" alt="Portrait de Fiorina Golotta portant une Pièce Unique Kilometre Paris">
+            </div>
+        </section>
+
+        <!-- GRILLE FINALE -->
+        <div class="grid-unique" style="margin-top: 60px;" role="list" aria-label="Galerie finale Melbourne">
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/PIECE_UNIQUE_DE_JOUR_EN_JOUR_DAKAR_SENEGAL_-_LYNN_BURMEISTER.jpg?v=1735642434" alt="Lynn Burmeister portant une Pièce Unique"><div class="caption-unique">Lynn Burmeister</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/013_SF_Kilometre.Paris_240213.jpg?v=1735642005" alt="Lisa Fox portant une Pièce Unique"><div class="caption-unique">Lisa Foxx</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Madame-Fleur_-Valle-Del-Sol-Piece-unique-Piece-Unique-151420229.jpg?v=1744038573" alt="Kate Alstergen portant une Pièce Unique"><div class="caption-unique">Kate Alstergen</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/240212_KILOMETREPARIS_SF0067.jpg?v=1735642011" alt="Skye portant une Pièce Unique"><div class="caption-unique">Skye</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/055_SF_Kilometre.Paris_240212.jpg?v=1735642005" alt="Tobias Churcher portant une Pièce Unique"><div class="caption-unique">Tobias Churcher</div></div>
+            <div class="item-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/043_SF_Kilometre.Paris_240212.jpg?v=1735642005" alt="Will Hanigan portant une Pièce Unique"><div class="caption-unique">Will Hanigan</div></div>
+            <!-- ✅ FIX 2 (grille finale): grid-column relatif -->
+            <div class="item-unique item-long-unique" role="listitem"><img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/032_SF_Kilometre.Paris_240212.jpg?v=1735642004" alt="Stanislava Pinchuk portant une Pièce Unique"><div class="caption-unique">Stanislava Pinchuk</div></div>
         
-      </div>
-      
-      <section class="editorial-gallery">
-        <div class="editorial-item">
-          <img src="https://kilometre.paris/cdn/shop/files/Madame-Fleur_-Valle-Del-Sol-Piece-unique-Piece-Unique-151420343.png?v=1744038578&width=900" alt="Look 1">
-        </div>
-      
-        <div class="editorial-item">
-          <img src="https://kilometre.paris/cdn/shop/files/048_SF_Kilometre.Paris_240212_2.jpg?v=1735815865&width=720" alt="Look 2">
-        </div>
-      
-        <div class="editorial-item">
-          <img src="https://kilometre.paris/cdn/shop/files/056_SF_Kilometre.Paris_240212.jpg?v=1735815865&width=720" alt="Look 3">
-        </div>
-      </section>
-      <!-- =====================
-           ARTISAN 3 : Ajoute autant que tu veux
-           Alterne avec/sans "reverse"
-      ===================== -->
-      <div class="artisan-section">
-        <div class="artisan-text">
-          <h2 class="artisan-name">Joe</h2>
-          <p class="artisan-paragraph">
-            Joe is undeniably a handsome young man. He burst onto the scene like a gust of wind through the window of our Caravan Melbourne project. Joe is not just a model with unapologetically queer vibes. This aesthete & nature lover is the mastermind behind the Rtreet project, offering luxury retreats in the Australian bush.
-         </p>
-          <p class="artisan-paragraph">
-            Caravan Melbourne couldn’t miss the chance to meet this angelic figure who so perfectly embodies the spirit of our timeless Piece Unique.
-        </p>
-          
-        </div>
-      
-        <div class="artisan-image">
-          <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Kilometre-Caravan-Site-Photos4.jpg?v=1736966573" alt="Yuki Tanaka">
-        </div>
-      </div>
+          </div>
+          <p class="photo-credit">Photos by Sara Forgie</p>
+      </div>  </div>
+    </div>
 
-
-     
-      
 </body>
 </html>
