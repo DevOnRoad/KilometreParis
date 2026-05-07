@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,9 +27,7 @@ body {
   overflow-x: hidden;
 }
 
-/* =====================
-   NAV
-===================== */
+/* NAV */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -88,8 +86,7 @@ nav {
 
 .burger {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 42px; height: 42px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -99,8 +96,7 @@ nav {
 
 .burger span {
   display: block;
-  width: 26px;
-  height: 2px;
+  width: 26px; height: 2px;
   background: var(--bleu);
   margin: 6px auto;
   transition: transform 0.25s ease, opacity 0.25s ease;
@@ -110,9 +106,7 @@ nav {
 .burger.active span:nth-child(2) { opacity: 0; }
 .burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* =====================
-   HERO
-===================== */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -149,10 +143,7 @@ nav {
   margin-bottom: 2rem;
 }
 
-.hero-title em {
-  font-style: italic;
-  color: var(--rouge);
-}
+.hero-title em { font-style: italic; color: var(--rouge); }
 
 .hero-sub {
   font-size: 0.9rem;
@@ -163,11 +154,7 @@ nav {
   font-weight: 400;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 .btn-primary {
   display: inline-block;
@@ -201,10 +188,7 @@ nav {
 
 .hero-right {
   position: relative;
-  background: url("https://kilometre.paris/cdn/shop/files/Alexandra_by_Maryline_Jost-Kiehl.jpg?v=1707408904&width=1080");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("https://kilometre.paris/cdn/shop/files/Alexandra_by_Maryline_Jost-Kiehl.jpg?v=1707408904&width=1080") center/cover no-repeat;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -241,9 +225,7 @@ nav {
   font-weight: 700;
 }
 
-/* =====================
-   MARQUEE
-===================== */
+/* MARQUEE */
 .marquee-bar {
   background: var(--bleu);
   color: var(--jaune);
@@ -272,9 +254,7 @@ nav {
   100% { transform: translateX(-50%); }
 }
 
-/* =====================
-   SECTION ABOUT
-===================== */
+/* SECTION ABOUT */
 .section-about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -292,8 +272,7 @@ nav {
 }
 
 .about-globe {
-  width: 260px;
-  height: 260px;
+  width: 260px; height: 260px;
   border-radius: 50%;
   background: var(--bleu);
   display: flex;
@@ -305,8 +284,7 @@ nav {
 .about-globe::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 2px;
+  width: 100%; height: 2px;
   background: rgba(255,255,255,0.2);
   top: 50%;
 }
@@ -314,8 +292,7 @@ nav {
 .about-globe::after {
   content: '';
   position: absolute;
-  width: 2px;
-  height: 100%;
+  width: 2px; height: 100%;
   background: rgba(255,255,255,0.2);
   left: 50%;
 }
@@ -343,16 +320,14 @@ nav {
 
 .about-dots {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 300px; height: 300px;
   border: 1px dashed rgba(47,62,134,0.3);
   border-radius: 50%;
   animation: spin 40s linear infinite;
 }
 
 .about-dots-2 {
-  width: 380px;
-  height: 380px;
+  width: 380px; height: 380px;
   border: 1px dashed rgba(47,62,134,0.15);
   animation-duration: 60s;
   animation-direction: reverse;
@@ -403,9 +378,9 @@ nav {
 }
 
 .stat-num {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Barlow', Arial, sans-serif;
   font-size: 2.2rem;
-  font-weight: 400;
+  font-weight: 900;
   color: var(--bleu);
   line-height: 1;
   text-transform: uppercase;
@@ -420,9 +395,106 @@ nav {
   font-weight: 700;
 }
 
-/* =====================
-   OUR TRAVELS
-===================== */
+/* MAKE IT YOURS */
+.section-miy {
+  background: var(--bleu);
+  padding: 7rem 2.5rem;
+  overflow: hidden;
+}
+
+.miy-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.miy-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.miy-title em { font-style: italic; color: var(--jaune); }
+
+.miy-body {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+}
+
+.miy-visual { display: flex; justify-content: center; align-items: center; }
+
+.miy-img-stack {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Carousel MIY */
+.miy-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.miy-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.miy-slide.active { opacity: 1; }
+
+.miy-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.miy-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.miy-dot.active {
+  background: var(--jaune);
+  border-color: var(--jaune);
+}
+
+.miy-badge {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  background: var(--rouge);
+  color: var(--blanc);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.9rem 1.4rem;
+  z-index: 2;
+}
+
+/* OUR TRAVELS */
 .section-travels {
   padding: 6rem 2.5rem;
   background: var(--blanc);
@@ -488,13 +560,12 @@ nav {
 }
 
 .travel-num {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Barlow', Arial, sans-serif;
   font-size: 5rem;
-  font-weight: 400;
+  font-weight: 900;
   color: rgba(255,255,255,0.1);
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
+  top: 1rem; right: 1.5rem;
   line-height: 1;
 }
 
@@ -508,12 +579,13 @@ nav {
 }
 
 .travel-city {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Barlow', Arial, sans-serif;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 900;
   color: var(--blanc);
   line-height: 1.1;
   margin-bottom: 0.4rem;
+  text-transform: uppercase;
 }
 
 .travel-country {
@@ -542,9 +614,7 @@ nav {
 .travel-card:hover .travel-arrow { opacity: 1; transform: translateY(0); }
 .travel-arrow::after { content: '→'; font-size: 0.9rem; }
 
-/* =====================
-   PHILOSOPHY
-===================== */
+/* PHILOSOPHY */
 .section-philosophy {
   background: var(--bleu);
   padding: 7rem 2.5rem;
@@ -555,12 +625,11 @@ nav {
 
 .phil-bg-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Barlow', Arial, sans-serif;
   font-size: clamp(6rem, 15vw, 18rem);
-  font-weight: 400;
+  font-weight: 900;
   color: rgba(255,255,255,0.04);
   white-space: nowrap;
   pointer-events: none;
@@ -604,8 +673,7 @@ nav {
 }
 
 .phil-divider {
-  width: 50px;
-  height: 2px;
+  width: 50px; height: 2px;
   background: var(--rouge);
   margin: 2.5rem auto;
 }
@@ -621,8 +689,7 @@ nav {
 .value-item { text-align: center; }
 
 .value-icon {
-  width: 48px;
-  height: 48px;
+  width: 48px; height: 48px;
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 50%;
   display: flex;
@@ -641,9 +708,7 @@ nav {
   font-weight: 700;
 }
 
-/* =====================
-   NEWSLETTER
-===================== */
+/* NEWSLETTER */
 .section-newsletter {
   background: var(--jaune);
   padding: 5rem 2.5rem;
@@ -664,9 +729,9 @@ nav {
 }
 
 .nl-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Barlow', Arial, sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 400;
+  font-weight: 900;
   color: var(--bleu);
   margin-bottom: 0.8rem;
   line-height: 1.2;
@@ -682,7 +747,6 @@ nav {
 
 .nl-form {
   display: flex;
-  gap: 0;
   max-width: 420px;
   width: 100%;
 }
@@ -728,9 +792,7 @@ nav {
   font-weight: 400;
 }
 
-/* =====================
-   FOOTER
-===================== */
+/* FOOTER */
 footer {
   background: var(--bleu);
   padding: 4rem 2.5rem 2rem;
@@ -747,9 +809,9 @@ footer {
 }
 
 .footer-brand {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Barlow', Arial, sans-serif;
   font-size: 1.3rem;
-  font-weight: 400;
+  font-weight: 900;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--blanc);
@@ -794,7 +856,6 @@ footer {
 }
 
 .footer-copy { font-size: 0.7rem; font-weight: 400; }
-
 .footer-social { display: flex; gap: 1.2rem; }
 
 .footer-social a {
@@ -809,9 +870,7 @@ footer {
 
 .footer-social a:hover { color: var(--jaune); }
 
-/* =====================
-   RESPONSIVE
-===================== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.2rem; }
   .nav-logo { font-size: 0.82rem; letter-spacing: 0.18em; max-width: 70%; }
@@ -820,9 +879,7 @@ footer {
   .nav-links {
     position: fixed;
     top: 0; right: 0;
-    width: 78%;
-    max-width: 340px;
-    height: 100vh;
+    width: 78%; max-width: 340px; height: 100vh;
     background: var(--blanc);
     border-left: 1px solid rgba(47,62,134,0.12);
     display: flex;
@@ -849,6 +906,22 @@ footer {
   .about-visual { padding: 3rem 1.5rem; min-height: 300px; }
   .about-content { padding: 3rem 1.5rem; }
 
+  /* MIY mobile : on empile texte + carousel */
+  .miy-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .miy-visual {
+    display: flex; /* visible sur mobile aussi */
+  }
+  .miy-img-stack {
+    max-width: 100%;
+  }
+  .miy-badge {
+    bottom: -10px; right: -10px;
+    padding: 0.6rem 1rem;
+  }
+
   .travels-grid { grid-template-columns: 1fr 1fr; }
 
   .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -857,49 +930,43 @@ footer {
   .nl-input, .nl-btn { width: 100%; }
 }
 
-/* =====================
-   ANIMATIONS
-===================== */
+/* ANIMATIONS */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
 <nav>
   <a href="#" class="nav-logo">Kilometre · Paris</a>
-  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false">
+  <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#about">The House</a></li>
+    <li><a href="#about">La Maison</a></li>
     <li><a href="#travels">Our Travels</a></li>
-    <li><a href="#philosophy">Our DNA</a></li>
+    <li><a href="#philosophy">Notre ADN</a></li>
     <li><a href="https://kilometre.paris" class="nav-cta">Shop</a></li>
   </ul>
 </nav>
 
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-label">Paris · Since 2015</p>
+    <p class="hero-label">Paris · Depuis 2015</p>
     <h1 class="hero-title">
-      Fashion<br>
-      as a<br>
-      <em>journey.</em>
+      Le monde<br>
+      à portée<br>
+      <em>de fil.</em>
     </h1>
     <p class="hero-sub">
-      Every Kilometre Paris piece is an invitation to travel. Wearing our embroidered shirt is an instant teleportation — from Paris to Melbourne, from Tbilisi to Los Angeles.
+      Chaque pièce Kilometre Paris est une invitation au voyage. Porter notre chemise brodée, c'est se téléporter instantanément — de Paris à Melbourne, de Tbilisi à Los Angeles.
     </p>
     <div class="hero-actions">
-      <a href="https://kilometre.paris" class="btn-primary">Discover the shop</a>
+      <a href="https://kilometre.paris" class="btn-primary">Découvrir la boutique</a>
       <a href="#travels" class="btn-outline">Our Travels</a>
     </div>
   </div>
@@ -948,13 +1015,13 @@ footer {
     </div>
   </div>
   <div class="about-content fade-in">
-    <p class="section-tag">The House</p>
-    <h2 class="section-title">Une maison<br>de <em>travellers.</em></h2>
+    <p class="section-tag">La Maison</p>
+    <h2 class="section-title">Une maison<br>de <em>voyageurs.</em></h2>
     <p class="section-body">
-      Born in Paris in 2015, Kilometre Paris is far more than a fashion brand. It is a permanent invitation to exploration. Our pieces are hand-embroidered by artisans from around the world — each stitch tells the story of a city, an encounter, a culture.
+      Née à Paris en 2015, Kilometre Paris est bien plus qu'une marque de mode. C'est une invitation permanente à l'exploration. Nos pièces sont brodées à la main par des artisans du monde entier — chaque point raconte une ville, une rencontre, une culture.
     </p>
     <p class="section-body">
-      Oversized shirts, expedition dresses, parachute trousers, customisable Undercover bags... Our "Ready to Travel" collection is made for those who live with a suitcase in their eyes.
+      Chemises oversize, robes d'expédition, pantalons parachute, sacs Undercover personnalisables... Notre collection "Ready to Travel" est conçue pour ceux qui vivent avec une valise dans les yeux.
     </p>
     <div class="stats-row">
       <div class="stat">
@@ -967,10 +1034,61 @@ footer {
       </div>
       <div class="stat">
         <div class="stat-num">2015</div>
-        <div class="stat-label">Founded in Paris</div>
+        <div class="stat-label">Fondée à Paris</div>
       </div>
     </div>
-    <a href="https://kilometre.paris/pages/about-us" class="btn-primary">Our story</a>
+    <a href="https://kilometre.paris/pages/about-us" class="btn-primary">Notre histoire</a>
+  </div>
+</section>
+
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+    <span>Make it yours</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<section class="section-miy">
+  <div class="miy-inner">
+    <div class="miy-text fade-in">
+      <p class="section-tag" style="color:var(--jaune);">Bespoke</p>
+      <h2 class="miy-title">Make it <em>Yours.</em></h2>
+      <p class="miy-body">Our Make it Yours collection is all about creating something as unique as you are. Crafted with love, and made to travel with you, every piece is one-of-a-kind — just like your journey.</p>
+      <a href="https://kilometre.paris/pages/customize-basket" class="btn-primary" target="_blank" style="background:var(--jaune);color:var(--bleu);">Customise yours</a>
+    </div>
+    <div class="miy-visual fade-in">
+      <div class="miy-img-stack">
+        <div class="miy-carousel">
+          <img class="miy-slide active"
+            src="https://kilometre.paris/cdn/shop/files/allbag_ab096dbe-5e0d-4447-891f-4d0a166851f7.png?v=1733181259&width=1080"
+            alt="Undercover bag Kilometre Paris">
+          <img class="miy-slide"
+            src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/undercover_alphabet_6562.jpg?v=17647534391"
+            alt="Pièce Unique Kilometre Paris — Melbourne">
+          <img class="miy-slide"
+            src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/undercover_alphabet_6603.jpg?v=1764778242"
+            alt="Pièce Unique Kilometre Paris — Iskra Galic">
+        </div>
+        <div class="miy-dots">
+          <button class="miy-dot active" aria-label="Image 1"></button>
+          <button class="miy-dot" aria-label="Image 2"></button>
+          <button class="miy-dot" aria-label="Image 3"></button>
+        </div>
+        <div class="miy-badge">One of a kind</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -985,10 +1103,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">01</div>
-        <p class="travel-tag">Australia</p>
+        <p class="travel-tag">Australie</p>
         <h3 class="travel-city">Melbourne</h3>
         <p class="travel-country">Australia</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -996,10 +1114,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">02</div>
-        <p class="travel-tag">Georgia</p>
+        <p class="travel-tag">Géorgie</p>
         <h3 class="travel-city">Tbilisi</h3>
         <p class="travel-country">Georgia</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1007,10 +1125,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">03</div>
-        <p class="travel-tag">United States</p>
+        <p class="travel-tag">États-Unis</p>
         <h3 class="travel-city">Los Angeles</h3>
         <p class="travel-country">United States</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1018,10 +1136,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">04</div>
-        <p class="travel-tag">Ethiopia</p>
+        <p class="travel-tag">Éthiopie</p>
         <h3 class="travel-city">Addis Ababa</h3>
         <p class="travel-country">Ethiopia</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1029,10 +1147,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">05</div>
-        <p class="travel-tag">Belgium</p>
+        <p class="travel-tag">Belgique</p>
         <h3 class="travel-city">Brussels</h3>
         <p class="travel-country">Belgium</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1040,10 +1158,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">06</div>
-        <p class="travel-tag">Spain</p>
+        <p class="travel-tag">Espagne</p>
         <h3 class="travel-city">Mallorca</h3>
         <p class="travel-country">Spain</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1054,7 +1172,7 @@ footer {
         <p class="travel-tag">France</p>
         <h3 class="travel-city">Paris</h3>
         <p class="travel-country">France</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1062,10 +1180,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">08</div>
-        <p class="travel-tag">Italy</p>
+        <p class="travel-tag">Italie</p>
         <h3 class="travel-city">Venice</h3>
         <p class="travel-country">Italy</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1073,10 +1191,10 @@ footer {
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">09</div>
-        <p class="travel-tag">Spain</p>
+        <p class="travel-tag">Espagne</p>
         <h3 class="travel-city">Ibiza</h3>
         <p class="travel-country">Spain</p>
-        <span class="travel-arrow">Discover</span>
+        <span class="travel-arrow">Découvrir</span>
       </div>
     </a>
 
@@ -1084,21 +1202,21 @@ footer {
 </section>
 
 <section class="section-philosophy" id="philosophy">
-  <div class="phil-bg-text" aria-hidden="true">JOURNEY</div>
+  <div class="phil-bg-text" aria-hidden="true">VOYAGE</div>
   <div class="phil-content fade-in">
-    <p class="phil-tag">Our DNA</p>
+    <p class="phil-tag">Notre ADN</p>
     <blockquote class="phil-quote">
-      "Wearing a Kilometre Paris piece is an instant teleportation."
+      "Mettre une pièce Kilometre Paris, c'est s'offrir une téléportation immédiate."
     </blockquote>
     <div class="phil-divider"></div>
     <p class="phil-body">
-      Every embroidery is a story. Every thread, a kilometre travelled. We reject fast fashion in favour of slow craft — the kind that takes the time to stitch stories into fabric. Each piece is unique, made to last, built to travel with you.
+      Chaque broderie est un récit. Chaque fil, un kilomètre parcouru. Nous refusons la fast fashion pour lui préférer l'artisanat lent — celui qui prend le temps de coudre des histoires dans l'étoffe. Vos commandes sont uniques, pensées pour durer, faites pour voyager avec vous.
     </p>
-    <a href="https://kilometre.paris/pages/our-hands" class="btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;">Our artisans</a>
+    <a href="https://kilometre.paris/pages/our-hands" class="btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;">Nos artisans</a>
     <div class="values-row">
       <div class="value-item">
         <div class="value-icon">✦</div>
-        <p class="value-name">Craftsmanship</p>
+        <p class="value-name">Artisanat</p>
       </div>
       <div class="value-item">
         <div class="value-icon">◎</div>
@@ -1106,11 +1224,11 @@ footer {
       </div>
       <div class="value-item">
         <div class="value-icon">◈</div>
-        <p class="value-name">Singularity</p>
+        <p class="value-name">Singularité</p>
       </div>
       <div class="value-item">
         <div class="value-icon">⊕</div>
-        <p class="value-name">Bespoke</p>
+        <p class="value-name">Sur-mesure</p>
       </div>
     </div>
   </div>
@@ -1118,33 +1236,33 @@ footer {
 
 <section class="section-newsletter">
   <p class="nl-label">Club des Voyageurs</p>
-  <h2 class="nl-title">Join the caravan.</h2>
-  <p class="nl-sub">Sign up and get 10% off your first order.</p>
+  <h2 class="nl-title">Rejoignez la caravane.</h2>
+  <p class="nl-sub">Inscrivez-vous et bénéficiez de 10% sur votre première commande.</p>
   <div class="nl-form">
-    <label for="nl-email" class="nl-label-hidden">Your email address</label>
-    <input type="email" id="nl-email" class="nl-input" placeholder="your@email.com" />
-    <button class="nl-btn">Join</button>
+    <label for="nl-email" class="nl-label-hidden">Votre adresse email</label>
+    <input type="email" id="nl-email" class="nl-input" placeholder="votre@email.com" />
+    <button class="nl-btn">Rejoindre</button>
   </div>
-  <p class="nl-note">New collections, exclusive travels, member offers.</p>
+  <p class="nl-note">Nouvelles collections, voyages exclusifs, offres membres.</p>
 </section>
 
 <footer>
   <div class="footer-top">
     <div>
       <p class="footer-brand">Kilometre · Paris</p>
-      <p class="footer-tagline">A Parisian fashion house that believes getting dressed is the most beautiful way to travel.</p>
+      <p class="footer-tagline">Une maison de mode parisienne qui croit que s'habiller est la plus belle façon de voyager.</p>
     </div>
     <div class="footer-col">
-      <h4>Explore</h4>
+      <h4>Explorer</h4>
       <ul>
         <li><a href="#travels">Our Travels</a></li>
-        <li><a href="https://kilometre.paris/pages/about-us">Our story</a></li>
-        <li><a href="https://kilometre.paris/pages/our-hands">Our artisans</a></li>
+        <li><a href="https://kilometre.paris/pages/about-us">Notre histoire</a></li>
+        <li><a href="https://kilometre.paris/pages/our-hands">Nos artisans</a></li>
         <li><a href="https://kilometre.paris/pages/our-gps">Notre GPS</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Shop</h4>
+      <h4>Boutique</h4>
       <ul>
         <li><a href="https://kilometre.paris/collections/short-shirt">Ready to Travel</a></li>
         <li><a href="https://kilometre.paris/collections/undercover">Undercover Bags</a></li>
@@ -1154,7 +1272,7 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Kilometre Paris — All rights reserved</p>
+    <p class="footer-copy">© 2026 Kilometre Paris — Tous droits réservés</p>
     <div class="footer-social">
       <a href="https://www.instagram.com/kilometre.paris/">Instagram</a>
       <a href="https://www.facebook.com/kilometreparis/">Facebook</a>
@@ -1164,6 +1282,7 @@ footer {
 </footer>
 
 <script>
+  // Burger menu
   const burger = document.querySelector('.burger');
   const navLinks = document.querySelector('.nav-links');
   const navItems = document.querySelectorAll('.nav-links a');
@@ -1173,7 +1292,7 @@ footer {
     burger.classList.toggle('active', isOpen);
     document.body.classList.toggle('menu-open', isOpen);
     burger.setAttribute('aria-expanded', isOpen);
-    burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
   });
 
   navItems.forEach(link => {
@@ -1182,14 +1301,54 @@ footer {
       burger.classList.remove('active');
       document.body.classList.remove('menu-open');
       burger.setAttribute('aria-expanded', 'false');
-      burger.setAttribute('aria-label', 'Open menu');
+      burger.setAttribute('aria-label', 'Ouvrir le menu');
     });
   });
 
+  // Fade-in observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Carousel MIY
+  const slides = document.querySelectorAll('.miy-slide');
+  const dots = document.querySelectorAll('.miy-dot');
+  let current = 0;
+  let timer;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo((current + 1) % slides.length); }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      timer = setInterval(next, 4000);
+    });
+  });
+
+  // Swipe support mobile
+  let touchStartX = 0;
+  const carousel = document.querySelector('.miy-carousel');
+  carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      clearInterval(timer);
+      goTo(diff > 0 ? (current + 1) % slides.length : (current - 1 + slides.length) % slides.length);
+      timer = setInterval(next, 4000);
+    }
+  });
+
+  timer = setInterval(next, 4000);
 </script>
 
 </body>
