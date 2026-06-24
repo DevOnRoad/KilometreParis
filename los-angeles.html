@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #e63946;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-clair: #f9f9f9;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Barlow', Arial, sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* --- TITRE --- */
+        .title-unique {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--rouge);
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--rouge);
+        }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* --- GRILLE 8 PORTRAITS --- */
+        .grid-8 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 380px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-unique {
+            position: relative;
+            overflow: hidden;
+        }
+        .item-unique img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+        .caption-unique {
+            position: absolute;
+            bottom: 15px; left: 15px; right: 15px;
+            background: white;
+            padding: 10px;
+            text-align: center;
+            color: var(--rouge);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .photo-credit {
+            text-align: right;
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+            color: var(--rouge);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --- INTRO --- */
+        .artisan-intro { margin-bottom: 80px; }
+
+        .artisan-paragraph {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--bleu);
+            margin-bottom: 1.2rem;
+        }
+
+        /* --- SECTION MUSE : SPLIT (texte + photo côte à côte) --- */
+        .muse-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+
+        .muse-text { display: flex; flex-direction: column; }
+
+        .muse-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .muse-image img {
+            width: 100%;
+            height: auto;
+            max-height: 850px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: opacity 0.25s ease;
+        }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        /* --- GRILLE 3 PORTRAITS --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .grid-3 .item-unique { height: 500px; }
+
+        /* --- PRODUCT SLIDER --- */
+        .product-slider-section {
+            background: var(--gris-clair);
+            padding: 70px 0;
+            margin: 80px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .product-slider-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .product-slider-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .product-slider-viewall {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 40px;
+            border: 1px solid var(--bleu);
+            color: var(--bleu);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.6rem 1.8rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .product-slider-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .product-track {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+        .product-card {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 14px;
+        }
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+        .product-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            font-weight: 700;
+            line-height: 1.6;
+        }
+        .product-price {
+            font-size: 0.7rem;
+            color: var(--noir);
+            margin-top: 4px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+
+            .grid-8 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+
+            .grid-3 { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .grid-3 .item-unique { height: 260px; }
+
+            .muse-section,
+            .muse-section.reverse {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+
+            .product-track {
+                display: flex;
+                overflow-x: auto;
+                gap: 15px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 15px;
+            }
+            .product-card { flex: 0 0 70vw; scroll-snap-align: center; }
+            .product-track::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="section-container">
+
+    <h1 class="title-unique">LOS ANGELES</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle filled"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 8 PORTRAITS -->
+    <div class="grid-8" role="list" aria-label="Galerie Los Angeles">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/daniela2.jpg?v=1740130674" alt="Daniela Villegas">
+            <div class="caption-unique">Daniela Villegas</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/anatole1insta.jpg?v=1739970826" alt="Anatole Heger">
+            <div class="caption-unique">Anatole Heger</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/KATE1insta.jpg?v=1739970825" alt="Kate Butler">
+            <div class="caption-unique">Kate Butler</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/bennuinsta.jpg?v=1739879247" alt="Bennu Gerede">
+            <div class="caption-unique">Bennu Gerede</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/camilla1insta.jpg?v=1739970825" alt="Camilla Trigano">
+            <div class="caption-unique">Camilla Trigano</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/marjorieinsta.jpg?v=1739970826" alt="Marjorie Rice">
+            <div class="caption-unique">Marjorie Rice</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/alexinsta.jpg?v=1739970825" alt="Alex Dawson">
+            <div class="caption-unique">Alex Dawson</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/owen1insta.jpg?v=1739970825" alt="Owen Cheung">
+            <div class="caption-unique">Owen Cheung</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Bennu Gerede</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong> and with the eyes of talented photographers such as <strong>Sarah Forgie, Bennu Gerede & Julie Ansiau</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating at our creations. This third edition of Caravan takes place in <strong>Los Angeles</strong>, with 11 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- DANIELA VILLEGAS -->
+    <section class="muse-section" aria-label="Profil : Daniela Villegas">
+        <div class="muse-text">
+            <h2 class="muse-name">Daniela Villegas</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Daniela Villegas. A woman who does not simply move through life, she dismantles it, rearranges it, stitches it back together with golden thread and an insatiable hunger for the unseen. She doesn't just observe the world; she undoes it, pries open its locked doors, rummages through its hidden compartments, turns it over in her hands like a jewel catching the light at impossible angles.</p>
+            <p class="artisan-paragraph">Is she working a job? No. That question is almost laughable. Daniela is living, fully, ferociously, unapologetically. Her work is not something she does; it is something she is. She does not believe in linear timelines — she moves like the tide, unpredictable, fluid, dictated only by an invisible rhythm that only she can hear.</p>
+            <p class="artisan-paragraph">A Scorpio in every sense of the word — her favorite place is not a city, not a destination, it is home. But there are places that echo in her bones: Chateau Marmont, where memories flicker like old film reels, and the mountains of Sri Lanka, where the world feels infinite and her father's presence lingers in the wind.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/daniela.jpg?v=1740130674&width=900" alt="Portrait de Daniela Villegas portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ANATOLE HEGER -->
+    <section class="muse-section reverse" aria-label="Profil : Anatole Heger">
+        <div class="muse-text">
+            <h2 class="muse-name">Anatole Heger</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Anatole Heger. A painter, a dreamer, and a quiet observer of the world, Anatole moves through life with a soft presence and a mind that often drifts elsewhere. He is drawn to understanding people, feeling deeply, and creating with urgency. Painting is more than his craft — it is his anchor. Without the solitude of his studio, the calm that defines him begins to unravel.</p>
+            <p class="artisan-paragraph">For Anatole, art is not a profession but a way of being. He never sought a conventional path, only the freedom to live as himself, on his own terms. That pursuit has led him to exhibitions across the world, from NADA Miami to Felix in Los Angeles, with an upcoming show in New York this fall.</p>
+            <p class="artisan-paragraph">Beyond the canvas, he is drawn to nature, to the mystery of existence, to the delicate balance between presence and longing. No single place holds his heart entirely — but for Anatole, home is not a location; it is the people who make a place feel like it belongs to him.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/anatole3insta.jpg?v=1739970825&width=900" alt="Portrait d'Anatole Heger portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- KATE BUTLER -->
+    <section class="muse-section" aria-label="Profil : Kate Butler">
+        <div class="muse-text">
+            <h2 class="muse-name">Kate Butler</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Kate Butler. An actress, a storyteller, a seeker of beauty in its most elusive forms, Kate moves through the world not merely to exist but to devour, absorb, transform. Creativity is not just her craft; it is the rhythm of her being, the undercurrent pulling her toward every untold story, every unwritten page, every performance waiting to be inhabited.</p>
+            <p class="artisan-paragraph">Recently, she completed <em>The JonBenét Ramsey Story</em>, a haunting limited series for Paramount+, and her short film <em>The End</em> earned a nomination for Best Narrative Short at the Los Angeles Film Festival. Past performances — <em>Bridge to Terabithia</em>, <em>30 Days of Night</em> — are etched into memory, a reel of characters she has embodied, discarded, and carried with her all at once.</p>
+            <p class="artisan-paragraph">Italy — its sun-drenched ruins, its echoes of history, its languid afternoons stretching into evenings of wine, conversation, and laughter — is where she feels most herself. And the stories aren't done yet. Not for Kate. Not for the world waiting to see what she does next.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/KATE1insta.jpg?v=1739970825&width=900" alt="Portrait de Kate Butler portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- BENNU GEREDE -->
+    <section class="muse-section reverse" aria-label="Profil : Bennu Gerede">
+        <div class="muse-text">
+            <h2 class="muse-name">Bennu Gerede</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Bennu Gerede. A woman who does not walk through life — she storms, she surges, she radiates. A photographer, a storyteller, a force. To call her unconventional would be an understatement; to call her fearless would be redundant. She is ungovernable, untethered to expectation, a spirit that refuses to be confined.</p>
+            <p class="artisan-paragraph">Her bloodline carries the weight of history — Hüsrev Gerede, ambassador, right hand of Atatürk, a name etched into the streets of Istanbul itself. But Bennu does not live in history's shadow. She bends history to her will, remakes it, reinvents it. She sees through the lens and does not capture — she devours, she consumes, she absorbs light and throws it back into the world in sharp, breathless flashes.</p>
+            <p class="artisan-paragraph">Mother of four kings, she has built, she has burned, she has endured. She does not travel — she disappears, dissolves, embeds herself in the pulse of a place. Malibu, Bali, Paris, Istanbul, New York — wherever she goes, she belongs and yet never stays. She is in motion, always. She is sun, light that blinds and warms in equal measure.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/bennuinsta.jpg?v=1739879247&width=900" alt="Portrait de Bennu Gerede portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER -->
+<section class="product-slider-section" aria-label="Sélection Los Angeles">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Los Angeles Selection</h2>
+        <a href="https://kilometre.paris/collections/los-angeles" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/los-angeles/products/k-shirt-club-des-voyageurs-hope-robben-island-capetown-by-kendall-geers" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Club-des-Voyageurs_-Hope-Robben-Island-Capetown-by-Kendal-Geers-K-shirt-K-shirt-152163880.jpg?v=1745502735&width=600" alt="Club des Voyageurs K-shirt">
+                </div>
+                <p class="product-name">Club des Voyageurs,<br>Hope Robben Island – K-shirt</p>
+                <p class="product-price">€1.200</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/8-feet-waves-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/8-feet-waves-K-shirt-K-shirt-152162965.jpg?v=1745501213&width=600" alt="8 feet waves K-shirt">
+                </div>
+                <p class="product-name">8 feet waves – K-shirt</p>
+                <p class="product-price">€850</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/k-shirt-paros-antiparos-aegean-sea-greece" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Paros_-Antiparos_-Aegean-sea_-Greece-K-shirt-K-shirt-138081690.png?v=1726585162&width=600" alt="Paros, Antiparos K-shirt">
+                </div>
+                <p class="product-name">Paros, Antiparos,<br>Aegean sea – K-shirt</p>
+                <p class="product-price">€720</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/piece-unique-rue-du-bac-paris-france" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Rue-du-Bac_-Paris_-France-Piece-unique-Piece-Unique-151415346.jpg?v=1744023868&width=600" alt="Rue du Bac Piece Unique">
+                </div>
+                <p class="product-name">Rue du Bac, Paris –<br>Piece Unique</p>
+                <p class="product-price">€3.000</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/koh-lipe-island-thailand-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Koh-Lipe-Island_-Thailand-K-shirt-K-shirt-152163611.jpg?v=1745501710&width=600" alt="Koh Lipe Island K-shirt">
+                </div>
+                <p class="product-name">Koh Lipe Island,<br>Thailand – K-shirt</p>
+                <p class="product-price">€1.035</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="section-container">
+
+    <!-- CAMILLA TRIGANO -->
+    <section class="muse-section" aria-label="Profil : Camilla Trigano">
+        <div class="muse-text">
+            <h2 class="muse-name">Camilla Trigano</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Camilla Trigano. A city dweller with a country soul, Camilla carries nature within her, whether in the flowers she notices on her morning walks or the tomatoes she picks from her front yard. Her days begin with a ritual of tea and classical music, a moment of stillness before stepping into the rhythm of Los Angeles.</p>
+            <p class="artisan-paragraph">For Camilla, dreams and reality are one and the same. The sudden loss of a close mentor reshaped her perspective — there is no waiting, no postponing. Life is now. As a marketing director with a deep involvement in artistic direction and design, her creative process reflects this philosophy: projects flow into each other with no clear start or end, just a constant evolution of form, vision, and function.</p>
+            <p class="artisan-paragraph">Though rooted in Los Angeles, her heart belongs to many places: the southwest of France, an island in Belize, and a quiet village near Pondicherry — each offering her a sense of freedom, belonging, and simplicity.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/camilla1insta.jpg?v=1739970825&width=900" alt="Portrait de Camilla Trigano portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MARJORIE RICE -->
+    <section class="muse-section reverse" aria-label="Profil : Marjorie Rice">
+        <div class="muse-text">
+            <h2 class="muse-name">Marjorie Rice</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Marjorie Rice. A whirlwind, a spark, a gravitational pull — Marjorie is the kind of woman who makes life feel bigger, louder, more alive. She exists in a million places at once, somehow effortlessly balancing family, friendships, and an insatiable love for gathering people under one roof. She doesn't just host; she orchestrates.</p>
+            <p class="artisan-paragraph">Our first encounter with her was nothing short of cinematic. She barely knew us, yet without hesitation, she handed over the keys to her house for an event — no questions, no hesitation, just pure instinctual generosity. And then, just as effortlessly, she took it a step further: a caterer, a perfectly set table, an atmosphere that felt less like a favor and more like an occasion.</p>
+            <p class="artisan-paragraph">There's something distinctly Mediterranean in her way of being — this boundless, instinctive need to nurture. Next stop: Ojai, where Marjorie spends her weekends in this charming community east of Santa Barbara, considered the mecca of wellness and wonder, acting as a magnet for philosophers, artists and those who prefer to stay out of the limelight.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/CARAVAN_LOS_ANGELES_-_MARJORIE_RICE.jpg?v=1739545250&width=900" alt="Portrait de Marjorie Rice portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ALEX DAWSON -->
+    <section class="muse-section" aria-label="Profil : Alex Dawson">
+        <div class="muse-text">
+            <h2 class="muse-name">Alex Dawson</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Alex Dawson. A sculptor of space, a weaver of breath, a conduit of unseen currents. She does not simply teach yoga; she maps the body's silent negotiations, the places where tension lingers like unspoken words. Every inhale, an invocation. Every exhale, a release. Her retreats are not escapes but rituals, portals to something deeper, something ancient.</p>
+            <p class="artisan-paragraph">But Alex does not merely move. Movement is ephemeral. Alex imprints. Breathwork, sound, stillness — her instruments, her language, her tools of transmutation. Once an actor shaping stories with borrowed voices, she found her own in teaching. Yoga did not replace acting; it redefined it. Every class a symphony, every retreat a pilgrimage.</p>
+            <p class="artisan-paragraph">Sacred Peaks — a retreat in the Dolomites, where silence holds its own wisdom — filled in two days, not because it was marketed, but because it was needed. At the center of it all: Rumi, not just a dog, but a teacher — a reminder that life is meant to be lived fully, nose to the wind, heart wide open, rooted in the now.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/alex1insta.jpg?v=1739970825&width=900" alt="Portrait d'Alex Dawson portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- OWEN CHEUNG -->
+    <section class="muse-section reverse" aria-label="Profil : Owen Cheung">
+        <div class="muse-text">
+            <h2 class="muse-name">Owen Cheung</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Owen Cheung. A maker, a builder, a collector — not just of objects, but of obsessions, of histories, of intricate fascinations that shift and evolve like clockwork mechanisms clicking into place. There is no half-measure with Owen. When something captures him, it is total immersion, a plunge into the depths where knowledge becomes artifact.</p>
+            <p class="artisan-paragraph">Work, for many, is confinement. For Owen, it is structure, an essential rhythm to balance the gravitational pull of curiosity. Right now he is resurrecting an automaton for an exhibition, coaxing life from brass and steel, from mechanisms long forgotten. And always, there is his house — a living thing, never finished, never settled, a project that grows and shifts alongside him.</p>
+            <p class="artisan-paragraph">Beyond the craft, there is Japan — not the neon-drenched spectacle that others seek, but the tucked-away relics of the Showa era, the dim-lit kissaten where time stretches. And then there is Venice: impossibly real, impossibly fragile, the birthplace of Carlo Scarpa, where form and function exist in perfect tension, where architecture bends time itself.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/oweninsta.jpg?v=1739970825&width=900" alt="Portrait d'Owen Cheung portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- GRILLE 3 PORTRAITS -->
+    <div class="grid-3" role="list" aria-label="Galerie Los Angeles – Natalie, Daniele, Celia">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/nathalieinsta.jpg?v=1739970826" alt="Natalie Von Der Burg">
+            <div class="caption-unique">Natalie Von Der Burg</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/danieleinsta.jpg?v=1739970826" alt="Daniele King">
+            <div class="caption-unique">Daniele King</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CELIAinsta_5e48b943-acf8-4dc9-87b9-e619dcea0c11.jpg?v=1739970825" alt="Celia De Flers">
+            <div class="caption-unique">Celia De Flers</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Bennu Gerede</p>
+
+    <!-- NATALIE VON DER BURG -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Natalie Von Der Burg">
+        <div class="muse-text">
+            <h2 class="muse-name">Natalie Von Der Burg</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Natalie Von Der Burg. A force, a spark, an orchestrator of spectacle — she moves fast, thinks faster, always one step ahead of the story before it even knows it's being told. Television, film, music: she doesn't just work in these worlds; she bends them, molds them, stitches them together with a producer's precision and an artist's instinct.</p>
+            <p class="artisan-paragraph">Lady Gaga, Bruno Mars, <em>Die With A Smile</em>. <em>Poker Face Season 2</em>, Natasha Lyonne. Names that echo, visuals that burn into memory. Natalie stands at the helm, the unseen architect behind the spectacle, the rhythm-maker of moments that linger long after the screen goes dark.</p>
+            <p class="artisan-paragraph">Politics is where her pulse quickens, where her fire burns brightest. She teaches, she ignites, she refuses to let people drown in apathy. And yet, for all the momentum, her true favorite place is anywhere she can breathe in sync with the two people who matter most: her husband, her sister.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/nathalieinsta.jpg?v=1739970826&width=900" alt="Portrait de Natalie Von Der Burg portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- DANIELE KING -->
+    <section class="muse-section reverse" aria-label="Profil : Daniele King">
+        <div class="muse-text">
+            <h2 class="muse-name">Daniele King</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Daniele King. A creative director, a birth doula, and an unwavering advocate for artistic communion, Daniele moves through life with an open heart and an instinct for connection. Whether she is curating spaces in fashion and film or guiding new life into the world, her work is a testament to the power of creation in all its forms.</p>
+            <p class="artisan-paragraph">In Los Angeles, Daniele's world orbits around a cliffside sanctuary — a home-turned-commune where art, food, and friendship blend seamlessly. Here, among the ocean views and open skies, creativity is not an isolated act but a collective rhythm. Friends gather, ideas flourish, and nights stretch into mornings in a space where expression is boundless.</p>
+            <p class="artisan-paragraph">If given the gift of time, she would spend three months in Mallorca. For Daniele, handmade is not just a practice but a language — a way of preserving the stories of those who came before. Above all, she is a mother, in every sense of the word: she creates, she nurtures, she brings newness into the world.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/daniele1insta.jpg?v=1739970827&width=900" alt="Portrait de Daniele King portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- CELIA DE FLERS -->
+    <section class="muse-section" aria-label="Profil : Celia De Flers">
+        <div class="muse-text">
+            <h2 class="muse-name">Celia De Flers</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Celia de Flers. A decoder of the unseen, an alchemist of the ineffable, a traveler between dimensions of knowing. She does not merely read irises; she extracts stories from them, tracing the fine filaments of color and shadow like an archaeologist of the body's deepest truths.</p>
+            <p class="artisan-paragraph">But Celia does not stop at seeing. Seeing is passive. Celia transmutes. Nutrition is not just fuel; it is medicine, coded in ancient wisdom and modern science. And then, the jewelry — to call them accessories would be sacrilege. These are artifacts of intention, vibrations molded into gold and silver, sigils of strength and devotion, charged with something beyond mere aesthetics.</p>
+            <p class="artisan-paragraph">She belongs to no single place, no single tradition, no single moment in time. Indonesia is ritual and reverence. Japan is precision and poetry. But Celia — Celia is all places, all energies, all stories at once. She does not just exist; she radiates, she shifts, she expands.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/los-angeles" target="_blank">
+                <img src="https://kilometre.paris/cdn/shop/files/CELIAinsta_5e48b943-acf8-4dc9-87b9-e619dcea0c11.jpg?v=1739970825&width=900" alt="Portrait de Celia De Flers portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
