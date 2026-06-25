@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --rouge: #e63946;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-clair: #f9f9f9;
+            --max-width: 1400px;
+        }
+        body { font-family: 'Barlow', Arial, sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; overflow-x: hidden; }
+        .section-container { max-width: var(--max-width); margin: 0 auto; padding: 60px 40px; }
+
+        .title-unique { font-size: clamp(3rem, 8vw, 6rem); color: var(--rouge); text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
+        .circle-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rouge); }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* GRILLE 7 */
+        .grid-7 { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 380px; gap: 20px; margin-bottom: 20px; }
+        .grid-7 .item-unique:nth-child(7) { grid-column: 4; grid-row: 1 / 3; }
+
+        /* GRILLE 5 */
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: 360px; gap: 20px; margin-bottom: 20px; }
+
+        .item-unique { position: relative; overflow: hidden; }
+        .item-unique img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .caption-unique { position: absolute; bottom: 15px; left: 15px; right: 15px; background: white; padding: 10px; text-align: center; color: var(--rouge); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; }
+        .photo-credit { text-align: right; margin-bottom: 60px; font-size: 1.2rem; color: var(--rouge); font-weight: 700; text-transform: uppercase; }
+
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--bleu); margin-bottom: 1.2rem; }
+
+        /* SECTION MUSE SPLIT */
+        .muse-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 120px; }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+        .muse-name { font-size: clamp(2rem, 4vw, 3rem); color: var(--rouge); text-transform: uppercase; font-weight: 900; margin-bottom: 1.5rem; }
+        .muse-image img { width: 100%; height: auto; max-height: 850px; object-fit: cover; object-position: top; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: opacity 0.25s ease; }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        /* PLEINE LARGEUR */
+        .muse-fullwidth { margin-bottom: 120px; }
+        .muse-fullwidth .muse-img-full { width: 100%; max-height: 800px; object-fit: cover; object-position: top; display: block; margin-top: 40px; }
+
+        /* MARQUEE */
+        .marquee-bar { background: var(--bleu); color: #FFF8BD; padding: 0.85rem 0; overflow: hidden; white-space: nowrap; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+        .marquee-inner span { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* PRODUCT SLIDER */
+        .product-slider-section { background: var(--gris-clair); padding: 70px 0; margin: 80px 0; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .product-slider-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
+        .product-slider-title { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--rouge); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 900; text-align: center; margin-bottom: 15px; }
+        .product-slider-viewall { display: block; width: fit-content; margin: 0 auto 40px; border: 1px solid var(--bleu); color: var(--bleu); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.6rem 1.8rem; font-weight: 700; transition: all 0.2s; }
+        .product-slider-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .product-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 25px; }
+        .product-card { text-decoration: none; display: flex; flex-direction: column; }
+        .product-img-wrap { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 14px; }
+        .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+        .product-name { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bleu); font-weight: 700; line-height: 1.6; }
+        .product-price { font-size: 0.7rem; color: var(--noir); margin-top: 4px; }
+
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-7 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .grid-7 .item-unique:nth-child(7) { grid-column: auto; grid-row: auto; }
+            .grid-5 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .muse-section, .muse-section.reverse { grid-template-columns: 1fr; gap: 30px; }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+            .product-track { display: flex; overflow-x: auto; gap: 15px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
+            .product-card { flex: 0 0 70vw; scroll-snap-align: center; }
+            .product-track::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+<div class="section-container">
+
+    <h1 class="title-unique">PARIS</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle filled"></div><div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 7 PORTRAITS -->
+    <div class="grid-7" role="list" aria-label="Galerie Paris">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05829_DIDIER_CLEMENCE.jpg?v=1761295206" alt="Clémence & Didier Krzentowski">
+            <div class="caption-unique">Clémence & Didier Krzentowski</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08877_AMANDINE.jpg?v=1761295207" alt="Amandine Lepoutre">
+            <div class="caption-unique">Amandine Lepoutre</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04800_THOMAS.jpg?v=1761295206" alt="Thomas du Pré de Saint Maur">
+            <div class="caption-unique">Thomas du Pré de Saint Maur</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01055_AURE.jpg?v=1761295208" alt="Aure Atika">
+            <div class="caption-unique">Aure Atika</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09552_CHLOE.jpg?v=1761295207" alt="Chloé Bartoletti">
+            <div class="caption-unique">Chloé Bartoletti</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01651_EMMA_SAWKO.jpg?v=1761295207" alt="Emma Sawko">
+            <div class="caption-unique">Emma Sawko</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09467_FREDERIC_36ea1fb0-9e84-4d58-847a-15c07c2a2ea3.jpg?v=1761295206" alt="Frédéric Walter-Mikaeloff">
+            <div class="caption-unique">Frédéric Walter-Mikaeloff</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Karlina Vitolina</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong> and with the eyes of talented photographer <strong>Karlina Vitolina</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating our creations. This eighth edition of Caravan takes place in <strong>Paris</strong>, with 12 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- CLÉMENCE & DIDIER KRZENTOWSKI -->
+    <section class="muse-section" aria-label="Profil : Clémence & Didier Krzentowski">
+        <div class="muse-text">
+            <h2 class="muse-name">Clémence & Didier Krzentowski</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Clémence & Didier Krzentowski. They do not need to leave Paris to dream — though Clémence admits she loves long voyages, Italy stretched like a ribbon, or one day Egypt under the sun, places where time is finally slow. Didier, him, he stays. Paris is his continent, his map complete, his obsession still unfinished. Together they once toured every garden of the city during the silence of Covid, secret enclosures, lawns and gravel paths, discoveries within a city they thought they knew.</p>
+            <p class="artisan-paragraph">They speak of the hand with reverence. The artisans they have seen — plumassiers, luthiers, makers of impossible objects — communicate in a language that does not need words. They have watched French designers and Japanese craftsmen exchange only drawings, paper, leather, gestures, until the object itself became a sentence. Like music, they say: a duet you can hear but not translate.</p>
+            <p class="artisan-paragraph">Their gallery, kreo, is a laboratory. A place where designers, released from the constraints of industry, can invent. A bureau whose legs are cast from stones mixed with concrete. A chapel in Brittany refitted by Ronan Bouroullec, its glass poured and trembling with light at the edge of the winds. Notre-Dame restored by Guillaume Bardet — an altar in bronze, a chair for the archbishop, candlesticks forged in steel. From the infinitesimal to the monumental, their projects bend design toward poetry, toward liturgy.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/serape-colonia-centro-undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05829_DIDIER_CLEMENCE.jpg?v=1761295206" alt="Portrait de Clémence & Didier Krzentowski portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- AURE ATIKA -->
+    <section class="muse-section reverse" aria-label="Profil : Aure Atika">
+        <div class="muse-text">
+            <h2 class="muse-name">Aure Atika</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Aure Atika. She would lead you through Paris as through a collage. Morning at the Luxembourg, its lawns trimmed by the gardeners of the Senate, a park as perfect as a stage. Then the 10th arrondissement, restaurants of Kurds and Turks, because Paris is not only marble but spice, smoke, mix. At sunset she pulls you to the Cheval Blanc terrace, to see the city burn in gold.</p>
+            <p class="artisan-paragraph">Her métier is the hand, she says. Acting as an artisan's work, learned by repetition, by practice, by error. Recently she hired a friend's father to teach her how to drill, saw, hang, repair. Fear turned into pleasure: the joy of making something yourself, of no longer being afraid of tools. A conviction grows: craftsmanship is treasure. The Japanese call their masters "living gods." She thinks we should too.</p>
+            <p class="artisan-paragraph">She retreats often to the Médoc, where the Atlantic hammers the shore. She has taken up surfing — awkward, imperfect, but joyful. One hour in the water and the mind is clean. Salt as meditation, waves as purification. Her origins are multiple: French, Parisian, Moroccan, Hungarian, Sephardic Jewish. She resists labels, preferring cuisine, music, dance to define culture rather than categories.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/camping-escape-undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01055_AURE.jpg?v=1761295208" alt="Portrait d'Aure Atika portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- AMANDINE LEPOUTRE -->
+    <section class="muse-section" aria-label="Profil : Amandine Lepoutre">
+        <div class="muse-text">
+            <h2 class="muse-name">Amandine Lepoutre</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Amandine Lepoutre. She begins by following water. Always water. The Seine as compass, a café terrace on Île Saint-Louis where the waiters are gloriously rude — the kind of rudeness that frees her to be silent. Coffee bitter, chocolate ice cream from the Glacier de Notre-Dame, 80% cacao like a sacrament, and then the slow walk downstream, Louvre, bridges, galleries, the unexpected detour that keeps her mind still.</p>
+            <p class="artisan-paragraph">The hand, for her, is connection. She takes yours instinctively, touches shoulders, leans forward with a palm open. To make with one's hands is to offer oneself, to pass emotion into matter. To hold a hand is already to say: you are not invisible. And so, when she speaks of craft, it is not only objects — it is tenderness, the possibility of reconnection in an age that fractures.</p>
+            <p class="artisan-paragraph">Her real project is not escape but gathering. For years she has created festivals, conferences, exhibitions — always moments of encounter. Today, this impulse has become Art for Action, a foundation that summons artists, writers, performers to speak of peace and human rights through emotion rather than argument. Anish Kapoor, JR, Lorraine de Sagazan — each work a gesture, each gesture a bridge. Because Amandine believes change begins not in debate but in feeling. And feeling begins with art.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/undercover-bakset-saint-tropez" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08877_AMANDINE.jpg?v=1761295207" alt="Portrait d'Amandine Lepoutre portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- CHLOÉ BARTOLETTI -->
+    <section class="muse-section reverse" aria-label="Profil : Chloé Bartoletti">
+        <div class="muse-text">
+            <h2 class="muse-name">Chloé Bartoletti</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Chloé Bartoletti. She begins not in a palace but in a banh mi shop — Miss Banh Mi, rue Mandar. An egg sandwich wrapped in paper, carried like treasure to the tip of Île Saint-Louis, eaten with the river at her feet, the sun dropping into gold. She loves Paris most when she is on the Seine, when beer bottles clink with English tourists, when the city insists on mixing strangers, laughter, water, evening.</p>
+            <p class="artisan-paragraph">What fascinates her is the hand, though she says she is not manual herself — she is hypnotised by those who are: artisans who work leather and silk, who hammer gold into buckles. This is why Hermès obsesses her: not the brand, but the artisans hidden in the ateliers, their mastery visible in every seam. She believes the best is always handmade.</p>
+            <p class="artisan-paragraph">Chloé is the founder of Marlowe, her agency for photographers, directors, set designers — fifteen talents who work image and film, specialising in still life, luxury, perfume and beauty. When she leaves Paris, she disappears to the Finistère, the bay of Audierne, her house of stone, a century old, standing at the edge of the world. No motorway, no beach club, only kilometres of sand, wind, sea — the village of her grandfather, a return she never planned, a lineage rediscovered.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09552_CHLOE.jpg?v=1761295207" alt="Portrait de Chloé Bartoletti portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- THOMAS DU PRÉ DE SAINT MAUR -->
+    <section class="muse-section" aria-label="Profil : Thomas du Pré de Saint Maur">
+        <div class="muse-text">
+            <h2 class="muse-name">Thomas du Pré de Saint Maur</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Thomas du Pré de Saint Maur. He calls himself simply: a Frenchman. Proudly so. Someone who, with the means he has, tries to create as much beauty as possible — in images, in films, in the products he shapes at Chanel, and in the ways he surrounds himself with people he loves. At Chanel, his title is precise: he directs creation for all fragrance and beauty. Seventeen years now. A love story still alive, still absolute.</p>
+            <p class="artisan-paragraph">Ask him about the hand, and he answers with certainty: there is no brain without the hand. The hand guides the mind. Its physicality, its movement, its work — that is what develops thought. Even as a teacher at Sciences Po, he makes his students write by hand, on paper, without devices. They resist at first, then flourish. He recalls a phrase: "Glissez, mortels, n'appuyez pas." Infinite delicacy. The courtesy owed to the world. Never force things. Never resist the flow of beauty. Just move with it.</p>
+            <p class="artisan-paragraph">Because Greece is where another part of his story unfolds. For twenty-five years he has gone, without speaking the language — so he decided to dance it instead. He learned Greek dances, not the invented syrtaki of Zorba, but the vernacular dances of Patmos, of Athens, of villages where music erases age, wealth, difference. Where everyone takes hands and moves together. For him, that is civilization itself. He studied with masters who traced the migratory flows of peoples through their dances — the dance of Patmos, Ωκεανός — l'Océanos, is his: slow, bodies pressed together, ocean-born.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/roma-medicis-undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04800_THOMAS.jpg?v=1761295206" alt="Portrait de Thomas du Pré de Saint Maur portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- EMMA SAWKO -->
+    <section class="muse-section reverse" aria-label="Profil : Emma Sawko">
+        <div class="muse-text">
+            <h2 class="muse-name">Emma Sawko</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Emma Sawko. She starts the day the way others finish it — with a jolt, a jabbing rhythm: one hour of boxing if the body asks to be shaken, one hour of yoga if it begs to be stretched. Hunger for what then? For freedom, perhaps, for calibration, for something raw and just slightly painful to remind her she is alive and alert. Then, Montreuil — to the lab, the kitchen, among the clatter of spoons and voices and recipes not yet born.</p>
+            <p class="artisan-paragraph">There's Wild & The Moon, her fierce garden of plants and pulses and pressed juices that behave like poetry, born in 2016, now sprawling across Paris, Dubai, Amsterdam. Each space more refuge than restaurant, more gesture than chain. She speaks of handmade food not like a trend but like a faith — the fermentation of time, the rebellion against speed, the texture of something slow. For her, the handmade is sacred, because it remembers. It remembers women. It remembers threads. It remembers stories told not in words but in weave, in spoonfuls, in silence.</p>
+            <p class="artisan-paragraph">And she's still building. Quietly, urgently. A clothing line now, Voyage 102 — clothes that move, that breathe, that don't shout but linger. Emma isn't a brand. She's a method. A murmur. A momentum. She builds not just spaces or menus or garments but atmospheres, where the pace is slower, the taste sharper, the light softer. Where something ancestral stirs, and then stays.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01651_EMMA_SAWKO.jpg?v=1761295207" alt="Portrait d'Emma Sawko portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER 1 -->
+<section class="product-slider-section" aria-label="Paris Selection – Undercover">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Paris Selection</h2>
+        <a href="https://kilometre.paris/collections/undercover-1" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/products/sorry-we-re-micro-dosing-undercover" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Sorry-We_re-Micro-Dosing-Undercover-Undercover-150625765.jpg?v=1742919140&width=600" alt="Sorry We're Micro-Dosing Undercover"></div>
+                <p class="product-name">Sorry We're Micro-Dosing – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/products/undercover-bakset-saint-tropez" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Saint-Tropez_-France-Undercover-Undercover-137876157.png?v=1726049139&width=600" alt="Saint-Tropez Undercover"></div>
+                <p class="product-name">Saint-Tropez, France – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/products/serape-colonia-centro-undercover" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Serape-Colonia-Centro-Undercover-Undercover-160177473.png?v=1761312839&width=600" alt="Serape Colonia Centro Undercover"></div>
+                <p class="product-name">Serape Colonia Centro – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/products/pulgia-undercover" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Pulgia-Undercover-Undercover-160956669.png?v=1764083368&width=600" alt="Puglia Undercover"></div>
+                <p class="product-name">Puglia – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/products/roma-medicis-undercover" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Roma_-Medicis-Undercover-Undercover-160177677.png?v=1761312895&width=600" alt="Roma Medicis Undercover"></div>
+                <p class="product-name">Roma, Medicis – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="section-container">
+
+    <!-- FRÉDÉRIC WALTER-MIKAELOFF -->
+    <section class="muse-section" aria-label="Profil : Frédéric Walter-Mikaeloff">
+        <div class="muse-text">
+            <h2 class="muse-name">Frédéric Walter-Mikaeloff</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Frédéric Walter-Mikaeloff. He moves through the ninth arrondissement as one might move through a personal archive — each pâtisserie, each gallery, each street a chosen memory, carefully stored, precisely folded. Start at Sébastien Gaudard's, where pastry is not indulgence but ritual. Then toward the Musée de la Vie Romantique, behind a garden, inside an artist's former atelier, where the light filters through leaves like a Vermeer.</p>
+            <p class="artisan-paragraph">Because Frédéric works with scent. His métier is fragrance — but not the bottled kind. He speaks of pipettes and precision, of hands weighing molecules, of machines not to replace but to remember, to replicate, to preserve. Perfume, he says, is equal parts idea and gesture. A scent isn't just composed; it's crafted, drawn, touched. And he reaches further — Maison Pomander Walter, a name with weight, with history. Decorative objects that perfume the air like talismans.</p>
+            <p class="artisan-paragraph">When you hand him a blank check and three months, he doesn't rush. He retreats to Minorca — not flashy Ibiza or glossy Mallorca, but Minorca, rougher, richer, quiet. An island of hidden coves, unfurnished beaches, prehistoric ruins. A Mediterranean mille-feuille layered with dialects, stones, and salt. He's also building Vegvisir, a consulting agency named after a Nordic compass that once helped sailors navigate unknown seas. Frédéric doesn't shout. He doesn't rush. He curates time, touch, air.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/5-star-camping-undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09467_FREDERIC_36ea1fb0-9e84-4d58-847a-15c07c2a2ea3.jpg?v=1761295206" alt="Portrait de Frédéric Walter-Mikaeloff portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- GRILLE 5 PORTRAITS -->
+    <div class="grid-5" role="list" aria-label="Galerie Paris – 5 muses" style="margin-top: 60px;">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01988_MAXIME_NICO_NICOLAS2.jpg?v=1761300354" alt="Nicolás, Maxime Smaller & Nico">
+            <div class="caption-unique">Nicolás, Maxime & Nico</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02316.jpg?v=1761299303" alt="Julie Mamou-Mani">
+            <div class="caption-unique">Julie Mamou-Mani</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06255.jpg?v=1761299303" alt="Milia Maroun">
+            <div class="caption-unique">Milia Maroun</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02569_SACHA.jpg?v=1761299302" alt="Sacha Haillote">
+            <div class="caption-unique">Sacha Haillote</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04205.jpg?v=1761299303" alt="Matthieu Salvaing">
+            <div class="caption-unique">Matthieu Salvaing</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Karlina Vitolina</p>
+
+    <!-- MILIA MAROUN -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Milia Maroun">
+        <div class="muse-text">
+            <h2 class="muse-name">Milia Maroun</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Milia Maroun. Her Paris begins on the rue des Martyrs, where she strolls slowly, pausing in cafés, letting the street carry her upward toward the carousel at the top. Ask her of the handmade and she speaks of time and of imperfection. Time, because craft takes it, absorbs it, tells it like Penelope weaving and unweaving — every handmade object holds the hours of its making, and that duration is its poetry.</p>
+            <p class="artisan-paragraph">She was born in Lebanon, deeply Lebanese, Mediterranean in soul, yet she has lived far beyond it: Istanbul, Syria, Germany, London, Paris. Not just traveled but immersed, lived within those places, carried them with her. In her own work she uses antique fabrics, woven a century or two ago — cloth that carries not only handwork but history; with time, their value grows rather than diminishes, an inheritance that resists erasure.</p>
+            <p class="artisan-paragraph">Her label is Kimabaya — a fusion of kimono and abaya, of Far East and Levant, shaped into coats that resemble caftans, garments that are less fashion than cultural story. In both the everyday and the collector's pieces, there is continuity: a garment as vessel of history, of peoples, of femininity and genre, a crossing of geographies sewn into form. Milia is a woman of in-betweens, East and West, solitude and communion, permanence and movement.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/easter-island-chilie-undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06255.jpg?v=1761299303" alt="Portrait de Milia Maroun portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MATTHIEU SALVAING -->
+    <section class="muse-section reverse" aria-label="Profil : Matthieu Salvaing">
+        <div class="muse-text">
+            <h2 class="muse-name">Matthieu Salvaing</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Matthieu Salvaing. He begins his Paris at Nemours — his Flore, his anchor — where a glass of rosé in the morning feels as natural as coffee. Lunch at Café de l'Époque, then always the Fondation Pinault. He stays within his quartier, loyal to its rhythm, until the bicycle pulls him farther: rue de Bretagne for friends, Bastille for a fête, the quais for a picnic. For Matthieu, Paris is mapped not by streets but by people.</p>
+            <p class="artisan-paragraph">Ask him about the handmade and he answers with simplicity: it is the micro-imperfection that makes the difference — the irregular letter cut by hand that gives humanity to typography, the burger cooked by someone you love instead of a machine. The hand inserts the human dimension into the object; it is the element that changes everything.</p>
+            <p class="artisan-paragraph">He was born in Camargue, near Aigues-Mortes. Photography became his passport out. He loves houses marked by defects, by human trace — a ceiling in Calcutta where palm leaves were pressed into mud, a cushion worn to threads, discoveries in Ethiopia, Togo, Benin where colors and materials mix without rule. His books are chapters of this gaze: two on Oscar Niemeyer, Voyage intérieur, Beyrouth moderniste. Matthieu is a seeker of irregularities, a recorder of defects, a lover of spaces made human by touch.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04205.jpg?v=1761299303" alt="Portrait de Matthieu Salvaing portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MAXIME SMALLER -->
+    <section class="muse-section" aria-label="Profil : Nicolás, Maxime Smaller & Nico">
+        <div class="muse-text">
+            <h2 class="muse-name">Nicolás, Maxime Smaller & Nico</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Maxime Smoller. He calls himself an anti-hairdresser. Not because he doesn't touch hair — he does, constantly — but because he refuses the rituals, the shampoos, the scissors, the small talk. He isn't interested in coiffure. He is interested in blond. Only blond. For him, blond is a spectrum, a mood, a magnet, a way of flattering the skin, softening the face, giving the illusion of travel, of light, of reinvention.</p>
+            <p class="artisan-paragraph">But hair is only one chapter. Clothes are another. Maxime does not tell stories in words, he tells them in fabric, in silhouettes gathered from travels that always begin with three suitcases. Shoes from a dance shop in Asakusa, worn without rhythm but with ease. A tablier stained with color, worn not to protect but to beautify, like a canvas catching paint. For him, garments carry patina like skin, like memory — their wear is their worth.</p>
+            <p class="artisan-paragraph">Travel is both escape and revelation. Japan, especially, was a meeting: aesthetic, spiritual, emotional. In Naoshima and Teshima, among domes shaped like raindrops, he found vibration — not the city's, not another's, but his own. He describes it as alignment, the sudden collapse of fear into presence, standing on the Seto Sea as mist blurred the mountains and the rain turned the world into cotton. He returned carrying that duality, and also, stains on his apron.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/undercover-basket-hanabi-wabi-sabi" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01988_MAXIME_NICO_NICOLAS2.jpg?v=1761300354" alt="Portrait de Maxime Smaller & amis portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- JULIE MAMOU-MANI -->
+    <section class="muse-section reverse" aria-label="Profil : Julie Mamou-Mani">
+        <div class="muse-text">
+            <h2 class="muse-name">Julie Mamou-Mani</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Julie Mamou-Mani. Her Paris is Abbesses — not the postcard but the backstreet, the bar-tabac that has no name, the kind you'd mistake for an office if you didn't know better, except here the servers know her, the neighbors lean on the counter, the air thick with half-finished conversations. She drifts to her ordonnances: the Musée de la Vie Romantique where George Sand still lingers like perfume in the curtains, or Gustave Moreau's house with its staircase coiling toward myth.</p>
+            <p class="artisan-paragraph">Ask her about the handmade and her voice steadies: for her, authenticity lives in imperfection, in time visible through gestures, the irregularity of ceramics, the patience of embroidery, stitches that carry hours within them. Broderie is her luxury, her proof that the human hand remains the most precious tool. It's no coincidence she chose "Mamouz" as her signature — a name born in Neuilly and adopted like an affectionate second skin.</p>
+            <p class="artisan-paragraph">She became a journalist, founded a production house, certified in yoga du rire, wrote books, created Mamousterapie, and turned her Instagram into a refuge during Covid — a space where memes became medicine, and people came to laugh when the world tilted. Her identity is woven from contrasts: a father Tunisian-Sephardic, joy and sun; a mother Parisian-Breton, elegance incarnate. From them she inherited the belief that difference is strength. Julie is not only a journalist, not only a humorist — she is a weaver of resilience, and above all a believer that joy is resistance.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/beach-club" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02316.jpg?v=1761299303" alt="Portrait de Julie Mamou-Mani portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- SACHA HAILLOTE — pleine largeur -->
+    <div class="muse-fullwidth" aria-label="Profil : Sacha Haillote">
+        <h2 class="muse-name">Sacha Haillote</h2>
+        <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Sacha Haillote. Her Paris begins with beauty — first the kind that polishes the skin and softens the hands, a pause on Rue de la Trémoille where time and touch bloom back into the body. Then beauty for the mind: a passage through the Musée d'Orsay or the Fondation Cartier, a gallery in the Marais or Louis Vuitton's glass ship in the Bois. And last, her own table: flowers, candles, dishes painted by Inès Olympe Mercadal, a meal cooked hot, champagne flowing, music rising until no one remembers clocks or neighbors.</p>
+        <p class="artisan-paragraph">Sacha works with her hands, her obsessions moving from ceramic to thread, from metal to wood. A giant medallion she is shaping, a necklace of one meter ninety laced with knitted detail, earrings waiting for the support of iron and cement, an entire series of jewelry on the verge of becoming. She loves the millimetric precision of epoxy, the clean shine of enamel, but also the accident of a glaze gone wrong, the fuzz of wool knitted loose. For her, matter carries emotion — smooth, porous, soft, or heavy, each texture a way of giving form to tenderness, chaos, or strength.</p>
+        <p class="artisan-paragraph">She carries Marseille and Vietnam within her like two poles of fire. From Marseille, the frankness, the too-much, the taste for accent and for excess, the joy of the cagole — too painted, too loud, too true. From Vietnam, the tenderness of memory: her mother, her ancestors, a grandfather who fought at Dien Bien Phu, the weight of history that sharpens the present. If you gave her a jet, a limitless card, three months to do whatever she wished, she would not spend it on herself but on others: gather her family, her children, her friends into a great house with a vast garden, feed them, lodge them, fill the air with music until life itself became a festival.</p>
+        <img class="muse-img-full" src="https://kilometre.paris/cdn/shop/files/DSC02569_SACHA.jpg?v=1761299302&width=1600" alt="Portrait de Sacha Haillote portant une Pièce Unique Kilometre Paris">
+    </div>
+
+</div>
+
+<!-- PRODUCT SLIDER 2 -->
+<section class="product-slider-section" aria-label="Paris Selection 2 – Undercover">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Paris Selection</h2>
+        <a href="https://kilometre.paris/collections/undercover-paris-2" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/undercover-paris-2/products/beach-club" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Beach-Club-Undercover-Undercover-137717347.png?v=1725542922&width=600" alt="Beach Club Undercover"></div>
+                <p class="product-name">Beach Club – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/collections/undercover-paris-2/products/dot-dot-dot-le-tube" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Dot-Dot-Dot-Le-Tube-Le-Tube-150705353.png?v=1761313539&width=600" alt="Dot Dot Dot Le Tube"></div>
+                <p class="product-name">Dot Dot Dot – Le Tube</p>
+                <p class="product-price">€250</p>
+            </a>
+            <a href="https://kilometre.paris/collections/undercover-paris-2/products/armoirie-rayee-undercover" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Armoirie-Rayee-Undercover-Undercover-137877944.png?v=1726051129&width=600" alt="Armoirie Rayée Undercover"></div>
+                <p class="product-name">Armoirie Rayée – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/collections/undercover-paris-2/products/undercover-basket-hanabi-wabi-sabi" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Hanabi-Wabi-Sabi-Undercover-Undercover-137749114.png?v=1725620398&width=600" alt="Hanabi Wabi Sabi Undercover"></div>
+                <p class="product-name">Hanabi Wabi Sabi – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+            <a href="https://kilometre.paris/products/easter-island-chilie-undercover" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Easter-Island_-Chilie-Undercover-Kilometre-Paris-67907960.jpg?v=1725973649&width=600" alt="Easter Island Chile Undercover"></div>
+                <p class="product-name">Easter Island, Chile – Undercover</p>
+                <p class="product-price">from €375</p>
+            </a>
+        </div>
+    </div>
+</section>
+<script src="footer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venice - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --rouge: #e63946; --bleu: #2F3E86; --blanc: #ffffff; --noir: #1a1a1a; --gris-clair: #f9f9f9; --max-width: 1400px; }
+        body { font-family: 'Barlow', Arial, sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; overflow-x: hidden; }
+        .section-container { max-width: var(--max-width); margin: 0 auto; padding: 60px 40px; }
+
+        .title-unique { font-size: clamp(3rem, 8vw, 6rem); color: var(--rouge); text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
+        .circle-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rouge); }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* GRILLE 7 */
+        .grid-7 { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 380px; gap: 20px; margin-bottom: 20px; }
+        .grid-7 .item-unique:nth-child(7) { grid-column: 4; grid-row: 1 / 3; }
+
+        .item-unique { position: relative; overflow: hidden; }
+        .item-unique img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .caption-unique { position: absolute; bottom: 15px; left: 15px; right: 15px; background: white; padding: 10px; text-align: center; color: var(--rouge); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; }
+        .photo-credit { text-align: right; margin-bottom: 60px; font-size: 1.2rem; color: var(--rouge); font-weight: 700; text-transform: uppercase; }
+
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--bleu); margin-bottom: 1.2rem; }
+
+        .muse-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 120px; }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+        .muse-name { font-size: clamp(2rem, 4vw, 3rem); color: var(--rouge); text-transform: uppercase; font-weight: 900; margin-bottom: 1.5rem; }
+        .muse-image img { width: 100%; height: auto; max-height: 850px; object-fit: cover; object-position: top; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: opacity 0.25s ease; }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        .marquee-bar { background: var(--bleu); color: #FFF8BD; padding: 0.85rem 0; overflow: hidden; white-space: nowrap; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+        .marquee-inner span { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .product-slider-section { background: var(--gris-clair); padding: 70px 0; margin: 80px 0; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .product-slider-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
+        .product-slider-title { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--rouge); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 900; text-align: center; margin-bottom: 15px; }
+        .product-slider-viewall { display: block; width: fit-content; margin: 0 auto 40px; border: 1px solid var(--bleu); color: var(--bleu); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.6rem 1.8rem; font-weight: 700; transition: all 0.2s; }
+        .product-slider-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .product-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .product-card { text-decoration: none; display: flex; flex-direction: column; }
+        .product-img-wrap { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 14px; }
+        .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+        .product-name { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bleu); font-weight: 700; line-height: 1.6; }
+        .product-price { font-size: 0.7rem; color: var(--noir); margin-top: 4px; }
+
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-7 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .grid-7 .item-unique:nth-child(7) { grid-column: auto; grid-row: auto; }
+            .muse-section, .muse-section.reverse { grid-template-columns: 1fr; gap: 30px; }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+            .product-track { display: flex; overflow-x: auto; gap: 15px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
+            .product-card { flex: 0 0 70vw; scroll-snap-align: center; }
+            .product-track::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    
+<script src="navbar.js"></script>
+
+<div class="section-container">
+
+    <h1 class="title-unique">VENICE</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle filled"></div>
+    </div>
+
+    <!-- GRILLE 7 PORTRAITS -->
+    <div class="grid-7" role="list" aria-label="Galerie Venice">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Lara_Mrorell.jpg?v=1776418986" alt="Lara Morell">
+            <div class="caption-unique">Lara Morell</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Gioele_Helby_Romanelli_CARAVAN__DSC4621.jpg?v=1776418986" alt="Gioele and Heiby">
+            <div class="caption-unique">Gioele & Heiby</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Carmela_Cipriani_CARAVAN__DSC5223.jpg?v=1776418987" alt="Carmela Cipriani">
+            <div class="caption-unique">Carmela Cipriani</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Gloria_Rogliano_CARAVAN__DSC4876.jpg?v=1776418987" alt="Gloria Rogliano">
+            <div class="caption-unique">Gloria Rogliano</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Saverio_Pastor_CARAVAN__DSC4800.jpg?v=1776418987" alt="Saverio Pastor">
+            <div class="caption-unique">Saverio Pastor</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Servane_Giol.jpg?v=1776418987" alt="Servane Giol">
+            <div class="caption-unique">Servane Giol</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Anthonia_Sautter_CARAVAN__DSC5006.jpg?v=1776418987" alt="Antonia Sautter">
+            <div class="caption-unique">Antonia Sautter</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Maria Lannino</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. This ninth edition of Caravan takes place in <strong>Venice</strong> — a city built by hands, stitched together by water, and kept alive by those who still believe beauty must be made, touched, and transmitted. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- LARA MORELL -->
+    <section class="muse-section" aria-label="Profil : Lara Morell">
+        <div class="muse-text">
+            <h2 class="muse-name">Lara Morell</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Lara Morell. She was born in England, but she chose Venice as her real home. Ten years ago she arrived for just a few months — she ended up staying for good. The city pulled her in with its rituals, its daily rhythm, and that slow logic tied to the water. She lives on the island of Giudecca, where her fiancé was born. The place still feels like a small village. Neighbors greet each other by name. Boats sit moored right by the doors. Life gets measured out by the tides.</p>
+            <p class="artisan-paragraph">She studied art in London at Saint Martins, then photography in Torino. For several years she edited My Art Guides, an international platform focused on contemporary art. Later she joined Osti e Orto, an association of Venetian restaurateurs who share land on Sant Erasmo to grow their own produce. She worked the fields with her own hands during that time. It helped her rediscover patience and a sense of purpose. Now she is returning to art full time.</p>
+            <p class="artisan-paragraph">For Lara, craftsmanship means necessity more than nostalgia. It is what keeps a city truly alive. Venice got built by hands, not machines — the only real way to honor it is to keep creating with touch and care every day. She speaks often of Matteo Tamassia, the boatbuilder whose workshop in Treviso can fit only one boat at a time. He built hers personally — a mix of sampierotta and cofina. "It felt like a birth," she smiles. They even had a priest there, along with friends and a full celebration. All of it just for that boat entering the water.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/tourist-scarf-italy" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Lara_Mrorell.jpg?v=1776418986" alt="Portrait de Lara Morell portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- GIOELE & HEIBY ROMANELLI -->
+    <section class="muse-section reverse" aria-label="Profil : Gioele & Heiby Romanelli">
+        <div class="muse-text">
+            <h2 class="muse-name">Gioele & Heiby Romanelli</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Gioele and Heiby Romanelli. They grew up in the lagoon. Venice feels like something they inherited rather than just a spot to visit. Hospitality flows in their family like a steady undercurrent — five generations deep. Gioele's great grandmother started the first family hotel. His grandfather was a photographer who put portraits of guests on all the walls. In 1965 his parents opened the Hotel Flora, a quiet escape right behind the busy San Marco area. Then came Casa Flora, born as a modern apartment from a student workshop, feeling part home and part test in how to live like a Venetian.</p>
+            <p class="artisan-paragraph">Together they now manage three spots: Flora, Novecento, and Casa Flora. Each looks different in design, but all share one main idea — hospitality as a real feeling. A hotel is more like a story than a building. They took that idea further with Inside Venice, their online journal collecting voices from locals and artisans, stories that don't often get told. Gioele notes there is far too much negative talk about Venice today. They aim to highlight its real strength — the people who pour everything into keeping the city going.</p>
+            <p class="artisan-paragraph">Craftsmanship means a lot to Gioele — whether in a hotel, a table, or a meal. He just read Salvatore Ferragamo's autobiography. It taught him a key point: the future comes from stepping back a bit and remembering the old ways of making. Their version of Venice skips the postcard views and focuses on the real living city. Water, hands, and a steady belief shape it all. "You have to stay amazed," he smiles. "The day I find someone who is not — that person could never be my friend."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Gioele_Helby_Romanelli_CARAVAN__DSC4621.jpg?v=1776418986" alt="Portrait de Gioele & Heiby Romanelli portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- CARMELA CIPRIANI -->
+    <section class="muse-section" aria-label="Profil : Carmela Cipriani">
+        <div class="muse-text">
+            <h2 class="muse-name">Carmela Cipriani</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Carmela Cipriani. She was born in Venice. In that city, it means she was born on water. When you open your eyes there, you see light that is already broken — multiplied and liquefied in strange ways. For Carmela, beauty did not come as some big discovery. It came as an inheritance. The canals served as her first mirrors. The campanili acted like her compass. Venice, she says, is not built of stone. It is built of echoes — footsteps on wet bridges, bells dissolving into fog, oars making a slow gasp against green water.</p>
+            <p class="artisan-paragraph">She grew up beneath Peggy Guggenheim's window — that is the myth of Dorsoduro, she tells it like a fable. Peggy and her unfinished nose. The surgery stopped mid-cut. She wore sunglasses like armor. That woman turned imperfection into legend. Her life felt half-real and half-dream, like Venice itself. Carmela calls herself Venetian before anything else — a writer, photographer, and chronicler. She has written about Venice not as a monument but as a heartbeat. Every wall hides a story. Every pigeon acts as a friend. Every canal serves as a secret mirror.</p>
+            <p class="artisan-paragraph">Ask her why craft matters, and her voice softens. "Because it is intimate," she says. "It is an interior world translated into matter." True craftsmanship, for her, is the soul made visible through the hand. She tells stories of Venetian artisans who worked leather, hair, or wood as though it were silk. There is Segalin, who made shoes shaped like gondolas for Luigino Rossi — no one else could ever replicate those shoes. "The craftsman," she says, "is always an artist. Not by title. But by need."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/tourist-scarf-italy" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Carmela_Cipriani_CARAVAN__DSC5223.jpg?v=1776418987" alt="Portrait de Carmela Cipriani portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- GLORIA ROGLIANO -->
+    <section class="muse-section reverse" aria-label="Profil : Gloria Rogliano">
+        <div class="muse-text">
+            <h2 class="muse-name">Gloria Rogliano</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Gloria Rogliano. She has lived her whole life around water — not something passed down from family, but a natural pull. One day when she was twenty-three, she got into a boat. It seemed like she had been rowing her entire life. The motion was already there in her body. She learned the voga alla veneta style, the old way of standing and stroking, where the boat moves forward through steady effort, not by rushing. She became one of Venice's top rowers — but winning was never her main aim.</p>
+            <p class="artisan-paragraph">"It went beyond just winning," she says. "It meant getting the place itself. The light there. The birds. The mudflats called barene." This year she will row again at the Historical Regatta in September 2026 — at age sixty-two, with a young woman who is nineteen. Two generations side by side. Two styles of rowing. Two forms of power. "I pass on what I have learned. She brings fresh drive. It shows women can push on, no matter their years."</p>
+            <p class="artisan-paragraph">Her dream, if she had unlimited resources: Barca e Casa — Boat is Home — to guide elderly and disabled Venetians who grew up by the water but now miss the sense of gliding over it. "They long to view the sea once more. To feel alive again." After that, a school. A basic kind. "No computers. No phones. Nothing showy or forced. I want embraces. Smiles. Hard work. A place to learn real living. Where we teach each other. I take from the young ones. They take from me."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Gloria_Rogliano_CARAVAN__DSC4876.jpg?v=1776418987" alt="Portrait de Gloria Rogliano portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- SAVERIO PASTOR -->
+    <section class="muse-section" aria-label="Profil : Saverio Pastor">
+        <div class="muse-text">
+            <h2 class="muse-name">Saverio Pastor</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Saverio Pastor. He began at sixteen and a half — already too old, his master said. In Venice, one was meant to start younger, when the body still obeyed and the hands hadn't yet learned impatience. So he watched. For two months he did nothing else, watched eight hours a day, the ritual of sawdust and silence, the rhythm of hands carving the city's bones. Then one day he was allowed to touch the wood. That was nearly fifty years ago, and he has never stopped.</p>
+            <p class="artisan-paragraph">He crafts oars — long, lean extensions of the arm — and the forcole that cradle them, wooden sculptures of motion and restraint. They aren't props; they're vertebrae in the body of the lagoon. Each curve speaks its own dialect: one whispers of turning, another commands the boat to slow, another bites against the current and throws it backward. Touch one, and you feel it — the choreography of a city written in wood. "There is nothing casual in the shape," he says. "Every line answers to function." In his hands, the forcola is choreography frozen in wood — a curve of woman, a whisper of Ferrari, elegance made useful.</p>
+            <p class="artisan-paragraph">Only four or five artisans remain like him — men who still shape wood the way their fathers did. Venice once had hundreds; now it has traffic. Too many engines, too many wakes, waves that batter the canals and bruise the wood. "Manual work," he says, "is what defines humanity." To him, touch is intelligence — a way of knowing what others overlook. A forcola takes time, patience, precision, listening. It should cost thirty thousand euros, he says laughing, but sells for fifteen hundred. It will last thirty years. Longer than the man who carved it, perhaps.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Saverio_Pastor_CARAVAN__DSC4800.jpg?v=1776418987" alt="Portrait de Saverio Pastor portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- SERVANE GIOL -->
+    <section class="muse-section reverse" aria-label="Profil : Servane Giol">
+        <div class="muse-text">
+            <h2 class="muse-name">Servane Giol</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Servane Giol. She speaks of Venice the way some speak of a lover — with ache, with loyalty, with a kind of warning folded inside devotion. For her, the city breathes. It isn't scenery; it's sinew, an organism stitched together by the head and the hand, the mind that imagines, the hand that obeys. When one forgets the other, the pulse falters. Once, she says, there was a Biennale — not of art as we know it, but of the decorative, the intimate, the human. Then 1972 arrived like a door slamming shut. And overnight, the dialogue died.</p>
+            <p class="artisan-paragraph">"The masters continued," she says, "but without a thinking head, without someone to say, let's experiment." She names the ones who once spoke that shared language: Scarpa, Venini, the artists who built bridges between intellect and gesture. Without them, the dialogue broke. Burano's lace fell into near extinction. Five lace makers remain, perhaps fewer. To make a butterfly takes six hundred hours — time the modern world no longer pays for.</p>
+            <p class="artisan-paragraph">And yet Venice always returns. "It's cyclical," she says. "1920, everyone arrives. 1940, everyone leaves. 1950, they come back." Since the pandemic, the world has turned toward Venice with a feverish hunger — for beauty, for calm, for art that breathes. Her advice is simple: stay. Walk. Look. Drink water from a Venetian glass, invented here. Put on your glasses — Venetian, again. Look at yourself in a mirror — another Venetian gift. "Every morning," she says, "you make three gestures born in Venice. You just don't realize it."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Servane_Giol.jpg?v=1776418987" alt="Portrait de Servane Giol portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ANTONIA SAUTTER -->
+    <section class="muse-section" aria-label="Profil : Antonia Sautter">
+        <div class="muse-text">
+            <h2 class="muse-name">Antonia Sautter</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Antonia Sautter. She was not born into costume — she willed herself into it. One day, thirty-three years ago, in a small shop where she sold corsets and accessories, a man from Monty Python walked in. Terry Jones. He asked to speak about Venice. She spoke about the city, about imagination, and he offered her work on a BBC film set in Byzantium. She had no experience. No training. Only nerve. That night she didn't sleep. The next morning she returned and said: "Trust me. I'll do it all." And she did.</p>
+            <p class="artisan-paragraph">Today she orchestrates an entire world of hands. Five couturières work with her year-round, twenty-five when Carnival swells. In her atelier, fabric rises like breath, sequins fall like light. "The hand," she says, "translates the heart." In a century obsessed with speed and screens, she defends the slow pulse of making. To create by hand is, for her, a form of meditation — a recovery of time, of essence, of presence. The thread becomes a line of thought; the gesture, a kind of prayer.</p>
+            <p class="artisan-paragraph">Her dream, if money were no object: a vast laboratory of beauty where young artisans could learn from old masters, where retired craftsmen could pass on their art before it disappears. "Not a school," she insists, "a space of transmission." Venice needs youth, and youth need wonder. Her mother was Venetian, her father German — he came to Venice once and never left. "Venice provokes love," she says, half-smiling. "It traps you with beauty." She still returns to Pellestrina, that sliver of land where her grandmother, another Antonia, first breathed salt air.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Anthonia_Sautter_CARAVAN__DSC5006.jpg?v=1776418987" alt="Portrait d'Antonia Sautter portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER 1 -->
+<section class="product-slider-section" aria-label="Venice Selection – Tourist Scarf">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Tourist Scarf</h2>
+        <a href="https://kilometre.paris/collections/tourist-scarf" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-france" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/France-Tourist-Scarf-Tourist-Scarf-151634765.jpg?v=1744622320&width=600" alt="France Tourist Scarf"></div>
+                <p class="product-name">France – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-america" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/America-Tourist-Scarf-Tourist-Scarf-151634932.jpg?v=1744622376&width=600" alt="America Tourist Scarf"></div>
+                <p class="product-name">America – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-italy" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Italy-Tourist-Scarf-Tourist-Scarf-151634527.jpg?v=1744622319&width=600" alt="Italy Tourist Scarf"></div>
+                <p class="product-name">Italy – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-great-britain" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Great-Britain-Tourist-Scarf-Tourist-Scarf-151634627.jpg?v=1744622317&width=600" alt="Great Britain Tourist Scarf"></div>
+                <p class="product-name">Great Britain – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Venice</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Venice</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Venice</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- GRILLE 7 PORTRAITS 2 -->
+    <div class="grid-7" role="list" aria-label="Galerie Venice – 7 muses" style="margin-top: 60px;">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Marta_Tullio_Nardi_CARAVAN__DSC5135.jpg?v=1776418987" alt="Marta Tullio">
+            <div class="caption-unique">Marta Tullio</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Nadia_Romain_CARAVAN__DSC4588.jpg?v=1776418986" alt="Nadja Romain">
+            <div class="caption-unique">Nadja Romain</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Michele_Micheluzzi_CARAVAN__DSC4501.jpg?v=1776418986" alt="Elena, Massimo & Margherita">
+            <div class="caption-unique">Elena, Massimo & Margherita</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Luana_Segato_CARAVAN__DSC5616.jpg?v=1776418986" alt="Luana Segato">
+            <div class="caption-unique">Luana Segato</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Luciano_Beba_Gambaro_CARAVAN__DSC4728.jpg?v=1776418987" alt="Luciano & Beba Gambaro">
+            <div class="caption-unique">Luciano & Beba Gambaro</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Sarita_Radha_Sharma_CARAVAN__DSC4337.jpg?v=1776418987" alt="Sarita Radha">
+            <div class="caption-unique">Sarita Radha</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/France_Thierard_CARAVAN__DSC4237.jpg?v=1776418987" alt="France Thierard">
+            <div class="caption-unique">France Thierard</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Maria Lannino</p>
+
+    <!-- MARTA TULLIO -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Marta Tullio">
+        <div class="muse-text">
+            <h2 class="muse-name">Marta Tullio</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Marta Tullio. Thirty years back, she came to Venice because of love. She stayed there for the same reason. She wed a jeweler — his shop faces out onto Piazza San Marco. Stones came before paper in her life: trained as a gemmologist, she knew how to spot perfection in the tiniest shine. Then one day, paper showed up by accident. Her husband wanted her to create something for the shop windows. She had never tried making flowers before. She laughed at the idea. She gave it a go. She could not quit after that.</p>
+            <p class="artisan-paragraph">These days, she folds and cuts and layers and shapes paper. Her hands that once measured diamonds now draw petals from plain card stock. She makes peonies most of the time — her own vision, not exact copies. "I do not want to imitate nature," she says. "I want to interpret it." Her flowers never wilt. Each fold feels like a breath. Each curve acts like a prayer. Things changed during the lockdown. Venice cleared out completely. She and her husband walked across Piazza San Marco. The square stood empty — just the two of them with the basilica and the bell tower. "Beauty is everywhere," she says. "You only need different eyes to see it."</p>
+            <p class="artisan-paragraph">Six years have gone by since that first flower. Her work reached the Saatchi Gallery in London, where Flowers spread out four meters across. The pieces went to Buccellati, Dior, and Bottega Veneta. "They trusted my taste completely," she says. "That is my greatest satisfaction." Time, she says, is the only true luxury. Three months just for herself, caring for a garden, reading books, making more flowers — that would be her dream.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Marta_Tullio_Nardi_CARAVAN__DSC5135.jpg?v=1776418987" alt="Portrait de Marta Tullio portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- NADJA ROMAIN -->
+    <section class="muse-section reverse" aria-label="Profil : Nadja Romain">
+        <div class="muse-text">
+            <h2 class="muse-name">Nadja Romain</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Nadja Romain. She talks about art in a way that reminds you of how people describe travel — departure, arrival, and all the parts that come between. "Art," she says, "is the most beautiful journey." She makes her home in Venice, where glass breathes just like the water around it. She works alongside master glassmakers, observing how artists and artisans come together — one side offers vision, while the other provides the skilled hand. "It is a dance," she says. "Sometimes harmonious, sometimes not. The key is finding some kind of balance."</p>
+            <p class="artisan-paragraph">Venice came after London in her story. London followed Paris, where she was born. By seventeen, she worked in Claude Berri's gallery, around pieces she didn't fully grasp yet but loved anyway — Boltanski, Bourgeois, and the spark of curiosity that started there. She produced Mister Lonely, the Harmony Korine film. "Everything should be made by hand," she says. "That includes film." She named her space L'eau Studio after water — not a traditional gallery, but a spot for real encounters. Artists drop by to try experiments, test new materials, use her walls for display.</p>
+            <p class="artisan-paragraph">"It is not about exclusivity," she says. "I do not own artists. I collaborate with them." Venice did not enter her plans from the start — she arrived for a Murano glassmaking exhibition and ended up staying. "It is the most international village in the world." In that village, she discovered her own reflection: a city that mixes fragility with resilience, craft with illusion, and hands that still shape the world around them. Nadja believes that making things means feeling them deeply. And feeling leads straight to living fully.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Nadia_Romain_CARAVAN__DSC4588.jpg?v=1776418986" alt="Portrait de Nadja Romain portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ELENA, MASSIMO & MARGHERITA MICHELUZZI -->
+    <section class="muse-section" aria-label="Profil : Elena, Massimo & Margherita Micheluzzi">
+        <div class="muse-text">
+            <h2 class="muse-name">Elena, Massimo & Margherita Micheluzzi</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Massimo Micheluzzi. He has spent more than thirty years working with glass — not just shaping it, but understanding it deeply. It seems like a living material to him, one that remembers heat and breath. His gallery in Venice is both workshop and family home: the front room fills with light and color, the back lines with tools, fragments, and furnaces. That is where his daughters grew up, surrounded by glass dust and the sounds of hands at work.</p>
+            <p class="artisan-paragraph">Today, Massimo's pieces fall into two main families. The first is transparent — colors flow naturally, never forced, the surfaces soft with what Elena calls "the flower effect": light seems to breathe through them rather than reflect sharply. The second involves mosaic work, drawing inspiration from the floors of Venetian palaces. Together, they create the full topography of Venice — solid and liquid, earth and lagoon. Elena inherited the philosophy without even realizing it: "If you know you can make something with your hands, you think differently. It becomes a way of living."</p>
+            <p class="artisan-paragraph">Elena says she would invest in Murano if she could. "Our shop is here, but production happens there. Glass making costs a lot — gas, logistics, the material itself. Everything gets done by hand. If we could be freer, we would create more pieces." Murano feels fragile to her — a world of aging masters and empty furnaces. "If they stop working, we stop too. Everything we do depends on them." The Micheluzzi workshop is a conversation between generations, in a time when industry replaces intimacy. Their glass still shows fingerprints. It carries breath marks. It holds the soft trace of human error.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Michele_Micheluzzi_CARAVAN__DSC4501.jpg?v=1776418986" alt="Portrait de la famille Micheluzzi portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- FRANCE THIERARD -->
+    <section class="muse-section reverse" aria-label="Profil : France Thierard">
+        <div class="muse-text">
+            <h2 class="muse-name">France Thierard</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: France Thierard. She showed up in Venice kind of late — she was thirty-nine. A friend brought her there. Her very first trip was set up as a birthday surprise. It was meant to distract her a bit. The city spread out like some page in a book she had skipped over — its quiet spots, its soft glow, its past that felt so full of life it almost vibrated. She came back over and over. Eventually Venice turned into her real home. Paris came before all that: the Théâtre du Vieux-Colombier, the Comédie-Française. Thirteen years soaking up lights and words.</p>
+            <p class="artisan-paragraph">She ended up buying a little boat — sa barque — that let her start poking around the lagoon from the water. "You cannot really get Venice until you slip into it by boat," she says. The building fronts look completely different from the canals. Palaces seem to open up like they are talking. About six years ago, during Covid, a friend mentioned that the furnaces of Murano had gone quiet. France checked it out herself — she found a workshop full of six thousand glasses no one had bought. She wrote to her circle of friends, mostly women, and offered to move those glasses at low prices. In just a month everything sold out. Six thousand items. Six thousand small ways to help. The furnaces fired up once more.</p>
+            <p class="artisan-paragraph">She stuck around after that. Joined the masters at work. These men in their seventies still handled air and flame like young men. She teared up watching Salvadore, seventy-seven, shape a lamp base with stripes so exact it seemed impossible. "This craft nearly disappeared. Still it hangs on." Today she creates her own lines — lamps, vases, everyday glass things. She mixes old methods with her feel for colors. Opaque shades appeal to her most, the soft matte ones that trap light inside. France Thierard switched up her whole path chasing a bit of light. Venice endures like glass does. Only because people keep giving it breath.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/France_Thierard_CARAVAN__DSC4237.jpg?v=1776418987" alt="Portrait de France Thierard portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- LUCIANO & BEBA GAMBARO -->
+    <section class="muse-section" aria-label="Profil : Luciano & Beba Gambaro">
+        <div class="muse-text">
+            <h2 class="muse-name">Luciano & Beba Gambaro</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Luciano & Beba Gambaro. They spend their days around glass and fire — still, they talk about it like it is air, something you cannot see but cannot live without. In Murano, it all starts with a furnace, with a simple gesture or a breath. Luciano comes up with the designs; Beba stays right there next to him, his counterpoint and his echo. Together, they guard a craft that goes back further than anyone can remember, one that has kept burning for over seven centuries.</p>
+            <p class="artisan-paragraph">Talk to him about the hand, and his voice gets steady. "The hand is what holds civilization in place," he says. "Italy's big industries rely on it — from marble work to mosaics. It brings history and the future together in one motion. We are the creators of beauty. Not out of pride, but out of remembering. What people call design, what they call fashion — it all starts here. It comes from the idea of making things by hand. Making them well. Making them beautiful."</p>
+            <p class="artisan-paragraph">He moves from vases to sculptures, from simple vessels to big structures that push glass to its limits. He talks about new experiments — pieces drawn from alchemy, from love, from play. About projects that blend Murano's old skills with modern technology, even artificial intelligence. One day, visitors might talk to the glass, ask for things and get stories back in return. The glass of Murano, Luciano says, is humble — it can handle any challenge, any subject, show the best in us. He lives right in that space: between flame and idea, past and invention, in the shimmer of molten sand where craft turns into language and language turns into light.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Luciano_Beba_Gambaro_CARAVAN__DSC4728.jpg?v=1776418987" alt="Portrait de Luciano & Beba Gambaro portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- SARITA RADHA -->
+    <section class="muse-section reverse" aria-label="Profil : Sarita Radha">
+        <div class="muse-text">
+            <h2 class="muse-name">Sarita Radha</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Sarita Radha. She carries two worlds in her voice — one warm with Indian earth, the other rippling with Venetian water. Her name tastes of spice and silk, but her gestures move like the tide of the lagoon — quick, light, unafraid. She was born of crossings: an Indian motherland near Bhopal, a Venetian grandfather who took her to the antique markets as a child. Between them, she learned to see beauty not as perfection, but as conversation — a tension between the hand and the idea.</p>
+            <p class="artisan-paragraph">Sarita is the founder of Lieu Migrant, a studio created from her need to bring together opposites: function and fantasy, East and West, discipline and desire. "I'm an esthète," she says. "Maybe too much." She works with glassmakers, weavers, and craftsmen — not by commanding them, but by encouraging them, inviting accidents, and embracing imperfection. "I'm not an artisan. Not an artist either. I'm a guide." She loves to be present where creation happens, in the space between flame and breath, between gesture and mistake, watching beauty appear from friction.</p>
+            <p class="artisan-paragraph">And somewhere far away, in India, stands the hotel her grandmother built — fifteen rooms facing sacred ruins, a quiet shelter for archaeologists, writers, and pilgrims. House of William, she calls it. Designed according to Vastu, the ancient discipline of harmony. "It's where I'd go to write," she says softly. "To think. To begin again." Sarita is a weaver of places and a designer of dialogues. She builds bridges not out of stone, but out of trust — connecting continents, crafts, and the seen with the felt. She is Venice and Bhopal, Paris and Tuscany. A migrant of beauty, carrying her worlds in her hands.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Sarita_Radha_Sharma_CARAVAN__DSC4337.jpg?v=1776418987" alt="Portrait de Sarita Radha portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- LUANA SEGATO -->
+    <section class="muse-section" aria-label="Profil : Luana Segato">
+        <div class="muse-text">
+            <h2 class="muse-name">Luana Segato</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Luana Segato. She came into the world in Mogliano Veneto, a spot between Treviso and Venice — a kind of border where the solid mainland and the shifting lagoon mix. Her studio in Castello was her first hideaway. She recalls the window that looked out on a fruit boat, the smell of wet wood and citrus, vendors calling out their morning hellos in a steady rhythm. "I used to go outside to draw," she says. "I did it alone." It was in that real Venice — la Venezia popolana — where she started painting.</p>
+            <p class="artisan-paragraph">Luana calls herself a peintrice — a painter. Still her work often goes beyond the frame. Her canvases use hand-made cotton. She prepares them with pigment and attention, primes them on her own, sews and cuts them. "Sewing is like meditation," she says. "Sometimes the stitches look like scars. But they are not painful ones. They are scars of joining. I repair." Her paintings seldom stay just paintings — they turn into sculptures, installations, gestures that fill a space. Once she spread her works like carpets over Venice's bridges, letting the city finish the piece.</p>
+            <p class="artisan-paragraph">Water stays as her main focus. She follows its colors — the browns, the greens, the blues that seem impossible. "If you arrive by train and look at the lagoon, you will see two different colors, one on each side. And next week it will shift again. Venice comes from color. It is never the same two times." Between Padova's land and Venice's tides, she keeps stitching them, one layer at a time, until the world feels whole again. Her art, for her, is a way to fix things. "Every seam fills a break. Every color catches a breath. Who does not have scars? Mine are made to connect. Not to divide."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Luana_Segato_CARAVAN__DSC5616.jpg?v=1776418986" alt="Portrait de Luana Segato portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MARA SARTORE -->
+    <section class="muse-section reverse" aria-label="Profil : Mara Sartore">
+        <div class="muse-text">
+            <h2 class="muse-name">Mara Sartore</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Mara Sartore. She talks about Venice in a special way — like describing a body you know inside out. Not perfect, but alive. Pulsing with veins of light and centuries of hands. "Craftsmanship," she says, "is an act of creation that differs from art. Art is conceptual — imagined. Craft is the act of doing. Of shaping. Of touching. It is the knowledge of hands that remember." That threshold where imagination and manuality meet — that, she says, is the place she loves most.</p>
+            <p class="artisan-paragraph">She is the force behind Vino Vero, which has become a Venetian landmark — small, warm, alive, holding over two thousand labels within its walls, gathered in Cannaregio, one of the last truly lived-in quarters of Venice. A hundred meters away stands her second creation, Bea Vita — once a school, now reborn as a living space with music, vinyls, artists, simple food drawn from Venetian history. And in the window of Vino Vero, there is art: Vitrine, an exhibition visible to all, public by essence, most recently devoted entirely to women artists, activists, voices that reinterpret the world with tenderness and strength.</p>
+            <p class="artisan-paragraph">Mara Sartore moves between worlds — art and wine, Venice and the world, thought and touch. She builds bridges between taste and vision, between what can be poured and what can be seen. Like the artisans she reveres, she works with her hands, but also with memory. Each project, each glass, each exhibition a gesture of continuity, of preservation, of faith in the handmade and the human. Venice, to her, is not nostalgia. It is a living workshop. And she is its quiet, tireless dreamer.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/tourist-scarf" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Anthonia_Sautter_CARAVAN__DSC5006.jpg?v=1776418987" alt="Portrait de Mara Sartore portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER 2 -->
+<section class="product-slider-section" aria-label="Venice Selection 2 – Tourist Scarf">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Tourist Scarf</h2>
+        <a href="https://kilometre.paris/collections/tourist-scarf" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-france" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/France-Tourist-Scarf-Tourist-Scarf-151634765.jpg?v=1744622320&width=600" alt="France Tourist Scarf"></div>
+                <p class="product-name">France – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-america" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/America-Tourist-Scarf-Tourist-Scarf-151634932.jpg?v=1744622376&width=600" alt="America Tourist Scarf"></div>
+                <p class="product-name">America – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-italy" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Italy-Tourist-Scarf-Tourist-Scarf-151634527.jpg?v=1744622319&width=600" alt="Italy Tourist Scarf"></div>
+                <p class="product-name">Italy – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/tourist-scarf/products/tourist-scarf-great-britain" class="product-card" target="_blank">
+                <div class="product-img-wrap"><img src="https://kilometre.paris/cdn/shop/files/Great-Britain-Tourist-Scarf-Tourist-Scarf-151634627.jpg?v=1744622317&width=600" alt="Great Britain Tourist Scarf"></div>
+                <p class="product-name">Great Britain – Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+        </div>
+    </div>
+</section>
+<script src="footer.js"></script>
+
+</body>
+</html>

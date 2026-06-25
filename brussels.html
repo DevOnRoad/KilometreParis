@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brussels - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #e63946;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-clair: #f9f9f9;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Barlow', Arial, sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* --- TITRE --- */
+        .title-unique {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--rouge);
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .circle {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--rouge);
+        }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* --- GRILLES --- */
+        .grid-7 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 380px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* 7 items : Zephir (7e) occupe la colonne 4 sur 2 lignes */
+        .grid-7 .item-unique:nth-child(7) {
+            grid-column: 4;
+            grid-row: 1 / 3;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: 360px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-unique {
+            position: relative;
+            overflow: hidden;
+        }
+        .item-unique img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+        .caption-unique {
+            position: absolute;
+            bottom: 15px; left: 15px; right: 15px;
+            background: white;
+            padding: 10px;
+            text-align: center;
+            color: var(--rouge);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .photo-credit {
+            text-align: right;
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+            color: var(--rouge);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --- INTRO --- */
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--bleu);
+            margin-bottom: 1.2rem;
+        }
+
+        /* --- SECTION MUSE --- */
+        .muse-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 120px;
+        }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+
+        .muse-text { display: flex; flex-direction: column; }
+
+        .muse-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .muse-image img {
+            width: 100%;
+            height: auto;
+            max-height: 850px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: opacity 0.25s ease;
+        }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        /* --- Q&A --- */
+        .qa-block {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(47,62,134,0.15);
+            padding-top: 1.5rem;
+        }
+        .qa-item { margin-bottom: 1.5rem; }
+        .qa-question {
+            font-size: 0.78rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--rouge);
+            margin-bottom: 0.5rem;
+        }
+        .qa-answer {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: var(--bleu);
+            font-style: italic;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-bar {
+            background: var(--bleu);
+            color: #FFF8BD;
+            padding: 0.85rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 60px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .marquee-inner {
+            display: inline-flex;
+            gap: 3rem;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-inner span {
+            font-size: 0.68rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- PRODUCT SLIDER --- */
+        .product-slider-section {
+            background: var(--gris-clair);
+            padding: 70px 0;
+            margin: 80px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .product-slider-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .product-slider-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .product-slider-viewall {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 40px;
+            border: 1px solid var(--bleu);
+            color: var(--bleu);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.6rem 1.8rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .product-slider-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .product-track {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+        .product-card {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 14px;
+        }
+        .product-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+        .product-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            font-weight: 700;
+            line-height: 1.6;
+        }
+        .product-price {
+            font-size: 0.7rem;
+            color: var(--noir);
+            margin-top: 4px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+
+            .grid-7 {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 220px;
+                gap: 10px;
+            }
+            .grid-7 .item-unique:nth-child(7) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .grid-5 {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 220px;
+                gap: 10px;
+            }
+
+            .muse-section,
+            .muse-section.reverse {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+
+            .product-track {
+                display: flex;
+                overflow-x: auto;
+                gap: 15px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 15px;
+            }
+            .product-card { flex: 0 0 70vw; scroll-snap-align: center; }
+            .product-track::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<script src="navbar.js"></script>
+
+<div class="section-container">
+
+    <h1 class="title-unique">BRUSSELS</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle filled"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 7 PORTRAITS -->
+    <div class="grid-7" role="list" aria-label="Galerie Brussels">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DIANE_HENNEBERT_-_PIECE_UNIQUE_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_295_TAE_WEB.jpg?v=1744963706" alt="Diane Hennebert">
+            <div class="caption-unique">Diane Hennebert</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/JEAN_PAUL_LESPAGNARD_-_PIECE_UNIQUE_Belleville_Hills_Paris_THEO_GOUDE_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS356_TAE_WEB.jpg?v=1744963707" alt="Jean Paul Lespagnard">
+            <div class="caption-unique">Jean Paul Lespagnard</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CENDRINE_DU_WELZ_KENDELL_GEERS_-_K-SHIRT_HOPPE_ROBEN_ISLANDS_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS464_TAE_WEB.jpg?v=1744963706" alt="Kendell Geers & Cendrine Du Welz">
+            <div class="caption-unique">Kendell Geers & Cendrine Du Welz</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SOPHIE_CARREE_-_K-SHIRT_VUE_SUR_MER_DU_PONT_NEUF_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS646_TAE_WEB.jpg?v=1744963706" alt="Sophie Carrée">
+            <div class="caption-unique">Sophie Carrée</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/FRANCE_HANKART_-_YACHTWEAR_ROLLING_IN_PARIS_-_BY_JULIE_ANSIAU.jpg?v=1744963705" alt="France Hankart">
+            <div class="caption-unique">France Hankart</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/BEATRIZ_VILCHEZ_SILVA_-_YACHTWEAR_CABRIOLET_SAINT_TROPEZ_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS-6x8.jpg?v=1744963707" alt="Beatriz Vilchez Silva">
+            <div class="caption-unique">Beatriz Vilchez Silva</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ZEPHIR_-_PIECE_UNIQUE_Wat_Phra_Chetupon_Bangkok_Thailand_Jakkai_Siributr_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS828_TAE_WEB.jpg?v=1744963706" alt="Zephir">
+            <div class="caption-unique">Zephir</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Julie Ansiau</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong> and with the eyes of talented photographers such as <strong>Sarah Forgie, Bennu Gerede & Julie Ansiau</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating at our creations. This fifth edition of Caravan takes place in <strong>Brussels</strong>, with 12 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- ZEPHIR -->
+    <section class="muse-section" aria-label="Profil : Zephir">
+        <div class="muse-text">
+            <h2 class="muse-name">Zephir</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Zephir. A wanderer between worlds, a seeker of stories, a creator forever chasing the echoes of his childhood mind. He does not move in straight lines — he drifts, he dances, he dives headfirst into the unknown. Music, film, words, images, whatever medium will let him capture the magic, whatever form will let him make sense of the world's shadows. His curiosity is not passive; it is hungry, restless, insatiable.</p>
+            <p class="artisan-paragraph">For Zephir, work and dreams are one and the same. He does not separate what he loves from what he does — he simply follows the thread of what compels him. His process is one of release: creating, sharing, setting his work free to live beyond him. That is how he grows. That is how he levels up. And now, the next chapter — X2, the album waiting to take shape, to find its voice, to become.</p>
+            <p class="artisan-paragraph">And then, Belgium. To be Belgian today? Perhaps it is to be among the privileged, to stand on a foundation of stability in an unstable world. But Zephir is never fully here or there. His favorite places exist in moods, in atmospheres, in fleeting moments that become stories. A snowy forest, kissed by the sun. A small apartment in Brussels, the scent of cake in the air, new songs spinning into existence.</p>
+            <div class="qa-block">
+                <div class="qa-item">
+                    <p class="qa-question">How would you describe yourself?</p>
+                    <p class="qa-answer">"I would say that I'm someone who's running behind his child mind. I'm really curious in a way, so that's why I want to try everything and do a lot of different stuff, music, directing videos, traveling... Attracted by others' stories and dreams who draw the world with nuances and magic."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Are you living your dream or just working a job?</p>
+                    <p class="qa-answer">"Would say both. Thanks to my dreams being my jobs. I'm so lucky to be confident enough to do what I want to do. The only way for me to keep going is to release my works, show them, let them live and learn."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Where is your favourite place in the world?</p>
+                    <p class="qa-answer">"Could be somewhere in the quiet and the majesty of a snowy forest lit by the sun to be part of a tale. Or in my flat in Brussels during autumn, cooking cakes and singing new songs."</p>
+                </div>
+            </div>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/piece-unique-instituto-inhotim-minas-gerais-brazil" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ZEPHIR_-_PIECE_UNIQUE_Wat_Phra_Chetupon_Bangkok_Thailand_Jakkai_Siributr_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS828_TAE_WEB.jpg?v=1744963706" alt="Portrait de Zephir portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- FRANCE HANKART -->
+    <section class="muse-section reverse" aria-label="Profil : France Hankart">
+        <div class="muse-text">
+            <h2 class="muse-name">France Hankart</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: France. There are women who wear many hats. France wears wigs, quite literally. One night, she's in Chantilly, dressed head-to-toe in '80s Olivia Newton John glam, peroxide-blonde perruque, leg warmers, Vanity 6 blasting through the speakers of a Ferrari F40. The next morning? She's handing out leftovers to a stranger in the street, offering shelter to a woman in distress. That's not a contradiction — it's her nature.</p>
+            <p class="artisan-paragraph">Born on the 14th of July (a date dripping in irony), she is Belgian, not French, and proud of it. And prouder still of her quarter Congolese heritage, passed down from her grandmother, who always told her: "You've got something in your blood. That's why people love you." She hosts dinners where guests arrive with nothing in common and leave bonded by laughter and red wine. She is a connector, a federator, a soul that makes others feel at home.</p>
+            <p class="artisan-paragraph">Today, she's working on two projects. One, a hotel reborn from disaster. The other, a dance school — a place not for ballerinas in leotards, but for release, for movement, for joy. She's building it not for profit, not for prestige, but because in a world made of concrete and grey skies, she still believes in joy. France does not live one life. She collects them. Tries them on like wigs. And that, for us at Kilometre Paris, is the very definition of a muse.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/rolling-paris-yachtwear" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/FRANCE_HANKART_-_YACHTWEAR_ROLLING_IN_PARIS_-_BY_JULIE_ANSIAU.jpg?v=1744963705" alt="Portrait de France Hankart portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- KENDELL GEERS & CENDRINE -->
+    <section class="muse-section" aria-label="Profil : Kendell Geers & Cendrine">
+        <div class="muse-text">
+            <h2 class="muse-name">Kendell Geers & Cendrine</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Kendell Geers & Cendrine du Welz. There are artists, and then there are forces of nature — Kendell Geers is the latter. A man who does not whisper but shouts, who does not decorate but detonates. His work is a battleground where history is dragged, kicking and screaming, into confrontation with the present. Born into the brutality of apartheid-era South Africa, Geers became an artist because language alone was insufficient.</p>
+            <p class="artisan-paragraph">His art is a manifesto. Broken beer bottles spell out self-portraits, barbed wire coils like a crown of thorns, neon signs flash words that don't comfort but confront. His work interrogates power, colonialism, the hypocrisy of institutions. It is both for and against. Political, but never correct. Beside him, Cendrine du Welz — the steady hand, the quiet force. Not merely a witness to his storms, but the one who holds steady while they rage.</p>
+            <p class="artisan-paragraph">And now, the next explosion: <em>Everything is True, Nothing is Permitted</em>. An exhibition that does not bow, does not bend, does not soothe. Hosted at Brutus in Rotterdam, this project in collaboration with A/Political brings together artists who refuse to be silenced — who have suffered for their art, their gender, their identity, and have transmuted that suffering into radical, unyielding creation.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/brussels/products/k-shirt-club-des-voyageurs-hope-robben-island-capetown-by-kendall-geers" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CENDRINE_DU_WELZ_KENDELL_GEERS_-_K-SHIRT_HOPPE_ROBEN_ISLANDS_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS464_TAE_WEB.jpg?v=1744963706" alt="Portrait de Kendell Geers & Cendrine portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- BEATRIZ VILCHEZ SILVA -->
+    <section class="muse-section reverse" aria-label="Profil : Beatriz Vilchez Silva">
+        <div class="muse-text">
+            <h2 class="muse-name">Beatriz Vilchez Silva</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Beatriz Vilchez Silva. A seeker of sound, a cartographer of rhythm, a weaver of unseen connections. Music is not just something she listens to; it is something she deciphers, something she feels in frequencies beyond the audible. From Mozart to the pulse of Detroit techno, her journey has never been linear — it spirals, it unfolds, it deepens.</p>
+            <p class="artisan-paragraph">BangdaBoom, her electronic soirées in Brussels, is not just a party — it is a meeting place, a sanctuary for those who understand that music is not decoration, but communion. Here, age dissolves, barriers fade, and the motherbeat reigns supreme. A decade in brand and business strategy, building something of her own while raising three sons — an act of balance, of will, of relentless forward motion.</p>
+            <p class="artisan-paragraph">And then, there is retreat: the cabins in the Southern Alps, where silence is a language of its own, where the closest road is a 15-minute walk and, in winter, the only way in is with snowshoes. Here, the pace shifts. Here, time stretches. Here, she is reminded that another way of living is not just possible, but necessary.</p>
+            <div class="qa-block">
+                <div class="qa-item">
+                    <p class="qa-question">How would you describe yourself?</p>
+                    <p class="qa-answer">"I would describe myself as a late bloomer and a curious soul with a deep love for music. I tend to be discerning about what I listen to — valuing authenticity and soul over commercial appeal. What matters to me is genuineness — in music, in experiences, in life."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Where is your favourite place in the world?</p>
+                    <p class="qa-answer">"My favorite place in the world is our cabins in the Southern Alps, far from the madding crowd. Up there, surrounded by pristine wilderness, I get a profound sense that another world is possible. It helps me focus on what's really important."</p>
+                </div>
+            </div>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/carte-postale-capri-yachtwear-copy" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/BEATRIZ_VILCHEZ_SILVA_-_YACHTWEAR_CABRIOLET_SAINT_TROPEZ_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS-6x8.jpg?v=1744963707" alt="Portrait de Beatriz Vilchez Silva portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Brussels</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Brussels</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Brussels</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- JEAN-PAUL LESPAGNARD -->
+    <section class="muse-section" aria-label="Profil : Jean-Paul Lespagnard">
+        <div class="muse-text">
+            <h2 class="muse-name">Jean-Paul Lespagnard</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Jean-Paul Lespagnard. A provocateur of form, a conductor of contradictions, a designer who does not merely create — he disrupts, reimagines, electrifies. His work is not just about aesthetics; it is a manifesto, a declaration that design should be fearless, boundless, and unapologetically bold. He does not follow trends; he bends them into something new, something raw, something unmistakably his own.</p>
+            <p class="artisan-paragraph">For Jean-Paul, design is not a profession — it is a way of seeing, a passport, a form of resistance. He does not present collections; he orchestrates <em>Escales</em>, immersive journeys where fashion is not worn but experienced. Hydra, Paris, Brussels — each destination a chapter. And next? Japan, the World Expo, a collaboration with a singer, a brand, a concept still taking shape in the fire of his imagination.</p>
+            <p class="artisan-paragraph">Belgium: a country of juxtapositions, where surrealism is a state of mind, where diversity is not a concept but a way of life. And when the need for chaos, color, and creation calls, there is Mexico City — a city that hums with the energy of artists, a place where every wall tells a story. A bronze waffle, an object sculpted for a lunar coffee table — absurd and sublime at once. A reminder that design should never take itself too seriously.</p>
+            <div class="qa-block">
+                <div class="qa-item">
+                    <p class="qa-question">How would you describe yourself?</p>
+                    <p class="qa-answer">"I'm a designer and creative director. I'm bold and deeply passionate about blending art, craft and design. I thrive on challenging conventions, celebrating individuality, and finding joy in imaginative storytelling."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Where is your favourite place in the world?</p>
+                    <p class="qa-answer">"One of my favorite places in the world is Mexico City. Its vibrant energy, artistic spirit, and sense of community make it a constant source of inspiration for me."</p>
+                </div>
+            </div>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/piece-unique-belleville-hills-paris-france" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/JEAN_PAUL_LESPAGNARD_-_PIECE_UNIQUE_Belleville_Hills_Paris_THEO_GOUDE_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS356_TAE_WEB.jpg?v=1744963707" alt="Portrait de Jean-Paul Lespagnard portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- SOPHIE CARRÉE -->
+    <section class="muse-section reverse" aria-label="Profil : Sophie Carrée">
+        <div class="muse-text">
+            <h2 class="muse-name">Sophie Carrée</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Sophie Carrée. A connector of worlds, a curator of conversations, a woman whose currency is stories. She moves through life as if it were a grand salon, weaving introductions with instinctive precision, sensing the invisible threads that link one soul to another. To meet Sophie is to be drawn into a constellation of voices, ideas, and unexpected encounters — because she does not simply know people, she understands them.</p>
+            <p class="artisan-paragraph">Her podcast, <em>La Rencontre</em>, is not merely a series of recorded interviews; it is an invitation, a portal into the minds of creators, thinkers, and artists shaping the world. And beyond the urgency of her work, she is a curator of words, ideas, and perspective. Books have been her lifelong passion — a universe she can enter at will. Art is another, a space where her curiosity finds form.</p>
+            <p class="artisan-paragraph">And when she needs to step away from it all, she disappears to a tiny island in Portugal. No cars. No cycling. Just a path, the whisper of the tides, and a house where time slows down. She wakes and sleeps with the rhythm of the sea, letting the sunset write a different story across the sky each evening.</p>
+            <div class="qa-block">
+                <div class="qa-item">
+                    <p class="qa-question">How would you describe yourself?</p>
+                    <p class="qa-answer">"I'm a people's person. I love to meet new people and introduce people to others. I love to learn and discover new things."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">What do you think it means to be Belgian nowadays?</p>
+                    <p class="qa-answer">"I have been living in Belgium for over 20 years, so I guess I became one of them. I love the Belgian sometimes absurd and surreal way of thinking. I am fascinated such a small country has so many talents per meter square in art, music, fashion and other."</p>
+                </div>
+            </div>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/vue-sur-mer-du-pont-neuf-k-shirt" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SOPHIE_CARREE_-_K-SHIRT_VUE_SUR_MER_DU_PONT_NEUF_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS646_TAE_WEB.jpg?v=1744963706" alt="Portrait de Sophie Carrée portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- DIANE HENNEBERT -->
+    <section class="muse-section" aria-label="Profil : Diane Hennebert">
+        <div class="muse-text">
+            <h2 class="muse-name">Diane Hennebert</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Diane. A philosopher in motion, a woman who does not simply think but acts, who believes that knowledge without creation is incomplete. For her, ideas must breathe, evolve, take form in the world. Education, culture, nature, heritage — she does not choose between them. She builds bridges, shapes spaces, redefines the possible.</p>
+            <p class="artisan-paragraph">She is the founder of Out of the Box, a school unlike any other — a sanctuary for young minds who do not fit into the conventional mold. A decade in, it stands as a testament to her belief that education should liberate, not confine. And beyond the classroom, her touch reshapes entire cities: the restoration of Brussels' most iconic monuments, including the Atomium, the Villa Empain, and now the Chinese Pavilion, a forgotten jewel she is determined to bring back to life by 2028.</p>
+            <p class="artisan-paragraph">People say she works a lot. She disagrees. For Diane, work is only work when it lacks joy — and she refuses to move without joy. A quote by Robert Filliou follows her like a guiding star: "Art is what makes life more interesting than art." That is Diane. Not just an observer of beauty, but a creator of it. Not just a thinker, but a force.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/brussels" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DIANE_HENNEBERT_-_PIECE_UNIQUE_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_295_TAE_WEB.jpg?v=1744963706" alt="Portrait de Diane Hennebert portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER -->
+<section class="product-slider-section" aria-label="Brussels Selection">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Brussels Selection</h2>
+        <a href="https://kilometre.paris/collections/brussels" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/brussels/products/k-shirt-club-des-voyageurs-hope-robben-island-capetown-by-kendall-geers" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Club-des-Voyageurs_-Hope-Robben-Island-Capetown-by-Kendal-Geers-K-shirt-K-shirt-152755532.jpg?v=1745577041&width=600" alt="Club des Voyageurs K-shirt">
+                </div>
+                <p class="product-name">Club des Voyageurs,<br>Hope Robben Island – K-shirt</p>
+                <p class="product-price">€1.200</p>
+            </a>
+            <a href="https://kilometre.paris/collections/brussels/products/fe-di-biou-camargue-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Fe-Di-Biou-Camargue_-France-K-Shirt-K-shirt-150690458.jpg?v=1742983144&width=600" alt="Fe Di Biou Camargue K-shirt">
+                </div>
+                <p class="product-name">Fe Di Biou Camargue,<br>France – K-Shirt</p>
+                <p class="product-price">€700</p>
+            </a>
+            <a href="https://kilometre.paris/collections/brussels/products/741-89-km-from-balmoral-castle-iconic-queen-kaftan" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/741_-89-km-From-Balmoral-Castle_-Iconic-Queen-Kaftan-Kaftan-151716964.jpg?v=1744879956&width=600" alt="741 Balmoral Castle Kaftan">
+                </div>
+                <p class="product-name">741, 89 km From Balmoral<br>Castle – Kaftan</p>
+                <p class="product-price">€490</p>
+            </a>
+            <a href="https://kilometre.paris/collections/brussels/products/breaking-point-bleu-de-travail-augmente-1" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Breaking-point-Bleu-de-travail-Augmente-Bleu-de-travail-137904613.png?v=1726096419&width=600" alt="Breaking Point Bleu de travail">
+                </div>
+                <p class="product-name">Breaking Point –<br>Bleu de travail Augmenté</p>
+                <p class="product-price">€1.600</p>
+            </a>
+            <a href="https://kilometre.paris/collections/brussels/products/voyage-a-danang-vietnam-by-yen-khe-piece-unique" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Voyage-_-Danang_-Vietnam-by-Yen-Khe-Piece-Unique-Piece-Unique-151414565.jpg?v=1744022148&width=600" alt="Voyage à Danang Piece Unique">
+                </div>
+                <p class="product-name">Voyage à Danang,<br>Vietnam – Piece Unique</p>
+                <p class="product-price">€6.000</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="section-container">
+
+    <!-- GRILLE 5 PORTRAITS -->
+    <div class="grid-5" role="list" aria-label="Galerie Brussels – 5 muses">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/GALILA_BARZILAI_HOLLANDER_-_KAFTAN_741_89_KM_FROM_BALMORAL_CASTLE_ICONIC_QUEEN_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_448_TAE_WEB.jpg?v=1744963706" alt="Galila Barzilai Hollander">
+            <div class="caption-unique">Galila Barzilai Hollander</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CHARLIE_GORMITTE_-_K-SHIRT_CAMARGUE_MAP_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS543_TAE_WEB.jpg?v=1744963707" alt="Charlie Gormitte">
+            <div class="caption-unique">Charlie Gormitte</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/LIONEL_JADOT_-_BLEU_DE_TRAVAIL_AUGMENTE_BREAKING_POINT_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_362_TAE_WEB.jpg?v=1744963707" alt="Lionel Jadot">
+            <div class="caption-unique">Lionel Jadot</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ISABELLE_ARADON_-_PIECE_UNIQUE_YENKHE_TRAN_VOYAGE_A_DANANG_VIETNAM_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_150_TAE_WEB.jpg?v=1744963707" alt="Isabelle Arradon">
+            <div class="caption-unique">Isabelle Arradon</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/NATHALIE_GUIOT_-_PIECE_UNQIUE_Wax_Pattern_Diving_-_CARAVAN_BRUSSELS_copie.jpg?v=1744972321" alt="Nathalie Guiot">
+            <div class="caption-unique">Nathalie Guiot</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Julie Ansiau</p>
+
+    <!-- NATHALIE GUIOT -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Nathalie Guiot">
+        <div class="muse-text">
+            <h2 class="muse-name">Nathalie Guiot</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Nathalie Guiot. Some people walk through the world. Others remake it — thread by thread, fiber by fiber, thought by thought. Nathalie does not merely observe; she transforms, reconfigures, reimagines. She is a journalist, an editor, a curator, a collector, a bridge between creation and consequence, between art and ecology, between innovation and timeless craft.</p>
+            <p class="artisan-paragraph">Today, her focus is ALEOR, a nomadic gallery — a manifesto, a movement. Born from the exhibition <em>Regenerative Futures</em>, ALEOR is a new frontier where materials are not merely sourced, but grown, regenerated, reborn. Algae, mycelium, insect leather, biopolymers — this is the language of tomorrow, the antidote to a world suffocating under its own excess.</p>
+            <p class="artisan-paragraph">And then, there is her poetry. A secret language, a quiet force. Words written in the stillness of night, guided by something unseen, something urgent. Her book, <em>Le premier jour de l'étincelle</em>, was born in confinement, in solitude — but its voice stretches beyond, toward connection, toward the spiritual, the elemental, the ineffable.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/wa-pattern-diving-piece-unique" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/NATHALIE_GUIOT_-_PIECE_UNQIUE_Wax_Pattern_Diving_-_CARAVAN_BRUSSELS_copie.jpg?v=1744972321" alt="Portrait de Nathalie Guiot portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ISABELLE ARRADON -->
+    <section class="muse-section reverse" aria-label="Profil : Isabelle Arradon">
+        <div class="muse-text">
+            <h2 class="muse-name">Isabelle Arradon</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Isabelle Arradon. There are those who watch, and those who act. Isabelle has never belonged to the former. Her life is not just a profession — it is a declaration, a ceaseless effort to bridge the fractures of a chaotic world, to connect the threads between war and peace, despair and hope. She operates in the space between conflict and its prevention, deciphering the unseen patterns of unrest before they erupt.</p>
+            <p class="artisan-paragraph">For nearly twenty-five years, she has stood at the threshold of crises, first with Amnesty International, now with the International Crisis Group. Her most recent focus? The Democratic Republic of Congo — a land where history cycles back on itself with devastating precision. Through CrisisWatch, she dissects the present to warn of the future, an early alarm sounding against the deafening silence of global inaction.</p>
+            <p class="artisan-paragraph">And then there is Belle-Île-en-Mer, that hidden fragment of Brittany where time slows and memory stretches across generations. A place that feels like a promise — the past preserved, the future waiting, the present moment held gently in the palm of her hand. We at Kilometre Paris seek those who shape the world, who challenge it, who insist that it can be something better. Isabelle Arradon is one of them.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/voyage-a-danang-vietnam-by-yen-khe-piece-unique" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ISABELLE_ARADON_-_PIECE_UNIQUE_YENKHE_TRAN_VOYAGE_A_DANANG_VIETNAM_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_150_TAE_WEB.jpg?v=1744963707" alt="Portrait d'Isabelle Arradon portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- LIONEL JADOT -->
+    <section class="muse-section" aria-label="Profil : Lionel Jadot">
+        <div class="muse-text">
+            <h2 class="muse-name">Lionel Jadot</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Lionel Jadot. A renegade of form, a sculptor of the unexpected, a man who sees not what is but what could be. He does not simply design — he reclaims, repurposes, reinvents. A chandelier of fur coats, objects reborn where others see only waste. He does not follow blueprints; he bends them, breaks them, turns them inside out until they breathe with something wild, something raw, something alive.</p>
+            <p class="artisan-paragraph">He is the mastermind behind Zaventem Ateliers, a 65,000-square-foot creative hive near Brussels, where over 25 designer-producers — woodworkers, metal sculptors, textile artists, and visionaries — gather to push the limits of craft. JAM Hotels: where upcycling is not a gimmick but a philosophy, each room furnished with wood salvaged from wildfires, headboards crafted from recycled shoe soles.</p>
+            <p class="artisan-paragraph">Right now, he is somewhere deep in the dust and silence of the TET, tracing 8,000 kilometers through Spain and Portugal, 80% off-road, under the open sky. Still moving. Still searching. Still outside. He does not ask for permission. He does not wait for approval. He moves, he builds, he burns through convention like gasoline.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/breaking-point-bleu-de-travail-augmente-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/LIONEL_JADOT_-_BLEU_DE_TRAVAIL_AUGMENTE_BREAKING_POINT_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_362_TAE_WEB.jpg?v=1744963707" alt="Portrait de Lionel Jadot portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- CHARLIE GORMITTE -->
+    <section class="muse-section reverse" aria-label="Profil : Charlie Gormitte">
+        <div class="muse-text">
+            <h2 class="muse-name">Charlie Gormitte</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Charlie Gormitte. There are people who drift, and there are people who drive. She is the latter — but not in straight lines. Her trajectory is carved in arcs, loops, controlled collisions. She doesn't walk through life; she curates, constructs, dismantles, rebuilds. Réservoir Store is one piece of her. Beesh is another. But neither contain her. Nothing does.</p>
+            <p class="artisan-paragraph">Beesh was not born of whimsy. It was tempered, hammered out in the raw space between defiance and necessity. Boxing shorts for women — fabric, yes, but also armor. Sewn inside prison walls, touched by hands that understand both restriction and release. It is more than a garment. It is a reclamation. Of space, of strength, of legitimacy.</p>
+            <p class="artisan-paragraph">She doesn't just gather people; she fuses them. A gravitational force, pulling connections from thin air, threading together strangers into something meaningful, urgent, alive. The art of the encounter is her lifeblood. Even in moments of pause, she is building. Her home is not just a space but an extension of herself — meticulously curated, scavenged, shaped by instinct rather than plan.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/fe-di-biou-camargue-k-shirt" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CHARLIE_GORMITTE_-_K-SHIRT_CAMARGUE_MAP_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS543_TAE_WEB.jpg?v=1744963707" alt="Portrait de Charlie Gormitte portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- GALILA BARZILAI HOLLANDER -->
+    <section class="muse-section" aria-label="Profil : Galila Barzilai Hollander">
+        <div class="muse-text">
+            <h2 class="muse-name">Galila Barzilai Hollander</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Galila Barzilai. A force of nature, an insatiable seeker, a collector in the truest sense — not merely of objects, but of ideas, provocations, obsessions. She does not collect art; she breathes it, devours it, lets it shape and reshape her world like an addiction she has no desire to cure. For her, art is not a possession — it is oxygen, a necessity, a way of navigating existence itself.</p>
+            <p class="artisan-paragraph">She trusts her instinct, always. In 2019, she made the boldest move yet — Galila's P.O.C., a sanctuary for over 600 works, a living, breathing space in the heart of Brussels where art is not just displayed, but experienced. She does not just collect — she amplifies, dedicating herself to sharing the voices of the artists she champions.</p>
+            <p class="artisan-paragraph">And next? 2025: twenty years of collecting, five years of Galila's P.O.C. A retrospective at MAD Brussels, a catalogue that will tell the story not just of the collection, but of the obsession, the journey, the relentless pursuit of what moves her. Where is her favorite place in the world? Anywhere that stops her in her tracks. The jolt of an artwork that makes her heart race.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/741-89-km-from-balmoral-castle-iconic-queen-kaftan" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/GALILA_BARZILAI_HOLLANDER_-_KAFTAN_741_89_KM_FROM_BALMORAL_CASTLE_ICONIC_QUEEN_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_448_TAE_WEB.jpg?v=1744963706" alt="Portrait de Galila Barzilai Hollander portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<script src="footer.js"></script>
+
+
+</body>
+</html>

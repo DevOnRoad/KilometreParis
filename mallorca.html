@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mallorca - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #e63946;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-clair: #f9f9f9;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Barlow', Arial, sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .title-unique {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--rouge);
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .circle {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--rouge);
+        }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* --- GRILLE 7 (première) --- */
+        .grid-7 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 380px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        /* Ross (7e) occupe colonne 4 sur 2 lignes */
+        .grid-7 .item-unique:nth-child(7) {
+            grid-column: 4;
+            grid-row: 1 / 3;
+        }
+
+        /* --- GRILLE 8 (deuxième) --- */
+        .grid-8 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 350px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-unique {
+            position: relative;
+            overflow: hidden;
+        }
+        .item-unique img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+        .caption-unique {
+            position: absolute;
+            bottom: 15px; left: 15px; right: 15px;
+            background: white;
+            padding: 10px;
+            text-align: center;
+            color: var(--rouge);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .photo-credit {
+            text-align: right;
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+            color: var(--rouge);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --- INTRO --- */
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--bleu);
+            margin-bottom: 1.2rem;
+        }
+
+        /* --- SECTION MUSE SPLIT --- */
+        .muse-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 120px;
+        }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+
+        .muse-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .muse-image img {
+            width: 100%;
+            height: auto;
+            max-height: 850px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: opacity 0.25s ease;
+        }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        /* --- IMAGE PLEINE LARGEUR --- */
+        .muse-fullwidth {
+            margin-bottom: 120px;
+        }
+        .muse-fullwidth .muse-img-full {
+            width: 100%;
+            max-height: 750px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            margin-top: 40px;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-bar {
+            background: var(--bleu);
+            color: #FFF8BD;
+            padding: 0.85rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .marquee-inner {
+            display: inline-flex;
+            gap: 3rem;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-inner span {
+            font-size: 0.68rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- PRODUCT SLIDER --- */
+        .product-slider-section {
+            background: var(--gris-clair);
+            padding: 70px 0;
+            margin: 80px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .product-slider-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .product-slider-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .product-slider-viewall {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 40px;
+            border: 1px solid var(--bleu);
+            color: var(--bleu);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.6rem 1.8rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .product-slider-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .product-track {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+        .product-card {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 14px;
+        }
+        .product-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+        .product-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            font-weight: 700;
+            line-height: 1.6;
+        }
+        .product-price {
+            font-size: 0.7rem;
+            color: var(--noir);
+            margin-top: 4px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+
+            .grid-7 {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 220px;
+                gap: 10px;
+            }
+            .grid-7 .item-unique:nth-child(7) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .grid-8 {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 200px;
+                gap: 10px;
+            }
+
+            .muse-section,
+            .muse-section.reverse {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+
+            .product-track {
+                display: flex;
+                overflow-x: auto;
+                gap: 15px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 15px;
+            }
+            .product-card { flex: 0 0 70vw; scroll-snap-align: center; }
+            .product-track::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<script src="navbar.js"></script>
+
+<div class="section-container">
+
+    <h1 class="title-unique">MALLORCA</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle filled"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 7 PORTRAITS -->
+    <div class="grid-7" role="list" aria-label="Galerie Mallorca">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/maria.jpg?v=1752660770" alt="Maria Solivellas">
+            <div class="caption-unique">Maria Solivellas</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/cata.jpg?v=1752660770" alt="Cata Simó">
+            <div class="caption-unique">Cata Simó</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ALEJANDRA_MARIBEL_BORDOY_BENNASAR-_FNAL_MG_4319.jpg?v=175267253" alt="Alexandra & Maribel Bordoy Bennasar">
+            <div class="caption-unique">Alexandra & Maribel Bordoy</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/michelfiguet.jpg?v=1752660770" alt="Hélène Busuttil & Michel Figuet">
+            <div class="caption-unique">Hélène Busuttil & Michel Figuet</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/anna.jpg?v=1752660767" alt="Anna Kholodova">
+            <div class="caption-unique">Anna Kholodova</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/mariabarcelo.jpg?v=1752660770" alt="Maria Barceló">
+            <div class="caption-unique">Maria Barceló</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ROSS_HUTCHINSON-FINAL_MG_3921.jpg?v=1752762300" alt="Ross Hutchison">
+            <div class="caption-unique">Ross Hutchison</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Julie Ansiau & Bennu Gerede</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating our creations. This sixth edition of Caravan takes place in <strong>Mallorca</strong>, with 15 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- CATA SIMÓ -->
+    <section class="muse-section" aria-label="Profil : Cata Simó">
+        <div class="muse-text">
+            <h2 class="muse-name">Cata Simó</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Cata Simó. She lives on the sea. Literally. Captain of Gordito, a 1904 Mallorcan llaut, Cata doesn't just sail the coast — she carries its memory. The boat is old, made by hand, and she'll tell you that's the only kind that matters. "Everything handmade is crafted with the heart," she says. "There won't be another like it."</p>
+            <p class="artisan-paragraph">She wasn't always at sea. Another job, another life. But the ocean kept calling. So she left the rest behind. Now, her days are wind-washed, sunburnt, salt-lined, and shared with others. Give her 24 hours and she'll chart you a circle around the island: wild southern cliffs, the impossible blues of Cala Blava and Cabo Blanco, a pause in La Ràpita. Then up the Tramuntana coast, through Formentor and Pollença.</p>
+            <p class="artisan-paragraph">Give her three months and she's gone, sailing east across the Mediterranean: Greece, Turkey, secret coves. Or maybe she leaves the boat behind and backpacks through Vietnam, her kids by her side, learning to live light and open. For Cata, freedom doesn't shout. It sails. It floats. It's the quiet joy of sharing something old and true with someone new.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/lobster-diving-in-sunset-shoreline-yachtwear" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/cata.jpg?v=1752660770" alt="Portrait de Cata Simó portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- JAUME VILARDELL & GABRIELLE RIPOLL -->
+    <section class="muse-section reverse" aria-label="Profil : Jaume Vilardell & Gabrielle Ripoll">
+        <div class="muse-text">
+            <h2 class="muse-name">Jaume Vilardell & Gabrielle Ripoll</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Jaume Vilardell & Gabrielle Ripoll. They live and work together in Mallorca. He's an illustrator, once an industrial designer. She manages projects, but don't try to pin her down beyond that. Together, they create a life that feels more handmade than planned.</p>
+            <p class="artisan-paragraph">Jaume grew up in the pre-digital era, learning by hand — watercolors, graphite, real paper. That left a mark. He believes in the value of the gesture, the tool, the time spent. From a sunlit Palma studio, Jaume's drawings have drifted far, landing at Dior, Louis Vuitton, Condé Nast, Sony, Bulgari. But they carry Mallorca with them wherever they go.</p>
+            <p class="artisan-paragraph">Gabrielle doesn't care much for itineraries. Give her 24 hours with you in Mallorca and she'll take your phone, blindfold you, and lead you to a hidden cove on the north coast. You'll pick lemons from trees at the foot of the mountain, feed donkeys, drink lemonade, and eat pan moreno without checking the time once. That's the plan — no plan. They're not tourists. They're travelers. They collect skills, not souvenirs.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/jaume.jpg?v=1752660772" alt="Portrait de Jaume Vilardell & Gabrielle Ripoll portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MARÍA SOLIVELLAS -->
+    <section class="muse-section" aria-label="Profil : María Solivellas">
+        <div class="muse-text">
+            <h2 class="muse-name">María Solivellas</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: María Solivellas. She doesn't do speed-tourism. She believes in staying, in lingering, in tasting twice and looking longer — that's how she learns a place, how she lives. María is chef and co-owner of Ca Na Toneta, tucked in Caimari at the foot of the Serra de Tramuntana. But this isn't just a restaurant; it's a casa de comidas, a place built on restoration of appetite, memory, story. For 28 years, she and her sisters have been feeding more than dishes — they nourish culture, history, the island's soul.</p>
+            <p class="artisan-paragraph">Her food doesn't chase fads. It's rooted, local, seasonal, honest, growing from their garden and Mallorcan traditions. No machines. No shortcuts. Just hands shaping earth and flavor. Ca Na Toneta earned a Michelin Green Star for sustainability, and a Bib Gourmand for value and quality. She's also a founder of Slow Food in the Balearics, fighting to revive local produce and forgotten ingredients: ramallet tomatoes, Tap de Cortí paprika, black carrots, Mallorcan black pig.</p>
+            <p class="artisan-paragraph">Give her three months of freedom, and she'd go to Paris — a city she admires for its layered rituals, daily theater, and the way it sustains creativity. For María, craftsmanship isn't decoration, it's foundation. Gardeners, artisans, cooks: they are culture's backbone, each creation carrying the weight of care, tradition, humanity. She never chases fame; she radiates presence.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/maria.jpg?v=1752660770" alt="Portrait de María Solivellas portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ALEJANDRA & MARIBEL BORDOY -->
+    <section class="muse-section reverse" aria-label="Profil : Alejandra & Maribel Bordoy Bennàsar">
+        <div class="muse-text">
+            <h2 class="muse-name">Alejandra & Maribel Bordoy Bennàsar</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Alejandra and Maribel Bordoy Bennàsar. Twin sisters. Mirror souls. The heartbeat behind ABA, a project born two decades ago in Mallorca, in honor of their grandmother, who lived beauty not as decoration, but as rhythm. They're not curators. They're cultivators — of talent, of emotion, of that elusive space where Mediterranean craft and contemporary art converge.</p>
+            <p class="artisan-paragraph">Their exhibitions don't hang, they breathe. They don't ask whether an artisan is an artist or vice versa. The answer is in the hand. In the gesture. In the transfer of emotion from mind to material. If they could disappear for three months, they wouldn't retreat — they'd root. Maribel would go to Morocco, build a home with local hands, grow something from the dust. Alejandra would sail, Mallorca to Turkey, stopping in ports like pauses in a sentence.</p>
+            <p class="artisan-paragraph">And if you had just one day in their Mallorca? Alejandra would wake you early, guide you down to Sa Foradada, picnic in hand, hike through olive groves, end the day atop Puig de Randa. Maribel would lead you to Font Santa, where the thermal springs rise like old magic. They are not just sisters. They are keepers of a Mediterranean frequency, translators of what the hand remembers long after the mind forgets.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ALEJANDRA_MARIBEL_BORDOY_BENNASAR-_FNAL_MG_4319.jpg?v=175267253" alt="Portrait d'Alejandra & Maribel Bordoy portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER 1 -->
+<section class="product-slider-section" aria-label="Mallorca Selection">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Mallorca Selection</h2>
+        <a href="https://kilometre.paris/collections/palma" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/palma/products/tourist-scarf-france" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/France-Tourist-Scarf-Tourist-Scarf-151634765.jpg?v=1744622320&width=600" alt="France Tourist Scarf">
+                </div>
+                <p class="product-name">France –<br>Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/island-botanical-escape-bleu-de-travail-1" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Kolkheti-jungle-Bleu-de-travail-Bleu-de-travail-158994910.png?v=1758620026&width=600" alt="Island Botanical Escape Bleu de travail">
+                </div>
+                <p class="product-name">Island & Botanical Escape –<br>Bleu de travail</p>
+                <p class="product-price">€1.944</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/fe-di-biou-camargue-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Fe-Di-Biou-Camargue_-France-K-Shirt-K-shirt-150690458.jpg?v=1742983144&width=600" alt="Fe Di Biou Camargue K-shirt">
+                </div>
+                <p class="product-name">Fe Di Biou Camargue –<br>K-Shirt</p>
+                <p class="product-price">€700</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/page-decriture-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Page-D_criture-Rouge-Rouge-Rouge-K-shirt-Kilometre-Paris-151171970.jpg?v=1747214148&width=600" alt="Page d'écriture K-shirt">
+                </div>
+                <p class="product-name">Page D'écriture –<br>K-shirt</p>
+                <p class="product-price">€1.175</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/swiss-architect-k-shirt-metier" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Colombian-journaliste-K-shirt-Metier-K-shirt-163934069.jpg?v=1773326282&width=600" alt="Colombian Journaliste K-shirt Métier">
+                </div>
+                <p class="product-name">Colombian Journaliste –<br>K-shirt Métier</p>
+                <p class="product-price">€500</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="section-container">
+
+    <!-- ETIENNE JARDEL & ANTOINE LACOSTE — pleine largeur -->
+    <div class="muse-fullwidth">
+        <h2 class="muse-name">Etienne Jardel & Antoine Lacoste</h2>
+        <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Antoine Lacoste. He's someone for whom the handmade isn't a lifestyle — it's a baseline. A default setting. Whether organizing events or baking bread, Antoine doesn't hand things off to machines or chase efficiency. He stays close to the process, close to the raw material. He works in bread now, but in many ways, he always has. In every past life, from hospitality to planning, his approach has always been about tactility. Presence. Doing things properly, even if it takes longer.</p>
+        <p class="artisan-paragraph">Today, it's slow-fermented loaves, shaped early in the morning, by hand, in silence, with care. There's nothing nostalgic about it. For Antoine, insisting on working with your hands is a form of staying grounded. Of refusing to let speed replace attention. If you asked him how to spend 24 hours in Mallorca, he wouldn't give you a list of attractions. He'd give you a route. A rhythm. He'd take you on a drive through the Serra de Tramuntana, starting from Andratx and weaving through Valldemossa, Deià, Sóller — places he knows by heart but never takes for granted.</p>
+        <p class="artisan-paragraph">He doesn't rush. He doesn't perform. He does things simply, attentively, and with his hands. Because to him, what we make should still carry traces of who we are.</p>
+        <img class="muse-img-full" src="https://kilometre.paris/cdn/shop/files/ANTOINE_LACOSTE_ETIENNE_JARDEL_FINAL_PIC_MG_6676.jpg?v=1752762298&width=1600" alt="Etienne Jardel & Antoine Lacoste portant une Pièce Unique Kilometre Paris">
+    </div>
+
+    <!-- MARIA BARCELÓ -->
+    <section class="muse-section" aria-label="Profil : Maria Barceló">
+        <div class="muse-text">
+            <h2 class="muse-name">Maria Barceló</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: María Barceló. Mallorca knows her face. That warm, confident smile you see on IB3 TV, co-hosting <em>Benvinguts a Ca Nostra</em> with Esteban Mercer, sashaying through Mallorca's grandest homes and quietest fincas, drawing viewers into rooms they've only dreamed of on drowsy Sunday afternoons.</p>
+            <p class="artisan-paragraph">Give her two months and a blank calendar, and she'll split it in two: Kyoto and New York. She's curious about both — the quiet discipline of Japanese gardens, the restless energy of Manhattan streets. But if you only have 24 hours with her? She'll take you to Son Sant Andreu, her agroturismo carved out of a 16th-century estate. Ten rooms. A pool that glints quietly at dawn. Olive trees that watch you as you walk. A place where you slow down because you want to.</p>
+            <p class="artisan-paragraph">Ask María about craftsmanship, and she won't talk trends — she'll talk truth. For her, handmade is culture's backbone. It's the stories of hands that shape clay, weave baskets, carve wood. It's not nostalgia; it's continuity. It's how an island remembers who it is. María Barceló moves easily between screens and quiet rooms, a reminder that even in a world of noise, there is still room for spaces where tradition and the modern world sit, side by side, in calm conversation.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/mariabarcelo.jpg?v=1752660770" alt="Portrait de Maria Barceló portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- CAROLINA AMIGÓ -->
+    <section class="muse-section reverse" aria-label="Profil : Carolina Amigó">
+        <div class="muse-text">
+            <h2 class="muse-name">Carolina Amigó</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Carolina Amigó. She doesn't speak loudly, but she sees deeply. Introverted, observant, drawn to detail — not to collect it, but to process it. To understand it, quietly, and then translate it into form. Carolina paints, she photographs, she sculpts. Lately, she creates jewelry. Each piece a way of saying something she hasn't spoken yet.</p>
+            <p class="artisan-paragraph">If you gave her three months and an open bar of time and resources, she wouldn't settle. She'd move. First east, to Asia, for stones, for the jungle, for the unknown. She'd search for precious gems, untouched and uncut. She'd find artisans. Sit beside them. Watch. Learn. Then maybe to Paris, to find the ateliers who still do high jewelry by hand, slowly, precisely, with thirty years of repetition behind every gesture.</p>
+            <p class="artisan-paragraph">Ask her to show you Mallorca, and she won't take you inland. She'll take you out, on a sailboat, along the northern coast. The coves there don't have names. The water is clear, the kind that heals. She'd stop in Sant Elm, order fish that was swimming that morning — caproig, lubina, dorada. No dressing up the plate. Just the product, fresh, exact, real. Because for Carolina, that's what matters. The real thing. The thing made with time, with skill, with hands.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_6355.jpg?v=1752672533" alt="Portrait de Carolina Amigó portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MAITE ARIAS -->
+    <section class="muse-section" aria-label="Profil : Maite Arias">
+        <div class="muse-text">
+            <h2 class="muse-name">Maite Arias</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Maite Arias. Originally from Bilbao, Maite came to the Balearics in the 1980s. What began as an investment quickly became a life. Thirty-five years later, she still calls Mallorca home. Before that, there was fashion. Her career began alongside the legendary couturier Manuel Pertegaz. Later, she opened her own boutiques — Arias — introducing designers like Christian Lacroix to the island at the peak of his baroque brilliance.</p>
+            <p class="artisan-paragraph">She's someone shaped by women — mentors, friends, icons. In Ibiza, she met Esmeralda López and Cristina Macalla, who welcomed her into a world where presidents, actors, and artists passed through like local legends. Give Maite a blank check and two months of freedom, and she wouldn't reinvent her life — she likes it too much. She'd travel through France and Spain at her own rhythm, tasting, watching, taking it in.</p>
+            <p class="artisan-paragraph">To her, craft is the ultimate luxury — not emeralds, not excess. But something well-made, by hand, with soul and tradition behind it. Something that lasts. Spend a day with her and you'd start at Mallorca's cathedral, Gaudí's touch still alive inside, then drive to Deià for lunch at La Residencia. A late afternoon swim, golden light, and then dinner at Flanigan in Portals. The kind of cuisine that endures. Because Maite knows what endures: generosity, friendship, and the places we return to without needing to explain why.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MAITE_ARIAS_FINAL_MG_5225_1.jpg?v=17531759793" alt="Portrait de Maite Arias portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Mallorca</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Mallorca</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Mallorca</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- GRILLE 8 PORTRAITS -->
+    <div class="grid-8" role="list" aria-label="Galerie Mallorca – 8 muses" style="margin-top: 60px;">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CLAUDIO_ZIVKO_FINAL_MG_6545.jpg?v=1752762310" alt="Claudia Zivko">
+            <div class="caption-unique">Claudia Zivko</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/jaume.jpg?v=1752660772" alt="Jaume Vilardell & Gabrielle Ripoll">
+            <div class="caption-unique">Jaume Vilardell & Gabrielle Ripoll</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/TOMEU_ARBONA_MARIE_JOSA_FINAL_PIC_MG_6259.jpg?v=1752672536" alt="Tomeu Arbona & Maria José">
+            <div class="caption-unique">Tomeu Arbona & Maria José</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_6635.jpg?v=1752672535" alt="Etienne Jardel & Antoine Lacoste">
+            <div class="caption-unique">Etienne Jardel & Antoine Lacoste</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_6355.jpg?v=1752672533" alt="Carolina Amigó">
+            <div class="caption-unique">Carolina Amigó</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MAITE_ARIAS_FINAL_MG_5225_1.jpg?v=17531759793" alt="Maite Arias">
+            <div class="caption-unique">Maite Arias</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_5716.jpg?v=1752672533" alt="Irina Alexandrovna Iakovleva">
+            <div class="caption-unique">Irina Alexandrovna</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_5536.jpg?v=1752765955" alt="Mar Aldeguer">
+            <div class="caption-unique">Mar Aldeguer</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Julie Ansiau & Bennu Gerede</p>
+
+    <!-- CLAUDIA ZIVKO -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Claudia Zivko">
+        <div class="muse-text">
+            <h2 class="muse-name">Claudia Zivko</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Claudia Zivko. She's not someone who needs much. Give her a flight — not a five-star itinerary — and she'll go straight to El Cuyo, in Yucatán. No hesitation. That's where her heart landed years ago. The place gives her something rare: beauty, energy, simplicity. No filters, no performance. Just a place that feels like truth.</p>
+            <p class="artisan-paragraph">Ask her what to do with 24 hours in Mallorca and she won't give you a list. She'll give you motion. She'll put you in a car, roll down the windows, and just drive. No schedule, no end point. Maybe you'll find a cliff, maybe a mountain road, maybe a tiny restaurant with local dishes. Doesn't matter. It's not the destination — it's the feeling of the island she wants you to catch.</p>
+            <p class="artisan-paragraph">Claudia believes in things made by hand. Things made with time, with care, with roots. She talks about carpenters, shoemakers, cooks — people who don't mass produce but shape each object with their mood, their history, their hands. She's been in Mallorca for the last twenty years. She says she's in the best time of her life. And you believe her. Because she says it without trying to convince you. That's Claudia. Solid, kind, alive.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/CLAUDIO_ZIVKO_FINAL_MG_6545.jpg?v=1752762310" alt="Portrait de Claudia Zivko portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- IRINA ALEXANDROVNA -->
+    <section class="muse-section reverse" aria-label="Profil : Irina Alexandrovna Iakovleva">
+        <div class="muse-text">
+            <h2 class="muse-name">Irina Alexandrovna Iakovleva</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Irina Alexandrovna Iakovleva. She lives in Palma. It was meant to be just a year — a brief pause to savor the light on stone, the curve of quiet streets, the low hum of cafés and bells. But the island didn't let go. Her friends became family. The streets aligned with her rhythm. And one day, she realized: this was home. Not just where she lived — where she landed.</p>
+            <p class="artisan-paragraph">Irina is a psychologist, but that doesn't quite cover it. She also facilitates "Leela," a transformation game that walks the line between science and spirit. You roll dice. You move across a board. And somehow, you start to see yourself more clearly. In her words: "Psychology is a dialogue with the soul." Leela just gives it a body. Her work bridges continents and ways of knowing — Eastern philosophy and Western training, Vedic wisdom and academic depth.</p>
+            <p class="artisan-paragraph">Ask her where she'd go next, and her answer is Bhutan. Then back to India, to Peru — places of strength, soul, and silence. And always, she circles back to Deià, a mountain village on Mallorca that stirs something ancient. But her favorite address? Still her own. Still Palma. Still this quiet, simple life, lived with intention and no extra ingredients.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_5716.jpg?v=1752672533" alt="Portrait d'Irina Alexandrovna portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- TOMEU ARBONA & MARIA JOSÉ -->
+    <section class="muse-section" aria-label="Profil : Tomeu Arbona & Maria José">
+        <div class="muse-text">
+            <h2 class="muse-name">Tomeu Arbona & Maria José</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Tomeu Arbona. He doesn't bake. He revives. Tomeu is not just a pastry chef — he's a gastronomic archaeologist. At Fornet de la Soca, history rises like dough: slow, warm, authentic. No machines. No shortcuts. Just flour, hands, and memory. He digs into dusty monastery cookbooks, handwritten palace ledgers, recipes from grandmothers — fragments of a past Mallorcan kitchen, reborn.</p>
+            <p class="artisan-paragraph">Since 2010, Tomeu — once a psychologist turned baker during the 2008 crisis — has built something deeper. Not a business, but a reclamation: of forgotten breads, cocas, empanadas, ensaimadas, canyalons, panades. He's revived coca de trampó flatbreads topped with sobrassada. His ensaimadas, plain or filled, are tied to ancient Jewish roots and are considered Mallorcan icons. He's been named "Baker of the Year" in the Ruta del Buen Pan.</p>
+            <p class="artisan-paragraph">If you had 24 hours in Mallorca, Tomeu wouldn't take you to beaches — he'd lead you to the island's still center: Pina, Sineu, Sant Joan. Dry-stone orchards, empty paths, silence. Then María José would guide you up to Binierarix and the Valldemossa hermitage, where wild cliffs meet the sound of trickling water. And there, in your bag: warm, rustic empanadas, perfected by generations. Tomeu doesn't just bake. He excavates. He revives. He restores. Each bite reconnects to Mallorca's soul.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/TOMEU_ARBONA_MARIE_JOSA_FINAL_PIC_MG_6259.jpg?v=1752672536" alt="Portrait de Tomeu Arbona & Maria José portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MAR ALDEGUER -->
+    <section class="muse-section reverse" aria-label="Profil : Mar Aldeguer">
+        <div class="muse-text">
+            <h2 class="muse-name">Mar Aldeguer</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Mar Aldeguer. She's many things at once. A mother. A former journalist. The keeper of a 300-year-old glassmaking legacy. The founder of a jewelry brand that believes luxury begins where machines end. Mar grew up in the glow of molten glass — sand, silica, and minerals turned by hand into something luminous. No factory line. Just heat, breath, and patience. In her family's workshop, every piece is different, because every hand moves differently.</p>
+            <p class="artisan-paragraph">She's worked in glossy magazines — society, interiors — but words weren't quite enough. So she created Kuluk, a jewelry line where stones are carved one by one, no two alike. Raw, natural, unpolished, like stories without edits. "This," she says, "is in my DNA." She won't book the Maldives for a holiday — she'll go to Tanzania, drawn by the joy of people who "don't need much and do things the way they've always been done."</p>
+            <p class="artisan-paragraph">With 24 hours in Mallorca, she's already warning you: it's not enough. Still, she'll squeeze in Palma's Gothic quarter, Gordiola's glass furnaces, the wild green of villages like Deià. You'll eat over the sea at PatróMar, or at Flanigan, where tradition never updates itself and never needs to. Mar doesn't chase trends. She revives what's nearly been lost. For her, what's made by hand isn't a niche — it's a necessity. Because in a world spinning fast, it's the slow things that last.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/MG_5536.jpg?v=1752765955" alt="Portrait de Mar Aldeguer portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ANNA KHOLODOVA -->
+    <section class="muse-section" aria-label="Profil : Anna Kholodova">
+        <div class="muse-text">
+            <h2 class="muse-name">Anna Kholodova</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Anna Kholodova. She says she only shares her favorite places with friends. So we're honored. Anna was born in Moscow, a child of the Soviet Union, shaped by its silences and its sudden openings. After Perestroika, the borders fell and the world rushed in. At 10, she boarded a flight to New York. From there: exchange programs, host families, Austria with her mother, languages, cultures, discovery.</p>
+            <p class="artisan-paragraph">At 23, she joined TSUM, the Moscow equivalent of Le Bon Marché, as a buyer for contemporary fashion. It was the beginning of a 15-year journey through fashion and travel — a blur of cities, shows, seasons. Then came the burnout. That's when Spain called. A softer rhythm. Her daughter started school. Anna picked up ceramics. Together, they shaped objects, days, new rituals. "Mallorca helped me return to myself," she says. "It inspires and fills me, with people, nature, and a love for the roots of a simple life."</p>
+            <p class="artisan-paragraph">Ask her about Japan, and she'll tell you she's been waiting — not just for the place, but for the right person to share it with. She believes that everything we admire in this world is made by hands. "God has no hands but ours." Dinner? Always with friends. Always with local musicians. In winter: the mountains. In summer: a secret beach. Anna Kholodova reminds us that travel isn't a destination — it's a decision. A way of moving, of living, of paying attention.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/anna.jpg?v=1752660767" alt="Portrait d'Anna Kholodova portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- HÉLÈNE BUSUTTIL & MICHEL FIGUET -->
+    <section class="muse-section reverse" aria-label="Profil : Hélène Busuttil & Michel Figuet">
+        <div class="muse-text">
+            <h2 class="muse-name">Hélène Busuttil & Michel Figuet</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Hélène Busuttil & Michel Figuet. They don't travel light — not in imagination, not in appetite. If you gave them two months and no limit, they'd fill it with Nile currents, Patagonian winds, motorbikes across Vietnam, and long days ending where everything slows down: the Greek island of Koufonisia. No cars. No rush. Just walking, sea, and silence.</p>
+            <p class="artisan-paragraph">Michel dreams in landscapes. He'd trace the Andes, drift into Bolivia, stare down the silence of Patagonia. Hélène travels with flair. If you ask her for addresses, she'll give you Obsolete — a boutique across Palma, Deià, and Valldemossa, where you'll find ceramics, wood, woven pashminas, and stories folded into every bowl. Spend 24 hours with them in Mallorca: first stop Stagier, a tiny kitchen run by chefs who've trained in the temples of haute cuisine.</p>
+            <p class="artisan-paragraph">Ask Hélène about hands and she'll tell you about Fatma's Hand, the one that protects. But also: the hand that learns, the one that gives time. That connects. That makes. "A hand," she says, "is the first thing I notice in someone." Michel is a photographer. Hélène once ran a fashion shop in Paris. Together, they are a pair who live by instinct and aesthetics, always in motion, always looking for something true.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/michelfiguet.jpg?v=1752660770" alt="Portrait de Hélène Busuttil & Michel Figuet portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ROSS HUTCHISON -->
+    <section class="muse-section" aria-label="Profil : Ross Hutchison">
+        <div class="muse-text">
+            <h2 class="muse-name">Ross Hutchison</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Ross Hutchison. He arrived on a yacht. Stayed for the sea, stayed for the salt, stayed for something deeper. Originally from Houston, Ross moved to Seattle, New York City, but it was Mallorca that called him home. In 2012, he launched something no one else was quite doing: Private Chef Mallorca. Just him, his knives, his fire. Now, more than a decade later, it's a team, a kitchen hub, a name that means something.</p>
+            <p class="artisan-paragraph">His food doesn't come from machines. His bread is made by hand, from Mallorcan grain, with slow work and full breath. "I cook with my hands," he says. "That's how you pass something on. That's how you give love." You can make soup in a Thermomix. Risotto, even. But not presence. Not soul. Give him 24 hours, and he won't show you the postcard version of the island. He'll take you to a barely marked trail, walking the cliffs between Banyalbufar and Port des Canonge. Rocky, wild, secret.</p>
+            <p class="artisan-paragraph">Give him three months, and he's gone. Vietnam, Laos, Cambodia, Indonesia. Not to rest. To eat. To learn. To sit on a plastic stool and watch the magic: flame, smoke, rhythm, street-side. Where every bite is fire, salt, acid, heat, history. Where flavor isn't plated — it's lived. Ross Hutchison doesn't just serve meals. He crafts moments, barefoot, fire-warmed, passed from hand to hand.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/palma" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/ROSS_HUTCHINSON-FINAL_MG_3921.jpg?v=1752762300" alt="Portrait de Ross Hutchison portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER 2 -->
+<section class="product-slider-section" aria-label="Mallorca Selection 2">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Mallorca Selection</h2>
+        <a href="https://kilometre.paris/collections/palma" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/palma/products/tourist-scarf-france" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/France-Tourist-Scarf-Tourist-Scarf-151634765.jpg?v=1744622320&width=600" alt="France Tourist Scarf">
+                </div>
+                <p class="product-name">France –<br>Tourist Scarf</p>
+                <p class="product-price">€390</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/island-botanical-escape-bleu-de-travail-1" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Kolkheti-jungle-Bleu-de-travail-Bleu-de-travail-158994910.png?v=1758620026&width=600" alt="Island Botanical Escape">
+                </div>
+                <p class="product-name">Island & Botanical Escape –<br>Bleu de travail</p>
+                <p class="product-price">€1.944</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/fe-di-biou-camargue-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Fe-Di-Biou-Camargue_-France-K-Shirt-K-shirt-150690458.jpg?v=1742983144&width=600" alt="Fe Di Biou Camargue K-shirt">
+                </div>
+                <p class="product-name">Fe Di Biou Camargue –<br>K-Shirt</p>
+                <p class="product-price">€700</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/page-decriture-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Page-D_criture-Rouge-Rouge-Rouge-K-shirt-Kilometre-Paris-151171970.jpg?v=1747214148&width=600" alt="Page d'écriture K-shirt">
+                </div>
+                <p class="product-name">Page D'écriture –<br>K-shirt</p>
+                <p class="product-price">€1.175</p>
+            </a>
+            <a href="https://kilometre.paris/collections/palma/products/swiss-architect-k-shirt-metier" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Colombian-journaliste-K-shirt-Metier-K-shirt-163934069.jpg?v=1773326282&width=600" alt="Colombian Journaliste K-shirt Métier">
+                </div>
+                <p class="product-name">Colombian Journaliste –<br>K-shirt Métier</p>
+                <p class="product-price">€500</p>
+            </a>
+        </div>
+    </div>
+</section>
+<script src="footer.js"></script>
+
+</body>
+</html>
