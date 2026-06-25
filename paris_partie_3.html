@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Part 3 - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --rouge: #e63946; --bleu: #2F3E86; --blanc: #ffffff; --noir: #1a1a1a; --gris-clair: #f9f9f9; --max-width: 1400px; }
+        body { font-family: 'Barlow', Arial, sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; overflow-x: hidden; }
+        .section-container { max-width: var(--max-width); margin: 0 auto; padding: 60px 40px; }
+
+        .title-unique { font-size: clamp(3rem, 8vw, 6rem); color: var(--rouge); text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+        .title-sub { font-size: clamp(1rem, 2vw, 1.4rem); color: var(--bleu); text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; }
+        .circle-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rouge); }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* GRILLE 7 */
+        .grid-7 { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 380px; gap: 20px; margin-bottom: 20px; }
+        .grid-7 .item-unique:nth-child(7) { grid-column: 4; grid-row: 1 / 3; }
+
+        /* GRILLE 5 */
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: 360px; gap: 20px; margin-bottom: 20px; }
+
+        .item-unique { position: relative; overflow: hidden; }
+        .item-unique img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .caption-unique { position: absolute; bottom: 15px; left: 15px; right: 15px; background: white; padding: 10px; text-align: center; color: var(--rouge); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; }
+        .photo-credit { text-align: right; margin-bottom: 60px; font-size: 1.2rem; color: var(--rouge); font-weight: 700; text-transform: uppercase; }
+
+        .artisan-paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--bleu); margin-bottom: 1.2rem; }
+
+        /* SECTION MUSE SPLIT — texte + photo côte à côte */
+        .muse-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 120px; }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+        .muse-name { font-size: clamp(2rem, 4vw, 3rem); color: var(--rouge); text-transform: uppercase; font-weight: 900; margin-bottom: 1.5rem; }
+        .muse-image img { width: 100%; height: auto; max-height: 850px; object-fit: cover; object-position: top; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: opacity 0.25s ease; }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        /* MARQUEE */
+        .marquee-bar { background: var(--bleu); color: #FFF8BD; padding: 0.85rem 0; overflow: hidden; white-space: nowrap; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+        .marquee-inner span { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-7 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .grid-7 .item-unique:nth-child(7) { grid-column: auto; grid-row: auto; }
+            .grid-5 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .muse-section, .muse-section.reverse { grid-template-columns: 1fr; gap: 30px; }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+<script src="navbar.js"></script>
+
+<div class="section-container">
+
+    <h1 class="title-unique">PARIS</h1>
+    <p class="title-sub">Part 3</p>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle filled"></div><div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 7 PORTRAITS -->
+    <div class="grid-7" role="list" aria-label="Galerie Paris Part 3">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05641_STEPHANIE_SEBASTIAN.jpg?v=1761920711" alt="Stéphanie & Sébastien Janssen">
+            <div class="caption-unique">Stéphanie & Sébastien Janssen</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06156_d6ab6d77-3899-4dd8-8a28-c7a9aa5936b2.jpg?v=1761920711" alt="Mélanie Huynh">
+            <div class="caption-unique">Mélanie Huynh</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08587.jpg?v=1761920712" alt="Sébastien Pluot & Nina Safainia">
+            <div class="caption-unique">Sébastien Pluot & Nina Safainia</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09025.jpg?v=1761920711" alt="Sophie Rioufol">
+            <div class="caption-unique">Sophie Rioufol</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC098_50.jpg?v=1761920711" alt="Tamara Taichman">
+            <div class="caption-unique">Tamara Taichman</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00281.jpg?v=1761920711" alt="José Lévy">
+            <div class="caption-unique">José Lévy</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00879_ALICE.jpg?v=1761920711" alt="Alice Grenier-Nebout">
+            <div class="caption-unique">Alice Grenier-Nebout</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Karlina Vitolina</p>
+
+    <!-- STÉPHANIE & SÉBASTIEN JANSSEN -->
+    <section class="muse-section" aria-label="Profil : Stéphanie & Sébastien Janssen">
+        <div class="muse-text">
+            <h2 class="muse-name">Stéphanie & Sébastien Janssen</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Stéphanie Busuttil Janssen and Sébastien Janssen. She lived ten years with César, the sculptor, and after his death made it her mission to keep the work alive — building a foundation that archives, restores, authenticates, lends, curates, collaborates. From Pompidou retrospectives to Tiffany table sculptures in bronze, she carries his compressions and expansions forward, ensuring the hand of César still radiates. At the foundation she edits catalogues raisonnés, guides restorations, manages loans, preserves archives — a keeper of both matter and memory.</p>
+            <p class="artisan-paragraph">He is Belgian, a gallerist in Brussels since 2008, working like the old masters of the métier: not just showing but editing, producing, publishing, defending the artists he believes in. His gallery lives inside a 19th-century hôtel particulier at the Sablon, untouched for 150 years, once a house of law publishing, now a neoclassical shell turned into a stage for the contemporary. Once trained in the conceptual, he has grown toward the hand: ceramics where fingerprints remain, sculptures where touch persists.</p>
+            <p class="artisan-paragraph">If you gave them three months and a limitless card, they would not fly far: they would charter a great boat, an elegant vessel with crew, and make a Grand Tour of the Mediterranean — Palermo, Rome, Greece, Spain. Palaces, antiquities, encounters, dinners on deck, shopping for the handmade, long days unfolding at the rhythm of the sea. The voyage itself as sculpture in time. Stéphanie and Sébastien: one devoted to memory, one to discovery, both guardians of the hand.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05641_STEPHANIE_SEBASTIAN.jpg?v=1761920711" alt="Portrait de Stéphanie & Sébastien Janssen">
+            </a>
+        </div>
+    </section>
+
+    <!-- MÉLANIE HUYNH -->
+    <section class="muse-section reverse" aria-label="Profil : Mélanie Huynh">
+        <div class="muse-text">
+            <h2 class="muse-name">Mélanie Huynh</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Mélanie Huynh. She began in fashion, trained as a stylist and model maker, but quickly turned toward marketing and the larger stage of Vogue. She arrived first as an intern, assisting everyone at once — Emmanuelle Alt, Anastasia Barbieri, Marie-Hélène Sauvé — and soon became the right hand of Carine Roitfeld for more than four years. It was there she found her rhythm: French touch with a Vogue stamp, chic but a little offbeat.</p>
+            <p class="artisan-paragraph">Her roots are as hybrid as her métier: born in Paris, raised in Vincennes, daughter of a Chinese father who fled the Khmer Rouge as a teenager and built a life in France, and a French mother from Normandy. Together they bought, years later, a château in Bordeaux — a fairy-tale ruin restored during Covid — from which came Holy Dermi, Mélanie's own creation: a brand built inside-out, with nutricosmetics, supplements, beauty food, and skincare drawn from the land. There is the Rich Lift cream, the collagen chocolate made artisanally in France, the beauty tools for skin and time.</p>
+            <p class="artisan-paragraph">Ask her of the handmade and she answers with reverence: it is transmission, soul, the antidote to standardization. She loves ceramics, blown glass, objects that still carry the touch of their maker, and she worries that global sameness erases the human trace. For her, craftsmanship is not nostalgia but survival — proof that the hand and its hours still matter.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06156_d6ab6d77-3899-4dd8-8a28-c7a9aa5936b2.jpg?v=1761920711" alt="Portrait de Mélanie Huynh">
+            </a>
+        </div>
+    </section>
+
+    <!-- SÉBASTIEN PLUOT -->
+    <section class="muse-section" aria-label="Profil : Sébastien Pluot">
+        <div class="muse-text">
+            <h2 class="muse-name">Sébastien Pluot</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Sébastien Pluot. Historian of art, curator, seeker of translation and its impossibilities. He has staged exhibitions where no cartels explain, where the visitor must negotiate directly with the work — where even eels once became the witnesses of art, raised in a tank, then released into rivers carrying fragments of human discourse. He is haunted by the Japanese guzunsei, the art of doing with chance, and by Zeno's old metaphor of the hand: open for apprehension, folding for understanding, closing for comprehension. He resists the last phase. He prefers the trembling openness, the unfinished touch.</p>
+            <p class="artisan-paragraph">At Villa Kujoyama he began tracing this "aesthetics of contingency," and since then the research has spread — exhibitions multiplying like echoes, collaborations between artists and artisans, forms that embrace accident, imperfection, impermanence. He says the hand does not control, it negotiates, with wood, with clay, with matter's own tamashii.</p>
+            <p class="artisan-paragraph">If you gave him three months and limitless means, he would build what already grows in his mind: an ecosystem for ecological transition — two hundred hectares near Paris, with workshops of ceramics, urushi, wood, and dye, with a farm in permaculture, with residencies for artists and thinkers. A place where families arrive with broken things and leave with them reborn — stitched, lacquered, repaired. A place where ecology is not duty but desire, not constraint but irresistible beauty.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08587.jpg?v=1761920712" alt="Portrait de Sébastien Pluot">
+            </a>
+        </div>
+    </section>
+
+    <!-- ALICE GRENIER-NEBOUT -->
+    <section class="muse-section reverse" aria-label="Profil : Alice Grenier-Nebout">
+        <div class="muse-text">
+            <h2 class="muse-name">Alice Grenier-Nebout</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Alice Grenier-Nebout. "I'm a painter," she starts off. "But sometimes I act in films. Sometimes I make music. At night I work as a DJ." Her life spreads out like a three-part artwork — painting, cinema, sound, each part bouncing off the others. She came into the world in Paris but grew up splitting time between France and Canada. She manages Atelier 46, an artist's spot tucked in a courtyard on Rue Sainte-Anne — a maze of rooms set up as studios for painters, designers, and stylists, a meeting point where different fields share the same pulse.</p>
+            <p class="artisan-paragraph">Her paintings pull you into a warm dream — sensual, literary, mysterious. Once she made a full series based on The Divine Comedy. Her canvases glow with fauvist colors: reds, ambers, deep pinks that radiate from within. "They talk about warmth and body and story," she notes. "About what a woman carries." At night she teams up with her friend Oriana and mixes tracks at Hôtel Amour and La Belle Époque, building a sound that shifts through funk, world music, and electric pulse.</p>
+            <p class="artisan-paragraph">Cinema runs through her family: her father was a cameraman, her mother Claire Nebout an actress who filled her childhood with light, costumes, and backstage whispers. Lately she took the role of Berthe Morisot in Cédric Klapisch's latest film, wandering the Exposition Universelle and defending Impressionism before it even had a name. "Painting is introspection," she says. "Acting is escape. Together they balance me."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00879_ALICE.jpg?v=1761920711" alt="Portrait d'Alice Grenier-Nebout">
+            </a>
+        </div>
+    </section>
+
+    <!-- SOPHIE RIOUFOL -->
+    <section class="muse-section" aria-label="Profil : Sophie Rioufol">
+        <div class="muse-text">
+            <h2 class="muse-name">Sophie Rioufol</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Sophie Rioufol. Pure Parisienne, raised across from Le Rubis where the Beaujolais nights spilled into memory, Sophie grew up between the 1er and the 6e, and now plays equally at home in the 10e. She is versatile, like the shoes she curates — chic, roots, and a little rock'n'roll. Ten years ago she took over 58M, the boutique her mother Marion opened on Rue Montmartre. It is a wardrobe in miniature: Worishofer sandals for heatwave days, Maison Ernest stilettos for Pigalle nights, Laurence Dacade boots for work, Tropéziennes for summer, Swedish clogs, clutches for soirées.</p>
+            <p class="artisan-paragraph">She believes the true luxury is the hand. A shoe, a plate, a cushion, a dress — if it is fait main, you can see the hours, the gesture, the value. That is where worth resides. 58M has become known for championing independent designers, often those she discovers herself, always privileging craftsmanship, singularity, and a sense of freedom.</p>
+            <p class="artisan-paragraph">If you gave her 24 hours in Paris, she would walk you along the quais, from the Louvre to the Pont des Arts, across to Saint-Germain, stopping at Flore, then break away into the 10e, where the street hums differently — less polished, more alive. And if you gave her three months and a limitless card, she would take her daughter, her man, and circle the world by sailboat — south, to the warm seas, to live slowly and freely, wind in hair, salt on skin.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09025.jpg?v=1761920711" alt="Portrait de Sophie Rioufol">
+            </a>
+        </div>
+    </section>
+
+    <!-- TAMARA TAICHMAN -->
+    <section class="muse-section reverse" aria-label="Profil : Tamara Taichman">
+        <div class="muse-text">
+            <h2 class="muse-name">Tamara Taichman</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Tamara Taichman. She begins her day hidden away at Hôtel des Grandes Écoles, a secret garden behind the walls of Cardinal Lemoine, where roses lean against pale stone and silence thickens like velvet. Then she drifts toward the Voltaire, where she still orders the hard-boiled eggs, €0.92 — a relic of another Paris, a time when the owners allowed penniless artists to dine there. In summer she might slip into the Musée de Minéralogie at the École des Mines, treasures of earth pressed into glass cabinets. Her Paris is rigolo, intimate, timeless.</p>
+            <p class="artisan-paragraph">The hand for her is memory. Wednesdays of childhood spent in clay workshops, fingers plunging into mud and glaze, adolescence at La Droguerie on Rue du Jour spending every coin on beads and thread. She had forgotten until her mother reminded her: this was always there. Today she still threads beads with artisans in Paris and Marseille — the first pieces always born in her hands.</p>
+            <p class="artisan-paragraph">She studied economics, but it was always fashion. From Elle magazine she learned the trade — more than thirty years as photo stylist and consultant, showing women that style is not logos but appropriation. And then her own creations: Re.sea Beachwear and jewelry under her own name, intimate and personal enough to bear it. "The only real luxury," she says, "is time: to have it, to take it, to live inside it."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC098_50.jpg?v=1761920711" alt="Portrait de Tamara Taichman">
+            </a>
+        </div>
+    </section>
+
+    <!-- JOSÉ LÉVY -->
+    <section class="muse-section" aria-label="Profil : José Lévy">
+        <div class="muse-text">
+            <h2 class="muse-name">José Lévy</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: José Lévy. If you have only 24 hours in Paris, José will not take you running. He will take you home. To his home. Because that's where it begins — stillness, stories, the unspectacular magic of being present. Not everything needs to be consumed. Some things need to be steeped in. Like tea. Or grief. Or beauty. He speaks like he draws, in loops, in layers. He believes in rhythm, not itinerary. In curiosity, not conquest.</p>
+            <p class="artisan-paragraph">You ask him about the hand, the handmade, and his answer comes with reverence. The hand, he says, is the first tool. The best one. The one you must educate, protect, repeat with. The artisans he works with, métiers d'art, they live through it. You cannot fake the hand. He started in fashion — "the first skin," he says, "that intimate membrane between the self and the world." For more than fifteen years he shaped silhouettes under his own label before shifting toward interiors, objects, and the dialogue between France and Japan.</p>
+            <p class="artisan-paragraph">He signed the French Pavilion for the World Expo in Osaka 2025, orchestrating its creation as artistic director. He speaks of kokeshis, the wooden dolls he has reinterpreted — not as souvenirs but as bearers of intimacy, the invisible threads between maker and receiver. He tells of Les Endiablés for Saint-Louis: crystal glasses that are never one thing, always many, ambiguous and alive — a wild success. That's José: curious, sincere, drawn to what escapes him. A designer, yes. But mostly: a revealer of silence, of texture, of time.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00281.jpg?v=1761920711" alt="Portrait de José Lévy">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- GRILLE 5 PORTRAITS -->
+    <div class="grid-5" role="list" aria-label="Galerie Paris Part 3 – 5 muses" style="margin-top: 60px;">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00107_LAETITIA.jpg?v=1761920711" alt="Laetitia Crahay">
+            <div class="caption-unique">Laetitia Crahay</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06043_ISABELLE.jpg?v=1761920711" alt="Isabelle Stanislas">
+            <div class="caption-unique">Isabelle Stanislas</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09204.jpg?v=1761920711" alt="Manuela Suárez de Poix">
+            <div class="caption-unique">Manuela Suárez de Poix</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08754.jpg?v=1761920711" alt="Emilie & Philippe Senes">
+            <div class="caption-unique">Emilie & Philippe Senes</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04971_KEREN_ANN.jpg?v=1761920711" alt="Keren Ann Zeidel">
+            <div class="caption-unique">Keren Ann Zeidel</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Karlina Vitolina</p>
+
+    <!-- LAETITIA CRAHAY -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Laetitia Crahay">
+        <div class="muse-text">
+            <h2 class="muse-name">Laetitia Crahay</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Laetitia Crahay. Her Paris is seen from a bicycle — not as a lifestyle choice but as the only way left to move through the city, a guarantee of arrival and of freedom. She adores the hidden passages, even the ones slightly dirty, the ones that contrast with the elegance of Vivienne or the eighth — Belgian at heart, she is drawn to that mix of polished and crado. At the end of one passage, there is always a café, and her favorite is Berry, where she and her daughter collect matchas like talismans.</p>
+            <p class="artisan-paragraph">Ask her of the handmade and she answers with her life. She studied at La Cambre, the Bauhaus school in Brussels where both her parents trained — her mother in tapestry, her father in architecture, her grandfather a professor — where drawing by hand was still the first commandment. When she entered Chanel she built bridges between the studio and the artisans, insisting on sleeping in factories, learning from errors, calling every craftsman by name. She adores the mistakes of the hand, the irregularities machines erase. For her, the danger of computers is that they leave no space for the artisan's spirit, no room for surprise.</p>
+            <p class="artisan-paragraph">Her career has passed through Chanel and Maison Michel — houses where she turned accessories into universes, where she transformed the small object into something democratic without losing refinement. She believes a little earring should be as carefully imagined as a metal masterpiece, that luxury belongs to both the hostess saving to buy a tiny piece and the collector willing to commission a one-of-a-kind work. Give her three months and unlimited means, and she would go to Africa to build something lasting with women artisans — a workshop, a collaboration, a place that could continue after the three months ended.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00107_LAETITIA.jpg?v=1761920711" alt="Portrait de Laetitia Crahay">
+            </a>
+        </div>
+    </section>
+
+    <!-- ISABELLE STANISLAS -->
+    <section class="muse-section reverse" aria-label="Profil : Isabelle Stanislas">
+        <div class="muse-text">
+            <h2 class="muse-name">Isabelle Stanislas</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Isabelle Stanislas. She walks the city like you read a poem aloud — with breath, with pause, with weight on certain syllables. In Paris, she does not drive. She walks. Always. To feel the city's silences, its voids, those absences that are presence. The Louvre first — not for spectacle, but because it is, to her, the city's anchor, its pulse. Then toward the Palais Royal, where the emotion is architecture, not art, symmetry that calms the blood. From there, a drift: Rue Saint-Honoré, ceramic shops, steel and clay, micro-neighborhoods blooming at each corner.</p>
+            <p class="artisan-paragraph">Give her a carte blanche, three months, no deadlines, no deliverables, and she won't flee from architecture — she'll take it with her. She'll go somewhere forgotten, somewhere where humans still need shelter more than style. A desert. A storm-prone coast. She wants to design homes that can survive water, wind, collapse. She dreams of prefab houses that are also poems. She would also teach: enter a school, meet children, draw not buildings but ideas with them. Transmission, not status.</p>
+            <p class="artisan-paragraph">She's built luxury — everyone knows that. The Elysée's Eiffel Room bears her name. She now designs for places that command the word "prestige," and she's redoing the villas at Cheval Blanc St-Barth, quietly, room by room. Isabelle is two women in one: the one we see — hotels, palaces, the white shirt of luxury — and the one she knows: restless, moving, rooted in nature and necessity. It is the second who feeds the first. She comes from modesty. And carries it still.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06043_ISABELLE.jpg?v=1761920711" alt="Portrait d'Isabelle Stanislas">
+            </a>
+        </div>
+    </section>
+
+    <!-- MANUELA SUÁREZ DE POIX -->
+    <section class="muse-section" aria-label="Profil : Manuela Suárez de Poix">
+        <div class="muse-text">
+            <h2 class="muse-name">Manuela Suárez de Poix</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Manuela Suárez de Poix. She was born in Chicago, raised in Paris, her roots in Chile — a life marked early by movement, diplomat ancestors, a father whose career kept him turning outward, a family that traveled across continents. From this came her ease, her ballet-like fluency with Parisians and foreigners alike, her sense that each person carries a story worth uncovering. Communication became her métier: strategy, narrative, the shaping of images for fashion and beauty.</p>
+            <p class="artisan-paragraph">There were encounters that formed her path — Yves Carcelle, who gave her confidence; Narciso Rodriguez, beside whom she learned craft and vision at LVMH; Delphine Arnault, who placed her in a design studio for the first time. Later, Tata Harper, the Colombian pioneer of natural skincare, with whom she worked for a decade launching the brand in France and Europe. Ask her of the handmade and her voice fills with admiration: she has seen the seamstresses of Dior cut and embroider for hours, watched Louis Vuitton artisans shaping leather into form, remembered women weaving ponchos of alpaca in South America, silversmiths bending metal into light.</p>
+            <p class="artisan-paragraph">If you gave her a black card and three months, she would map the world by wonder: first the English countryside and Scottish highlands, then the great parks of Africa; after, the forests of South America — the Amazon in Brazil, the Patagonian south of Chile — and finally the Pacific, a voyage by boat among origins, islands rising from water like creation itself. For her, travel is less leisure than pilgrimage, a search for beginnings before the world unravels.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC09204.jpg?v=1761920711" alt="Portrait de Manuela Suárez de Poix">
+            </a>
+        </div>
+    </section>
+
+    <!-- KEREN ANN ZEIDEL -->
+    <section class="muse-section reverse" aria-label="Profil : Keren Ann Zeidel">
+        <div class="muse-text">
+            <h2 class="muse-name">Keren Ann Zeidel</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Keren Ann Zeidel. She is a Parisienne, yes, but one whose feet have always straddled elsewhere — Reykjavik, New York, cities that left their echoes but never erased the pull of Paris. She is above all a raconteuse: songwriter, composer, author of verses that live in the cycle of couplet and refrain, a structure she calls infinite, a pattern where words and notes find each other again and again. Her songs begin simply — a piano, a guitar, silence in a room — before opening to brass, strings, amplified bass, orchestration that carries intimacy into scale.</p>
+            <p class="artisan-paragraph">There is Pariamo, her latest album, ninth in the line of chapters she has written with her voice — each one a self-portrait, a mirror of the city, of the wide sea, of her own metals and faults. There is the theatre, where she stands on stage beside Irène Jacob at the Rond-Point. There is opera, Red Waters, created with Bardi Johansson, and the cinema too — films in progress, sound as narrative, sound as direction. For her, the métier is not just composition but narration: giving form to solitude, to the eternal threads of relationships, to the sublime that hides in silence.</p>
+            <p class="artisan-paragraph">Ask her of the hand, and she speaks of strings beneath her fingers — bronze or nylon or ivory, piano keys touched again and again, hours spent searching for words until equilibrium returns. The handmade is transmission, she says: lives folded into materials, energies passed from maker to wearer. If you gave her three months, she would build a space of music and creation, acoustically perfect — where friends could play at dawn, where drawings, photographs, and colors could meet sound, a collective residence of sound, gesture, and joy. Keren Ann Zeidel is a storyteller of lives, a believer in solitude as beauty, a seeker of community through creation.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-1" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04971_KEREN_ANN.jpg?v=1761920711" alt="Portrait de Keren Ann Zeidel">
+            </a>
+        </div>
+    </section>
+
+</div>
+<script src="footer.js"></script>
+</body>
+</html>
