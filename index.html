@@ -439,7 +439,6 @@ nav {
   max-width: 420px;
 }
 
-/* Carousel MIY */
 .miy-carousel {
   position: relative;
   width: 100%;
@@ -613,6 +612,100 @@ nav {
 
 .travel-card:hover .travel-arrow { opacity: 1; transform: translateY(0); }
 .travel-arrow::after { content: '→'; font-size: 0.9rem; }
+
+/* ============================
+   PARIS MULTI-PARTS CARD
+   ============================ */
+
+/* La carte Paris n'est plus un <a> direct mais un wrapper */
+.travel-card-paris {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3/4;
+  display: block;
+}
+
+/* Le sous-menu des parties */
+.paris-parts-menu {
+  position: absolute;
+  inset: 0;
+  background: rgba(47, 62, 134, 0.97);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 10;
+  padding: 2rem;
+}
+
+.travel-card-paris:hover .paris-parts-menu {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.paris-parts-title {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  opacity: 0.7;
+}
+
+.paris-part-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.4rem;
+  text-decoration: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.2s;
+}
+
+.paris-part-link:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.paris-part-link:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.paris-part-name {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--blanc);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.paris-part-sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+.paris-part-arrow {
+  font-size: 1rem;
+  color: var(--jaune);
+  transition: transform 0.2s;
+}
+
+.paris-part-link:hover .paris-part-arrow {
+  transform: translateX(4px);
+}
 
 /* PHILOSOPHY */
 .section-philosophy {
@@ -913,6 +1006,17 @@ footer {
 
   .travels-grid { grid-template-columns: 1fr 1fr; }
 
+  /* Paris mobile : le menu s'ouvre au tap */
+  .paris-parts-menu {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .travel-card-paris.open .paris-parts-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
   .footer-top { grid-template-columns: 1fr; gap: 2rem; }
   .stats-row { flex-wrap: wrap; gap: 1.5rem; }
   .nl-form { flex-direction: column; }
@@ -1157,16 +1261,42 @@ footer {
       </div>
     </a>
 
-    <a href="paris_partie_1.html" class="travel-card tc-paris">
+    <!-- PARIS — carte spéciale avec sous-menu 3 parties -->
+    <div class="travel-card travel-card-paris tc-paris" id="paris-card">
       <div class="travel-bg"></div>
       <div class="travel-overlay">
         <div class="travel-num">07</div>
         <p class="travel-tag">France</p>
         <h3 class="travel-city">Paris</h3>
-        <p class="travel-country">France</p>
+        <p class="travel-country">3 chapters</p>
         <span class="travel-arrow">Discover</span>
       </div>
-    </a>
+      <!-- Sous-menu au hover -->
+      <div class="paris-parts-menu">
+        <p class="paris-parts-title">Paris — Choose a chapter</p>
+        <a href="paris.html" class="paris-part-link">
+          <div>
+            <span class="paris-part-name">Part I</span>
+            <span class="paris-part-sub">The first chapter</span>
+          </div>
+          <span class="paris-part-arrow">→</span>
+        </a>
+        <a href="paris-part-2.html" class="paris-part-link">
+          <div>
+            <span class="paris-part-name">Part II</span>
+            <span class="paris-part-sub">The second chapter</span>
+          </div>
+          <span class="paris-part-arrow">→</span>
+        </a>
+        <a href="paris-part-3.html" class="paris-part-link">
+          <div>
+            <span class="paris-part-name">Part III</span>
+            <span class="paris-part-sub">The third chapter</span>
+          </div>
+          <span class="paris-part-arrow">→</span>
+        </a>
+      </div>
+    </div>
 
     <a href="venice.html" class="travel-card tc-venice">
       <div class="travel-bg"></div>
@@ -1341,6 +1471,24 @@ footer {
   });
 
   timer = setInterval(next, 4000);
+
+  // Paris card — tap sur mobile
+  const parisCard = document.getElementById('paris-card');
+  if (parisCard) {
+    parisCard.addEventListener('click', function(e) {
+      // Sur mobile uniquement (hover ne fonctionne pas)
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        this.classList.toggle('open');
+      }
+    });
+    // Fermer si on clique ailleurs sur mobile
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768 && !parisCard.contains(e.target)) {
+        parisCard.classList.remove('open');
+      }
+    });
+  }
 </script>
 
 </body>
