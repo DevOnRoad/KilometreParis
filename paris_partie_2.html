@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Part 2 - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --rouge: #e63946; --bleu: #2F3E86; --blanc: #ffffff; --noir: #1a1a1a; --gris-clair: #f9f9f9; --max-width: 1400px; }
+        body { font-family: 'Barlow', Arial, sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; overflow-x: hidden; }
+        .section-container { max-width: var(--max-width); margin: 0 auto; padding: 60px 40px; }
+
+        .title-unique { font-size: clamp(3rem, 8vw, 6rem); color: var(--rouge); text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+        .title-sub { font-size: clamp(1rem, 2vw, 1.4rem); color: var(--bleu); text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; }
+        .circle-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rouge); }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* GRILLE 7 — 4 colonnes, 7e en long */
+        .grid-7 { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 380px; gap: 20px; margin-bottom: 20px; }
+        .grid-7 .item-unique:nth-child(7) { grid-column: 4; grid-row: 1 / 3; }
+
+        /* GRILLE 5 — 3 colonnes, 5e en long */
+        .grid-5 { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 380px; gap: 20px; margin-bottom: 20px; }
+        .grid-5 .item-unique:nth-child(5) { grid-column: 3; grid-row: 1 / 3; }
+
+        .item-unique { position: relative; overflow: hidden; }
+        .item-unique img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .caption-unique { position: absolute; bottom: 15px; left: 15px; right: 15px; background: white; padding: 10px; text-align: center; color: var(--rouge); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; }
+        .photo-credit { text-align: right; margin-bottom: 60px; font-size: 1.2rem; color: var(--rouge); font-weight: 700; text-transform: uppercase; }
+
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--bleu); margin-bottom: 1.2rem; }
+
+        .muse-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 120px; }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+        .muse-name { font-size: clamp(2rem, 4vw, 3rem); color: var(--rouge); text-transform: uppercase; font-weight: 900; margin-bottom: 1.5rem; }
+        .muse-image img { width: 100%; height: auto; max-height: 850px; object-fit: cover; object-position: top; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: opacity 0.25s ease; }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        .marquee-bar { background: var(--bleu); color: #FFF8BD; padding: 0.85rem 0; overflow: hidden; white-space: nowrap; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+        .marquee-inner span { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-7 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .grid-7 .item-unique:nth-child(7) { grid-column: auto; grid-row: auto; }
+            .grid-5 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+            .grid-5 .item-unique:nth-child(5) { grid-column: auto; grid-row: auto; }
+            .muse-section, .muse-section.reverse { grid-template-columns: 1fr; gap: 30px; }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="section-container">
+
+    <h1 class="title-unique">PARIS</h1>
+    <p class="title-sub">Part 2</p>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle filled"></div><div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 7 PORTRAITS -->
+    <div class="grid-7" role="list" aria-label="Galerie Paris Part 2 – première grille">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC07665.jpg?v=1761664211" alt="Laurent Claquin">
+            <div class="caption-unique">Laurent Claquin</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01361_CHARLES_DAPHNE_ZANAS.jpg?v=1761664212" alt="Charles & Daphné Zana">
+            <div class="caption-unique">Charles & Daphné Zana</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC07894.jpg?v=1761664211" alt="Daphné Hézard & Jacques">
+            <div class="caption-unique">Daphné Hézard & Jacques</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02925.jpg?v=1761664211" alt="Cosmo Gonik">
+            <div class="caption-unique">Cosmo Gonik</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00340_GARANCE.jpg?v=1761664211" alt="Garance Senes">
+            <div class="caption-unique">Garance Senes</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08725.jpg?v=1761664212" alt="Bethel Tessera & Emily So">
+            <div class="caption-unique">Bethel Tessera & Emily So</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05359_JULIE_GAYET_1.jpg?v=1761664211" alt="Julie Gayet">
+            <div class="caption-unique">Julie Gayet</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Karlina Vitolina</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. Under the direction of <strong>Alexandra Senes</strong> and with the eyes of talented photographer <strong>Karlina Vitolina</strong>, we've documented these exchanges — offering an intimate & authentic way of celebrating our creations. This is Paris, Part 2.</p>
+    </div>
+
+    <!-- CHARLES & DAPHNÉ ZANA -->
+    <section class="muse-section" aria-label="Profil : Charles & Daphné Zana">
+        <div class="muse-text">
+            <h2 class="muse-name">Charles & Daphné Zana</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Charles & Daphné Zana. They are not a couple who blend into each other — they orbit. Opposites in rhythm, but aligned in curiosity, they move through Paris like they've always belonged to its streets, its salons, its silences. He, the architect of reverent spaces. She, the conjurer of irreverent jewels. Together, they sketch a portrait of elegance that is both lived and subverted.</p>
+            <p class="artisan-paragraph">Daphné was born in Bourges "by accident," raised in Cholet, Toulon, Grenoble. Paris was always the horizon, the city she moved to at 17, against her parents' wishes, with nothing but necessity in her bag. Then New York. Then four children. Then life, jazz school, theatre, motherhood, an art gallery, a new beginning. And now, Luby, her jewelry line — pieces with a wink. The Lady Di ring recast in candy resin. A swan ring nodding to Capote's circle. Nothing is quite as it seems, everything has a twist.</p>
+            <p class="artisan-paragraph">Charles, calm and contained, trained at the Beaux-Arts. His agency is behind some of the most refined interiors in Paris — hôtel particuliers, foundations, houses filled with light and lineage. Give them 24 hours in Paris, and they'll disagree, tenderly. They'll volley, each holding their ground, then meet in the middle, probably at La Palette, over eggs and salad. They believe in the handmade: for Charles, it's in the gesture, the drawing that begins a structure. For Daphné, it's in the remix, the stone reimagined, the code broken. They are a duet of tension and taste — old-school and offbeat, polished and playful.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC01361_CHARLES_DAPHNE_ZANAS.jpg?v=1761664212" alt="Portrait de Charles & Daphné Zana">
+            </a>
+        </div>
+    </section>
+
+    <!-- JULIE GAYET -->
+    <section class="muse-section reverse" aria-label="Profil : Julie Gayet">
+        <div class="muse-text">
+            <h2 class="muse-name">Julie Gayet</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Julie Gayet. If you give her 24 hours in Paris, she won't rush you through monuments or museums. She'll take you into the dark — into rooms where light trembles on a screen, where silence thickens before the first frame, where cinema still carries the air of ritual. She knows their addresses the way others know bakeries. To follow her is to trace a map of projection rooms.</p>
+            <p class="artisan-paragraph">Her latest film is Olympe de Gouges, Les Femmes dans la Révolution — a portrait of a woman who wrote the Declaration of the Rights of Woman and Citizen yet was absent from the textbooks. After Olympe comes Louise Michel. The thread is clear: women erased, now restored. She calls it not cancel culture but bright culture — to shed light, not erase, to reveal, not delete. For more than a decade she steered her production company, Rouge Internationale, producing films, guiding directors, building projects. When COVID came, she paused — and in that pause turned to another idea: a festival that would connect music and image.</p>
+            <p class="artisan-paragraph">The result is Sœurs Jumelles, in Rochefort — not a market, an agora. A place where artists and professionals cross, where musicians and filmmakers sit side by side, where students meet their future masters. She insists on parity: in cinema, only a quarter of directors are women; at Sœurs Jumelles, equality is the rule. And always: transmission. She invites schools, La Fémis, the Conservatoire Supérieur, the Sorbonne. She wants young musicians and filmmakers to meet early, to understand that no image exists without sound, no music without image. Sœurs Jumelles is not just a festival. It is infrastructure, community, continuity.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05359_JULIE_GAYET_1.jpg?v=1761664211" alt="Portrait de Julie Gayet">
+            </a>
+        </div>
+    </section>
+
+    <!-- DAPHNÉ HÉZARD & JACQUES -->
+    <section class="muse-section" aria-label="Profil : Daphné Hézard & Jacques">
+        <div class="muse-text">
+            <h2 class="muse-name">Daphné Hézard & Jacques</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Daphné Hézard and her son Jacques. She begins her Paris at l'Escale, the café-bar perched above the Seine, facing the Tour d'Argent, where water and light shimmer against stone. Morning croissants from the Tour d'Argent's bakery just across the bridge; two tiny tables for coffee before slipping into the Pontoise pool, at dawn for baby swimming or when rain makes the city blur. A ritual of water and stone, of lengths and laughter, always closing with déjeuner chez René — Paris as both institution and intimacy.</p>
+            <p class="artisan-paragraph">With a limitless card she would not chase faraway airports. She dreams instead of a French hamlet, stone by stone restored, a place to welcome friends and strangers, to anchor lives. Since the birth of Regain in 2018, she has quietly made it her mission to prove that the extraordinary does not require departure. Regain is a quarterly magazine devoted to rural life, sustainable agriculture, the craft of farming, and the poetry of slowing down — born from a chance discovery of a 1950s farming journal in Tuscany. In just a few years, it has become a cult success, gracing kiosks with bold covers such as Catherine Deneuve holding a kid goat for its third anniversary.</p>
+            <p class="artisan-paragraph">And still, she would take Jacques — his papers first, the passport, then Brazil. A country she only knows in fragments, the Northeast, Jericoacoara, a touch of Rio, but that calls her further, to Bahia, to São Paulo's mountains, to places that sound like music and must be followed. Daphné is a storyteller who gathers people around places, who makes communities bloom where others see ruins. Jacques, still small, is already her accomplice in these journeys.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC07894.jpg?v=1761664211" alt="Portrait de Daphné Hézard & Jacques">
+            </a>
+        </div>
+    </section>
+
+    <!-- COSMO GONIK -->
+    <section class="muse-section reverse" aria-label="Profil : Cosmo Gonik">
+        <div class="muse-text">
+            <h2 class="muse-name">Cosmo Gonik</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Cosmo Gonik. He chose his own name — Cosmo at twenty-three, because the one on his ID didn't fit. He wanted something universal, something that belonged to everyone and no one. Facebook was new then; it demanded a surname. He laughed, wrote Gonik, a small play on words, a wink to Dalí who once said he wasn't a genius in painting or sculpture but in the "cosmogony". It stuck. A joke turned destiny.</p>
+            <p class="artisan-paragraph">Cosmo makes music, but not only. His world moves through rhythm, gesture, trance. He has a duo, Cuarto Mundo, with Thomas Lavergne. There's Santa Pirata, a live DJ project with singers from Arcade Fire, four pirates at the decks, summoning crowds into wild, voodoo-colored dance. And there are his Ecstatic Dance events — no phones, no alcohol, no smoke. Just bodies and sound for two hours. Presence as practice. He dances with the crowd, brings maracas, tambourines, small percussion. He calls it collective catharsis, joy that happens when the body stops pretending.</p>
+            <p class="artisan-paragraph">He reads the Tarot de Marseille too — not for future, but for present. A disciple of Alejandro Jodorowsky, trained twenty years ago, he sees tarot as language, symbols, metaphors, alphabets of the unconscious. "Never trust anyone who reads the future," he says. "The cards speak of now." Ask him about craftsmanship and his answer comes without hesitation: it's all in the hand. Whether it's shaping clay, painting, composing, or harvesting perfume, the gesture carries consciousness. "We don't work with AI," he says. "It must come from love, from search, from touch."</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02925.jpg?v=1761664211" alt="Portrait de Cosmo Gonik">
+            </a>
+        </div>
+    </section>
+
+    <!-- GARANCE SENES -->
+    <section class="muse-section" aria-label="Profil : Garance Senes">
+        <div class="muse-text">
+            <h2 class="muse-name">Garance Senes</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Garance Senes. She starts the day in the 17th, her quartier, underloved by the trendsetters, but hers, still. She'll take you to her boulangerie — not for show, for croissants, maybe. Or not at all. Because this morning might belong to maple syrup and crisp bacon, to a stack of pancakes like her grandmother used to make, each one laced with childhood, with America, with the echo of family rituals folded into dough.</p>
+            <p class="artisan-paragraph">She speaks with her hands. Not metaphorically. Literally. She tattoos. That's her métier, her medium, her message. And the hand, she says, says everything the face won't. It precedes the voice. It trembles when you lie. Her phone is a museum of hands — her grandmother's, her mother's, her friends'. Her own. She studies them, draws them, reveres them. Doesn't use tablets. Doesn't trace. Draws by hand. Tattoos by hand. She believes in gesture. She believes in memory stored in linework.</p>
+            <p class="artisan-paragraph">She goes by two names: Garance, for her friends and her past; Néo, for the world she's building, for the version of herself who draws her own graphic novel in real time. Glasses, polka dots, Pierrot dreams. Her dream isn't fame. It's a bookshelf. With her books. Her world. Her stories drawn out in ink, then maybe in skin. When she tattoos in Paris, London, New York, strangers hand her their skin and leave with her stories etched forever. Her drawings travel across continents on living bodies. Someone, somewhere, wears her work like a vow.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC00340_GARANCE.jpg?v=1761664211" alt="Portrait de Garance Senes">
+            </a>
+        </div>
+    </section>
+
+    <!-- LAURENT CLAQUIN -->
+    <section class="muse-section reverse" aria-label="Profil : Laurent Claquin">
+        <div class="muse-text">
+            <h2 class="muse-name">Laurent Claquin</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Laurent Claquin. His Paris is not anchored in a single street or square but in thresholds — between gesture and institution, between hand and horizon, between care and design, where the city's heartbeat meets the luxury of touch. He began as consultant in a world of numbers and briefcases, then translated into the textures of cultural memory — in the Jeu de Paume's soft quiet, in the Centre Pompidou's shifting light, in the corridors of the Minister of Culture, where architecture becomes language and policy lays the groundwork for space.</p>
+            <p class="artisan-paragraph">He traveled then, not by map but through the thread of houses — joining Kering in the mid-2000s just as the group was deepening its hold on fashion's icons, and since 2012 guiding its Americas as gardener of expansion, planting the House flags in New York, in Latin grids, watching the branches of Gucci, Saint Laurent, Alexander McQueen, Balenciaga extend across time and continent. Hands shaping growth, quietly, with rhythm. In 2017 he tended another bloom: Tomas Maier, a creative house entrusted to him, held gently until its petals closed in 2018.</p>
+            <p class="artisan-paragraph">In mid-2024, he took on a new shape: Kering's first-ever Group Chief Brand Officer — a name that carries more weight than title, entrusted with weaving the disparate threads of editorial, event, and image into a single tapestry, so that each message travels as choreography, each campaign an echo of identity in motion, both intimate and global. Laurent Claquin is not simply a steward of luxury houses. He is a seamstress of place-making, a weaver of voice and image, a gardener of growth and memory whose ambition is not spectacle, but resonance in the human scale.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC07665.jpg?v=1761664211" alt="Portrait de Laurent Claquin">
+            </a>
+        </div>
+    </section>
+
+      <!-- SERENA CANCELLIER -->
+    <section class="muse-section reverse" aria-label="Profil : Serena Cancellier">
+        <div class="muse-text">
+            <h2 class="muse-name">Serena Cancellier</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Serena Cancellier. She was born in a blizzard of white, January 10th, 1979 — her mother wading through two meters of snow, carrying a child named for serenity into a world already testing its meaning. She believes in the beauty of difficult conditions. Her childhood moved to the rhythm of anthroposophy, Rudolf Steiner's quiet revolt, where thought and hand were never apart, where children learned that every material had spirit. Meditation was family habit. So was vegetarianism. She has never eaten meat. And yet, she became a leather designer.</p>
+            <p class="artisan-paragraph">At first, she resisted. She had wanted to work in India, in one of Gandhi's villages where men still spin thread and weave cotton by hand. But at the same time came an offer from Milan, an atelier of prototypes, half design studio, half workshop. She asked her meditation master what to do, certain he'd tell her to go to India. Instead, he smiled and said: "Be a camel in the desert. Live in beauty." She went to Milan. Her path unfolded through the great houses: Marc Jacobs, Bottega Veneta, Vionnet, Louboutin, Prada, Balmain. For Louboutin, she created his first true handbag collections.</p>
+            <p class="artisan-paragraph">Since 2018, she has her own studio — a place between design and advice, where she moves fluidly between creation and strategy. In Colombia, she advises local artisans on raffia weaving. In Tunisia, she worked with the United Nations on a creative program for women entrepreneurs. "They were extraordinary," she says quietly. "It changed me." Always beside her, Théo, a wire-haired dachshund with the pride of an old soul, trotting through airports and ateliers. Born in snow, she learned early that warmth is not found but built — stitched, carved, woven into being. Everything she touches still carries that lesson.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02719_SERENA_91d358e6-d25f-46df-991b-a54e5fd62e96.jpg?v=1761664211" alt="Portrait de Serena Cancellier">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- GRILLE 5 PORTRAITS -->
+    <div class="grid-5" role="list" aria-label="Galerie Paris Part 2 – deuxième grille" style="margin-top: 20px;">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04923_GREGOIRE.jpg?v=1761664210" alt="Grégoire Marot">
+            <div class="caption-unique">Grégoire Marot</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC02719_SERENA_91d358e6-d25f-46df-991b-a54e5fd62e96.jpg?v=1761664211" alt="Serena Cancellier">
+            <div class="caption-unique">Serena Cancellier</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04564.jpg?v=1761664211" alt="Benjamin Loyseau & Alex Chapon">
+            <div class="caption-unique">Benjamin Loyseau & Alex Chapon</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04490_c5834a34-72b7-4707-bd77-a6afe2bdbf44.jpg?v=1761664211" alt="Nicolas Saada">
+            <div class="caption-unique">Nicolas Saada</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC092_18_PASCALE.jpg?v=1763636238" alt="Vincent Darré">
+            <div class="caption-unique">Pascale Mussard Darré</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Karlina Vitolina</p>
+
+
+      <!-- PASCALE MUSSARD -->
+    <section class="muse-section" aria-label="Profil : Pascale Mussard">
+        <div class="muse-text">
+            <h2 class="muse-name">Pascale Mussard</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Pascale Mussard. Her Paris begins with breakfast, always breakfast, in a garden — perhaps at Rodin, perhaps among the romantics, a table set in fragility, surrounded by flowers. Meals matter to her not only for taste but for where they unfold: she dreams of lunch arranged in the backroom of a florist, among stems and petals, the scent of cut blooms. She believes Paris is best lived on foot: across gardens, palaces, museums, all within reach of her home.</p>
+            <p class="artisan-paragraph">Ask her of the hand and she begins with touch. Of all senses, it is the one she could least bear to lose. She treasures the irregular, the repair, the deviation that gives a work its soul. She remembers the words of her uncle, Jean-Dominique, who asked photographer Édouard Boubat to capture the invisible thread between head, eye, and hand. She collects such images: the pianist's fingers that fly, the embroiderer's hours bent over silk, the weaver, the glassblower, the engraver. To her, the needle is the continuation of the hand — simple bone pierced with a hole, the earliest tool, still magical.</p>
+            <p class="artisan-paragraph">If you gave her time and limitless means, she would spend them in projects: voyages with her grandchildren, each month devoted to one. Her life now spills into many projects at once — the Villa Noailles; the AZ Factory, now academy, continuing Alber Elbaz's vision; a residency in Brussels called Darwin 15; and the effort to safeguard Ukrainian collections of vernacular art, embroidery, objects and songs threatened by war. She dreams of Samarkand and Bukhara, of Uzbek artisans still weaving, embroidering, painting miniatures, of silk produced again in fields of mulberry. Pascale Mussard is a woman of repair, of connection, of artisans and their hands — always seeking where the hand, the thread, and the heart might meet.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC092_18_PASCALE.jpg?v=1763636238" alt="Portrait de Pascale Mussard">
+            </a>
+        </div>
+    </section>
+    
+    <!-- NICOLAS SAADA -->
+    <section class="muse-section reverse" aria-label="Profil : Nicolas Saada">
+        <div class="muse-text">
+            <h2 class="muse-name">Nicolas Saada</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Nicolas Saada. He is a filmmaker, a screenwriter, once a voice in the pages of Cahiers du Cinéma — though he resists the word critic, preferring to say he only spoke of the films he loved. He made Les Parallèles, a day in Paris seen through three intertwined destinies — Nouvelle Vague though he had imagined it American; a debut that became his most French work. He has since filmed inside the Musée d'Orsay, in the streets of Bombay, in projects that hover between author and market — films that want to endure rather than multiply.</p>
+            <p class="artisan-paragraph">Cinema and music are his twin obsessions. Twice a month, he selects a dozen records and speaks of them on air, sharing what he hears — nothing more elaborate, just the joy of passing sound forward. Photography too, once central — New York, summer 1984, rolls of black and white and color — then abandoned, until now, when artificial intelligence has led him back to images. He recalls when the Polaroid, the photocopier, the silkscreen arrived and artists seized them; to him, AI is only the next tool, raising again the question of originality in a world of duplication.</p>
+            <p class="artisan-paragraph">His Paris is not the expected. He would lead you to the Musée de la Chasse, intimate and magical; to the Petit Palais; to the Institute of Art History with its hidden collections and the first print of Hokusai's great wave. Ask him of the hand and he answers with gestures: cinema needs them, directing actors needs them. The gesture links thought and body, rescues us from anxiety, restores presence. He worries that today hands hold mostly one object — the phone — and risk forgetting their other uses. But he insists: the hand still matters, in cinema, in sculpture, in daily life.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04490_c5834a34-72b7-4707-bd77-a6afe2bdbf44.jpg?v=1761664211" alt="Portrait de Nicolas Saada">
+            </a>
+        </div>
+    </section>
+    <!-- BENJAMIN LOYSEAU -->
+    <section class="muse-section" aria-label="Profil : Benjamin Loyseau">
+        <div class="muse-text">
+            <h2 class="muse-name">Benjamin Loyseau</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Benjamin Loyseau. Not only a photographer — a witness. He left Paris too young, maybe too fast, with barely more than a camera and the need to see. To really see. Congo, Lebanon, Rwanda, Senegal — not postcards but fault lines, places where fragility walks next to strength, where silence is louder than spectacle. He doesn't hover. He sits. He listens. He waits. Until a face, a hand, a moment refuses to disappear. Fifteen years with the UNHCR, on the road of exile — not statistics, not words in reports, but tents under rain, a body bent, a child inventing a game out of nothing.</p>
+            <p class="artisan-paragraph">In 2021, when Christo and Jeanne-Claude's Arc de Triomphe, Wrapped took over the city, Benjamin was invited to document it from the inside — not as a bystander but as part of the team. Harnessed to cranes, climbing a hundred meters above the city, he recorded not just fabric and monument but the choreography of workers, the human energy that turned an impossible vision into presence. Then came the Olympics: in 2024 he was chosen to cover the Paris Olympic and Paralympic ceremonies. For weeks he followed the hidden preparation — scaffolding rising, rehearsal shadows — and on the day itself, mounted his bicycle and rode across the city, capturing the Seine as it became stage, bridges igniting, crowds roaring, fireworks bursting through the rain.</p>
+            <p class="artisan-paragraph">His own life has been shaped by movement: he has lived in Senegal, Rwanda, Lebanon. His wife also works in humanitarian service, and together they embody a life marked by responsibility to others. For Benjamin Loyseau, photography is not a profession but a stance — a way of inhabiting the world: attentive, porous, patient. To hold stillness in motion, to return dignity through visibility, to offer images as proof that presence resists erasure. His work whispers what he believes: to see is already to care.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04564.jpg?v=1761664211" alt="Portrait de Benjamin Loyseau">
+            </a>
+        </div>
+    </section>
+    
+
+
+    
+
+
+  
+    <!-- GRÉGOIRE MAROT -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Grégoire Marot">
+           <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04923_GREGOIRE.jpg?v=1761664210" alt="Portrait de Grégoire Marot">
+            </a>
+        </div>
+        <div class="muse-text">
+            <h2 class="muse-name">Grégoire Marot</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Grégoire Marot. He is Parisian, and twenty years ago he created his own agency, a small structure of public relations and consulting that moves with ease between decoration, interior architecture, design, fairs, a touch of lifestyle and hospitality, and, of course, fashion — his first world. He called the agency Favori. The best idea he ever had, he says. Because the name carries affection, and because it allows for freedom: to choose, to be chosen, to work only on projects that please. In a world full of ugliness, he prefers to keep company only with what he finds beautiful.</p>
+            <p class="artisan-paragraph">Rumors say he is fond of frogs. He smiles and corrects: no. It was a cake, once, decorated with frogs. The image spread, became viral. Soon people began offering frogs as gifts, over and over. He insists: no frogs. Better to speak of ideas, of pleasure, of the joy of choosing. And when it comes to pleasure, there are the fêtes. With Thomas, his husband, he creates them not for spectacle but for friendship. The themes are always changing, drawn sometimes from a poem, sometimes a song, sometimes simply the mood of the times.</p>
+            <p class="artisan-paragraph">His story with the Villa Medici runs deep. His father first went there in 1954, returned in 1959 for a conference, and there met a young woman he would later marry. By the 1970s, his father had become the Villa's architect, and family trips to Rome folded naturally into his childhood. He has known the Villa Medici for fifty years. Later, when he and Thomas asked to marry there, his father wrote the letter. The Villa said yes — three times. Grégoire Marot prefers to speak of what pleases him, of affection, of the Villa's walls, of evenings spent with friends. His life, like his agency, runs on selection, on play, on joy.</p>
+        </div>
+     
+    </section>
+<!-- BETHEL TESSERA & EMILY SO -->
+    <section class="muse-section" aria-label="Profil : Bethel Tessera & Emily So">
+      
+        <div class="muse-text">
+            <h2 class="muse-name">Bethel Tessera & Emily So</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Bethel Tessera & Emily So. Bethel speaks of gardens first, always gardens — Luxembourg with its alleys and statues and chairs of green iron, a book in hand, the quiet rhythm of Paris folding itself into stillness. Then a café, the kind that spills onto the street, coffee balanced on a round table, people passing, time dissolving. And at night, the Seine: a bottle of wine uncorked on the banks, laughter scattered across the water, Paris turning violet above them.</p>
+            <p class="artisan-paragraph">Emily dreams differently. She wants façades and chandeliers, the architecture of luxury, a secret itinerary of the most expensive apartments in the city. She would walk their salons like an heiress, pretending for a day that she is entirely Parisian. And because Paris is a city of love, she would ask for a date, a rendezvous, the simple enchantment of romance in the capital.</p>
+            <p class="artisan-paragraph">Given a limitless card, Emily would retreat to a private beach — a house by the sea, where days collapse into pina coladas and sun, into reading and tanning and the weightless feeling of permanent holiday. Bethel would wander instead, half the days on beaches, half the days in streets and cathedrals, in search of architecture, history, rhythm. Two voices, two desires: one of gardens and exploration, the other of luxury and escape. Together they carry Paris in fragments — the Seine at night, the Luxembourg at dawn, the possibility of love behind a carved door.</p>
+        </div>
+          <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC08725.jpg?v=1761664212" alt="Portrait de Bethel Tessera & Emily So">
+            </a>
+        </div>
+    </section>
+
+    
+    <!-- JALIA PEREZ & ABSA FALL -->
+    <section class="muse-section" aria-label="Profil : Jalia Perez & Absa Fall">
+         <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC06433.jpg?v=1763636237" alt="Portrait de Jalia Perez & Absa Fall">
+            </a>
+        </div>
+        <div class="muse-text">
+            <h2 class="muse-name">Jalia Perez & Absa Fall</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Jalia Perez and Absa Fall. They arrive in Paris not as a pair that blends but as a dialogue — two rhythms, two roots, converging for a moment in the city. Jalia first: twenty, from California, with San Diego sunlight in her voice and the Dominican Republic in her blood. She comes with marketing in her mind, fashion in her sights, eager to see what Paris can teach her about storytelling in style. Absa, older, more grounded — born in Dakar, raised in Northern California, now rooted in New York, pursuing her Master of Public Health at NYU, intent on weaving bridges between public health and fashion, between sustainability and silhouette.</p>
+            <p class="artisan-paragraph">Her Paris days begin in the Marais, where pain au chocolat meets matcha in the morning light. Lunch may take her to Pink Mamma for pasta or La Perle for something simple, before she wanders to Château Rouge, where aunties braid her hair and trade stories, where heritage lives in every gesture. Evenings draw her toward music — jazz and mbalax, afrobeats rhythms that carry both memory and possibility. Give them three months and a blank card, and the contrast widens. Jalia dreams of Europe entire — France first, then every country she can reach. Absa goes home. Senegal first, Dakar always.</p>
+            <p class="artisan-paragraph">She speaks of artisans in Mekhe, her father's village, who cut and shape leather into shoes — she would collaborate, create something sustainable, something forever. She dreams of opening a YMCA, a place for children to glimpse what lies beyond. For her, travel isn't escape but return: to family, to craft, to responsibility. Together they are not just tourists — they are future-makers. Jalia, with marketing as her language. Absa, with sustainability as her mission. A duet of appetite and purpose, a conversation between what is discovered and what is restored.</p>
+        </div>
+       
+    </section>
+
+    <!-- SHINSUKE KAWAHARA -->
+    <section class="muse-section reverse" aria-label="Profil : Shinsuke Kawahara">
+        <div class="muse-text">
+            <h2 class="muse-name">Shinsuke Kawahara</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Shinsuke Kawahara. He arrived in Paris in the early 1980s with no guide but books and films — no Google then, no internet, just a dictionary and Japanese cinemas showing fragments of France. At Roissy, there was only one terminal. He knew no one. The first to greet him were rabbits on the runway. In Japan, rabbits bring luck. For him, it was a sign. Later, when he opened a restaurant, he called it Usagi. Even the toilets followed the shape of a rabbit. It was less about food than about fantasy — about Montparnasse in the 1920s, when Fujita, Hemingway, Diaghilev, Picasso gathered, cultures mixing, salons alive.</p>
+            <p class="artisan-paragraph">Shinsuke has lived in the city for more than forty years, but he has never settled into one métier. He moves between design, art, craft, cuisine. He drew scarves for Hermès. He created a fifty-meter fresco in gold and silver for a restaurant in Ho Chi Minh. For Petit H, he made a copper-covered apple tree, built from salvaged furniture, inspired by a story told on a terrace. Each project is singular. He prefers to remain naïve, like a child, pages open, always ready to be filled.</p>
+            <p class="artisan-paragraph">Ask him about the handmade, and he answers without hesitation: it is exchange. We are not robots. Creation cannot be done alone. He works with artisans in Japan — woodworkers, regional makers — and with stained-glass masters in France. Give him three months and an unlimited card, and he will not buy Picassos or Basquiats. He dreams instead of creating a place on the Sea of Japan, near Kyoto — a gathering, a residency, a kibbutz for the new generation. A space where young people from Japan, France, anywhere, can meet, talk, share, create. Shinsuke does not want to be fixed as gallery artist or designer. For him, freedom is the true métier. He calls himself naïve deliberately — still a child, still astonished, still drawing his life page by page.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover-paris-2" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC091_15.jpg?v=1763636238" alt="Portrait de Shinsuke Kawahara">
+            </a>
+        </div>
+    </section>
+
+
+</div>
+
+</body>
+</html>

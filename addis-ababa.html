@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Ababa - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --rouge: #e63946; --bleu: #2F3E86; --blanc: #ffffff; --noir: #1a1a1a; --gris-clair: #f9f9f9; --max-width: 1400px; }
+        body { font-family: 'Barlow', Arial, sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; overflow-x: hidden; }
+        .section-container { max-width: var(--max-width); margin: 0 auto; padding: 60px 40px; }
+
+        .title-unique { font-size: clamp(3rem, 8vw, 6rem); color: var(--rouge); text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
+        .circle-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rouge); }
+        .circle.filled { background-color: var(--rouge); }
+
+        .grid-top-5 { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: 480px; gap: 20px; margin-bottom: 20px; }
+
+        .item-unique { position: relative; overflow: hidden; }
+        .item-unique img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .caption-unique { position: absolute; bottom: 15px; left: 15px; right: 15px; background: white; padding: 10px; text-align: center; color: var(--rouge); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; }
+        .photo-credit { text-align: right; margin-bottom: 60px; font-size: 1.2rem; color: var(--rouge); font-weight: 700; text-transform: uppercase; }
+
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--bleu); margin-bottom: 1.2rem; }
+
+        .muse-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 120px; }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+        .muse-name { font-size: clamp(2rem, 4vw, 3rem); color: var(--rouge); text-transform: uppercase; font-weight: 900; margin-bottom: 1.5rem; }
+        .muse-image img { width: 100%; height: auto; max-height: 850px; object-fit: cover; object-position: top; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: opacity 0.25s ease; }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        .qa-block { margin-top: 2rem; border-top: 1px solid rgba(47,62,134,0.15); padding-top: 1.5rem; }
+        .qa-item { margin-bottom: 1.5rem; }
+        .qa-question { font-size: 0.78rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rouge); margin-bottom: 0.5rem; }
+        .qa-answer { font-size: 0.92rem; line-height: 1.8; color: var(--bleu); font-style: italic; }
+
+        .marquee-bar { background: var(--bleu); color: #FFF8BD; padding: 0.85rem 0; overflow: hidden; white-space: nowrap; width: 100vw; position: relative; left: 50%; margin-left: -50vw; margin-bottom: 0; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+        .marquee-inner span { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-top-5 { grid-template-columns: 1fr 1fr; grid-auto-rows: 260px; gap: 10px; }
+            .muse-section, .muse-section.reverse { grid-template-columns: 1fr; gap: 30px; }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="section-container">
+
+    <h1 class="title-unique">ADDIS ABABA</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle filled"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+    </div>
+
+    <!-- GRILLE 5 PORTRAITS -->
+    <div class="grid-top-5" role="list" aria-label="Galerie Addis Ababa">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7264.jpg?v=1742478861" alt="Yodit Habesha">
+            <div class="caption-unique">Yodit Habesha</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8484.jpg?v=1742478860" alt="Haymanot Honelgn">
+            <div class="caption-unique">Haymanot Honelgn</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8397.jpg?v=1742478860" alt="Suzanne, Laila & Anna">
+            <div class="caption-unique">Suzanne, Laila & Anna</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7083.jpg?v=1742478845" alt="Marilou">
+            <div class="caption-unique">Marilou</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7148.jpg?v=1742478861" alt="Melody Kelemu">
+            <div class="caption-unique">Melody Kelemu</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Kilometre Paris</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating our creations. This fourth edition of Caravan takes place in <strong>Addis Ababa</strong>, with 5 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- YODIT HABESHA -->
+    <section class="muse-section" aria-label="Profil : Yodit Habesha">
+        <div class="muse-text">
+            <h2 class="muse-name">Yodit Habesha</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Yodit Habesha. A wanderer, a storyteller, a filmmaker, a woman who carries Ethiopia in her soul while chasing the world with open arms. She does not just travel, she documents, discovers, dissolves borders. As a content creator, documentarian, and cultural ambassador, she shares the world through her lens, showing what it means to be an Ethiopian traveler navigating the complexities of global exploration.</p>
+            <p class="artisan-paragraph">For Yodit, life is not a straight line, it is a constant unfolding. She is getting better with age, not just in skill, but in understanding. There is no end goal, only evolution. And yet, she is already living the dream, not in a static, settled way, but in a way that allows for growth, movement, reinvention.</p>
+            <p class="artisan-paragraph">Her work spans across platforms. Her YouTube channel, Habesha Traveler, is a gateway to her experiences, a collection of stories from over 50 countries. She doesn't just visit places, she studies them, interacts, immerses. She breaks down barriers for Ethiopian and African travelers, proving that the world is not off-limits, even when visa restrictions and assumptions say otherwise. As a TV host and documentary filmmaker, she brings global narratives to local audiences, conducting interviews with ambassadors, exploring diplomatic connections, and uncovering histories that often go untold.</p>
+            <p class="artisan-paragraph">Her latest creation? A documentary four years in the making, one that carries the weight of patience, vision, and resilience. Now, she stands at the precipice of its release, ready to let it go, to share it with the world, to sell it to the right hands so she can move on to the next story, the next truth waiting to be told. Because Yodit is not just a traveler, she is an archivist of experience, a curator of untold histories, a bridge between worlds.</p>
+            <p class="artisan-paragraph">And through it all, there is Ethiopia. Not a place, but a pulse. A mother, a memory, a constant. Ethiopia is family. Ethiopia is childhood. Ethiopia is home. It is not something she returns to, it is something she carries, wherever she goes.</p>
+            <p class="artisan-paragraph">Her passions? Life itself. The sheer audacity of it. The endless possibility, the thrill of not knowing what's next.</p>
+            <p class="artisan-paragraph">And her favorite places? They are not defined by landscapes, but by the way they make her feel.</p>
+            <p class="artisan-paragraph">Milan, where she moves with grace, feeling her most feminine.</p>
+            <p class="artisan-paragraph">Bali, where selfishness becomes self-care, a rare and guiltless indulgence.</p>
+            <p class="artisan-paragraph">India, where discomfort is a lesson, and challenge breeds transformation.</p>
+            <p class="artisan-paragraph">And Ethiopia, the anchor, the origin, the place that will always be waiting.</p>
+            <p class="artisan-paragraph">She is not just a traveler. She is a seeker, a collector of moments, a filmmaker who turns movement into meaning.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/addis-ababa" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7264.jpg?v=1742478861" alt="Portrait de Yodit Habesha portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- HAYMANOT HONELGN -->
+    <section class="muse-section reverse" aria-label="Profil : Haymanot Honelgn">
+        <div class="muse-text">
+            <h2 class="muse-name">Haymanot Honelgn</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Haymanot Honelgn. There are people who curate objects, collections, aesthetics. And then there are those who curate atmosphere, feeling, the kind of presence that turns a shop into a home, strangers into kin, music into memory. Haymanot, Haimi, as many call her, is the latter.</p>
+            <p class="artisan-paragraph">She is a stylist, a photographer, a designer, a community-builder. But before all that, she is a listener. A host. A quiet force behind a space that doesn't shout, but holds. Her store, Hanubet, was named after the first letters of two friends, Haimi and Nunu, and the word Bet, which means home. It's not a coincidence. Home is exactly what she set out to create. Not for herself alone, but for anyone who walks in, sits down, and finds something they didn't know they were looking for: connection without pressure. Intimacy without performance. A soft, human kind of freedom.</p>
+            <p class="artisan-paragraph">Her events, tiny, curated, always under 50 people, aren't about crowds or spectacle. They are about closeness. An exchange of glances between strangers who leave as collaborators. A moment of music where one keyboard, one mic, one voice is enough to fill the room. Because for Haimi, scale has never been the measure of meaning.</p>
+            <p class="artisan-paragraph">She didn't start here. In college, she studied business management. She tried a corporate life in a bank. She painted, played music, wandered. And then one day she picked up a camera, and it all clicked. Photography became a language, one she spoke fluently. She quit her job without a plan, only a feeling, and two months later, she was exhibiting her work in Venice. From there, her journey grew organically: photography, design, styling, modeling. A quiet layering of disciplines, each one rooted in curiosity and care.</p>
+            <p class="artisan-paragraph">She doesn't call herself an influencer, though others do. Labels don't interest her. She is less about defining, more about creating. Her dream? She's living it, but knows it's just the beginning. Her next project is a music event series called Tinybet, inspired by Tiny Desk, intimate evenings where emerging artists can share their voice in a space designed for listening. Her hope is to grow it into something lasting, something generous, something that holds space for what's yet to come.</p>
+            <p class="artisan-paragraph">She is inspired by place, but not in the way of postcards. Harar is her sanctuary. A historic city painted in every imaginable color, where the pace slows, where labels fall away, where identity is felt, not asked for. As a photographer, she sees it as a gift. As a woman from Dessie, she sees it as home in another form.</p>
+            <p class="artisan-paragraph">And then there was Paris. Just one summer. A borrowed apartment. A bottle of wine. Music playing softly on a Sunday afternoon. She sat alone and thought: this is ease. She knows cities aren't always what they seem, but sometimes, they give you just enough to dream.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/addis-ababa" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8484.jpg?v=1742478860" alt="Portrait de Haymanot Honelgn portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- LAÏLA SAÏD -->
+    <section class="muse-section" aria-label="Profil : Laïla Saïd">
+        <div class="muse-text">
+            <h2 class="muse-name">Laïla Saïd</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Laïla Saïd. There are stories carried in blood, in names, in the way someone speaks five languages without needing to explain why. Laïla was born in Ethiopia, but her roots stretch far beyond its highlands, French, Ethiopian, Italian, Spanish, Yemeni, a constellation of origins that resists simplicity. Her identity is not a single line but a threadwork, tightly woven, holding centuries of movement, of exile, of return.</p>
+            <p class="artisan-paragraph">She grew up speaking French, educated in its system, trained to teach. But the classroom couldn't contain her urgency. The call to serve, to bear witness, to move toward pain instead of away from it, this took her elsewhere. To war zones. To jungles. To detention centers and makeshift camps. Through her work with the International Committee of the Red Cross, she has crossed thresholds many avoid: witnessing suffering, tracing silence, translating despair into action.</p>
+            <p class="artisan-paragraph">And yet, in parallel, another Laïla walks beside the humanitarian. A woman who collects beauty like others collect breath. She finds comfort in the curve of a clay bowl, in the grain of an old textile, in the worn brass of Istanbul's markets, where she's returned over twenty times and still feels as though she's just arrived. She is nomadic by necessity, but rooted by instinct. With every border crossed, she leaves a piece of her heart behind: in Harar, Luanda, Medellín, Geneva, Bogota, Djibouti, Tbilisi.</p>
+            <p class="artisan-paragraph">She has made peace with this scattering. Because her home is not in one place. It's in the memory of a conversation, the color of a market, the curve of a coastline. It's in her children, Milan and Hannah, who now walk the same school corridors she once did, in Addis Ababa, a city that continues to shape and shelter her.</p>
+            <p class="artisan-paragraph">She is a woman who has seen the worst of humanity and still believes in tenderness. A woman who reads when she can, escapes when she must, most often to Zanzibar, to waters that feel like another kind of home, one made of salt and light.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/addis-ababa" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8397.jpg?v=1742478860" alt="Portrait de Laïla Saïd portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MARILOU -->
+    <section class="muse-section reverse" aria-label="Profil : Marilou">
+        <div class="muse-text">
+            <h2 class="muse-name">Marilou</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Marilou. A woman of dual worlds, a fusion of heritage and exploration, a soul that carries the fire of Ethiopia while weaving the refinement of Italy and France into her being. She does not simply exist between cultures, she embodies them, blending resilience with elegance, tradition with reinvention. Creativity is her compass, guiding her through art, fashion, beauty — mediums through which she does not just express herself, but connects, offering glimpses of the world as she sees it, as she feels it.</p>
+            <p class="artisan-paragraph">Her path has never been straight. Law led her one way, but passion pulled her another. Beauty, not in the superficial sense, but as a sanctuary, a way to heal, to uplift, to transform. And so, she builds. A beauty studio in Addis Ababa, a space where self-care becomes ritual, where skin therapy becomes a form of empowerment. But this is only the beginning. The next step? A curated experience, a haven where every treatment is a gesture of care, a moment of renewal. Because for Marilou, beauty is not just about appearance, it is about feeling whole.</p>
+            <p class="artisan-paragraph">And beyond the studio, there is the community. She does not create for herself alone; she creates for those around her. Access to the best, to standards that elevate, to services that are not luxuries, but necessities. Beauty as confidence. Wellness as self-respect. She dreams not just of individual transformation, but of collective upliftment. To be Ethiopian today is to carry a legacy of resilience, to celebrate culture while looking forward, to hold history and the future in both hands. And yet, for Marilou, home is not just Ethiopia, it is where love resides.</p>
+            <div class="qa-block">
+                <div class="qa-item">
+                    <p class="qa-question">How would you describe yourself?</p>
+                    <p class="qa-answer">"I would describe myself as a vibrant Ethio-Italian, deeply rooted in my Ethiopian heritage while embracing the rich influences of my Italian and French background. Having been born and raised in Ethiopia, I carry the warmth and resilience of my culture, and my extensive travels have broadened my perspective and fueled my passion for exploration. Creativity is at the heart of who I am; I find joy in expressing myself through various artistic avenues, including painting, fashion, and beauty. Each of these pursuits allows me to connect with the world around me and share my unique vision."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Are you living your dream or just working a job?</p>
+                    <p class="qa-answer">"I would say that I'm on a journey toward living my dream rather than just working a job. It has been a long and winding path to get to where I am today, and I don't see myself as having fully arrived at my ultimate destination yet. After graduating in public international law, I explored various fields before seizing the opportunity to pursue my passion for skin therapy and beauty on the side. Now, I am actively doing what I love, and while I'm thrilled to be in this space, I recognize that I'm still in the process of building and evolving my dream. Each day brings new opportunities for growth and creativity, and I'm excited to see where this journey takes me."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Aside from your hobbies, what are you passionate about?</p>
+                    <p class="qa-answer">"Aside from my hobbies, I am deeply passionate about helping our community. I believe that everyone deserves access to high-quality skincare products and services that meet UK standards. My goal is to create an inclusive environment where my clients can experience the best in beauty and wellness, regardless of their background. By providing top-notch treatments and products, I hope to empower individuals to feel confident and take care of their skin, ultimately contributing to their overall well-being."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">What do you think it means to be Ethiopian nowadays?</p>
+                    <p class="qa-answer">"Being Ethiopian today means embodying a deep sense of pride and resilience that shapes our identity from within. It's about celebrating our rich cultural heritage, diverse traditions, and the strength of our communities. In a rapidly changing world, being Ethiopian also involves embracing our history while looking forward to a future filled with potential and opportunity. It means standing together in unity, valuing our shared experiences, and fostering a sense of belonging."</p>
+                </div>
+                <div class="qa-item">
+                    <p class="qa-question">Where is your favorite place in the world, and why?</p>
+                    <p class="qa-answer">"While I have traveled extensively and experienced many beautiful places around the world, my favorite place remains home, surrounded by my beloved ones. There's something incredibly special about the comfort and warmth of familiar surroundings, where I can share laughter, create memories, and simply be myself. Home is where I feel most at peace, and the connections I have with my family and friends make it a truly irreplaceable sanctuary."</p>
+                </div>
+            </div>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/addis-ababa" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7083.jpg?v=1742478845" alt="Portrait de Marilou portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MELODY KELEMU -->
+    <section class="muse-section" aria-label="Profil : Melody Kelemu">
+        <div class="muse-text">
+            <h2 class="muse-name">Melody Kelemu</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Melody Kelemu. Some people seek answers. Others understand that the beauty of existence lies in the question itself. Melody is not searching for a destination; she is tracing constellations, drawing the unseen lines between inner and outer peace, between self and society, between the past that shaped us and the future we choose to create.</p>
+            <p class="artisan-paragraph">She is both participant and observer, the universe experiencing itself, a mind that refuses to settle, to simplify, to accept anything less than the fullest expression of what it means to be alive.</p>
+            <p class="artisan-paragraph">Her journey is not one of fixed ideals but of evolution. Once, she believed dreams were things to be held onto tightly, pursued relentlessly. Now, she allows them to change, to breathe, to shift with the seasons.</p>
+            <p class="artisan-paragraph">She is living her dream, but that dream is fluid. The beauty of life is not in rigid plans, but in the grace of transformation—knowing when to embrace the shift, to follow instinct, to trust that something new is always waiting.</p>
+            <p class="artisan-paragraph">At the core of her work is human potential — not just professionally, but spiritually, emotionally, physically. It is not about becoming the best version of oneself, but about finding that rare, quiet moment where everything aligns and feels right. She has spent years shaping spaces that allow others to find that place within themselves. Her most recent pursuit? Education. Not just as an institution, but as a vessel for change.</p>
+            <p class="artisan-paragraph">In Addis Ababa, Ethiopia, she is part of a leadership team launching a new school, one built not on convention but on intention. It is structured around three core pillars: <strong>Ethical Education</strong> — a foundation that goes beyond academics, shaping students in integrity, curiosity, and responsibility. <strong>Green Consciousness</strong> — because the future is not just about knowledge, but about how we live, how we sustain, how we coexist with the planet itself. <strong>Peaceful Conflict Resolution</strong> — a necessity, not just for Ethiopia, not just for the global South, but for humanity as a whole. Wars are not inevitable, they are learned, and so too must be peace. This is the work that consumes her, challenges her, inspires her. It is not just a project, it is a conviction — a belief in the power of early shaping, in the weight of teaching values before patterns of destruction take hold. It is, perhaps, the most important thing she has ever done.</p>
+            <p class="artisan-paragraph">And yet, Melody is not only a thinker, she is a seeker. She is drawn to exploration — not just in the physical sense, but in the depth of thought, in the tension between logic and intuition, in the unanswerable questions that define what it is to be human. And when asked about her favorite place in the world, she does not name a city, a country, or a coastline. She names her own mind. Because to be comfortable in one's body is one thing, but to be comfortable in one's thoughts, to no longer be at war with the self, to transform the mind from an adversary into an instrument — that is liberation. We at Kilometre Paris do not seek muses who merely exist. We seek those who expand, who question, who embrace evolution rather than fear it. Melody is one of them. A bridge, a force, a woman who understands that peace — whether in the world or within oneself — is not given. It is built.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/addis-ababa" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7148.jpg?v=1742478861" alt="Portrait de Melody Kelemu portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Addis Ababa</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Addis Ababa</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Addis Ababa</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- SUZANNE SAÏD -->
+    <section class="muse-section" aria-label="Profil : Suzanne Saïd" style="margin-top: 60px;">
+        <div class="muse-text">
+            <h2 class="muse-name">Suzanne Saïd</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Suzanne Saïd. There are women who follow paths. And then there are those who carve them. Suzanne, born Montalban in Aubagne, carries within her the Mediterranean: Italian warmth from her mother Juliette, Spanish fire from her father Francisco, but she was never meant to stay in the stillness of a small town. Even as a child, amid the santons and traditions of Provence, she dreams of elsewhere. She isn't made to settle, she's made to soar.</p>
+            <p class="artisan-paragraph">At just eighteen, she takes flight. London is her first frontier: an au pair, yes, but more than that, a young woman learning freedom, absorbing difference, tasting independence. From there, she climbs higher, literally. When TWA offers her a chance to become a flight attendant for Ethiopian Airlines, she says yes without even knowing where Addis Ababa is on a map. Some might call it recklessness. She calls it destiny.</p>
+            <p class="artisan-paragraph">Because the moment she lands in Ethiopia, she knows: she has found home. Not by blood, but by recognition. Something in the rhythm of the place, in the sun-soaked air and the gravity of the mountains, tells her she belongs.</p>
+            <p class="artisan-paragraph">The skies bring her face to face with history: Haile Selassie himself, often aboard her flights; Kingston, where Rastafarians flood the plane to welcome Ras Teferi. Her life is stitched with moments that others read about in books. But Suzanne never just watches history, she steps into it.</p>
+            <p class="artisan-paragraph">From the clouds, she comes down to earth and starts to build. In the late 1960s, she opens MicMac, her first boutique in Addis Ababa. Chic, bold, and decades ahead of its time, it becomes the place where Parisian fashion meets Ethiopian elegance. She sources fabrics, crafts jewels, tailors lives.</p>
+            <p class="artisan-paragraph">Later, she creates her own atelier-boutique, a space she still brings to life today through her art, her creations, and her voyages.</p>
+            <p class="artisan-paragraph">India, with its chaos, its colors, its craft, becomes a lifelong inspiration. Suzanne merges continents like she merges materials, uniting Ethiopian weavers with Indian artisans, her own designs with found objects, everyday wear with art. Her atelier is not just a shop, it is a living gallery, a meeting point for texture, tradition, and vision.</p>
+            <p class="artisan-paragraph">She is the woman who teaches her daughter, Laïla, that home is not a place, but a feeling. That borders mean nothing when you move with purpose. And that beauty is not something to be consumed, but cultivated, shared, worn.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/addis-ababa" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8397.jpg?v=1742478860" alt="Portrait de Suzanne Saïd portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
