@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Works — Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;700;900&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #B82928;
+            --bleu: #2F3E86;
+            --jaune: #FFF8BD;
+            --blanc: #FAF9F6;
+            --encre: #1a1a1a;
+            --gris: #E8E6E0;
+            --gris-texte: #555;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--blanc);
+            color: var(--encre);
+            overflow-x: hidden;
+        }
+
+        /* ── EN-TÊTE ── */
+        .rubrique-header {
+            border-bottom: 3px solid var(--encre);
+            padding: 2.5rem 4rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .rubrique-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--rouge);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .rubrique-label::before {
+            content: '';
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--rouge);
+        }
+
+        .rubrique-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            color: var(--encre);
+        }
+
+        .rubrique-title em {
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            color: var(--rouge);
+            font-weight: 700;
+        }
+
+        .rubrique-meta {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gris-texte);
+            text-align: right;
+            line-height: 2;
+        }
+
+        /* ── ARTICLE ── */
+        .article {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 4rem 5rem;
+        }
+
+        /* INTRO */
+        .article-intro {
+            display: grid;
+            grid-template-columns: auto 2px 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 4rem;
+            padding-bottom: 3.5rem;
+            border-bottom: 1px solid var(--gris);
+        }
+
+        .article-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            color: var(--gris);
+            line-height: 1;
+            letter-spacing: -0.05em;
+            user-select: none;
+        }
+
+        .article-divider {
+            background: var(--encre);
+            height: 100%;
+            min-height: 100px;
+        }
+
+        .article-tagline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        .article-kicker {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--rouge);
+        }
+
+        .article-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.15;
+            color: var(--encre);
+        }
+
+        .article-sub {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: var(--gris-texte);
+            font-weight: 300;
+            max-width: 480px;
+        }
+
+        /* ── SPREAD ÉDITORIAL ── */
+        .editorial-spread {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin-bottom: 4.5rem;
+        }
+
+        .col-left,
+        .col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .context-photo img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: grayscale(15%);
+        }
+
+        .context-caption {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gris-texte);
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .arrow-deco {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .arrow-deco svg { width: 50px; opacity: 0.3; }
+
+        /* Colonne centrale */
+        .col-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .product-hero {
+            width: 100%;
+            position: relative;
+        }
+
+        .product-hero img {
+            width: 100%;
+            display: block;
+        }
+
+        .product-caption-badge {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--encre);
+            color: var(--blanc);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            white-space: nowrap;
+        }
+
+        .col-center-text {
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+
+        .col-center-kicker {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gris-texte);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .col-center-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1.05;
+            color: var(--encre);
+        }
+
+        .col-center-sub {
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: var(--gris-texte);
+            margin-top: 0.8rem;
+            font-style: italic;
+        }
+
+        .col-center-byline {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--rouge);
+            margin-top: 0.6rem;
+            display: block;
+        }
+
+        /* Colonne droite */
+        .celeb-photo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .celeb-photo img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        /* ── CORPS — 5 COLONNES ── */
+        .article-body {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            padding-top: 3.5rem;
+            border-top: 1px solid var(--gris);
+            margin-bottom: 0;
+        }
+
+        .body-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .body-section-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rouge);
+            border-bottom: 2px solid var(--rouge);
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .body-section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--encre);
+            line-height: 1.2;
+        }
+
+        .body-section p {
+            font-size: 0.75rem;
+            line-height: 1.85;
+            color: var(--gris-texte);
+            font-weight: 400;
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--encre);
+            line-height: 1.5;
+            border-left: 2px solid var(--rouge);
+            padding-left: 0.8rem;
+            margin: 0.6rem 0 0;
+        }
+
+        /* ── CTA ── */
+        .article-cta {
+            background: var(--bleu);
+            padding: 3.5rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .cta-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--jaune);
+            opacity: 0.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 2.5vw, 2.3rem);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--blanc);
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-desc {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+            max-width: 380px;
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: var(--jaune);
+            color: var(--bleu);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .cta-btn:hover { background: var(--blanc); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 968px) {
+            .rubrique-header { padding: 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .article { padding: 2.5rem 1.5rem 4rem; }
+            .article-intro { grid-template-columns: 1fr; gap: 1rem; }
+            .article-divider { display: none; }
+            .article-number { font-size: 5rem; }
+            .editorial-spread { grid-template-columns: 1fr; gap: 2rem; }
+            .col-left, .col-right { padding-top: 0; }
+            .col-right { flex-direction: row; gap: 1rem; }
+            .col-right .celeb-photo { flex: 1; }
+            .article-body { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .article-cta { flex-direction: column; padding: 2.5rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .article-body { grid-template-columns: 1fr; }
+            .col-right { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EN-TÊTE -->
+    <header class="rubrique-header">
+        <div>
+            <p class="rubrique-label">Kilometre Paris — The Masterpieces</p>
+            <h1 class="rubrique-title">The <em>Works</em></h1>
+        </div>
+        <div class="rubrique-meta">
+            Edition N°01<br>
+            The Worker's Jacket<br>
+            Kilometre Paris, 2026
+        </div>
+    </header>
+
+    <!-- ARTICLE -->
+    <main class="article">
+
+        <!-- INTRO -->
+        <div class="article-intro">
+            <div class="article-number">01</div>
+            <div class="article-divider"></div>
+            <div class="article-tagline">
+                <span class="article-kicker">Masterpiece · The Worker's Jacket</span>
+                <h2 class="article-headline">A jacket carrying<br>two centuries on its back.</h2>
+                <p class="article-sub">From the working class to the floors of the National Assembly, from Hollywood wardrobes to the embroidery ateliers of Kilometre Paris — the worker's jacket never ages. It transforms.</p>
+            </div>
+        </div>
+
+        <!-- SPREAD -->
+        <div class="editorial-spread">
+
+            <div class="col-left">
+                <div class="context-photo">
+                    <img src="https://www.galerie-roger-viollet.fr/image-photo/may-june-1968-events-steelworkers-taking-part-in-664477-500-1344061768.jpg" alt="Steel workers marching, Paris 1968">
+                    <p class="context-caption">Steel workers marching<br>in Paris, May 1968.</p>
+                </div>
+                <div class="arrow-deco">
+                    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 Q40 10 60 40 Q70 55 55 65" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                        <path d="M50 68 L55 65 L52 60" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="context-photo">
+                    <img src="https://lcp.fr/sites/lcp.fr/files/styles/max_650x650/public/2021-12/field_media_image-19294-00299613_P0205456.jpg?itok=BKctRrKd" alt="MP Patrice Carvalho, 1997">
+                    <p class="context-caption">MP Patrice Carvalho,<br>in 1997.</p>
+                </div>
+            </div>
+
+            <div class="col-center">
+                <div class="product-hero">
+                    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Surf2.jpg?v=1701688499" alt="The Worker's Jacket — Kilometre Paris">
+                    <span class="product-caption-badge">The Worker's Jacket — Kilometre Paris</span>
+                </div>
+                <div class="col-center-text">
+                    <span class="col-center-kicker">Looking back</span>
+                    <h3 class="col-center-title">The Worker's<br>Jacket</h3>
+                    <p class="col-center-sub">From 19th-century labourers to Trump's America, the Prussian blue jacket has dressed the workers of the world… and then some. A brief history.</p>
+                    <span class="col-center-byline">By Alexandra Senes</span>
+                </div>
+            </div>
+
+            <div class="col-right">
+                <div class="celeb-photo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tIq9WFye8x4INqMWT2bICa326CWOc3vuomFlC2kocnQHlgsx-QGlCzEt&s=10" alt="Actor Jeremy Allen White">
+                    <p class="context-caption">Actor Jeremy Allen White.</p>
+                </div>
+                <div class="arrow-deco" style="justify-content: flex-start;">
+                    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
+                        <path d="M10 20 Q40 10 60 40 Q70 55 55 65" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                        <path d="M50 68 L55 65 L52 60" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="celeb-photo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVeEOYz223TI7ZPOCYO39xAvAsckLD8xBdNT68I1mgQiefO6z_ZKmKmP4&s=10" alt="Actor Jacob Elordi">
+                    <p class="context-caption">Actor Jacob Elordi.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CORPS -->
+        <div class="article-body">
+
+            <div class="body-section">
+                <span class="body-section-num">1. The Origins</span>
+                <h4 class="body-section-title">An Industrial Revolution</h4>
+                <p>The work jacket is one of the great symbols of the industrial revolution that swept through 19th-century France. A garment with pockets, comfortable, durable, designed to give workers freedom of movement. Its colour — Prussian blue — was the accidental discovery of a Berlin pigment maker in the 18th century. Cheap to produce, it became the default dye for the first mass-manufactured workwear.</p>
+            </div>
+
+            <div class="body-section">
+                <span class="body-section-num">2. The Transformation</span>
+                <h4 class="body-section-title">May '68 and the Barricades</h4>
+                <p>After May 1968, the worker's jacket became a garment of protest. When labourers refused to wear it as a sign of rebellion, the students on the barricades picked it up to make common cause. It crossed the line — from uniform to statement.</p>
+                <p class="pull-quote">"Wearing this blue is a political act."</p>
+            </div>
+
+            <div class="body-section">
+                <span class="body-section-num">3. The Political Blue</span>
+                <h4 class="body-section-title">On the Floor of the Assembly</h4>
+                <p>June 1997. Freshly elected to the National Assembly, left-wing MP Patrice Carvalho — a Saint-Gobain factory worker — walked into the chamber wearing the famous jacket. "I represent 70% of the French people," he explained. The blue jacket, a medium for making the invisible visible.</p>
+            </div>
+
+            <div class="body-section">
+                <span class="body-section-num">4. The Sexy Version</span>
+                <h4 class="body-section-title">Hollywood Takes Notice</h4>
+                <p>Elevated into new sex symbols, actors Jeremy Allen White, Jacob Elordi and Austin Butler each adopted what Americans call "the chore coat." Worn faded over a slogan tee or against bare skin, it acquired an aura that turns heads — proof that nothing is more compelling than a garment that has truly lived.</p>
+            </div>
+
+            <div class="body-section">
+                <span class="body-section-num">5. The KM Piece</span>
+                <h4 class="body-section-title">The Grand Reinvention</h4>
+                <p>At Kilometre Paris, the worker's jacket becomes an embroidery canvas. Each piece is unique, hand-stitched by artisans from around the world. It is no longer a uniform — it is a work of art. A textile memory that carries within it every kilometre ever travelled.</p>
+                <p class="pull-quote">"A worker's garment, reinvented as a traveller's."</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- CTA -->
+    <div class="article-cta">
+        <div>
+            <p class="cta-label">Discover the piece</p>
+            <h3 class="cta-title">The Worker's Jacket<br>Augmented.</h3>
+            <p class="cta-desc">Hand-embroidered, unique by definition. Every stitch tells a journey.</p>
+        </div>
+        <a href="https://kilometre.paris/collections/bleu-de-travail" class="cta-btn" target="_blank">Shop the collection →</a>
+    </div>
+
+</body>
+</html>
