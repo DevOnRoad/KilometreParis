@@ -87,7 +87,7 @@
 
     #km-footer .footer-top {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
       gap: 3rem;
       margin-bottom: 3rem;
       padding-bottom: 3rem;
@@ -179,7 +179,8 @@
       #km-newsletter .nl-form { flex-direction: column; }
       #km-newsletter .nl-input,
       #km-newsletter .nl-btn { width: 100%; }
-      #km-footer .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      #km-footer .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      #km-footer .footer-top > div:first-child { grid-column: span 2; }
     }
   `;
   document.head.appendChild(style);
@@ -225,6 +226,12 @@
             </li>
             <li><a href="venice.html">Venice</a></li>
             <li><a href="ibiza.html">Ibiza</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Our Pieces</h4>
+          <ul>
+            <li><a href="bleu-de-travail.html">The Worker's Jacket</a></li>
           </ul>
         </div>
         <div class="footer-col">

@@ -183,6 +183,37 @@
       color: rgba(47,62,134,0.6);
     }
 
+    /* Section Pieces mobile */
+    #km-mobile-menu .km-mobile-pieces-title {
+      display: block;
+      padding: 1.1rem 0 0.6rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      font-weight: 700;
+      font-family: 'Barlow', Arial, sans-serif;
+    }
+
+    #km-mobile-menu .km-mobile-pieces {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-bottom: 1px solid rgba(47,62,134,0.08);
+      padding-bottom: 0.5rem;
+    }
+
+    #km-mobile-menu .km-mobile-pieces a {
+      padding: 0.7rem 0 0.7rem 1rem;
+      font-size: 0.75rem;
+      color: var(--bleu);
+      border-bottom: 1px solid rgba(47,62,134,0.05);
+    }
+
+    #km-mobile-menu .km-mobile-pieces a:last-child {
+      border-bottom: none;
+    }
+
     #km-mobile-menu .km-shop-mobile {
       display: block;
       margin-top: 2rem;
@@ -219,7 +250,9 @@
       <li><a href="index.html#about">The House</a></li>
       <li><a href="index.html#miy">Bespoke</a></li>
       <li><a href="index.html#travels">Our Travels</a></li>
+      <li><a href="index.html#pieces">Our Pieces</a></li>
       <li><a href="index.html#philosophy">Our DNA</a></li>
+      <li><a href="pieces-maitresses-final.html">The Works</a></li>
       <li><a href="https://kilometre.paris" class="km-shop" target="_blank">Shop</a></li>
     </ul>
     <button class="km-burger" aria-label="Menu">
@@ -236,6 +269,7 @@
       <li><a href="index.html#about">The House</a></li>
       <li><a href="index.html#miy">Bespoke</a></li>
       <li><a href="index.html#philosophy">Our DNA</a></li>
+      <li><a href="pieces-maitresses-final.html">The Works</a></li>
     </ul>
 
     <span class="km-mobile-travels-title">Our Travels</span>
@@ -251,6 +285,11 @@
       <a href="paris-part-3.html">Paris — Part III <span>France</span></a>
       <a href="venice.html">Venice <span>Italy</span></a>
       <a href="ibiza.html">Ibiza <span>Spain</span></a>
+    </div>
+
+    <span class="km-mobile-pieces-title">Our Pieces</span>
+    <div class="km-mobile-pieces">
+      <a href="bleu-de-travail.html">The Worker's Jacket</a>
     </div>
 
     <a href="https://kilometre.paris" class="km-shop-mobile" target="_blank">Shop</a>
