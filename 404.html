@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found · Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Barlow:wght@300;400;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #B82928;
+            --bleu: #2F3E86;
+            --jaune: #FFF8BD;
+            --blanc: #FAF9F6;
+            --noir: #1a1a1a;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--bleu);
+            color: var(--blanc);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* MARQUEE HAUT */
+        .marquee-bar {
+            background: var(--rouge);
+            color: var(--jaune);
+            padding: 0.7rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .marquee-inner {
+            display: inline-flex;
+            gap: 3rem;
+            animation: marquee 18s linear infinite;
+        }
+
+        .marquee-inner span {
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .marquee-dot { color: var(--blanc); }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* MAIN */
+        .page {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        /* GAUCHE */
+        .left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5rem 5rem 5rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left::before {
+            content: '404';
+            position: absolute;
+            top: 50%;
+            left: -2rem;
+            transform: translateY(-50%);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.04);
+            line-height: 1;
+            pointer-events: none;
+            letter-spacing: -0.05em;
+        }
+
+        .eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--jaune);
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: var(--jaune);
+            opacity: 0.7;
+        }
+
+        .title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--blanc);
+            margin-bottom: 1.5rem;
+        }
+
+        .title em {
+            font-style: italic;
+            color: var(--jaune);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+            max-width: 380px;
+            margin-bottom: 3rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--jaune);
+            color: var(--bleu);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover { background: var(--blanc); }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.7);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--blanc);
+            color: var(--blanc);
+        }
+
+        /* LIENS RAPIDES */
+        .quick-links {
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .quick-links-label {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .quick-links-list {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .quick-links-list a {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .quick-links-list a:hover { color: var(--jaune); }
+
+        /* DROITE — grille photos */
+        .right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 3px;
+            overflow: hidden;
+        }
+
+        .photo-cell {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            filter: brightness(0.6) saturate(0.8);
+            transition: filter 0.4s ease, transform 0.6s ease;
+        }
+
+        .photo-cell:hover img {
+            filter: brightness(0.8) saturate(1);
+            transform: scale(1.03);
+        }
+
+        .photo-cell-label {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .photo-cell-link {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+
+        /* MARQUEE BAS */
+        .marquee-bar-bottom {
+            background: var(--noir);
+            color: rgba(255,255,255,0.25);
+            padding: 0.6rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .marquee-bar-bottom .marquee-inner {
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .marquee-bar-bottom span {
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            body { overflow: auto; }
+            .page { grid-template-columns: 1fr; overflow: visible; }
+            .left { padding: 3rem 1.5rem; }
+            .left::before { font-size: 10rem; left: -0.5rem; opacity: 0.06; }
+            .right { height: 60vw; }
+            .actions { flex-direction: column; }
+            .btn-primary, .btn-outline { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+
+    <!-- MARQUEE HAUT -->
+    <div class="marquee-bar">
+        <div class="marquee-inner">
+            <span>Lost in transit</span><span class="marquee-dot">✦</span>
+            <span>Page not found</span><span class="marquee-dot">✦</span>
+            <span>Kilometre Paris</span><span class="marquee-dot">✦</span>
+            <span>Where fashion meets adventure</span><span class="marquee-dot">✦</span>
+            <span>Lost in transit</span><span class="marquee-dot">✦</span>
+            <span>Page not found</span><span class="marquee-dot">✦</span>
+            <span>Kilometre Paris</span><span class="marquee-dot">✦</span>
+            <span>Where fashion meets adventure</span><span class="marquee-dot">✦</span>
+        </div>
+    </div>
+
+    <div class="page">
+
+        <!-- GAUCHE -->
+        <div class="left">
+            <p class="eyebrow">Error 404</p>
+            <h1 class="title">
+                You seem to have<br>
+                taken a <em>wrong<br>
+                turn.</em>
+            </h1>
+            <p class="subtitle">
+                This page doesn't exist — but the world is full of pages worth discovering. Let us guide you back to the journey.
+            </p>
+            <div class="actions">
+                <a href="index.html" class="btn-primary">Back to home</a>
+                <a href="https://kilometre.paris" class="btn-outline" target="_blank">Visit the shop</a>
+            </div>
+            <div class="quick-links">
+                <p class="quick-links-label">Or explore</p>
+                <ul class="quick-links-list">
+                    <li><a href="melbourne.html">Melbourne</a></li>
+                    <li><a href="paris.html">Paris</a></li>
+                    <li><a href="venice.html">Venice</a></li>
+                    <li><a href="addis-ababa.html">Addis Ababa</a></li>
+                    <li><a href="pieces-maitresses-final.html">The Works</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DROITE -->
+        <div class="right">
+            <div class="photo-cell">
+                <a href="melbourne.html" class="photo-cell-link"></a>
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300&width=1800" alt="Melbourne">
+                <span class="photo-cell-label">Melbourne</span>
+            </div>
+            <div class="photo-cell">
+                <a href="paris.html" class="photo-cell-link"></a>
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05297_JULIE_GAYET.jpg?v=1756473305&width=1800" alt="Paris">
+                <span class="photo-cell-label">Paris</span>
+            </div>
+            <div class="photo-cell">
+                <a href="venice.html" class="photo-cell-link"></a>
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Anthonia_Sautter_CARAVAN__DSC5006.jpg?v=1776418987&width=1800" alt="Venice">
+                <span class="photo-cell-label">Venice</span>
+            </div>
+            <div class="photo-cell">
+                <a href="addis-ababa.html" class="photo-cell-link"></a>
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7264.jpg?v=1742478861&width=1800" alt="Addis Ababa">
+                <span class="photo-cell-label">Addis Ababa</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
