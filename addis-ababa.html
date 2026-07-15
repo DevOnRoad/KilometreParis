@@ -54,10 +54,35 @@
             .muse-section.reverse .muse-text { order: 2; }
             .muse-section.reverse .muse-image { order: 1; }
             .muse-section .muse-image { order: -1; }
+            .piece-unique-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .piece-unique-inner { padding: 0 20px; }
         }
+
+        /* PIECE UNIQUE / KAFTAN SECTION */
+        .piece-unique-section {
+            background: var(--gris-clair);
+            padding: 70px 0;
+            margin: 80px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .piece-unique-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
+        .piece-unique-title { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--rouge); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 900; text-align: center; margin-bottom: 15px; }
+        .piece-unique-viewall { display: block; width: fit-content; margin: 0 auto 40px; border: 1px solid var(--bleu); color: var(--bleu); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.6rem 1.8rem; font-weight: 700; transition: all 0.2s; }
+        .piece-unique-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .piece-unique-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 25px; }
+        .piece-unique-card { text-decoration: none; display: flex; flex-direction: column; }
+        .piece-unique-img-wrap { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 14px; }
+        .piece-unique-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
+        .piece-unique-card:hover .piece-unique-img-wrap img { transform: scale(1.03); }
+        .piece-unique-name { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bleu); font-weight: 700; line-height: 1.6; }
+        .piece-unique-price { font-size: 0.7rem; color: var(--noir); margin-top: 4px; }
     </style>
 </head>
 <body>
+    <script src="navbar.js"></script>
 
 <div class="section-container">
 
@@ -268,5 +293,56 @@
 
 </div>
 
+<!-- KAFTAN SECTION -->
+<section class="piece-unique-section" aria-label="Our Kaftans">
+    <div class="piece-unique-inner">
+        <h2 class="piece-unique-title">Our Kaftans</h2>
+        <a href="https://kilometre.paris/collections/kaftans" class="piece-unique-viewall" target="_blank">View All</a>
+        <div class="piece-unique-grid">
+
+            <a href="https://kilometre.paris/collections/kaftans/products/pink-feet-kaftan" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Mini-Kaftan-Kaftan-Kaftan-166136686.jpg?v=1783503143&width=1800" alt="Pink Feet – Kaftan">
+                </div>
+                <p class="piece-unique-name">Pink Feet</p>
+                <p class="piece-unique-price">€490</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/kaftans/products/blue-hands-kaftan" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Blue-Hands-Kaftan-Kaftan-166129756.jpg?v=1783502545&width=1800" alt="Blue Hands – Kaftan">
+                </div>
+                <p class="piece-unique-name">Blue Hands</p>
+                <p class="piece-unique-price">€490</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/kaftans/products/burgundy-parrot-kaftan" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Coucou-Kaftan-Kaftan-166130520.jpg?v=1783502664&width=1800" alt="Burgundy Parrot – Kaftan">
+                </div>
+                <p class="piece-unique-name">Burgundy Parrot</p>
+                <p class="piece-unique-price">€490</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/kaftans/products/coucou-kaftan" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Coucou-Kaftan-Kaftan-166131216.jpg?v=1783502712&width=1800" alt="Coucou – Kaftan">
+                </div>
+                <p class="piece-unique-name">Coucou</p>
+                <p class="piece-unique-price">€490</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/kaftans/products/navy-anchor-kaftan" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Navy-Anchor-Kaftan-Kaftan-166133837.jpg?v=1783502900&width=1800" alt="Navy Anchor – Kaftan">
+                </div>
+                <p class="piece-unique-name">Navy Anchor</p>
+                <p class="piece-unique-price">€490</p>
+            </a>
+
+        </div>
+    </div>
+</section>
+ <script src="footer.js"></script>
 </body>
 </html>
