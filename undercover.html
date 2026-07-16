@@ -6,169 +6,350 @@
     <title>Road Map of Undercover Baskets — Kilometre Paris</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Caveat:wght@400;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --rouge: #C8281E;
-            --bleu: #2F3E86;
-            --noir: #1a1a1a;
-            --blanc: #ffffff;
-        }
-
+        :root { --rouge: #C8281E; --bleu: #2F3E86; --noir: #1a1a1a; --blanc: #ffffff; --sable: #F2EDB8; }
         html { scroll-behavior: smooth; }
+        body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(--noir); overflow-x: hidden; }
 
-        body {
-            font-family: 'Barlow', sans-serif;
-            background: var(--blanc);
-            color: var(--noir);
-            overflow-x: hidden;
-        }
-
-        /* ── PAGE COVER ── */
-        .page-cover {
+        /* ── COVER ── */
+        .cover {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--noir);
+            background: var(--blanc);
+            padding: 2rem;
+        }
+        .cover img { width: 100%; max-width: 480px; display: block; }
+
+        /* ── MARQUEE ── */
+        .marquee-bar { background: var(--noir); padding: 0.75rem 0; overflow: hidden; white-space: nowrap; }
+        .marquee-inner { display: inline-flex; gap: 2.5rem; animation: mq 18s linear infinite; }
+        .marquee-inner span { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+        .marquee-inner .dot { color: var(--rouge); }
+        @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ── CHAPTERS ── */
+        .chapter {
             position: relative;
-        }
-
-        .cover-img {
-            width: 100%;
-            max-width: 600px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* ── PAGES ── */
-        .page {
-            min-height: 100vh;
-            display: grid;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        /* Pages avec image + texte côte à côte */
-        .page-split {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .page-split.reverse {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        /* Pages avec grande image pleine */
-        .page-full {
-            grid-template-columns: 1fr;
-        }
-
-        .page-img {
-            position: relative;
+            padding: 6rem 5vw;
             overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
         }
 
-        .page-img img {
+        /* Numéro de chapitre en fond */
+        .chapter-bg-num {
+            position: absolute;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22rem;
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -0.05em;
+        }
+
+        /* ── LAYOUTS PAR CHAPITRE ── */
+
+        /* CH1 - Paris : grande image à droite, texte flottant à gauche */
+        .ch1 { background: var(--blanc); }
+        .ch1 .chapter-bg-num { top: -3rem; right: -2rem; }
+        .ch1-inner {
+            display: grid;
+            grid-template-columns: 1fr 55%;
+            gap: 0;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .ch1-text { padding-right: 3rem; position: relative; z-index: 2; }
+        .ch1-img {
+            position: relative;
+        }
+        .ch1-img img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-height: 90vh;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+        /* Badge coordonnées */
+        .coord-badge {
+            position: absolute;
+            top: 2rem; left: -2rem;
+            background: var(--rouge);
+            color: var(--blanc);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.6rem 1rem;
+            transform: rotate(-2deg);
+            z-index: 3;
+        }
+
+        /* CH2 - Illustrations : collage superposé */
+        .ch2 { background: var(--sable); }
+        .ch2 .chapter-bg-num { bottom: -3rem; left: -2rem; }
+        .ch2-inner {
+            display: grid;
+            grid-template-columns: 45% 1fr;
+            gap: 3rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .ch2-img {
+            position: relative;
+        }
+        .ch2-img img {
+            width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            display: block;
+        }
+        /* Sticker rouge flottant */
+        .sticker {
+            position: absolute;
+            background: var(--rouge);
+            color: var(--blanc);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.5rem 0.9rem;
+            transform: rotate(3deg);
+        }
+        .sticker.bl { bottom: 3rem; right: -1rem; }
+        .sticker.tl { top: 2rem; left: -1rem; transform: rotate(-2deg); }
+
+        /* CH3 - Said : image grande à gauche */
+        .ch3 { background: var(--blanc); }
+        .ch3 .chapter-bg-num { top: -3rem; right: 5vw; }
+        .ch3-inner {
+            display: grid;
+            grid-template-columns: 50% 1fr;
+            gap: 4rem;
+            align-items: start;
+            min-height: 80vh;
+        }
+        .ch3-img img {
+            width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
             object-position: top;
             display: block;
         }
 
-        .page-img.contain img {
+        /* CH4 - Les mains : texte à gauche image à droite avec overlap */
+        .ch4 { background: var(--sable); }
+        .ch4 .chapter-bg-num { top: -3rem; right: -2rem; }
+        .ch4-inner {
+            display: grid;
+            grid-template-columns: 1fr 50%;
+            gap: 3rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .ch4-img {
+            position: relative;
+        }
+        .ch4-img img {
+            width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+        }
+        /* Pastille chiffre */
+        .pastille {
+            position: absolute;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: var(--rouge);
+            color: var(--blanc);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 0.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .pastille.top-right { top: -1rem; right: -1rem; }
+        .pastille.val { font-size: 1.1rem; letter-spacing: 0; }
+
+        /* CH5 - La carte : image pleine largeur avec texte superposé */
+        .ch5 {
+            background: var(--blanc);
+            padding: 0;
+        }
+        .ch5-inner {
+            position: relative;
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .ch5-img {
+            position: relative;
+            background: var(--sable);
+        }
+        .ch5-img img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             object-position: center;
-            background: var(--blanc);
+            display: block;
         }
-
-        .page-text {
+        .ch5-text {
             padding: 5rem 4rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 1.5rem;
+            background: var(--blanc);
         }
 
-        /* ── TYPO KILOMETRE ── */
-        .step-num {
+        /* CH6 - Clichy/Vitry */
+        .ch6 { background: var(--sable); }
+        .ch6 .chapter-bg-num { top: -3rem; left: -1rem; }
+        .ch6-inner {
+            display: grid;
+            grid-template-columns: 50% 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .ch6-img img {
+            width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* CH7 - Train/Orgerus */
+        .ch7 { background: var(--blanc); }
+        .ch7 .chapter-bg-num { bottom: -3rem; right: -1rem; }
+        .ch7-inner {
+            display: grid;
+            grid-template-columns: 1fr 50%;
+            gap: 3rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .ch7-img img {
+            width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* CH8 - Le monde : image à droite grand format */
+        .ch8 { background: var(--sable); }
+        .ch8 .chapter-bg-num { top: -3rem; left: -2rem; }
+        .ch8-inner {
+            display: grid;
+            grid-template-columns: 1fr 55%;
+            gap: 0;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .ch8-text { padding-right: 3rem; position: relative; z-index: 2; }
+        .ch8-img img {
+            width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* ── TYPO COMMUNE ── */
+        .chapter-label {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: 900;
-            letter-spacing: 0.4em;
+            letter-spacing: 0.45em;
             text-transform: uppercase;
             color: var(--rouge);
+            margin-bottom: 0.8rem;
         }
 
-        .step-city {
+        .chapter-title {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-size: clamp(3rem, 6vw, 6.5rem);
             font-weight: 900;
             text-transform: uppercase;
-            line-height: 0.9;
-            color: var(--noir);
-            /* Style outline rouge */
+            line-height: 0.88;
+            letter-spacing: -0.02em;
             -webkit-text-stroke: 2px var(--rouge);
             color: transparent;
+            margin-bottom: 1.5rem;
         }
 
-        .step-city.filled {
+        .chapter-title.solid {
             color: var(--rouge);
             -webkit-text-stroke: 0;
         }
 
-        .step-caption {
-            font-family: 'Caveat', cursive;
-            font-size: 1.1rem;
+        .chapter-caption {
+            font-family: 'Barlow', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
             color: var(--noir);
-            line-height: 1.5;
-            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        .step-body {
-            font-size: 0.88rem;
-            line-height: 1.9;
-            color: rgba(0,0,0,0.6);
+        .chapter-body {
+            font-size: 0.85rem;
+            line-height: 1.95;
+            color: rgba(0,0,0,0.55);
             font-weight: 300;
-            max-width: 380px;
+            max-width: 360px;
+            margin-bottom: 1.2rem;
         }
 
-        .step-quote {
+        .chapter-aside {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 700;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(0,0,0,0.35);
+            color: rgba(0,0,0,0.3);
             border-left: 2px solid var(--rouge);
             padding-left: 0.8rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* ── PAGE FINALE ── */
-        .page-finale {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0 0 5rem;
+        /* ── CTA FINALE ── */
+        .finale {
+            background: var(--blanc);
+            padding: 8rem 5vw;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .finale-img {
-            width: 100%;
-            display: block;
+        .finale-img-wrap {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .finale-img-wrap img { width: 100%; display: block; }
+
+        .finale-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 5vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--rouge);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
 
         .finale-cta {
-            margin-top: 3rem;
             display: inline-block;
             padding: 1rem 3rem;
             background: var(--rouge);
@@ -181,196 +362,196 @@
             text-decoration: none;
             transition: background 0.2s;
         }
-
         .finale-cta:hover { background: var(--bleu); }
 
-        /* ── MARQUEE ── */
-        .marquee-bar {
-            background: var(--noir);
-            color: rgba(255,255,255,0.4);
-            padding: 0.8rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-inner {
-            display: inline-flex;
-            gap: 3rem;
-            animation: marquee 20s linear infinite;
-        }
-
-        .marquee-inner span {
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-        }
-
-        .marquee-inner .dot { color: var(--rouge); }
-
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
         /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
-            .page-split, .page-split.reverse { grid-template-columns: 1fr; }
-            .page-img { min-height: 60vw; }
-            .page-text { padding: 3rem 1.5rem; }
-            .page-cover { padding: 3rem 1.5rem; }
+        @media (max-width: 900px) {
+            .ch1-inner, .ch2-inner, .ch3-inner, .ch4-inner,
+            .ch5-inner, .ch6-inner, .ch7-inner, .ch8-inner {
+                grid-template-columns: 1fr;
+            }
+            .ch1-text, .ch8-text { padding-right: 0; }
+            .chapter-bg-num { font-size: 10rem; opacity: 0.04; }
+            .chapter { padding: 4rem 1.5rem; }
+            .ch5 { padding: 0; }
+            .ch5-text { padding: 3rem 1.5rem; }
+            .coord-badge { top: 0; left: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- COVER -->
-    <div class="page-cover">
-        <img class="cover-img" src="./undercoverRoadMap/COVER_ROAD_MAP.png" alt="Road Map of Undercover Baskets — Kilometre Paris">
-    </div>
+<script src="navbar.js"></script>
 
-    <!-- MARQUEE -->
-    <div class="marquee-bar">
-        <div class="marquee-inner">
-            <span>Paris</span><span class="dot">✦</span>
-            <span>Marrakech</span><span class="dot">✦</span>
-            <span>Essaouira</span><span class="dot">✦</span>
-            <span>Tanger</span><span class="dot">✦</span>
-            <span>Algeciras</span><span class="dot">✦</span>
-            <span>Clichy</span><span class="dot">✦</span>
-            <span>Vitry-sur-Seine</span><span class="dot">✦</span>
-            <span>Orgerus</span><span class="dot">✦</span>
-            <span>The World</span><span class="dot">✦</span>
-            <span>Paris</span><span class="dot">✦</span>
-            <span>Marrakech</span><span class="dot">✦</span>
-            <span>Essaouira</span><span class="dot">✦</span>
-            <span>Tanger</span><span class="dot">✦</span>
-            <span>Algeciras</span><span class="dot">✦</span>
-            <span>Clichy</span><span class="dot">✦</span>
-            <span>Vitry-sur-Seine</span><span class="dot">✦</span>
-            <span>Orgerus</span><span class="dot">✦</span>
-            <span>The World</span><span class="dot">✦</span>
-        </div>
-    </div>
+<!-- COVER -->
+<div class="cover">
+    <img src="./undercoverRoadMap/COVER_ROAD_MAP.png" alt="Road Map of Undercover Baskets">
+</div>
 
-    <!-- PAGE 1 — PARIS, L'IDÉE -->
-    <div class="page page-split">
-        <div class="page-img contain">
-            <img src="./undercoverRoadMap/Page_88.png" alt="Paris — Alexandra discovers the idea">
+<!-- MARQUEE -->
+<div class="marquee-bar">
+    <div class="marquee-inner">
+        <span>Paris</span><span class="dot">✦</span><span>Marrakech</span><span class="dot">✦</span>
+        <span>Essaouira</span><span class="dot">✦</span><span>Tanger</span><span class="dot">✦</span>
+        <span>Algeciras</span><span class="dot">✦</span><span>Clichy</span><span class="dot">✦</span>
+        <span>Vitry-sur-Seine</span><span class="dot">✦</span><span>Orgerus</span><span class="dot">✦</span>
+        <span>Le Monde</span><span class="dot">✦</span>
+        <span>Paris</span><span class="dot">✦</span><span>Marrakech</span><span class="dot">✦</span>
+        <span>Essaouira</span><span class="dot">✦</span><span>Tanger</span><span class="dot">✦</span>
+        <span>Algeciras</span><span class="dot">✦</span><span>Clichy</span><span class="dot">✦</span>
+        <span>Vitry-sur-Seine</span><span class="dot">✦</span><span>Orgerus</span><span class="dot">✦</span>
+        <span>Le Monde</span><span class="dot">✦</span>
+    </div>
+</div>
+
+<!-- CH1 — PARIS -->
+<section class="chapter ch1">
+    <span class="chapter-bg-num">01</span>
+    <div class="ch1-inner">
+        <div class="ch1-text">
+            <p class="chapter-label">Chapter 01 · The Idea</p>
+            <h2 class="chapter-title">Paris,<br>Île de<br>la Cité.</h2>
+            <p class="chapter-caption">Alexandra discovers the idea.</p>
+            <p class="chapter-body">It begins here, on the banks of the Seine. Alexandra spots a basket — colourful, handmade, imperfect. She sees something else entirely: a canvas. A story waiting to be embroidered. The coordinates are set.</p>
+            <p class="chapter-aside">48°51'11"N 2°20'59"E<br>The starting point of every basket.</p>
         </div>
-        <div class="page-text">
-            <p class="step-num">Chapter 01 · The Idea</p>
-            <h2 class="step-city">Paris</h2>
-            <p class="step-caption">Paris, Île de la Cité.<br>Alexandra discovers the idea.</p>
-            <p class="step-body">It begins here, on the banks of the Seine. Alexandra spots a basket — colourful, handmade, imperfect. She sees something else: a canvas. A story waiting to be embroidered. She writes the first sketch on a napkin. The coordinates are set.</p>
-            <p class="step-quote">48°51'11"N 2°20'59"E</p>
+        <div class="ch1-img">
+            <span class="coord-badge">48°51'N · 2°20'E</span>
+            <img src="./undercoverRoadMap/Page_88.png" alt="Alexandra à Paris — l'idée">
         </div>
     </div>
+</section>
 
-    <!-- PAGE 2 — LES ILLUSTRATIONS -->
-    <div class="page page-split reverse">
-        <div class="page-text" style="order:2;">
-            <p class="step-num">Chapter 02 · The Vision</p>
-            <h2 class="step-city">The Drawing</h2>
-            <p class="step-caption">Lola, Cecilia, Sarah, Charlotte and many others, create the illustrations.</p>
-            <p class="step-body">Before a single thread is woven, the basket lives on a screen. Artists imagine every embroidery, every colour, every motif. The illustration is a blueprint — a dream translated into instructions for hands that will never meet the person who drew it.</p>
-            <p class="step-quote">Every design begins<br>as a thought bubble.</p>
+<!-- CH2 — LES ILLUSTRATIONS -->
+<section class="chapter ch2">
+    <span class="chapter-bg-num">02</span>
+    <div class="ch2-inner">
+        <div class="ch2-img">
+            <div class="sticker tl">The artists ✦</div>
+            <img src="./undercoverRoadMap/PAGE_2_NEW_31_JUL.png" alt="Les illustratrices créent les designs">
+            <div class="sticker bl">Lola · Cecilia<br>Sarah · Charlotte</div>
         </div>
-        <div class="page-img contain" style="order:1;">
-            <img src="./undercoverRoadMap/PAGE_2_NEW_31_JUL.png" alt="The illustrations are created">
+        <div>
+            <p class="chapter-label">Chapter 02 · The Vision</p>
+            <h2 class="chapter-title">The<br>Drawing</h2>
+            <p class="chapter-caption">Before a single thread is woven, the basket lives on a screen.</p>
+            <p class="chapter-body">Artists imagine every embroidery, every colour, every motif. The illustration is a blueprint — a dream translated into instructions for hands that will never meet the person who drew it.</p>
+            <p class="chapter-aside">Lola, Cecilia, Sarah, Charlotte<br>and many others create the illustrations.</p>
         </div>
     </div>
+</section>
 
-    <!-- PAGE 3 — SAID & ESSAOUIRA -->
-    <div class="page page-split">
-        <div class="page-img contain">
-            <img src="./undercoverRoadMap/Page_3.png" alt="Said orchestrates his family — Essaouira">
+<!-- CH3 — SAID & ESSAOUIRA -->
+<section class="chapter ch3">
+    <span class="chapter-bg-num">03</span>
+    <div class="ch3-inner">
+        <div class="ch3-img">
+            <img src="./undercoverRoadMap/Page_3.png" alt="Said et sa famille — Essaouira">
         </div>
-        <div class="page-text">
-            <p class="step-num">Chapter 03 · The Craft</p>
-            <h2 class="step-city">Essaouira</h2>
-            <p class="step-caption">Said orchestrates his family — Hafsa, Aicha and Imane. Said gives the final eye for the quality control.</p>
-            <p class="step-body">The metal structure — what they call a "gabarit" — and the palm leaves are woven in the Atlas Mountains. Said's family checks every basket by hand. The quality control happens on a plastic stool, under palm trees, with salt air from the port.</p>
-            <p class="step-quote">No machine. No shortcut.<br>Just hands and time.</p>
+        <div>
+            <p class="chapter-label">Chapter 03 · The Craft</p>
+            <h2 class="chapter-title">Essaouira</h2>
+            <p class="chapter-caption">Said orchestrates his family — Hafsa, Aicha and Imane.</p>
+            <p class="chapter-body">The metal structure — what they call a "gabarit" — and the palm leaves are woven in the Atlas Mountains. Said's family checks every basket by hand. The quality control happens on a plastic stool, under palm trees.</p>
+            <p class="chapter-aside">Said gives the final eye<br>for the quality control.</p>
         </div>
     </div>
+</section>
 
-    <!-- PAGE 4 — LE TISSAGE -->
-    <div class="page page-split reverse">
-        <div class="page-text" style="order:2;">
-            <p class="step-num">Chapter 04 · The Weaving</p>
-            <h2 class="step-city">The Hands</h2>
-            <p class="step-caption">The base and background are knitted by Hassna, Sabah, Roquaia and many other women. Nezha, Ibtisam and Latifa bring the imaginery comes to life by crocheting the "relief".</p>
-            <p class="step-body">Said buys the threads in Essaouira, Casablanca and Marrakech, searching for the right colours. Each basket changes hands a dozen times before it is finished. Said drives his car full of basket-candies from Essaouira to Marrakech.</p>
-            <p class="step-quote">Said B. Essaouira<br>Marrakech — our 74 artisans.</p>
+<!-- CH4 — LE TISSAGE -->
+<section class="chapter ch4">
+    <span class="chapter-bg-num">74</span>
+    <div class="ch4-inner">
+        <div>
+            <p class="chapter-label">Chapter 04 · The Weaving</p>
+            <h2 class="chapter-title">The<br>Hands</h2>
+            <p class="chapter-caption">Hassna, Sabah, Roquaia, Nezha, Ibtisam, Latifa — and many more.</p>
+            <p class="chapter-body">Said buys the threads in Essaouira, Casablanca and Marrakech, searching for the right colours. Each basket changes hands a dozen times before it is finished. The base is knitted, the background crocheted, the relief embroidered.</p>
+            <p class="chapter-aside">74 artisans.<br>Said drives his car full of<br>basket-candies from Essaouira to Marrakech.</p>
         </div>
-        <div class="page-img contain" style="order:1;">
-            <img src="./undercoverRoadMap/Page_4.png" alt="The weaving — Essaouira to Marrakech">
+        <div class="ch4-img">
+            <div class="pastille top-right"><span>74</span><span style="font-size:0.45rem;letter-spacing:0.1em;">artisans</span></div>
+            <img src="./undercoverRoadMap/Page_4.png" alt="Le tissage — Essaouira">
         </div>
     </div>
+</section>
 
-    <!-- PAGE 5 — LA CARTE, LE VOYAGE -->
-    <div class="page page-split">
-        <div class="page-img contain">
-            <img src="./undercoverRoadMap/Page_5.png" alt="The truck — Marrakech to Tanger to Algeciras to Clichy">
+<!-- CH5 — LA TRAVERSÉE -->
+<section class="chapter ch5">
+    <div class="ch5-inner">
+        <div class="ch5-img">
+            <img src="./undercoverRoadMap/Page_5.png" alt="La carte — Marrakech vers Paris">
         </div>
-        <div class="page-text">
-            <p class="step-num">Chapter 05 · The Crossing</p>
-            <h2 class="step-city">Tanger →<br>Algeciras</h2>
-            <p class="step-caption">We have a truck that leaves from Marrakech to Tanger, Algeciras and last stop: Clichy.</p>
-            <p class="step-body">The Mediterranean crossing. Fourteen kilometres of sea between two continents. The truck boards the Maroc Express ferry at Tanger, and arrives in Algeciras, Spain. From there, the road north begins — through Spain, across France, all the way to the suburbs of Paris.</p>
-            <p class="step-quote">~2,500 km by road.<br>One ferry. One truck.</p>
+        <div class="ch5-text">
+            <p class="chapter-label">Chapter 05 · The Crossing</p>
+            <h2 class="chapter-title">Tanger<br>→<br>Algeciras</h2>
+            <p class="chapter-caption">We have a truck that leaves from Marrakech to Tanger, Algeciras — last stop: Clichy.</p>
+            <p class="chapter-body">The Mediterranean crossing. Fourteen kilometres of sea between two continents. The truck boards the Maroc Express ferry at Tanger and arrives in Algeciras, Spain. From there, 2,500 kilometres north.</p>
+            <p class="chapter-aside">~2,500 km by road.<br>One ferry. One truck.<br>Two continents.</p>
         </div>
     </div>
+</section>
 
-    <!-- PAGE 6 — CLICHY / VITRY -->
-    <div class="page page-split reverse">
-        <div class="page-text" style="order:2;">
-            <p class="step-num">Chapter 06 · The Arrival</p>
-            <h2 class="step-city">Clichy →<br>Vitry</h2>
-            <p class="step-caption">Hassan grabs the treasures in Clichy to deliver us in Vitry-sur-Seine. The trip is not finished — immediately they set out by train from Gare Montparnasse to Orgerus.</p>
-            <p class="step-body">The baskets arrive in the Paris suburbs. Hassan unloads them in Clichy. They travel south to Vitry-sur-Seine. Then by train from Gare Montparnasse. The streets of Paris carry them before you do.</p>
-            <p class="step-quote">Clichy · Vitry-sur-Seine<br>Montparnasse · Orgerus</p>
+<!-- CH6 — CLICHY / VITRY -->
+<section class="chapter ch6">
+    <span class="chapter-bg-num">06</span>
+    <div class="ch6-inner">
+        <div class="ch6-img">
+            <img src="./undercoverRoadMap/Page_6_.png" alt="Clichy — Vitry-sur-Seine">
         </div>
-        <div class="page-img contain" style="order:1;">
-            <img src="./undercoverRoadMap/Page_6_.png" alt="Clichy — Vitry-sur-Seine — Gare Montparnasse">
+        <div>
+            <p class="chapter-label">Chapter 06 · The Arrival</p>
+            <h2 class="chapter-title">Clichy<br>→ Vitry</h2>
+            <p class="chapter-caption">Hassan grabs the treasures in Clichy to deliver them in Vitry-sur-Seine.</p>
+            <p class="chapter-body">The baskets arrive in the suburbs of Paris. Hassan unloads in Clichy, drives south to Vitry-sur-Seine. The trip is not finished — immediately they set out by train from Gare Montparnasse to Orgerus.</p>
+            <p class="chapter-aside">Clichy · Vitry-sur-Seine<br>Gare Montparnasse · Orgerus</p>
         </div>
     </div>
+</section>
 
-    <!-- PAGE 7 — LE TRAIN / ORGERUS -->
-    <div class="page page-split">
-        <div class="page-img contain">
-            <img src="./undercoverRoadMap/Page_7.png" alt="The train to Orgerus — the photoshoot">
+<!-- CH7 — ORGERUS / LE SHOOT -->
+<section class="chapter ch7">
+    <span class="chapter-bg-num">07</span>
+    <div class="ch7-inner">
+        <div>
+            <p class="chapter-label">Chapter 07 · The Shoot</p>
+            <h2 class="chapter-title">Orgerus</h2>
+            <p class="chapter-caption">The pieces are photographed by Alexandra, Thomas and Côme in "La Roseraie" of the Castle of Courgent.</p>
+            <p class="chapter-body">A TER train from Montparnasse. A castle in the countryside. A rose garden. Alexandra holds the basket — the same one that started in Morocco, crossed the sea, travelled by truck and train. Now it faces a camera. Almost ready.</p>
+            <p class="chapter-aside">Gare Montparnasse → Orgerus<br>One hour by train.</p>
         </div>
-        <div class="page-text">
-            <p class="step-num">Chapter 07 · The Shoot</p>
-            <h2 class="step-city">Orgerus</h2>
-            <p class="step-caption">The pieces are photographed by Alexandra, Thomas and their little assistant Côme in "La Roseraie" of the Castle of Courgent.</p>
-            <p class="step-body">The TER from Montparnasse. A castle in the countryside. A rose garden. Alexandra holds the basket — the same one that started in Morocco, crossed the sea, travelled by truck and train. Now it is in front of a camera. Almost ready.</p>
-            <p class="step-quote">Gare Montparnasse → Orgerus<br>One hour by train.</p>
+        <div class="ch7-img">
+            <img src="./undercoverRoadMap/Page_7.png" alt="Le train pour Orgerus — le photoshoot">
         </div>
     </div>
+</section>
 
-    <!-- PAGE 11 — FIN / LE MONDE -->
-    <div class="page page-split reverse">
-        <div class="page-text" style="order:2;">
-            <p class="step-num">Chapter 08 · The Destination</p>
-            <h2 class="step-city filled">The World</h2>
-            <p class="step-caption">The basket is ready to fly to you, shops, beaches, mountains and cities all over the world.</p>
-            <p class="step-body">The trip is not finished, and barely twenty of the kilometres have been started. This basket will travel further than most people ever will. It will go to places Said has never been. It will carry your things, your memories, your life.</p>
-            <p class="step-quote">This is not just a basket.<br>This is a Kilometre.</p>
-            <a href="https://kilometre.paris/collections/undercover" class="finale-cta" target="_blank" style="align-self:flex-start; margin-top:1rem;">Shop the Undercover →</a>
+<!-- CH8 — LE MONDE -->
+<section class="chapter ch8">
+    <span class="chapter-bg-num">∞</span>
+    <div class="ch8-inner">
+        <div class="ch8-text">
+            <p class="chapter-label">Chapter 08 · The Destination</p>
+            <h2 class="chapter-title solid">The<br>World.</h2>
+            <p class="chapter-caption">The basket is ready to fly to you — shops, beaches, mountains and cities all over the world.</p>
+            <p class="chapter-body">The trip is not finished, and barely twenty of the kilometres have been started. This basket will travel further than most people ever will. It will carry your things, your memories, your life.</p>
+            <p class="chapter-aside">This is not just a basket.<br>This is a Kilometre.</p>
         </div>
-        <div class="page-img contain" style="order:1;">
+        <div class="ch8-img">
             <img src="./undercoverRoadMap/PAGE_11.png" alt="The basket is ready to fly to you">
         </div>
     </div>
+</section>
 
-    <!-- FINALE -->
-    <div class="page-finale">
-        <img class="finale-img" src="./undercoverRoadMap/COVER_ROAD_MAP.png" alt="Road Map of Undercover Baskets">
-        <a href="https://kilometre.paris/collections/undercover" class="finale-cta" target="_blank">Discover all Undercover Baskets →</a>
+<!-- FINALE -->
+<div class="finale">
+    <div class="finale-img-wrap">
+        <img src="./undercoverRoadMap/COVER_ROAD_MAP.png" alt="Undercover Baskets — Kilometre Paris">
     </div>
+    <p class="finale-title">Shop the Undercover</p>
+    <a href="https://kilometre.paris/collections/undercover" class="finale-cta" target="_blank">Discover all Undercover Baskets →</a>
+</div>
+<script src="footer.js"></script>
 
 </body>
 </html>
