@@ -24,60 +24,42 @@
             overflow-x: hidden;
         }
 
-        /* ── COVER ── */
-        .cover {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--blanc);
-            position: relative;
-            overflow: hidden;
-        }
-        .cover img {
-            height: 90vh;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* ── MARQUEE ── */
-        .marquee-bar { background: var(--noir); padding: 0.75rem 0; overflow: hidden; white-space: nowrap; }
+        /* ── MARQUEE — rouge Kilometre ── */
+        .marquee-bar { background: var(--rouge); padding: 0.75rem 0; overflow: hidden; white-space: nowrap; }
         .marquee-inner { display: inline-flex; gap: 2.5rem; animation: mq 18s linear infinite; }
-        .marquee-inner span { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-        .marquee-inner .dot { color: var(--rouge); }
+        .marquee-inner span { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blanc); }
+        .marquee-inner .dot { color: var(--sable); }
         @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* ══════════════════════════════
-           CHAPITRE 1 — PARIS
-           Full bleed, image à droite,
-           texte géant qui respire
-        ══════════════════════════════ */
+        /* ── GRILLE 2 IMAGES ── */
+        .duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .duo img {
+            width: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        .duo img:first-child { border-right: 3px solid var(--sable); }
+
+        /* ── CH PARIS ── */
         .ch-paris {
             background: var(--blanc);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 100vh;
         }
         .ch-paris-left {
-            padding: 5rem 4rem;
+            padding: 3rem 4rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            gap: 2rem;
             border-right: 1px solid rgba(0,0,0,0.08);
         }
-        .ch-paris-right {
-            position: relative;
-            overflow: hidden;
-        }
-        .ch-paris-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
+        .ch-paris-right { position: relative; }
+        .ch-paris-right img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
+
         .ch-paris-num {
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 0.58rem;
@@ -88,7 +70,7 @@
         }
         .ch-paris-title {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(5rem, 10vw, 11rem);
+            font-size: clamp(4rem, 8vw, 9rem);
             font-weight: 900;
             text-transform: uppercase;
             line-height: 0.85;
@@ -101,7 +83,6 @@
             line-height: 1.9;
             color: rgba(0,0,0,0.5);
             font-weight: 300;
-            max-width: 320px;
         }
         .ch-paris-coord {
             font-family: 'Barlow Condensed', sans-serif;
@@ -114,372 +95,176 @@
             width: fit-content;
         }
 
-        /* ══════════════════════════════
-           CHAPITRE 2 — ILLUSTRATIONS
-           3 colonnes : texte | grande img | mini img
-        ══════════════════════════════ */
+        /* ── CH DRAW ── */
         .ch-draw {
             background: var(--sable);
             display: grid;
-            grid-template-columns: 280px 1fr;
-            min-height: 90vh;
+            grid-template-columns: 260px 1fr;
         }
         .ch-draw-text {
-            padding: 5rem 3rem;
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
             border-right: 1px solid rgba(0,0,0,0.08);
         }
-        .ch-draw-img {
-            display: grid;
-            grid-template-rows: 1fr;
-        }
-        .ch-draw-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
+        .ch-draw-img img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 
-        /* ══════════════════════════════
-           CHAPITRE 3 — SAID / ESSAOUIRA
-           Image pleine hauteur + bloc texte superposé
-        ══════════════════════════════ */
+        /* ── CH SAID ── */
         .ch-said {
             background: var(--blanc);
-            position: relative;
-            min-height: 100vh;
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: 1fr 340px;
         }
-        .ch-said-img {
-            position: relative;
-            overflow: hidden;
-        }
-        .ch-said-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: top;
-            display: block;
-        }
+        .ch-said-img img { width: 100%; height: 100%; object-fit: contain; object-position: top; display: block; }
         .ch-said-text {
-            padding: 5rem 3rem;
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 1.5rem;
-            background: var(--blanc);
+            gap: 1.2rem;
             border-left: 1px solid rgba(0,0,0,0.08);
         }
 
-        /* ══════════════════════════════
-           CHAPITRE 4 — LE TISSAGE
-           Collage : 2 images côte à côte + texte dessous
-        ══════════════════════════════ */
-        .ch-weave {
-            background: var(--sable);
-            padding: 0;
-        }
+        /* ── CH WEAVE ── */
+        .ch-weave { background: var(--sable); }
         .ch-weave-imgs {
             display: grid;
-            grid-template-columns: 55% 1fr;
-            height: 65vh;
+            grid-template-columns: 1fr 1fr;
         }
-        .ch-weave-imgs img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
-        .ch-weave-imgs img:first-child {
-            border-right: 3px solid var(--sable);
-        }
+        .ch-weave-imgs img { width: 100%; object-fit: contain; display: block; }
+        .ch-weave-imgs img:first-child { border-right: 3px solid var(--sable); }
         .ch-weave-bottom {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             border-top: 1px solid rgba(0,0,0,0.08);
         }
         .ch-weave-stat {
-            padding: 2.5rem 3rem;
+            padding: 2rem 2.5rem;
             border-right: 1px solid rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
         .ch-weave-stat:last-child { border-right: none; }
-        .stat-big {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--rouge);
-            line-height: 1;
-            -webkit-text-stroke: 1px var(--rouge);
-        }
-        .stat-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: rgba(0,0,0,0.4);
-        }
-        .stat-desc {
-            font-size: 0.78rem;
-            line-height: 1.7;
-            color: rgba(0,0,0,0.5);
-            font-weight: 300;
-            margin-top: 0.5rem;
-        }
+        .stat-big { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 900; color: var(--rouge); line-height: 1; }
+        .stat-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.4); }
+        .stat-desc { font-size: 0.75rem; line-height: 1.7; color: rgba(0,0,0,0.5); font-weight: 300; margin-top: 0.3rem; }
 
-        /* ══════════════════════════════
-           CHAPITRE 5 — LA TRAVERSÉE
-           Image pleine largeur avec SVG route par dessus
-        ══════════════════════════════ */
+        /* ── CH CROSS ── */
         .ch-cross {
             background: var(--blanc);
-            position: relative;
-            min-height: 100vh;
             display: grid;
-            grid-template-columns: 1fr 360px;
+            grid-template-columns: 1fr 320px;
         }
-        .ch-cross-img {
-            position: relative;
-        }
-        .ch-cross-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
+        .ch-cross-img { position: relative; }
+        .ch-cross-img img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
         .ch-cross-text {
-            padding: 5rem 3rem;
+            padding: 3rem;
             background: var(--blanc);
             border-left: 1px solid rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
-        /* Route SVG animée */
-        .route-svg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-        .route-path {
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 2000;
-            animation: draw-route 3s ease forwards 0.5s;
-        }
-        @keyframes draw-route {
-            to { stroke-dashoffset: 0; }
-        }
+        .route-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+        .route-path { stroke-dasharray: 2000; stroke-dashoffset: 2000; animation: draw-route 3s ease forwards 0.5s; }
+        @keyframes draw-route { to { stroke-dashoffset: 0; } }
 
-        /* ══════════════════════════════
-           CHAPITRE 6 — CLICHY/VITRY
-           Texte centré, image en fond semi-transparent
-        ══════════════════════════════ */
+        /* ── CH ARRIVE ── */
         .ch-arrive {
             background: var(--sable);
             display: grid;
-            grid-template-columns: 360px 1fr;
-            min-height: 90vh;
+            grid-template-columns: 320px 1fr;
         }
         .ch-arrive-text {
-            padding: 5rem 3rem;
+            padding: 3rem;
             border-right: 1px solid rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
-        .ch-arrive-img {
-            position: relative;
-        }
-        .ch-arrive-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
+        .ch-arrive-img img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 
-        /* ══════════════════════════════
-           CHAPITRE 7 — TRAIN / ORGERUS
-           Layout asymétrique : petit texte haut gauche
-           grande image qui prend toute la hauteur droite
-        ══════════════════════════════ */
+        /* ── CH TRAIN ── */
         .ch-train {
             background: var(--blanc);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 100vh;
-        }
-        .ch-train-left {
-            display: flex;
-            flex-direction: column;
         }
         .ch-train-text {
-            padding: 5rem 4rem;
-            flex: 1;
+            padding: 3rem 4rem;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            gap: 1.5rem;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            justify-content: center;
+            gap: 1.2rem;
+            border-right: 1px solid rgba(0,0,0,0.08);
         }
-        .ch-train-img {
-            position: relative;
-            overflow: hidden;
-        }
-        .ch-train-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
+        .ch-train-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-        /* ══════════════════════════════
-           CHAPITRE 8 — LE MONDE
-           Fond rouge, texte blanc énorme, image à droite
-        ══════════════════════════════ */
+        /* ── CH WORLD ── */
         .ch-world {
             background: var(--rouge);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 100vh;
         }
         .ch-world-text {
-            padding: 5rem 4rem;
+            padding: 3rem 4rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            gap: 2rem;
         }
-        .ch-world-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(4rem, 8vw, 9rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.85;
-            letter-spacing: -0.03em;
-            color: var(--blanc);
-        }
-        .ch-world-body {
-            font-size: 0.88rem;
-            line-height: 1.9;
-            color: rgba(255,255,255,0.6);
-            font-weight: 300;
-            max-width: 340px;
-        }
-        .ch-world-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--blanc);
-            color: var(--rouge);
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 900;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            text-decoration: none;
-            width: fit-content;
-            transition: background 0.2s;
-        }
+        .ch-world-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3.5rem, 7vw, 8rem); font-weight: 900; text-transform: uppercase; line-height: 0.85; letter-spacing: -0.03em; color: var(--blanc); }
+        .ch-world-body { font-size: 0.85rem; line-height: 1.9; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 320px; }
+        .ch-world-cta { display: inline-block; padding: 0.9rem 2.2rem; background: var(--blanc); color: var(--rouge); font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; width: fit-content; transition: background 0.2s; }
         .ch-world-cta:hover { background: var(--sable); }
-        .ch-world-img {
-            position: relative;
-            overflow: hidden;
-        }
-        .ch-world-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-        }
+        .ch-world-img img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 
         /* ── TYPO COMMUNE ── */
-        .ch-label {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.58rem;
-            font-weight: 900;
-            letter-spacing: 0.45em;
-            text-transform: uppercase;
-            color: var(--rouge);
-        }
-        .ch-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.9;
-            letter-spacing: -0.02em;
-            -webkit-text-stroke: 2px var(--rouge);
-            color: transparent;
-        }
-        .ch-title.solid { color: var(--rouge); -webkit-text-stroke: 0; }
-        .ch-caption {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: var(--noir);
-            font-weight: 400;
-        }
-        .ch-body {
-            font-size: 0.82rem;
-            line-height: 1.95;
-            color: rgba(0,0,0,0.5);
-            font-weight: 300;
-        }
-        .ch-aside {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(0,0,0,0.3);
-            border-left: 2px solid var(--rouge);
-            padding-left: 0.8rem;
-            line-height: 1.7;
-        }
+        .ch-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 900; letter-spacing: 0.45em; text-transform: uppercase; color: var(--rouge); }
+        .ch-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.02em; -webkit-text-stroke: 2px var(--rouge); color: transparent; }
+        .ch-caption { font-size: 0.88rem; line-height: 1.7; color: var(--noir); font-weight: 400; }
+        .ch-body { font-size: 0.8rem; line-height: 1.95; color: rgba(0,0,0,0.5); font-weight: 300; }
+        .ch-aside { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.3); border-left: 2px solid var(--rouge); padding-left: 0.8rem; line-height: 1.7; }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-            .ch-paris, .ch-said, .ch-cross,
-            .ch-arrive, .ch-train, .ch-world {
-                grid-template-columns: 1fr;
-            }
+            .ch-paris, .ch-said, .ch-cross, .ch-arrive, .ch-train, .ch-world { grid-template-columns: 1fr; }
             .ch-draw { grid-template-columns: 1fr; }
-            .ch-weave-imgs { grid-template-columns: 1fr 1fr; height: auto; }
-            .ch-weave-imgs img { height: 50vw; }
             .ch-weave-bottom { grid-template-columns: 1fr; }
             .ch-weave-stat { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
-            .ch-paris-left, .ch-draw-text, .ch-said-text,
-            .ch-cross-text, .ch-arrive-text, .ch-train-text,
-            .ch-world-text { padding: 3rem 1.5rem; }
-            .ch-paris-right, .ch-draw-img, .ch-said-img,
-            .ch-cross-img, .ch-arrive-img, .ch-train-img,
-            .ch-world-img { min-height: 60vw; }
-            .ch-paris-right img, .ch-draw-img img, .ch-said-img img,
-            .ch-cross-img img, .ch-arrive-img img, .ch-train-img img,
-            .ch-world-img img { object-fit: contain; }
+            .ch-paris-left, .ch-draw-text, .ch-said-text, .ch-cross-text, .ch-arrive-text, .ch-train-text, .ch-world-text { padding: 2.5rem 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <script src="navbar.js"></script>
 
-<!-- COVER -->
-<div style="display:grid; grid-template-columns:1fr 1fr; background:var(--blanc);">
-    <img src="./undercoverRoadMap/PAGE_11.png" alt="The basket is ready" style="width:100%;height:100%;object-fit:contain;display:block;border-right:3px solid var(--sable);">
-    <img src="./undercoverRoadMap/PAGE_2_NEW_31_JUL.png" alt="Les illustratrices" style="width:100%;height:100%;object-fit:contain;display:block;">
+<!-- COVER — Page_11 + Page_2 côte à côte -->
+<div class="duo">
+    <img src="./undercoverRoadMap/PAGE_11.png" alt="The basket is ready">
+    <img src="./undercoverRoadMap/PAGE_2_NEW_31_JUL.png" alt="Les illustratrices">
+</div>
+
+<!-- CH1 + CH2 côte à côte -->
+<div style="display:grid; grid-template-columns:1fr 1fr;">
+    <div class="ch-paris-left">
+        <span class="ch-paris-num">Chapter 01 · The Idea</span>
+        <h2 class="ch-paris-title">Paris,<br>Île de<br>la Cité.</h2>
+        <p class="ch-paris-body">Alexandra discovers the idea. It begins here, on the banks of the Seine. Alexandra spots a basket — colourful, handmade, imperfect. She sees something else entirely: a canvas. A story waiting to be embroidered. The coordinates are set.</p>
+        <p class="ch-paris-coord">48°51'11"N · 2°20'59"E — The starting point of every basket.</p>
+    </div>
+    <div class="ch-draw-text" style="border-left: 1px solid rgba(0,0,0,0.08);">
+        <span class="ch-label">Chapter 02 · The Vision</span>
+        <h2 class="ch-title">The<br>Drawing</h2>
+        <p class="ch-caption">Before a single thread is woven, the basket lives on a screen.</p>
+        <p class="ch-body">Artists imagine every embroidery, every colour, every motif. The illustration is a blueprint — a dream translated into instructions for hands that will never meet the person who drew it.</p>
+        <p class="ch-aside">Lola, Cecilia, Sarah, Charlotte<br>and many others create the illustrations.</p>
+    </div>
 </div>
 
 <!-- MARQUEE -->
@@ -506,27 +291,6 @@
     </div>
 </div>
 
-<!-- CH1 — PARIS -->
-<div class="ch-paris">
-    <div class="ch-paris-left">
-        <span class="ch-paris-num">Chapter 01 · The Idea</span>
-        <h2 class="ch-paris-title">Paris,<br>Île de<br>la Cité.</h2>
-        <p class="ch-paris-body">It begins here, on the banks of the Seine. Alexandra spots a basket — colourful, handmade, imperfect. She sees something else: a canvas. A story waiting to be embroidered.</p>
-        <p class="ch-paris-coord">48°51'11"N · 2°20'59"E</p>
-    </div>
-</div>
-
-<!-- CH2 — LES ILLUSTRATIONS -->
-<div class="ch-draw">
-    <div class="ch-draw-text">
-        <span class="ch-label">Chapter 02 · The Vision</span>
-        <h2 class="ch-title">The<br>Drawing</h2>
-        <p class="ch-caption">Lola, Cecilia, Sarah, Charlotte and many others create the illustrations.</p>
-        <p class="ch-body">Before a single thread is woven, the basket lives on a screen. Artists imagine every embroidery, every colour, every motif.</p>
-        <p class="ch-aside">Every design begins<br>as a thought bubble.</p>
-    </div>
-</div>
-
 <!-- CH3 — SAID -->
 <div class="ch-said">
     <div class="ch-said-img">
@@ -541,7 +305,7 @@
     </div>
 </div>
 
-<!-- CH4 — LE TISSAGE -->
+<!-- CH4 — LE TISSAGE : Page_3 + Page_4 côte à côte -->
 <div class="ch-weave">
     <div class="ch-weave-imgs">
         <img src="./undercoverRoadMap/Page_3.png" alt="Said — Essaouira">
@@ -556,7 +320,7 @@
         <div class="ch-weave-stat">
             <span class="stat-big">3</span>
             <span class="stat-label">Cities</span>
-            <p class="stat-desc">Said buys threads in Essaouira, Casablanca and Marrakech — searching for the right colours.</p>
+            <p class="stat-desc">Said buys threads in Essaouira, Casablanca and Marrakech.</p>
         </div>
         <div class="ch-weave-stat">
             <span class="ch-label" style="margin-bottom:0.5rem;">Chapter 04 · The Weaving</span>
@@ -569,27 +333,21 @@
 <!-- CH5 — LA TRAVERSÉE -->
 <div class="ch-cross">
     <div class="ch-cross-img">
-        <img src="./undercoverRoadMap/Page_5.png" alt="La traversée — Marrakech vers Paris">
-        <!-- Route SVG animée par dessus -->
+        <img src="./undercoverRoadMap/Page_5.png" alt="La traversée">
         <svg class="route-svg" viewBox="0 0 600 800" preserveAspectRatio="none">
-            <path class="route-path"
-                d="M 80 700 Q 100 600 150 500 Q 200 400 180 300 Q 160 200 300 150 Q 400 100 450 80"
-                stroke="#C8281E" stroke-width="3" fill="none"
-                stroke-linecap="round" stroke-linejoin="round"
-                stroke-dasharray="8 6"
-                opacity="0.6"/>
+            <path class="route-path" d="M 80 700 Q 100 600 150 500 Q 200 400 180 300 Q 160 200 300 150 Q 400 100 450 80" stroke="#C8281E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6" opacity="0.6"/>
         </svg>
     </div>
     <div class="ch-cross-text">
         <span class="ch-label">Chapter 05 · The Crossing</span>
         <h2 class="ch-title">Tanger<br>→<br>Algeciras</h2>
         <p class="ch-caption">We have a truck that leaves from Marrakech to Tanger, Algeciras — last stop: Clichy.</p>
-        <p class="ch-body">Fourteen kilometres of sea between two continents. The Maroc Express ferry at Tanger. From there, 2,500 kilometres north through Spain and France.</p>
+        <p class="ch-body">Fourteen kilometres of sea between two continents. From there, 2,500 kilometres north through Spain and France.</p>
         <p class="ch-aside">~2,500 km by road.<br>One ferry. One truck.<br>Two continents.</p>
     </div>
 </div>
 
-<!-- CH6 — CLICHY / VITRY -->
+<!-- CH6 — CLICHY/VITRY -->
 <div class="ch-arrive">
     <div class="ch-arrive-text">
         <span class="ch-label">Chapter 06 · The Arrival</span>
@@ -605,14 +363,12 @@
 
 <!-- CH7 — TRAIN / ORGERUS -->
 <div class="ch-train">
-    <div class="ch-train-left">
-        <div class="ch-train-text">
-            <span class="ch-label">Chapter 07 · The Shoot</span>
-            <h2 class="ch-title">Orgerus</h2>
-            <p class="ch-caption">The pieces are photographed by Alexandra, Thomas and Côme in "La Roseraie" of the Castle of Courgent.</p>
-            <p class="ch-body">A TER train from Montparnasse. A castle in the countryside. A rose garden. The same basket that started in Morocco now faces a camera.</p>
-            <p class="ch-aside">Gare Montparnasse → Orgerus<br>One hour by train.</p>
-        </div>
+    <div class="ch-train-text">
+        <span class="ch-label">Chapter 07 · The Shoot</span>
+        <h2 class="ch-title">Orgerus</h2>
+        <p class="ch-caption">The pieces are photographed by Alexandra, Thomas and Côme in "La Roseraie" of the Castle of Courgent.</p>
+        <p class="ch-body">A TER train from Montparnasse. A castle in the countryside. A rose garden. The same basket that started in Morocco now faces a camera.</p>
+        <p class="ch-aside">Gare Montparnasse → Orgerus<br>One hour by train.</p>
     </div>
 </div>
 
@@ -621,10 +377,11 @@
     <div class="ch-world-text">
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;font-weight:900;letter-spacing:0.45em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Chapter 08 · The Destination</span>
         <h2 class="ch-world-title">The<br>Basket<br>is Ready.</h2>
-        <p class="ch-world-body">Shops, beaches, mountains and cities all over the world. The trip is not finished — and barely twenty of the kilometres have been started. It is in your hands now.</p>
+        <p class="ch-world-body">Shops, beaches, mountains and cities all over the world. The trip is not finished — it is in your hands now.</p>
         <a href="https://kilometre.paris/collections/undercover" class="ch-world-cta" target="_blank">Shop the Undercover →</a>
     </div>
 </div>
+<script src="footer.js"></script>
 
 </body>
 </html>
