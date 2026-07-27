@@ -239,10 +239,96 @@
             .ch-weave-stat { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
             .ch-paris-left, .ch-draw-text, .ch-said-text, .ch-cross-text, .ch-arrive-text, .ch-train-text, .ch-world-text { padding: 2.5rem 1.5rem; }
         }
+        /* ── PIECE UNIQUE / UNDERCOVER SECTION ── */
+        .piece-unique-section {
+            background: var(--sable);
+            padding: 4rem 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .piece-unique-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+        .piece-unique-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .piece-unique-viewall {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 2.5rem;
+            border: 1px solid var(--bleu);
+            color: var(--bleu);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .piece-unique-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .piece-unique-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        .piece-unique-card {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+        .piece-unique-img-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 0.8rem;
+        }
+        .piece-unique-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+        .piece-unique-card:hover .piece-unique-img-wrap img { transform: scale(1.03); }
+        .piece-unique-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        .piece-unique-price {
+            font-size: 0.72rem;
+            color: var(--noir);
+            opacity: 0.5;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .piece-unique-section { left: 0; margin-left: 0; width: 100%; }
+            .piece-unique-inner { padding: 0 1.5rem; }
+            .piece-unique-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+        }
+
     </style>
 </head>
 <body>
-    <script src="navbar.js"></script>
 
 <!-- COVER — Page_11 + Page_2 côte à côte -->
 <div class="duo">
@@ -382,9 +468,56 @@
     </div>
 </div>
 
+<!-- OUR UNDERCOVER BASKETS -->
+<section class="piece-unique-section" aria-label="Our Undercover Baskets">
+    <div class="piece-unique-inner">
+        <h2 class="piece-unique-title">Our Undercover Baskets</h2>
+        <a href="https://kilometre.paris/collections/undercover/products/beach-club" class="piece-unique-viewall" target="_blank">View All</a>
+        <div class="piece-unique-grid">
 
+            <a href="https://kilometre.paris/collections/undercover/products/beach-club" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Beach-Club-test-Undercover-_Copy_-Undercover-166251586.jpg?v=1785165816&width=1800" alt="Beach Club – Undercover">
+                </div>
+                <p class="piece-unique-name">Beach Club</p>
+                <p class="piece-unique-price">From €375</p>
+            </a>
 
-<script src="footer.js"></script>
+            <a href="https://kilometre.paris/collections/undercover/products/beach-club" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Beach-Club-test-Undercover-_Copy_-Undercover-166251641.jpg?v=1785165820&width=1800" alt="Beach Club – Undercover">
+                </div>
+                <p class="piece-unique-name">Beach Club</p>
+                <p class="piece-unique-price">From €375</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/undercover/products/beach-club" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Beach-Club-Undercover-Undercover-137717347.png?v=1725542922&width=1800" alt="Beach Club – Undercover">
+                </div>
+                <p class="piece-unique-name">Beach Club</p>
+                <p class="piece-unique-price">From €375</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/undercover/products/beach-club" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Beach-Club-test-Undercover-_Copy_-Undercover-166251888.jpg?v=1785165829&width=1800" alt="Beach Club – Undercover">
+                </div>
+                <p class="piece-unique-name">Beach Club</p>
+                <p class="piece-unique-price">From €375</p>
+            </a>
+
+            <a href="https://kilometre.paris/collections/undercover/products/beach-club" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Beach-Club-test-Undercover-_Copy_-Undercover-166251939.jpg?v=1785165831&width=1800" alt="Beach Club – Undercover">
+                </div>
+                <p class="piece-unique-name">Beach Club</p>
+                <p class="piece-unique-price">From €375</p>
+            </a>
+
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
