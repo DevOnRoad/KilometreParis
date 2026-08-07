@@ -251,8 +251,8 @@
       <li><a href="index.html#miy">Bespoke</a></li>
       <li><a href="index.html#travels">Our Travels</a></li>
       <li><a href="index.html#pieces">Our Pieces</a></li>
-      <li><a href="index.html#philosophy">Our DNA</a></li>
-      <li><a href="pieces-maitresses-final.html">The Works</a></li>
+      <!--<li><a href="index.html#philosophy">Our DNA</a></li>
+      <li><a href="pieces-maitresses-final.html">The Works</a></li>-->
       <li><a href="https://kilometre.paris" class="km-shop" target="_blank">Shop</a></li>
     </ul>
     <button class="km-burger" aria-label="Menu">
