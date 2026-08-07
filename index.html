@@ -541,7 +541,7 @@ nav {
 .tc-mallorca .travel-bg   { background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/cata.jpg?v=1752660770"); }
 .tc-paris .travel-bg      { background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05297_JULIE_GAYET.jpg?v=1756473305"); }
 .tc-venice .travel-bg     { background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/Anthonia_Sautter_CARAVAN__DSC5006.jpg?v=1776418987"); }
-.tc-ibiza .travel-bg      { background-color: var(--bleu); }
+.tc-ibiza .travel-bg      { background-image: url("https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF__Kilometre.Paris_-_Ibiza_Camille_Barotin_5060.jpg?v=1786020046"); }
 .tc-bleu-travail .travel-bg { background-size: cover; background-position: center; }
 .tc-undercover .travel-bg   { background-size: cover; background-position: center; }
 
@@ -1297,14 +1297,37 @@ footer {
       </div>
     </a>
 
-    <div class="travel-card tc-ibiza" style="cursor:default;">
+    <div class="travel-card travel-card-paris tc-ibiza" id="ibiza-card">
       <div class="travel-bg"></div>
-      <div class="travel-overlay" style="background: linear-gradient(to top, rgba(47,62,134,0.95) 0%, rgba(47,62,134,0.6) 100%); justify-content: center; align-items: center; text-align: center;">
-        <div class="travel-num" style="position:relative; top:auto; right:auto; font-size:3rem; color:rgba(255,255,255,0.08);">09</div>
-        <p class="travel-tag" style="margin-bottom:0.8rem;">August 2026</p>
+      <div class="travel-overlay">
+        <div class="travel-num">09</div>
+        <p class="travel-tag">Spain</p>
         <h3 class="travel-city">Ibiza</h3>
-        <p class="travel-country" style="margin-bottom:1.5rem;">Spain</p>
-        <span style="display:inline-block; border:1px solid rgba(255,255,255,0.4); color:rgba(255,255,255,0.7); font-size:0.6rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; padding:0.5rem 1.2rem;">Coming Soon</span>
+        <p class="travel-country">3 chapters</p>
+        <span class="travel-arrow">Discover</span>
+      </div>
+      <!-- Sous-menu au hover -->
+      <div class="paris-parts-menu">
+        <p class="paris-parts-title">Ibiza — Choose a chapter</p>
+        <a href="ibiza.html" class="paris-part-link">
+          <div>
+            <span class="paris-part-name">Part I</span>
+            <span class="paris-part-sub">The first chapter</span>
+          </div>
+          <span class="paris-part-arrow">→</span>
+        </a>
+        <div class="paris-part-link" style="cursor:default; opacity:0.4;">
+          <div>
+            <span class="paris-part-name">Part II</span>
+            <span class="paris-part-sub">Coming soon</span>
+          </div>
+        </div>
+        <div class="paris-part-link" style="cursor:default; opacity:0.4;">
+          <div>
+            <span class="paris-part-name">Part III</span>
+            <span class="paris-part-sub">Coming soon</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1451,23 +1474,22 @@ footer {
 
   timer = setInterval(next, 4000);
 
-  // Paris card — tap sur mobile
-  const parisCard = document.getElementById('paris-card');
-  if (parisCard) {
-    parisCard.addEventListener('click', function(e) {
-      // Sur mobile uniquement (hover ne fonctionne pas)
+  // Cartes multi-parties (Paris, Ibiza...) — tap sur mobile
+  document.querySelectorAll('.travel-card-paris').forEach(function(card) {
+    card.addEventListener('click', function(e) {
       if (window.innerWidth <= 768) {
         e.preventDefault();
         this.classList.toggle('open');
       }
     });
-    // Fermer si on clique ailleurs sur mobile
-    document.addEventListener('click', function(e) {
-      if (window.innerWidth <= 768 && !parisCard.contains(e.target)) {
-        parisCard.classList.remove('open');
-      }
-    });
-  }
+  });
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.travel-card-paris.open').forEach(function(card) {
+        if (!card.contains(e.target)) card.classList.remove('open');
+      });
+    }
+  });
 </script>
 
 </body>

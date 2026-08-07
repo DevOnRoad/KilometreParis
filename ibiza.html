@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibiza - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #e63946;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-clair: #f9f9f9;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Barlow', Arial, sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* --- TITRE --- */
+        .title-unique {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--rouge);
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--rouge);
+        }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* --- GRILLE 8 PORTRAITS --- */
+        .grid-8 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 380px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-unique {
+            position: relative;
+            overflow: hidden;
+        }
+        .item-unique img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+        .caption-unique {
+            position: absolute;
+            bottom: 15px; left: 15px; right: 15px;
+            background: white;
+            padding: 10px;
+            text-align: center;
+            color: var(--rouge);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .photo-credit {
+            text-align: right;
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+            color: var(--rouge);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --- INTRO --- */
+        .artisan-intro { margin-bottom: 80px; }
+
+        .artisan-paragraph {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--bleu);
+            margin-bottom: 1.2rem;
+        }
+
+        /* --- SECTION MUSE : SPLIT (texte + photo côte à côte) --- */
+        .muse-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+
+        .muse-text { display: flex; flex-direction: column; }
+
+        .muse-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .muse-image img {
+            width: 100%;
+            height: auto;
+            max-height: 850px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: opacity 0.25s ease;
+        }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        /* --- GRILLE 3 PORTRAITS --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .grid-3 .item-unique { height: 500px; }
+
+        /* --- PRODUCT SLIDER --- */
+        .product-slider-section {
+            background: var(--gris-clair);
+            padding: 70px 0;
+            margin: 80px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .product-slider-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .product-slider-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--rouge);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .product-slider-viewall {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 40px;
+            border: 1px solid var(--bleu);
+            color: var(--bleu);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.6rem 1.8rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .product-slider-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .product-track {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+        .product-card {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 14px;
+        }
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+        .product-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            font-weight: 700;
+            line-height: 1.6;
+        }
+        .product-price {
+            font-size: 0.7rem;
+            color: var(--noir);
+            margin-top: 4px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+
+            .grid-8 { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+
+            .grid-3 { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .grid-3 .item-unique { height: 260px; }
+
+            .muse-section,
+            .muse-section.reverse {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+
+            .product-track {
+                display: flex;
+                overflow-x: auto;
+                gap: 15px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 15px;
+            }
+            .product-card { flex: 0 0 70vw; scroll-snap-align: center; }
+            .product-track::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+<div class="section-container">
+
+    <h1 class="title-unique">IBIZA</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle filled"></div>
+    </div>
+
+    <!-- GRILLE 8 PORTRAITS -->
+    <div class="grid-8" role="list" aria-label="Galerie Ibiza">
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF__Kilometre.Paris_-_Ibiza_Camille_Barotin_5060.jpg?v=1786020046" alt="Camille Barotin">
+            <div class="caption-unique">Camille Barotin</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Lucho_Gonzales_4025.jpg?v=1786020046" alt="Lucho Gonzalez de Brieva">
+            <div class="caption-unique">Lucho Gonzalez de Brieva</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Mattias_Mmahl_4384.jpg?v=1786020046" alt="Mattias Mähl">
+            <div class="caption-unique">Mattias Mähl</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Serenella_Cazac_4267.jpg?v=1786020046" alt="Serenella Cazac">
+            <div class="caption-unique">Serenella Cazac</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF__Kilometre.Paris_-_Ibiza_Carmela_and_Pablo_Marin_4506.jpg?v=1786020046" alt="Carmela Ribes & Pablo Marín">
+            <div class="caption-unique">Carmela Ribes & Pablo Marín</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Maloles_Andignac_4420.jpg?v=1786020046" alt="Maloles Antignac">
+            <div class="caption-unique">Maloles Antignac</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Romi_4161.jpg?v=1786020046" alt="Romina Mauriziano">
+            <div class="caption-unique">Romina Mauriziano</div>
+        </div>
+        <div class="item-unique" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Maria_Frigoles_3695.jpg?v=1786020046" alt="María José Frigoles">
+            <div class="caption-unique">María José Frigoles</div>
+        </div>
+    </div>
+    <p class="photo-credit">Photos by Bennu Gerede</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong> and with the eyes of talented photographers such as <strong>Sarah Forgie, Bennu Gerede & Julie Ansiau</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating at our creations. This edition of Caravan takes place in <strong>Ibiza</strong>, with 8 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- CAMILLE BAROTIN -->
+    <section class="muse-section" aria-label="Profil : Camille Barotin">
+        <div class="muse-text">
+            <h2 class="muse-name">Camille Barotin</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Camille Barotin. Her grandfather fell in love with the island and had a house built here. He drew it himself. She spent a large part of her childhood inside it, and the word she uses is formatted: the creativity, the encounters, the freedom, and above all the light, which she still calls insane. That is one half of where the eye comes from. The other half is that she trained as a graphic designer, so the colour was taught.</p>
+            <p class="artisan-paragraph">She is from the south of France, Montpellier. She lived in London, then Paris. Since 2009 she has worked for Hermès, and there is a symmetry in that, because her mother and her grandmother opened the Montpellier boutique. What holds her there is that it isn't only a luxury brand to her, it's a universe. Time, exceptional materials, things that have kept their value. And it remains one of the few houses still genuinely interested in artists.</p>
+            <p class="artisan-paragraph">In a world moving this fast, with AI, with machines able to reproduce absolutely anything, what the hand transmits holds a value that is profoundly human. A machine will never reproduce a trace, a flaw, the thing that makes an object the only one of its kind. Given an unlimited credit card and three months, she wouldn't buy objects — she would buy time, the greatest luxury there is, and spend it going to see the last artisans while they are still there: Japan for ceramics, Africa for the dyers, India for textile, Morocco.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/k-shirt-dress?filter.v.t.shopify.skirt-dress-length-type=gid%3A%2F%2Fshopify%2FTaxonomyValue%2F21912" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF__Kilometre.Paris_-_Ibiza_Camille_Barotin_5060.jpg?v=1786020046" alt="Portrait de Camille Barotin portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- LUCHO GONZALEZ DE BRIEVA -->
+    <section class="muse-section reverse" aria-label="Profil : Lucho Gonzalez de Brieva">
+        <div class="muse-text">
+            <h2 class="muse-name">Lucho Gonzalez de Brieva</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Lucho Gonzalez de Brieva, unelected mayor of three streets. Everything he needs is a ten or fifteen minute walk from his door — the cafés, the restaurants, the castle to explore, the Parador. His recommendation for twenty-four hours on the island is to stay exactly where you are, which is either the least useful answer anyone gave, or the only honest one.</p>
+            <p class="artisan-paragraph">The full name is Luis Eduardo González de Brieva y Palacio, from Brieva, a small town in Ávila, Castilla, before the family went to Colombia centuries ago. He left Colombia at eighteen, spent thirty years in London, and built a house inside a set of gates without ever asking anyone's permission. He is an architect, a designer, and a philosopher, and he says that if you can use your hands, you have solved the existential question of your life.</p>
+            <p class="artisan-paragraph">He came to Ibiza for the first time in 2006 and swore he would never come back. He returned for ayahuasca, and on the first of September 2018 he floated alone under the whole sky and decided he wanted this life every day, not two weeks a year. Three weeks later he moved to the island his son had never even heard of. Given three months and an unlimited credit card, he would take his most loyal friends to a desert oasis — philosophy, music, the stars.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/living-ink-gendrless-shirt" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Lucho_Gonzales_4025.jpg?v=1786020046" alt="Portrait de Lucho Gonzalez de Brieva portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MATTIAS MÄHL -->
+    <section class="muse-section" aria-label="Profil : Mattias Mähl">
+        <div class="muse-text">
+            <h2 class="muse-name">Mattias Mähl</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Mattias Mähl. He spent many years travelling before choosing Ibiza — six months in India, six months in Australia, a small island in the Stockholm archipelago. Carpentry carried him through all of it: a car, a box of tools, a project. On his first morning here he sat outside his van carving a spoon, and about twenty people gathered round to watch. This is where I stay, he thought.</p>
+            <p class="artisan-paragraph">Living material is what he works with, and the process is a constant humbling: you want one thing, the wood offers another, and something more beautiful arrives than what you had in mind. Saunas brought him to his present workshop, Juntos Carpentry, where they now work only with what grows on the island, clearing land without clear-cutting and cutting their own planks and beams.</p>
+            <p class="artisan-paragraph">Given a credit card and three months, the first thing would be an old-growth forest, protected — not owned, because nobody should own such a thing, but secured. Then a house of his own for his family, land far from here with mountains and a river, and a small cottage on the edge of the forest.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/parachute-pants" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Mattias_Mmahl_4384.jpg?v=1786020046" alt="Portrait de Mattias Mähl portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- SERENELLA CAZAC -->
+    <section class="muse-section reverse" aria-label="Profil : Serenella Cazac">
+        <div class="muse-text">
+            <h2 class="muse-name">Serenella Cazac</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Serenella Cazac. It all began with three roses and three lavender plants. When she found her dream finca in Ibiza in 2012, her Ibicenco landlady welcomed her with cuttings from her own garden, and over time they transformed a bare landscape into the beginning of a flourishing garden — the seeds of a lifelong passion.</p>
+            <p class="artisan-paragraph">Her own roots stretch across countries and cultures: a childhood in the Tuscan countryside with a French father and an English mother, an alternative boarding school in Switzerland, a master's in Creative Writing. Curiosity has always been the compass guiding her life, from Mongolia to Togo, Canada to South Africa, before life eventually led her to Ibiza. For more than ten years, she has created flower mandalas and immersive workshops that invite a slower, more attentive way of seeing and making.</p>
+            <p class="artisan-paragraph">To Serenella, handmade is the true essence of luxury — not excess, but presence; not perfection, but authenticity. If given a blank canvas and three months to dream, she would create a home surrounded by a flourishing garden, and give the rest to causes closest to her heart: protecting Indigenous peoples, restoring ocean ecosystems, reforesting and rewilding landscapes, and bringing people together.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/mimosa-bloom-in-nice-k-shirt" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Serenella_Cazac_4267.jpg?v=1786020046" alt="Portrait de Serenella Cazac portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- PRODUCT SLIDER -->
+<section class="product-slider-section" aria-label="Sélection Ibiza">
+    <div class="product-slider-inner">
+        <h2 class="product-slider-title">Los Angeles Selection</h2>
+        <a href="https://kilometre.paris/collections/los-angeles" class="product-slider-viewall" target="_blank">View All</a>
+        <div class="product-track">
+            <a href="https://kilometre.paris/collections/los-angeles/products/k-shirt-club-des-voyageurs-hope-robben-island-capetown-by-kendall-geers" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Club-des-Voyageurs_-Hope-Robben-Island-Capetown-by-Kendal-Geers-K-shirt-K-shirt-152163880.jpg?v=1745502735&width=600" alt="Club des Voyageurs K-shirt">
+                </div>
+                <p class="product-name">Club des Voyageurs,<br>Hope Robben Island – K-shirt</p>
+                <p class="product-price">€1.200</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/8-feet-waves-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/8-feet-waves-K-shirt-K-shirt-152162965.jpg?v=1745501213&width=600" alt="8 feet waves K-shirt">
+                </div>
+                <p class="product-name">8 feet waves – K-shirt</p>
+                <p class="product-price">€850</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/k-shirt-paros-antiparos-aegean-sea-greece" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Paros_-Antiparos_-Aegean-sea_-Greece-K-shirt-K-shirt-138081690.png?v=1726585162&width=600" alt="Paros, Antiparos K-shirt">
+                </div>
+                <p class="product-name">Paros, Antiparos,<br>Aegean sea – K-shirt</p>
+                <p class="product-price">€720</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/piece-unique-rue-du-bac-paris-france" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Rue-du-Bac_-Paris_-France-Piece-unique-Piece-Unique-151415346.jpg?v=1744023868&width=600" alt="Rue du Bac Piece Unique">
+                </div>
+                <p class="product-name">Rue du Bac, Paris –<br>Piece Unique</p>
+                <p class="product-price">€3.000</p>
+            </a>
+            <a href="https://kilometre.paris/collections/los-angeles/products/koh-lipe-island-thailand-k-shirt" class="product-card" target="_blank">
+                <div class="product-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Koh-Lipe-Island_-Thailand-K-shirt-K-shirt-152163611.jpg?v=1745501710&width=600" alt="Koh Lipe Island K-shirt">
+                </div>
+                <p class="product-name">Koh Lipe Island,<br>Thailand – K-shirt</p>
+                <p class="product-price">€1.035</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="section-container">
+
+    <!-- CARMELA RIBES & PABLO MARÍN -->
+    <section class="muse-section" aria-label="Profil : Carmela Ribes & Pablo Marín">
+        <div class="muse-text">
+            <h2 class="muse-name">Carmela Ribes & Pablo Marín</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Carmela Ribes and Pablo Marín. Her father asked her to come and help at the restaurant during university holidays. That same evening he had hired a new cook, Pablo. That was 2014, twelve years ago, and she has been with him ever since. The family has been in restaurants for four generations, in Valencia — her father arrived on the island, fell in love with it, and in 1989 opened Can Salinas.</p>
+            <p class="artisan-paragraph">Ask Pablo about hecho a mano and he goes straight to the point that everyone gets wrong: it does not go hand in hand with speed or with rushing. The complete opposite — calm, time, sensitivity, passion, and the technique comes second. What they are doing is looking for the perfect paella, the valenciana, chicken and rabbit, the one eaten on Sundays at his mother's, served in the middle of the table so everyone eats from the same paellera. Like at home.</p>
+            <p class="artisan-paragraph">Given an unlimited credit card and three months, the first answer is not about food at all — help someone who needs it, one family nearby. After that, travel and eat: Etxebarri in the north, and David Muñoz in Madrid, because every cook they know has told them to. Give us the card. Now.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/living-ink-gendrless-shirt" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF__Kilometre.Paris_-_Ibiza_Carmela_and_Pablo_Marin_4506.jpg?v=1786020046" alt="Portrait de Carmela Ribes & Pablo Marín portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MALOLES ANTIGNAC -->
+    <section class="muse-section reverse" aria-label="Profil : Maloles Antignac">
+        <div class="muse-text">
+            <h2 class="muse-name">Maloles Antignac</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Maloles Antignac. A shoe, she will tell you, is already a sculpture — three-dimensional, an object, not a t-shirt. She spent ten years proving it, after fashion cupboards at Vogue, Telva, Elle Spain, and the IFM in Paris, making ballerinas by hand with a sewn sole, never glued, so the thing behaved like a glove and stayed flexible.</p>
+            <p class="artisan-paragraph">She sold the brand to Vivarte, and the money bought a ceramics studio and a first go at clay. In 2018 came a group show at the Palais de Tokyo, working with artist Marion Verboom on an installation five metres across. Her new brand, ETEREL, started in 2025 with her partner Aylin Uçkunkaya, makes secular altars — sculptures embroidered entirely by hand, one shaped like a boat with an egg inside.</p>
+            <p class="artisan-paragraph">She calls Ibiza the island of freedom, where you can be several characters and nobody judges you. Given a credit card and three months, she would take an enormous sailing boat, starting in Papua New Guinea and working towards Indonesia, to meet peoples still living another way entirely — a great deal of hope, she thinks, in watching people outside a mad consumer society live on very simple principles that still make them happy.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/sea-view?_pos=3&_sid=34ddaddf7&_ss=r" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Maloles_Andignac_4420.jpg?v=1786020046" alt="Portrait de Maloles Antignac portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- ROMINA MAURIZIANO -->
+    <section class="muse-section" aria-label="Profil : Romina Mauriziano">
+        <div class="muse-text">
+            <h2 class="muse-name">Romina Mauriziano</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Romina Mauriziano. Her father changed his clothes five times a day. He was eccentric, and so it began there — a family of fashion fanatics. By seven she was buying fabric to make her own things, with no memory of Barbies, only of wanting to go to fabric shops. She is Chilean, from Santiago, and has been coming to Ibiza for thirty years, living here for the last three.</p>
+            <p class="artisan-paragraph">Her brand, Keralas, is part creation and part upcycling. She is obsessed with vintage, so she travels the world buying the pieces that mean something to her — the United States for Carhartt and Dickies, and a town near Naples called Ercolano, full of vintage clothes and jewellery. She photographs a piece, wears it if she wants, and sells it in the end, because the more clothes she keeps the less she has.</p>
+            <p class="artisan-paragraph">The hands, she thinks, are what we are losing — they carry love, and transmission, and the things families pass down. Given unlimited funds and three months, she wants new skills: making her own pieces, printing her own, and contributing — going to a village to work with women there, learning what they know, and teaching what she knows, an exchange that runs both ways.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/carte-postale-ibiza-undercover?variant=48332950274371" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Romi_4161.jpg?v=1786020046" alt="Portrait de Romina Mauriziano portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+    <!-- MARÍA JOSÉ FRIGOLES -->
+    <section class="muse-section reverse" aria-label="Profil : María José Frigoles">
+        <div class="muse-text">
+            <h2 class="muse-name">María José Frigoles</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: María José Frigoles. The trade was supposed to pass from parent to child, and it kept failing to. The old master potter of the island, Daifa, had no children, so he taught María José's father, Toni Frigoles, who then had no son. So he taught his daughter, because she was standing there and she wanted it.</p>
+            <p class="artisan-paragraph">Purist is her own word for herself. She works with the tools that have always been used here, and with moulds — which sounds like a contradiction until you handle two pieces from the same mould and find they are not the same piece, because the hand that made them was there. For ten years she sold other people's work alongside her own, then stopped on a point of principle: she only wanted to sell what she loved, made on this island — so now she produces, and she teaches.</p>
+            <p class="artisan-paragraph">The piece she most likes making is Tanit, the pagan goddess of the island, whose business is protection — three thousand years on, and the goddess is still keeping a potter in work. Given money and three months, she would go and find potters somewhere else, watch how they work, learn their culture, and put in the hours alongside them for the whole three months — Mexico first, where the ceramic culture is enormous.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/products/striped-shirt-gps-notre-dame" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Maria_Frigoles_3695.jpg?v=1786020046" alt="Portrait de María José Frigoles portant une Pièce Unique Kilometre Paris">
+            </a>
+        </div>
+    </section>
+
+</div>
+<script src="footer.js"></script>
+
+</body>
+</html>
