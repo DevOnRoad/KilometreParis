@@ -225,13 +225,20 @@
               </div>
             </li>
             <li><a href="venice.html">Venice</a></li>
-            <li><a href="ibiza.html">Ibiza</a></li>
+            <li>
+              <a href="ibiza.html">Ibiza</a>
+              <div class="paris-sub">
+                <a href="ibiza.html">— Part I</a>
+                <a href="ibiza-part-2.html">— Part II</a>
+                <a href="ibiza-part-3.html">— Part III</a>
+              </div>
+            </li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Our Pieces</h4>
           <ul>
-            <li><a href="bleu-de-travail.html">The Worker's Jacket</a></li>
+            <li><a href="pieces-maitresses-final.html">The Worker's Jacket</a></li>
           </ul>
         </div>
         <div class="footer-col">

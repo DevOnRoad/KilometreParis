@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibiza Part III - Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --rouge: #e63946; --bleu: #2F3E86; --blanc: #ffffff; --noir: #1a1a1a; --gris-clair: #f9f9f9; --max-width: 1400px; }
+        body { font-family: 'Barlow', Arial, sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; overflow-x: hidden; }
+        .section-container { max-width: var(--max-width); margin: 0 auto; padding: 60px 40px; }
+        .title-unique { font-size: clamp(3rem, 8vw, 6rem); color: var(--rouge); text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
+        .circle-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rouge); }
+        .circle.filled { background-color: var(--rouge); }
+
+        /* GRILLE SPECIALE : grande gauche | 4 petites milieu | grande droite */
+        .grid-special {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 380px 380px;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .grid-special .item-left {
+            grid-column: 1;
+            grid-row: 1 / 3;
+        }
+        .grid-special .item-right {
+            grid-column: 4;
+            grid-row: 1 / 3;
+        }
+        .grid-special .item-mid {
+            grid-column: auto;
+        }
+
+        .item-unique { position: relative; overflow: hidden; }
+        .item-unique img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .caption-unique { position: absolute; bottom: 15px; left: 15px; right: 15px; background: white; padding: 10px; text-align: center; color: var(--rouge); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; }
+        .photo-credit { text-align: right; margin-bottom: 60px; font-size: 1.2rem; color: var(--rouge); font-weight: 700; text-transform: uppercase; }
+
+        .artisan-intro { margin-bottom: 80px; }
+        .artisan-paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--bleu); margin-bottom: 1.2rem; }
+
+        .muse-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 120px; }
+        .muse-section.reverse .muse-text { order: 2; }
+        .muse-section.reverse .muse-image { order: 1; }
+        .muse-text { display: flex; flex-direction: column; }
+        .muse-name { font-size: clamp(2rem, 4vw, 3rem); color: var(--rouge); text-transform: uppercase; font-weight: 900; margin-bottom: 1.5rem; }
+        .muse-image img { width: 100%; height: auto; max-height: 850px; object-fit: cover; object-position: top; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: opacity 0.25s ease; }
+        .muse-image a { display: block; cursor: pointer; }
+        .muse-image a:hover img { opacity: 0.88; }
+
+        .marquee-bar { background: var(--bleu); color: #FFF8BD; padding: 0.85rem 0; overflow: hidden; white-space: nowrap; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+        .marquee-inner span { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .piece-unique-section { background: var(--gris-clair); padding: 70px 0; margin: 80px 0; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        .piece-unique-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
+        .piece-unique-title { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--rouge); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 900; text-align: center; margin-bottom: 15px; }
+        .piece-unique-viewall { display: block; width: fit-content; margin: 0 auto 40px; border: 1px solid var(--bleu); color: var(--bleu); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.6rem 1.8rem; font-weight: 700; transition: all 0.2s; }
+        .piece-unique-viewall:hover { background: var(--bleu); color: var(--blanc); }
+        .piece-unique-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .piece-unique-card { text-decoration: none; display: flex; flex-direction: column; }
+        .piece-unique-img-wrap { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 14px; }
+        .piece-unique-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .piece-unique-card:hover .piece-unique-img-wrap img { transform: scale(1.03); }
+        .piece-unique-name { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bleu); font-weight: 700; line-height: 1.6; }
+        .piece-unique-price { font-size: 0.7rem; color: var(--noir); margin-top: 4px; }
+
+        @media screen and (max-width: 968px) {
+            .section-container { padding: 40px 20px; }
+            .grid-special { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 10px; }
+            .grid-special .item-left,
+            .grid-special .item-right { grid-column: auto; grid-row: auto; height: 260px; }
+            .grid-special .item-mid { height: 200px; }
+            .muse-section, .muse-section.reverse { grid-template-columns: 1fr; gap: 30px; }
+            .muse-section.reverse .muse-text { order: 2; }
+            .muse-section.reverse .muse-image { order: 1; }
+            .muse-section .muse-image { order: -1; }
+            .piece-unique-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .piece-unique-inner { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+
+<div class="section-container">
+
+    <h1 class="title-unique">IBIZA — PART III</h1>
+    <div class="circle-container" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle filled"></div>
+    </div>
+
+    <!-- GRILLE SPECIALE : grande gauche | 4 milieu | grande droite -->
+    <div class="grid-special" role="list" aria-label="Galerie Ibiza Part II">
+
+        <!-- GRANDE GAUCHE — Alonso & Francesca -->
+        <div class="item-unique item-left" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Alonso_Colmenares_Franscesca_4217.jpg?v=1787733444&width=1800" alt="Francesca Munizaga & Alonso Colmenares">
+            <div class="caption-unique">Francesca & Alonso</div>
+        </div>
+
+        <!-- 4 PETITES AU MILIEU -->
+        <div class="item-unique item-mid" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Larah_Davis_3576.jpg?v=1787733444&width=1800" alt="Larah Davis">
+            <div class="caption-unique">Larah Davis</div>
+        </div>
+        <div class="item-unique item-mid" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Diego_Alexeja_4309.jpg?v=1787733444&width=1800" alt="Diego Alonso & Alexeja Pozzoni">
+            <div class="caption-unique">Diego & Alexeja</div>
+        </div>
+        <div class="item-unique item-mid" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Claudia_and_Milagros_3671.jpg?v=1787733443&width=1800" alt="Claudia Ferrer & Milagros Machado">
+            <div class="caption-unique">Claudia & Milagros</div>
+        </div>
+        <div class="item-unique item-mid" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Carol_Tur_3568.jpg?v=1787733443&width=1800" alt="Carol Tur">
+            <div class="caption-unique">Carol Tur</div>
+        </div>
+
+        <!-- GRANDE DROITE — Daniela & Mouji -->
+        <div class="item-unique item-right" role="listitem">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Daniela_Mouji_3627.jpg?v=1787733444&width=1800" alt="Daniela Coppini & Mouji Longhi">
+            <div class="caption-unique">Daniela & Mouji</div>
+        </div>
+
+    </div>
+    <p class="photo-credit">Photos by Sara Forgie</p>
+
+    <!-- INTRO -->
+    <div class="artisan-intro">
+        <p class="artisan-paragraph">At <strong>Kilometre Paris</strong>, each piece seeks to tell a story of travel through <strong>Couture</strong> & <strong>Embroidery</strong>. With our '<strong>Caravans</strong>', we invite you to join us on our worldly travels and experience unique events in which fashion meets storytelling.</p>
+        <p class="artisan-paragraph">Through our stops around the world, we shine lights on each of our '<strong>muses</strong>': those exceptional individuals who inspire us with their passions and their individuality. These encounters offer the opportunity to immerse yourself in a universe where each garment, crafted with care & detail, represents a journey, an enriching experience which we hope to share.</p>
+        <p class="artisan-paragraph">Under the direction of <strong>Alexandra Senes</strong>, we've documented these exchanges, offering an intimate & authentic way of celebrating our creations. This is the second chapter of our Ibiza Caravan, with 6 inspiring muses, each enriching our adventure. Join us on an unforgettable journey of fashion and creativity.</p>
+    </div>
+
+    <!-- DANIELA & MOUJI -->
+    <section class="muse-section" aria-label="Profil : Daniela Coppini & Mouji Longhi">
+        <div class="muse-text">
+            <h2 class="muse-name">Daniela Coppini & Mouji Longhi</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Daniela Coppini and Mouji Longhi.</p>
+            <p class="artisan-paragraph">La Paloma is the address on this island. Ask twenty people here where they would rather eat than anywhere else and the same two words keep coming back, from people who have nothing else in common. It has been open twenty-two years, which on Ibiza is close to geological, and it belongs to a mother and a daughter.</p>
+            <p class="artisan-paragraph">Daniela's passport says Daniela. In India they call her Prasuna, the name Osho gave her. And a good number of people here are convinced she is called Paloma, which is not a name at all but a bird, painted onto a sign above the door in 2004.</p>
+            <p class="artisan-paragraph">Mouji is her daughter, and she was the one who found the island. Born in Florence, landed here at nineteen, travelling, not intending to stay. Then she met the father of her children, who is Israeli and still lives on the island, and she stayed. Thirty years now. She had her first at twenty-one and her second at twenty-three, and at that point she called for help, and her mother came from India to answer.</p>
+            <p class="artisan-paragraph">Because the family had been nomadic for a while by then. Daniela was living in Pune, at the Osho commune, thinking about going further. Ibiza is good, Mouji told her. Come. So she came, and she liked it, and shortly afterwards the two of them opened a restaurant.</p>
+            <p class="artisan-paragraph">Daniela had just finished setting up a very successful restaurant in Milan for somebody else, Il Quattrocento, and had no wish to be in a city any more. She had been cooking her whole life, in the commune and long before it, and she learned it from her own mother.</p>
+            <p class="artisan-paragraph">They had no money and no experience in business, and what they found was a wreck. A block of rock and a house, an old finca, a garden gone to jungle. The jeeps that toured the island stopped there for chips and calamari. They started with one area. Then the next. Very organically, and for a long time it was only the three of them: Daniela in the kitchen, Mouji on the floor, Amit behind the bar. 10 years of that. It took a third child, fifteen years ago, before Mouji began to delegate at all.</p>
+            <p class="artisan-paragraph">The name and logo came from Rolf Blakstad, the architect, a great friend of Daniela's, who looked at the white shape of the building sitting above Sant Llorenç and saw a dove. He suggested the word and then painted the sign at the entrance himself.</p>
+            <p class="artisan-paragraph">The food was never only Italian. Daniela's ravioli, and her own mother's recipes behind them, but also everything she had picked up between India and Tuscany, in houses full of people from everywhere. So the spice was there from the start.</p>
+            <p class="artisan-paragraph">That was 2004. Twenty-two years ago.</p>
+            <p class="artisan-paragraph">Ask them what twenty-two years actually produces and Mouji tells you about an English couple. He proposed to her at one of the tables. Two years later the pair of them came back and got married here, and afterwards a photograph arrived: they had both had the La Paloma logo tattooed on their arms. God, thought Mouji, looking at that. That is an enormous amount of responsibility.</p>
+            <p class="artisan-paragraph">Then, the other day, a couple walked in with two children of seventeen and fifteen and mentioned that they had married here in 2005, when the place had only just opened. Daniela remembers the room and the guitar. Babies who came through that garden are twenty and thirty now. Some of them work here. Including her own.</p>
+            <p class="artisan-paragraph">Two things will never leave the menu: the bacalao croquettes and the bruschette. Simple, except that simple only works if you can find the right thing, and if you cannot find it then it is not good. The steak has not changed since the beginning. Lunch runs with a different chef, and the same ingredients, and the same passion. And in the evening, the chocolate fondant they are known for.</p>
+            <p class="artisan-paragraph">Ask about "hand made" and Daniela goes straight to cappelletti, which she and Mouji still make together every Christmas. Like tortellini, but round. Little hats, which is what the word means, from cappello. Proper chicken brodo behind it, or there is no point. Mouji says she is happy the entire time it is happening because she already knows what they are about to eat, and that the harder she concentrates the more her mother tells her to hurry up.</p>
+            <p class="artisan-paragraph">Daniela remembers standing in the kitchen as a small girl, asking how much salt, and being told by her mother to put in a little and she would feel it. She never gave her a recipe. Not once. Which Daniela says she is grateful for, because it forced her to develop her own intuition instead.</p>
+            <p class="artisan-paragraph">Food made by hand is close to mystical for both of them, and what they mean is precise. Made with presence, with good intention, with love, by somebody who actually has a vision of the thing. Maybe there were birds singing that morning and the idea came out of the birds. You can taste the difference and it is not neutral. The same goes for clothes, they say, and for anything else somebody made while paying attention.</p>
+            <p class="artisan-paragraph">Twenty-four hours in Ibiza depends entirely on the season, because there is far too much of it. The east, and a walk down to Aigües Blanques. Lunch at Nudo. Then south, because Daniela loves Es Boldadó, and the sunset there. Then up into Dalt Vila. Or the other direction entirely, north to Cala Xuclar, where the little chiringuito on the beach has stood for years and years, stopping on the Sant Llorenç road for a coffee at Can Gimo, which belongs to an old friend, Esteban, and where the people are good.</p>
+            <p class="artisan-paragraph">Given a credit card and three months, Mouji would travel, because there are far too many places she has not seen. Bhutan. And whales, which she has never once seen in her life, so something with whales. And the aurora borealis.</p>
+            <p class="artisan-paragraph">Daniela would buy something small on Ischia, opposite Naples, where the thermal baths are, which she says is the correct sort of thing for their age, and share it with her sisters. Then she thought about how far Ischia is from her children. So: something small here instead. Somewhere you can walk from. Somewhere further inland, because the coast has become impossible.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Daniela_Mouji_3627.jpg?v=1787733444&width=1800" alt="Daniela Coppini & Mouji Longhi">
+            </a>
+        </div>
+    </section>
+
+    <!-- LARAH DAVIS -->
+    <section class="muse-section reverse" aria-label="Profil : Larah Davis">
+        <div class="muse-text">
+            <h2 class="muse-name">Larah Davis</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Larah Davis.</p>
+            <p class="artisan-paragraph">The Chelsea Hotel, New York, around the year 2000. People went to that building for a great many reasons over the years and almost none of them were spiritual. Larah went up to the seventh floor and met a guru and came back down alive with Kundalini energy — and a new vital life force — so powerful that the pain in her spine had healed in moments, after receiving the shaktipat, an energetic blessing, and the beginnings of inspiring everything she does now.</p>
+            <p class="artisan-paragraph">What sent her looking was her desire to heal herself in body, spine, heart & soul.</p>
+            <p class="artisan-paragraph">After a car crash aged 14, she was unable to walk properly for several years, followed by other life "initiations" that created emotional traumas that called her to begin to "Seek" healing — truth — transformation and also, soul tribe. This led her to explore alternative therapies, yoga, meditation and the power of breath to transform pain into opportunities for learning and growth. And so, eventually, did her career.</p>
+            <p class="artisan-paragraph">Before New York: she spent her childhood in a manor house shared with five families, sharing the gardens and enjoying nature's magic which informed their creativity. Living in London and later New York, Sydney and Mexico enabled a combination of city-country living — which she maintains is the ideal preparation for Ibiza. And she is not wrong. In New York the jet-set parties formed one side of her life and an ashram community sat on the other, with a key question rising from beneath: How can I serve?</p>
+            <p class="artisan-paragraph">Twenty years on this island of Ibiza now. The Ibiza Retreats Wellbeing Organisation and Holistic consultancy dates from 2007, weaving together reconnections to the transformative powers of the land here, the world-class teachers, therapists & wellbeing specialists, the creative and inspiring regenerative cuisine that realigns the microbiome, the magic and the soulful beauty of the places you can stay in. After creating two retreat centres and leading hundreds of retreats, and together with an amazing team, she feels privileged to have guided thousands of what she calls transformational journeys, and she counts them.</p>
+            <p class="artisan-paragraph">Holistic Mentor — Retreat designer & Facilitator is how Larah describes herself, and when giving 1:1 facilitation she calls it "Somatic Alchemy". If that sentence loses you, stay with her, because what she is actually doing is putting individuals and private groups and organisations and entire company teams into experiences that enable them to connect with themselves, each other and their purpose and passions. Inviting them to come into regenerative harmony with each other, with mother nature, and with the world. Corporate away-days have been built on considerably thinner ideas.</p>
+            <p class="artisan-paragraph">Two children. Aura is nine, a free spirit to whom the entire household submits, and holding space for her is described as a joy. Her son is fifteen and in an evolutionary school project in Barcelona. The passport says forty-nine. Larah feels thirty-one, thirty-two, and lives life embodying this every single day.</p>
+            <p class="artisan-paragraph">When we talk about her hand, she goes straight to the chakras, because the heart chakra expresses through the palms of the hands. Then Romeo and Juliet, palm to palm. So that much feeling, that much energy, that much frequency goes into everything we make, whether we are planting a garden or cutting cloth. Which leads her somewhere genuinely interesting: how well the maker is, how happy they are, their health, their finances, the state of their surroundings, how all of it ends up inside the object.</p>
+            <p class="artisan-paragraph">"That person put their heart and their soul and the blood of their hands into the thing. You feel it. The longer you wear it the more you feel it. It carries a different vibration. Like living flowers in a house instead of the other kind. They speak."</p>
+            <p class="artisan-paragraph">Twenty-four hours opens on her terrace, extremely early, with coffee and herbs cut from the garden. Then Aguas Blancas, for the rocks and the cliffs, the raw wildness of the nature and because that is where the sea shows you what it can do. Brunch at an organic farm where the vegetables are cultivated with love and care and the chickens are happy too.</p>
+            <p class="artisan-paragraph">Then a siesta under the trees, which is the entire reason for finding a place like this and staying in it.</p>
+            <p class="artisan-paragraph">The evening goes to friends, and to a sauna that holds fourteen. The ritual runs with eighteen women singing, with a delicately prepared Cacao elixir to open and carob, "Ibiza gold" the fruits / seed pods of some of the island's most iconic indigenous trees, blended with rose and ginger and orange.</p>
+            <p class="artisan-paragraph">Then a sunset, taken in silence. A large fish dinner at the chiringuito at Cala Xuclar. And looking up with wonderment at the stars.</p>
+            <p class="artisan-paragraph">Given the card, Larah goes to work. She would mentor organisations and people as regenerative co-creators, because purpose and pleasure and joy travel together. She would go and find the places already doing it: land coming back at the same rate as the people living on it, ecosystems returning to balance, farmers and local communities handed actual power, buildings put up so that people can stay and live rather than pass through, and the rhythms of nature setting the pace instead of the other way round. Children are welcomed in as a vital part of this life journey too, because the wisdom they share, is what reaches the next generation.</p>
+            <p class="artisan-paragraph">Small projects. Micro-finance for women across Asia and Africa. Bigger ones in Costa Rica and Mexico. What she is seeking to enable and connect is a world-wide web of regenerative projects, and the verb she uses is "weaving", and she has been at this already for twenty years, so the future looks bright — for the next 7 generations to come.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Larah_Davis_3576.jpg?v=1787733444&width=1800" alt="Larah Davis">
+            </a>
+        </div>
+    </section>
+
+    <!-- DIEGO & ALEXEJA -->
+    <section class="muse-section" aria-label="Profil : Diego Alonso & Alexeja Pozzoni">
+        <div class="muse-text">
+            <h2 class="muse-name">Diego Alonso & Alexeja Pozzoni</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Diego Alonso and Alexeja Pozzoni.</p>
+            <p class="artisan-paragraph">Diego would take you to their chai shop and put together a meal from the vegetables, which are grown very close by, and which are grown to music. There is a water irrigation system, and there are speakers, and every vegetable gets its own. Classical for some. Indian for others. Meditation.</p>
+            <p class="artisan-paragraph">After that a drink, and a ten minute drive up to Xarraca bay for a swim. That would be a good day. As for the night, you never know what the magic will bring.</p>
+            <p class="artisan-paragraph">There are weavers they work with in Tangier who make cloth by hand, and one of them told Diego a story. In earlier years his parents made clothes, and while they worked they burned perfume beneath the moon, in silence. The man said the smell stays in the cloth forever. You can wash it and wash it again and the scents are still there. Diego thinks he was talking about saffron, or something burning like incense, while they wove.</p>
+            <p class="artisan-paragraph">People assume an artisan is just an artist. In fact the work is closer to mathematics. Every motif in that cloth has been calculated, thread by thread, millimetre by millimetre, before a single one is woven. Then a machine copies the result, and by the time the thing reaches a shop it looks effortless, as though nobody had to work any of it out.</p>
+            <p class="artisan-paragraph">Food is the same. Somebody made it and practised it with their hands until it became a tradition that now exists everywhere in the world and can be bought finished at a supermarket. So is construction. So is wood.</p>
+            <p class="artisan-paragraph">Our duty, Diego says, is to protect making by hand, because otherwise we lose everything and we are on our way out of culture.</p>
+            <p class="artisan-paragraph">Given unlimited money and three months, he would spend the lot buying up every government on the planet in order to dissolve them. Then people could build their communities organically, with nobody holding power over anyone else. Not leadership. Collective creation, growing your own food, collaborating. Not communism either, because communists still have leaders. Closer to individualist anarchy, where everyone is responsible for their own rights and for the respect owed to other people, so that individualism becomes responsibility rather than selfishness.</p>
+            <p class="artisan-paragraph">It is what we do anyway, he points out. We look after our families and our friends and our surroundings as well as we can, and we only collaborate with the systems we were born into and never chose.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Diego_Alexeja_4309.jpg?v=1787733444&width=1800" alt="Diego Alonso & Alexeja Pozzoni">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Ibiza</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Ibiza</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+        <span>Kilometre Paris</span><span style="color:var(--rouge)">✦</span>
+        <span>Where fashion meets adventure</span><span style="color:var(--rouge)">✦</span>
+        <span>Ibiza</span><span style="color:var(--rouge)">✦</span>
+        <span>Caravan</span><span style="color:var(--rouge)">✦</span>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <!-- FRANCESCA & ALONSO -->
+    <section class="muse-section" style="margin-top: 60px;" aria-label="Profil : Francesca Munizaga & Alonso Colmenares">
+        <div class="muse-text">
+            <h2 class="muse-name">Francesca Munizaga & Alonso Colmenares</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Francesca Munizaga and Alonso Colmenares.</p>
+            <p class="artisan-paragraph">This was the most beautiful winter in fifty years. There was an explosion of life across the whole island, and on the farm the lake filled for the first time in eight years and held until the fifteenth of June. You see animals you do not normally see. You see lives you do not normally see. Water means everything.</p>
+            <p class="artisan-paragraph">They bought the place abandoned. They restored the farm, and the corrals are still not done. They planted two thousand pomegranate trees. They made Francesca's flower garden, and out of that garden came her whole world. And this year they finished Sangre de Ibiza, which is pomegranate juice, made from those trees, on that farm. A cycle closing on itself, without either of them quite noticing it was going to.</p>
+            <p class="artisan-paragraph">The day the first box came off the line with the label on it was, he says, probably the moment he has been proudest of anything in his life. They had said let's make a juice from the moment the trees went in. You have no idea what that actually means until you finish. A rollercoaster, a dream, and a great deal of bureaucracy. Now people love it, and it comes from here. There are two more plantations on the island now, both farmers club clients, and they buy the fruit. All organic.</p>
+            <p class="artisan-paragraph">Alonso runs an agency in Madrid, Flash Creativity, which turns twenty-five this year and has been his main business the whole time. A week a month there, the rest here. What he does here is the farmers club: regenerative agriculture projects for clients, building a model to bring the soil back. Around forty projects so far. It is a hard moment for it, because convincing people into agriculture is difficult when the land next to them is turning into desert.</p>
+            <p class="artisan-paragraph">Ten years ago Francesca's children were born and everything changed. Before that she had been living between Mexico and here, travelling, rootless, in her own word. Then Alonso, then the children, then this place, and she found somewhere to put her roots down. She became the garden. She became a florist. The Floral Studio Ibiza started with small bouquets, and then the pandemic arrived and everything went slow, except that everyone suddenly wanted a beautiful house and wanted nature, so the island called her. When it was over the work did not stop.</p>
+            <p class="artisan-paragraph">Growing them changes the relationship. A florist who does not grow flowers does not look at them the way she does now: she sees them, she picks them, she watches them longer. So what she tries to do is resemble nature. How they move where they are planted. How nature falls. Even when the work is architectural or deliberately artistic, she comes back to that, because it looks better.</p>
+            <p class="artisan-paragraph">Then there is the table, which gives her an enormous amount of joy. Everyone who comes to the house loves it. Private gatherings first, then brands wanting to do things on it, and every time she has dressed it differently, because if someone is coming here to make something it has to be new. They take the lamps, they build things. One day she filled the whole thing with moss.</p>
+            <p class="artisan-paragraph">Luxury, she thinks, has become the handmade. Everything now is identical and everything is fast, so what she values is anything that respects the rhythm of the place we live in and of how we actually are. Making with your hands is therapeutic. Hers go into the soil. And the truly beautiful things, the singular ones, the ones that are not the same as all the others, will be the ones that needed time, the way it used to be. Having time is the real luxury.</p>
+            <p class="artisan-paragraph">Twenty-four hours with him starts at Cala d'en Serra, up on the northeast, still a secret to most people. He is not much of a swimmer, but if he is going into the sea that is where he goes. Lunch at La Paloma. Then back here for the sun on the farm. With her it starts with a coffee in Santa Gertrudis, then s'Illot, then lunch here, then the night here too, because the farm is where she connects to everything and where she goes when she needs to be safe.</p>
+            <p class="artisan-paragraph">Given the credit card, he would go to Nicaragua. He has been connected to the country for two years and wants to find an abandoned chocolate farm from the early twentieth century, restore the factory and start a chocolate business out of it. He does not have a name yet. They have been looking at a hotel on Ometepe, the island in the middle of the lake with two volcanoes, in the jungle, which is being sold together with the micro-credit structure its owners built for the people living around it. You want to open a bicycle workshop and you have no money, so you borrow it. He read about the model years ago and cannot remember the man's name. It opened his head, and he is a person who has to be making something. He does not read poems. He wants to go there and build.</p>
+            <p class="artisan-paragraph">He is fifty-seven, and he says time is not what it was, and the island puts a great deal of social pressure on you, and there is always something happening. It would be a last dance.</p>
+            <p class="artisan-paragraph">Then, asked again, he corrects himself. First he would take his children and his family and go. But with money like that he would want to do something that helps, for children or for women, and bring his own children into it, because there are people who need us and that is a responsibility. It is difficult to leave the island.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Alonso_Colmenares_Franscesca_4217.jpg?v=1787733444&width=1800" alt="Francesca Munizaga & Alonso Colmenares">
+            </a>
+        </div>
+    </section>
+
+    <!-- CLAUDIA & MILAGROS -->
+    <section class="muse-section reverse" aria-label="Profil : Claudia Ferrer & Milagros Machado">
+        <div class="muse-text">
+            <h2 class="muse-name">Claudia Ferrer & Milagros Machado</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muses: Claudia Ferrer and Milagros Machado.</p>
+            <p class="artisan-paragraph">Claudia is Ibizan, and she has spent her whole life in the countryside here. Milagros is Argentinian, and by the time the two of them met she had been in Barcelona fifteen years. They met there, in a small studio, and worked well together from the first week.</p>
+            <p class="artisan-paragraph">Then a project arrived: a house on the island to renovate, in Sant Llorenç, for someone who mattered a great deal to one of them. A small job, and a good exercise, and the excuse they needed to go out on their own. The way of working turned out artisanal and respectful of everything around it, and they liked it enough to say let's do another. Then a retiring architect handed them his projects. Now Milagros is in Barcelona and Claudia is here, with work in Girona besides, and a studio called Atzur, which is the Catalan word for one particular blue: the blue of the sky where it meets the horizon, and the sea they cross between the two cities.</p>
+            <p class="artisan-paragraph">The signature is Mediterranean and they are the last to notice it. Other people keep telling them. Barcelona, they point out, never stops being Mediterranean either, and things happen there that do not happen here, so the two contaminate each other in both directions.</p>
+            <p class="artisan-paragraph">There is ancestral knowledge in the hand, and whatever we touch undergoes a kind of alchemy, and anything passing through the hands of a human being leaves its mark on what is being made. Which sounds like a philosophy until you watch them apply it. Give themselves time to build a physical model and the decisions become far more conscious, because things surface that are difficult to see in the virtual. And on site: deal directly with whoever does the making, the artisans, the ones who work in stone, and say to them, we build this together. That is what fills a room with something alive.</p>
+            <p class="artisan-paragraph">On what has happened to this island, Claudia and Milagros are direct. It was a rural society with very few resources, and tourism arrived hard and fast, and the transformation went uncontrolled. Menorca is a different society, politically and historically, and comparing the two explains nothing. Here the territory is small and the natural value of it is very high. So if you are going to build, build something that does not destroy.</p>
+            <p class="artisan-paragraph">Two projects tell you how that works. The first is finished: a civic centre in an old military site on the road out towards Sant Antoni, rehabilitated as a public building for cultural uses, somewhere to experiment with what a public building can be for. Part of it was historic, so whatever they added had to answer to it. They put a patio at the centre, took the existing form of the roof and inverted it, so light drops down into the room and gives it a height it never had. New meeting old without copying the old and without pretending to start from nothing. The whole art of it, they say, is placing the new thing respectfully.</p>
+            <p class="artisan-paragraph">The second is a hope. They won Europan, the European competition for architects under forty, with a proposal for public housing here. It starts from an analysis of the territory and of how architecture and landscape have talked to each other on this island for centuries, builds up from the module of a single house to a whole building, and thinks very hard about climate performance and about materials.</p>
+            <p class="artisan-paragraph">There are women architects on the island. There are not many women in architecture. So on site, in the process, in the room, they are usually the only ones.</p>
+            <p class="artisan-paragraph">Twenty-four hours takes you to the part of the island nobody explores, which is where the two of them spent their student years. Balàfia, the cluster of old cases pageses, very old and worth a great deal. The Santa Agnès side, where an entire water structure serves land still under cultivation, with cisterns built to hold water and release it into the irrigation. What they want you to look at is not the buildings. It is how people historically arranged themselves in relation to a place and to the cycles of the agricultural year, which is the same thing they are doing now with better tools.</p>
+            <p class="artisan-paragraph">Given money and three months, they would put it into the projects nobody funds. The public ones. Rethinking how this island could work sustainably, which means bicycle connections, zones that respect the landscape, and the time to draw up plans that would genuinely benefit the place rather than decorate it. Then the circular question, the one they keep returning to: we think everything through and then it ends up as rubbish, so they want to investigate materials and construction systems where the cycle can actually be closed. That takes experimentation, research and time, and finding anyone to pay for it is difficult. And after that, maybe a trip to Mexico.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Claudia_and_Milagros_3671.jpg?v=1787733443&width=1800" alt="Claudia Ferrer & Milagros Machado">
+            </a>
+        </div>
+    </section>
+
+    <!-- CAROL TUR -->
+    <section class="muse-section" aria-label="Profil : Carol Tur">
+        <div class="muse-text">
+            <h2 class="muse-name">Carol Tur</h2>
+            <p class="artisan-paragraph">We at Kilometre Paris would like to present our muse: Carol Tur.</p>
+            <p class="artisan-paragraph">She buys her silver as granules. Then she melts it and alloys it with copper, electrolytic copper, at 925 to 75: nine hundred and twenty-five grams of silver in every kilo, seventy-five of copper. From that she pours an ingot. From the ingot she makes a sheet. From the sheet she draws a wire. And from the wire come the colls, the necklaces the women of the island wear with the traditional dress.</p>
+            <p class="artisan-paragraph">Making things by hand, she says, is putting your own essence into the thing you make. It is also collective. There are a lot of artisan markets on this island, and what they do is give all of that its value back.</p>
+            <p class="artisan-paragraph">Her collections take their subjects from what is already here. One from the elements. One from Posidonia. One from almond blossom. And one called Rifacus, after the embroidered petticoats worn under the island's traditional dress, the ones she had on herself the day we met. What she wants is for the person who buys a piece to be carrying a little of the island in it, rather than a piece of jewellery they could have bought anywhere. Craft, in her account, is part of the culture of every place. Some people here are from here and some are not, but given enough time you take your inspiration from wherever you are standing.</p>
+            <p class="artisan-paragraph">She was born in Ibiza to Ibizan parents. Her mother is from the town. For years she worked at things with no connection to creativity or craft or anything of the kind, though she had always enjoyed making things with her hands. Then she went to Barcelona, to the Massana, and studied interiors, which has nothing to do with what she does now. It was an art school, so she learned drawing and worked with teachers, and even though she never practised interiors she went on making things. Textiles at first, simpler, more childlike. Then, ten years ago, she took a jewellery course.</p>
+            <p class="artisan-paragraph">Saturdays she is at the Sant Josep market, half past nine to half past one. Sant Rafel at night. Sant Joan. The first Friday of every month there is a night market at Sant Josep and she does that one too. Then whatever comes up, the village fiestas when they invite the artisans, the fair in August, the Festes de la Terra on the first.</p>
+            <p class="artisan-paragraph">Twenty-four hours begins in the old town, in Dalt Vila, which is a UNESCO world heritage site, walking the cobbled streets and the monuments. Then the necropolis at Puig des Molins, Phoenician and Punic burials, and the archaeological museum, where the pieces run from prehistory through the Muslims and the Byzantines. She wants you to see all of it in order, because that is how you understand what an ibicenco actually is. A little of every culture. A little of every civilisation that has lived here.</p>
+            <p class="artisan-paragraph">Then lunch. Gastronomy matters to her for the same reason: it tells you who the people of a place are, and what they had to work with. Sa Caleta, for a bullit de peix.</p>
+            <p class="artisan-paragraph">A swim afterwards in a small fishermen's cove nearby. Then the west, and Cala Comte at the end of the day, with s'Illa des Bosc sitting out in front of you and the sun going down behind it.</p>
+            <p class="artisan-paragraph">And if the day falls right, a ball pagès. It used to be held for the harvest, when everything of that year had been gathered in. They have brought it back now. The dances, the songs, the shell blown the way they used to call the fishermen in, the old games, sack races for the children, and the food and the wine, and the costumes.</p>
+            <p class="artisan-paragraph">Given money and three months, she would travel, and she would go and find the countries where they make this same kind of necklace, to watch how they do it there and learn the history behind each one.</p>
+        </div>
+        <div class="muse-image">
+            <a href="https://kilometre.paris/collections/undercover" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/SF_Kilometre.Paris_-_Ibiza_Carol_Tur_3568.jpg?v=1787733443&width=1800" alt="Carol Tur">
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- OUR PIECES -->
+<section class="piece-unique-section" aria-label="Our Pieces">
+    <div class="piece-unique-inner">
+        <h2 class="piece-unique-title">Our Pieces</h2>
+        <a href="https://kilometre.paris/collections/all" class="piece-unique-viewall" target="_blank">View All</a>
+        <div class="piece-unique-grid">
+            <a href="https://kilometre.paris/collections/kaftans/products/palm-tree-kaftan" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Palm-Tree-Kaftan-Kaftan-166133729.jpg?v=1783502845&width=1800" alt="Palm Tree – Kaftan">
+                </div>
+                <p class="piece-unique-name">Palm Tree — Kaftan</p>
+                <p class="piece-unique-price">€490</p>
+            </a>
+            <a href="https://kilometre.paris/products/parachute-pants-gps-notre-dame-de-paris-light-pink" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Parachute-Pants-Gps-Notre-Dame-de-Paris-Light-Pink-Kilometre-Paris-163480188.jpg?v=1769182238&width=1800" alt="Parachute Pants – GPS Notre Dame de Paris">
+                </div>
+                <p class="piece-unique-name">Parachute Pants — GPS Notre Dame de Paris</p>
+                <p class="piece-unique-price">€350</p>
+            </a>
+            <a href="https://kilometre.paris/products/livoskopos-anafi-greece-yachtwear" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Livoskopos_-Anafi_-Greece-Yachtwear-Yachtwear-166425527.jpg?v=1787235963&width=1800" alt="Livoskopos, Anafi, Greece – Yachtwear">
+                </div>
+                <p class="piece-unique-name">Livoskopos, Anafi, Greece — Yachtwear</p>
+                <p class="piece-unique-price">€795</p>
+            </a>
+            <a href="https://kilometre.paris/products/take-me-to-guanacastle-costa-rica-bandana" class="piece-unique-card" target="_blank">
+                <div class="piece-unique-img-wrap">
+                    <img src="https://kilometre.paris/cdn/shop/files/Take-me-to-Guanacastle-Costa-Rica-Bandana-Bandana-166046067.jpg?v=1782476455&width=1800" alt="Take me to Guanacastle Costa Rica – Bandana">
+                </div>
+                <p class="piece-unique-name">Take me to Guanacastle — Bandana</p>
+                <p class="piece-unique-price">€250</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script src="footer.js"></script>
+
+</body>
+</html>
