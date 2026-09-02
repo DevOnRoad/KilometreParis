@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Galaxy of Talented Hands — Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --rouge: #B82928;
+            --bleu: #2F3E86;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        .page-header {
+            padding: 4rem 4rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--noir);
+        }
+
+        .header-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--rouge);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .header-eyebrow::before,
+        .header-eyebrow::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--rouge);
+        }
+
+        .header-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            color: var(--rouge);
+            -webkit-text-stroke: 2px var(--rouge);
+        }
+
+        .header-title span {
+            color: var(--bleu);
+            -webkit-text-stroke: 2px var(--bleu);
+        }
+
+        .header-sub {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(0,0,0,0.5);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* ── MAP SECTION ── */
+        .map-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.map-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+}
+
+        /* ── SUPPLIERS LIST ── */
+        .suppliers-section {
+            padding: 5rem 4rem;
+            background: var(--blanc);
+            border-top: 2px solid var(--noir);
+        }
+
+        .suppliers-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--rouge);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .suppliers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .supplier-card {
+            padding: 2rem 2.5rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .supplier-card:hover {
+            background: #f9f9f9;
+        }
+
+        .supplier-card::before {
+            content: '●';
+            color: var(--rouge);
+            font-size: 0.5rem;
+            position: absolute;
+            top: 1.5rem;
+            left: 1.2rem;
+        }
+
+        .supplier-city {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--rouge);
+            letter-spacing: 0.05em;
+            padding-left: 1rem;
+        }
+
+        .supplier-country {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--bleu);
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .supplier-role {
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: rgba(0,0,0,0.5);
+            font-weight: 300;
+            padding-left: 1rem;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee-bar {
+            background: var(--bleu);
+            color: #FFF8BD;
+            padding: 0.85rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-inner {
+            display: inline-flex;
+            gap: 3rem;
+            animation: mq 25s linear infinite;
+        }
+
+        .marquee-inner span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .marquee-inner .dot { color: var(--rouge); }
+
+        @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 968px) {
+            .page-header { padding: 2.5rem 1.5rem 1.5rem; }
+            .suppliers-section { padding: 3rem 1.5rem; }
+            .suppliers-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .suppliers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER 
+    <header class="page-header">
+        <p class="header-eyebrow">Kilometre Paris</p>
+        <h1 class="header-title">Our Galaxy of<br><span>Talented Hands</span></h1>
+        <p class="header-sub">Behind every stitch, every thread, every embroidery — a pair of hands. From Morocco to India, from Georgia to Mexico, our artisans are the soul of every piece we make.</p>
+    </header>
+-->
+
+    <!-- MAP -->
+    <div class="map-section">          
+        <img src="./imgTalentedHands/mapOfTalentedHands.jpg" class="map-img" alt="Our Galaxy of Talented Hands — Kilometre Paris world map">
+        <img src="./imgTalentedHands/arowsup.png" class="map-overlay" alt="Arrows pointing to our artisans">
+    </div>
+
+    <!-- MARQUEE 
+    <div class="marquee-bar">
+        <div class="marquee-inner">
+            <span>Essaouira</span><span class="dot">✦</span>
+            <span>Tuscany</span><span class="dot">✦</span>
+            <span>Kashmir</span><span class="dot">✦</span>
+            <span>Georgia</span><span class="dot">✦</span>
+            <span>Kabul</span><span class="dot">✦</span>
+            <span>Mumbai</span><span class="dot">✦</span>
+            <span>Cairo</span><span class="dot">✦</span>
+            <span>Tunis</span><span class="dot">✦</span>
+            <span>Mahdia</span><span class="dot">✦</span>
+            <span>Mexico City</span><span class="dot">✦</span>
+            <span>New Delhi</span><span class="dot">✦</span>
+            <span>Essaouira</span><span class="dot">✦</span>
+            <span>Tuscany</span><span class="dot">✦</span>
+            <span>Kashmir</span><span class="dot">✦</span>
+            <span>Georgia</span><span class="dot">✦</span>
+            <span>Kabul</span><span class="dot">✦</span>
+            <span>Mumbai</span><span class="dot">✦</span>
+            <span>Cairo</span><span class="dot">✦</span>
+            <span>Tunis</span><span class="dot">✦</span>
+            <span>Mahdia</span><span class="dot">✦</span>
+            <span>Mexico City</span><span class="dot">✦</span>
+            <span>New Delhi</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <!-- SUPPLIERS LIST 
+    <section class="suppliers-section">
+        <p class="suppliers-title">Our Artisans Around the World</p>
+        <div class="suppliers-grid">
+
+            <div class="supplier-card">
+                <p class="supplier-city">Essaouira</p>
+                <p class="supplier-country">Morocco</p>
+                <p class="supplier-role">Embroiderers · Knitters</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Tuscany</p>
+                <p class="supplier-country">Italy</p>
+                <p class="supplier-role">Wine-tanned leather maker</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Adjara Mountains</p>
+                <p class="supplier-country">Georgia</p>
+                <p class="supplier-role">Embroiderers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Srinagar, Kashmir</p>
+                <p class="supplier-country">India</p>
+                <p class="supplier-role">Cushion embroiderers · Pashmina weavers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Kabul</p>
+                <p class="supplier-country">Afghanistan</p>
+                <p class="supplier-role">Embroiderers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Tunis</p>
+                <p class="supplier-country">Tunisia</p>
+                <p class="supplier-role">"Espadrilles" makers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Mahdia</p>
+                <p class="supplier-country">Tunisia</p>
+                <p class="supplier-role">Embroiderers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Cairo</p>
+                <p class="supplier-country">Egypt</p>
+                <p class="supplier-role">Towel & Home manufacturers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Mumbai, Maharashtra</p>
+                <p class="supplier-country">India</p>
+                <p class="supplier-role">Embroiderers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">New Delhi</p>
+                <p class="supplier-country">India</p>
+                <p class="supplier-role">Packaging manufacturers</p>
+            </div>
+
+            <div class="supplier-card">
+                <p class="supplier-city">Mexico City</p>
+                <p class="supplier-country">Mexico</p>
+                <p class="supplier-role">Embroiderers</p>
+            </div>
+
+        </div>
+    </section>
+-->
+</body>
+</html>

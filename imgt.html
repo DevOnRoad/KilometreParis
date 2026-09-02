@@ -1,0 +1,32 @@
+<style>
+    .conteneur-images {
+  position: relative; /* Crée un repère pour les enfants en position absolue */
+  width: 400px;     /* Ajustez la largeur selon vos besoins */
+  height: 300px;    /* Ajustez la hauteur selon vos besoins */
+}
+
+.conteneur-images img {
+  position: absolute; /* Sort les images du flux normal et les superpose */
+  top: 0;
+  left: 0;
+  width: 100%;        /* Force l'image à occuper tout le conteneur */
+  height: 100%;
+  object-fit: cover;  /* Conserve les proportions des images */
+}
+
+/* Optionnel : utiliser z-index pour forcer l'ordre si nécessaire */
+.img-fond {
+  z-index: 1;
+}
+
+.img-dessus {
+  z-index: 2; /* Valeur plus élevée = affichée au premier plan */
+}
+
+</style>
+
+<div class="conteneur-images">
+    <img src="./imgTalentedHands/mapOfTalentedHands.jpg" alt="Image de fond" class="img-fond">
+    <img src="./imgTalentedHands/arowsup.png" alt="Image du dessus" class="img-dessus">
+  </div>
+  
