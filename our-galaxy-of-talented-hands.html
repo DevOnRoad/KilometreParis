@@ -81,26 +81,32 @@
 
         /* ── MAP SECTION ── */
         .map-section {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
 
-.map-img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+        .map-img {
+            width: 100%;
+            display: block;
+        }
 
-.map-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    pointer-events: none;
-}
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%   { opacity: 1; transform: scale(1); }
+            50%  { opacity: 0.75; transform: scale(1.012); }
+            100% { opacity: 1; transform: scale(1); }
+        }
 
         /* ── SUPPLIERS LIST ── */
         .suppliers-section {
@@ -213,26 +219,145 @@
         @media (max-width: 600px) {
             .suppliers-grid { grid-template-columns: 1fr; }
         }
+        /* ── MODAL ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: var(--blanc);
+            width: 100%;
+            max-width: 1100px;
+            padding: 4rem;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.35s ease;
+        }
+
+        .modal-overlay.open .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--noir);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover { color: var(--rouge); }
+
+        .modal-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--rouge);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--rouge);
+            line-height: 0.9;
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-country {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            margin-bottom: 2rem;
+        }
+
+        .modal-divider {
+            height: 2px;
+            background: var(--noir);
+            margin-bottom: 2.5rem;
+        }
+
+        .modal-text {
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: rgba(0,0,0,0.6);
+            font-weight: 300;
+            margin-bottom: 1.2rem;
+            max-width: 700px;
+        }
+
+        .modal-photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 2.5rem;
+        }
+
+        .modal-photos img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Carte cliquable */
+        .supplier-card.clickable {
+            cursor: pointer;
+        }
+
+        .supplier-card.clickable:hover .supplier-city {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- HEADER 
+    <!-- HEADER
     <header class="page-header">
         <p class="header-eyebrow">Kilometre Paris</p>
         <h1 class="header-title">Our Galaxy of<br><span>Talented Hands</span></h1>
         <p class="header-sub">Behind every stitch, every thread, every embroidery — a pair of hands. From Morocco to India, from Georgia to Mexico, our artisans are the soul of every piece we make.</p>
-    </header>
--->
+    </header> -->
 
     <!-- MAP -->
-    <div class="map-section">          
-        <img src="./imgTalentedHands/mapOfTalentedHands.jpg" class="map-img" alt="Our Galaxy of Talented Hands — Kilometre Paris world map">
-        <img src="./imgTalentedHands/arowsup.png" class="map-overlay" alt="Arrows pointing to our artisans">
+    <div class="map-section">
+        <img class="map-img" src="./imgTalentedHands/mapOfTalentedHands.jpg" alt="Our Galaxy of Talented Hands — Kilometre Paris world map">
+        <img class="map-overlay" src="./imgTalentedHands/arow.png" alt="Arrows pointing to our artisans">
     </div>
 
-    <!-- MARQUEE 
-    <div class="marquee-bar">
+    <!-- MARQUEE -->
+    <!-- <div class="marquee-bar">
         <div class="marquee-inner">
             <span>Essaouira</span><span class="dot">✦</span>
             <span>Tuscany</span><span class="dot">✦</span>
@@ -257,19 +382,19 @@
             <span>Mexico City</span><span class="dot">✦</span>
             <span>New Delhi</span><span class="dot">✦</span>
         </div>
-    </div>
+    </div> -->
 
-    <!-- SUPPLIERS LIST 
+    <!-- SUPPLIERS LIST -->
     <section class="suppliers-section">
         <p class="suppliers-title">Our Artisans Around the World</p>
         <div class="suppliers-grid">
 
-            <div class="supplier-card">
+            <div class="supplier-card clickable" onclick="openModal('essaouira')">
                 <p class="supplier-city">Essaouira</p>
                 <p class="supplier-country">Morocco</p>
                 <p class="supplier-role">Embroiderers · Knitters</p>
             </div>
-
+<!-- 
             <div class="supplier-card">
                 <p class="supplier-city">Tuscany</p>
                 <p class="supplier-country">Italy</p>
@@ -328,10 +453,72 @@
                 <p class="supplier-city">Mexico City</p>
                 <p class="supplier-country">Mexico</p>
                 <p class="supplier-role">Embroiderers</p>
-            </div>
+            </div> -->
 
         </div>
     </section>
--->
+
+<!-- MODAL ESSAOUIRA -->
+<div class="modal-overlay" id="modal-essaouira">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('essaouira')">✕ Close</button>
+        <p class="modal-eyebrow">Our Artisans · Morocco</p>
+        <h2 class="modal-title">Essaouira</h2>
+        <p class="modal-country">Morocco — Embroiderers · Knitters</p>
+        <div class="modal-divider"></div>
+        <p class="modal-text">Essaouira is where the story of the Undercover Basket begins. Nestled on the Atlantic coast of Morocco, this ancient port city has been a centre of craftsmanship for centuries. The women here weave and knit with a precision passed down through generations — each stitch a gesture of memory, each basket a conversation between hands.</p>
+        <p class="modal-text">Said and his family — Hafsa, Aicha, Imane — orchestrate the entire process. The metal structure, the "gabarit", is built here. The palm leaves are woven in the Atlas Mountains and brought down. Latifa gives the final eye for quality control. Nothing leaves without her approval.</p>
+        <p class="modal-text">The threads are sourced from Essaouira, Casablanca and Marrakech, Said searching every souk for the exact colour that Alexandra has drawn. What comes back is not just a product. It is a collaboration between Paris and the Atlantic coast of Morocco, between a sketch on a screen and hands that have never touched a screen at all.</p>
+        <!-- Ajoute tes vraies photos ici -->
+        <div class="modal-photos">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300&width=1800" alt="Essaouira artisans">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8484.jpg?v=1742478860&width=1800" alt="Essaouira artisans">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7264.jpg?v=1742478861&width=1800" alt="Essaouira artisans">
+        </div>
+        <!-- Vidéo -->
+        <video style="width:100%; margin-top:1.5rem; display:block;" controls playsinline>
+            <source src="https://cdn.shopify.com/videos/c/o/v/e5d2a4310dac46ae8d88cf8580aa66ca.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<script>
+    function openModal(id) {
+        const modal = document.getElementById('modal-' + id);
+        if (modal) {
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal(id) {
+        const modal = document.getElementById('modal-' + id);
+        if (modal) {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Fermer en cliquant sur le fond
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Fermer avec Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.open').forEach(modal => {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
