@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kilometre Paris — About</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,900&family=Barlow:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B82928;
+  --blue:#2F3E86;
+  --yellow:#FFF8BD;
+  --sand:#F2EDB8;
+  --ink:#171717;
+  --paper:#F7F5EE;
+  --line:rgba(23,23,23,.16)
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:Barlow,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden
+}
+img,video{width:100%;height:100%;object-fit:cover;display:block}
+a{color:inherit}
+.kicker,.mono,.caption,.label{
+  font-family:"Barlow Condensed",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  font-weight:700
+}
+.kicker{font-size:11px}
+.mono{font-size:10px}
+.caption{font-size:9px;letter-spacing:.16em;line-height:1.5}
+
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:46% 54%
+}
+.hero-copy{
+  position:relative;
+  overflow:hidden;
+  padding:28px 42px 34px;
+  background:var(--red);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
+}
+.hero-copy:after{
+  content:"K";
+  position:absolute;
+  right:-.04em;
+  bottom:-.18em;
+  font:900 34vw/.7 "Barlow Condensed";
+  color:rgba(255,255,255,.055)
+}
+.topline,.hero-bottom{
+  position:relative;
+  z-index:1
+}
+.topline{
+  display:flex;
+  justify-content:space-between;
+  gap:20px
+}
+.hero-title{
+  position:relative;
+  z-index:1;
+  font:900 clamp(5.8rem,12vw,12.5rem)/.77 "Barlow Condensed";
+  text-transform:uppercase;
+  letter-spacing:-.045em
+}
+.hero-title i{color:var(--yellow)}
+.hero-bottom{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:30px;
+  align-items:end
+}
+.hero-quote{
+  max-width:390px;
+  font-size:15px;
+  line-height:1.5;
+  font-weight:300
+}
+.hero-stamp{
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.55);
+  text-align:center;
+  transform:rotate(-4deg)
+}
+.hero-stamp b{
+  display:block;
+  font:900 20px/1 "Barlow Condensed"
+}
+.hero-stamp span{
+  font-size:8px;
+  letter-spacing:.18em;
+  text-transform:uppercase
+}
+.hero-media{
+  position:relative;
+  min-height:100vh
+}
+.hero-media:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.12),transparent 35%)
+}
+.hero-note{
+  position:absolute;
+  z-index:2;
+  right:22px;
+  bottom:20px;
+  padding:9px 12px;
+  background:var(--blue);
+  color:#fff;
+  font:700 10px "Barlow Condensed";
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transform:rotate(-2deg)
+}
+
+.ticker{
+  height:37px;
+  background:var(--ink);
+  color:var(--yellow);
+  overflow:hidden;
+  white-space:nowrap;
+  display:flex;
+  align-items:center
+}
+.track{
+  display:flex;
+  gap:34px;
+  min-width:max-content;
+  animation:marquee 28s linear infinite
+}
+.track span{
+  font:700 10px "Barlow Condensed";
+  letter-spacing:.25em;
+  text-transform:uppercase
+}
+.track .star{color:var(--red);font-size:13px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.intro{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  min-height:92vh;
+  border-bottom:1px solid var(--line)
+}
+.intro-text{
+  padding:10vw 7vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.section-no{
+  margin-bottom:26px;
+  font:900 13px "Barlow Condensed";
+  color:var(--red);
+  letter-spacing:.18em
+}
+.big-title{
+  font:900 clamp(4rem,7.5vw,8rem)/.78 "Barlow Condensed";
+  text-transform:uppercase;
+  color:var(--blue);
+  letter-spacing:-.035em
+}
+.big-title em{color:var(--red);font-style:italic}
+.story-intro{
+  max-width:680px;
+  margin-top:38px;
+  font-size:18px;
+  line-height:1.8;
+  color:rgba(23,23,23,.78)
+}
+.story-intro + .story-intro{margin-top:24px}
+.story-highlight{
+  max-width:650px;
+  margin-top:42px;
+  padding-left:22px;
+  border-left:2px solid var(--red);
+  color:var(--red);
+  font:900 italic clamp(2rem,3vw,3.5rem)/.92 "Barlow Condensed";
+  text-transform:uppercase
+}
+.intro-image{position:relative;background:var(--sand)}
+.intro-image .vertical{
+  position:absolute;
+  z-index:2;
+  left:17px;
+  top:18px;
+  writing-mode:vertical-rl;
+  font:700 9px "Barlow Condensed";
+  letter-spacing:.2em;
+  text-transform:uppercase
+}
+.photo-caption{
+  position:absolute;
+  right:16px;
+  bottom:16px;
+  max-width:190px;
+  padding:9px 11px;
+  background:var(--paper)
+}
+
+.gps{
+  position:relative;
+  min-height:110vh;
+  padding:7vw;
+  overflow:hidden;
+  background:var(--sand)
+}
+.gps:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(47,62,134,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(47,62,134,.09) 1px,transparent 1px);
+  background-size:42px 42px
+}
+.gps-inner{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:42% 58%;
+  gap:6vw;
+  align-items:center
+}
+.gps-kicker{color:var(--blue);margin-bottom:15px}
+.coords{
+  font:900 clamp(5rem,11vw,12rem)/.72 "Barlow Condensed";
+  color:var(--red);
+  letter-spacing:-.055em
+}
+.coords small{
+  display:block;
+  margin-top:25px;
+  font:700 12px/1.2 "Barlow Condensed";
+  letter-spacing:.22em;
+  color:var(--blue)
+}
+.route{
+  position:absolute;
+  left:38%;
+  top:14%;
+  width:230px;
+  height:430px;
+  border-left:1px dashed var(--blue);
+  transform:rotate(14deg);
+  opacity:.6
+}
+.route:before,.route:after{
+  content:"";
+  position:absolute;
+  width:9px;
+  height:9px;
+  border:2px solid var(--red);
+  border-radius:50%;
+  background:var(--sand)
+}
+.route:before{top:-5px;left:-5px}
+.route:after{bottom:-5px;left:-5px}
+.gps-copy{max-width:650px}
+.gps-copy h2{
+  margin-bottom:32px;
+  font:900 clamp(3rem,6vw,6.5rem)/.8 "Barlow Condensed";
+  text-transform:uppercase;
+  color:var(--blue)
+}
+.gps-story p{
+  max-width:590px;
+  font-size:17px;
+  line-height:1.7
+}
+.gps-story p + p{margin-top:20px}
+.manifesto{
+  margin-top:38px;
+  color:var(--red);
+  font:900 italic clamp(2rem,3.5vw,4rem)/.9 "Barlow Condensed";
+  text-transform:uppercase
+}
+.story-small-title{
+  margin:48px 0 15px;
+  font:900 15px "Barlow Condensed";
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  color:var(--blue)
+}
+.coordinates-label{
+  margin-top:45px;
+  padding-top:12px;
+  border-top:1px solid rgba(47,62,134,.35);
+  color:var(--blue)
+}
+
+.spread{
+  display:grid;
+  grid-template-columns:58% 42%;
+  min-height:95vh;
+  background:var(--ink);
+  color:#fff
+}
+.spread-media{position:relative;min-height:95vh}
+.spread-media video{opacity:.78}
+.film-note{
+  position:absolute;
+  left:18px;
+  top:18px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.55);
+  font:700 9px "Barlow Condensed";
+  letter-spacing:.18em;
+  text-transform:uppercase
+}
+.spread-copy{
+  padding:7vw 5vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.spread-copy .section-no{color:var(--yellow)}
+.spread-title{
+  font:900 clamp(4rem,7vw,8rem)/.76 "Barlow Condensed";
+  text-transform:uppercase;
+  letter-spacing:-.04em
+}
+.spread-title span{color:var(--yellow);font-style:italic}
+.hunt-story{margin-top:30px}
+.hunt-story p{
+  max-width:500px;
+  font-size:16px;
+  line-height:1.75;
+  color:rgba(255,255,255,.7)
+}
+.hunt-story p + p{margin-top:20px}
+.pull{
+  max-width:400px;
+  margin-top:55px;
+  padding-left:20px;
+  border-left:2px solid var(--red);
+  font:900 italic 25px/.95 "Barlow Condensed";
+  text-transform:uppercase
+}
+
+.hands{
+  display:grid;
+  grid-template-columns:48% 52%;
+  min-height:100vh
+}
+.hands-media{position:relative}
+.hands-media:after{
+  content:"04° — HANDS";
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  color:#fff;
+  font:700 10px "Barlow Condensed";
+  letter-spacing:.2em
+}
+.hands-copy{
+  padding:8vw 7vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.hands-title{
+  font:900 clamp(4rem,7vw,8rem)/.77 "Barlow Condensed";
+  text-transform:uppercase;
+  color:var(--blue);
+  letter-spacing:-.04em
+}
+.hands-title i{color:var(--red)}
+.hands-story{
+  max-width:650px;
+  margin-top:32px;
+  font-size:17px;
+  line-height:1.75
+}
+.hands-story + .hands-story{margin-top:20px}
+.hand-list{
+  margin-top:42px;
+  border-top:1px solid var(--line)
+}
+.hand-row{
+  display:grid;
+  grid-template-columns:95px 1fr;
+  gap:25px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line)
+}
+.hand-row b{
+  font:900 13px "Barlow Condensed";
+  color:var(--red);
+  letter-spacing:.1em
+}
+.hand-row p{
+  font-size:14px;
+  line-height:1.55;
+  color:rgba(23,23,23,.65)
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:var(--blue);
+  color:#fff
+}
+.stat{
+  min-height:245px;
+  padding:65px 25px;
+  border-right:1px solid rgba(255,255,255,.18);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
+}
+.stat:last-child{border:0}
+.stat b{
+  font:900 clamp(4rem,7vw,8rem)/.7 "Barlow Condensed";
+  color:var(--yellow);
+  letter-spacing:-.04em
+}
+.stat span{
+  font:700 10px "Barlow Condensed";
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  color:rgba(255,255,255,.6)
+}
+
+.founder{
+  display:grid;
+  grid-template-columns:38% 62%;
+  min-height:85vh;
+  background:var(--paper)
+}
+.founder-photo{position:relative}
+.founder-copy{
+  padding:8vw 7vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.founder-name{
+  font:900 clamp(4rem,7vw,8rem)/.72 "Barlow Condensed";
+  text-transform:uppercase;
+  color:var(--red)
+}
+.role{margin-top:15px;color:var(--blue)}
+.founder-copy p{
+  max-width:650px;
+  margin-top:28px;
+  font-size:17px;
+  line-height:1.75
+}
+.founder-quote{
+  max-width:700px;
+  margin-top:55px;
+  color:var(--blue);
+  font:900 italic clamp(2.5rem,4.5vw,5rem)/.82 "Barlow Condensed"
+}
+
+footer{
+  padding:20px 28px;
+  background:var(--ink);
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font:700 9px "Barlow Condensed";
+  letter-spacing:.18em;
+  text-transform:uppercase
+}
+footer span:nth-child(2){color:var(--red)}
+
+/* ROLLING TEXT */
+.roll{
+  display:inline-block;
+  perspective:700px
+}
+.roll-char{
+  display:inline-block;
+  transform-style:preserve-3d;
+  transform-origin:50% 50%;
+  will-change:transform
+}
+.roll-char>*{
+  display:block;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden
+}
+.roll-back{
+  position:absolute;
+  inset:0;
+  transform:rotateX(180deg)
+}
+.roll-space{
+  display:inline-block;
+  width:.25em
+}
+.roll.visible .roll-char{
+  animation:flip .65s cubic-bezier(.22,.61,.36,1) both
+}
+@keyframes flip{
+  0%{transform:rotateX(0)}
+  30%{transform:rotateX(-110deg)}
+  60%{transform:rotateX(25deg)}
+  80%{transform:rotateX(-8deg)}
+  100%{transform:rotateX(0)}
+}
+
+@media(max-width:900px){
+  .hero,.intro,.spread,.hands,.founder{grid-template-columns:1fr}
+  .hero-copy{min-height:72vh;padding:22px}
+  .hero-media{min-height:72vh}
+  .hero-title{font-size:clamp(5rem,23vw,9rem)}
+  .intro-image,.hands-media,.founder-photo{min-height:78vw}
+  .intro-text,.hands-copy,.founder-copy{padding:18vw 7vw}
+  .story-intro{font-size:16px;line-height:1.7}
+  .story-highlight{font-size:2rem}
+  .gps{padding:14vw 7vw}
+  .gps-inner{grid-template-columns:1fr;gap:14vw}
+  .route{left:55%;top:10%}
+  .spread-media{min-height:75vw}
+  .spread-copy{padding:15vw 7vw}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{min-height:190px;padding:35px 18px}
+  footer{flex-direction:column}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .track{animation:none}
+  .roll-char{animation:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="topline">
+      <span class="kicker">Kilometre Paris · Est. 2015</span>
+      <span class="kicker">No. 01 / About</span>
+    </div>
+
+    <h1 class="hero-title">About<br><i>the</i><br>journey.</h1>
+
+    <div class="hero-bottom">
+      <p class="hero-quote">
+        “People do not take trips, trips take people.”
+        <br><span class="kicker">— John Steinbeck</span>
+      </p>
+
+      <div class="hero-stamp">
+        <b>PARIS</b>
+        <span>point zéro</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-media">
+    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC04800_THOMAS.jpg?v=1761295206&width=1800" alt="Kilometre Paris">
+    <div class="hero-note">A travelling wardrobe</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="track">
+    <span>Paris</span><span class="star">✦</span>
+    <span>Morocco</span><span class="star">✦</span>
+    <span>India</span><span class="star">✦</span>
+    <span>Mexico</span><span class="star">✦</span>
+    <span>Georgia</span><span class="star">✦</span>
+    <span>Handmade</span><span class="star">✦</span>
+    <span>Embroidery</span><span class="star">✦</span>
+    <span>Vintage</span><span class="star">✦</span>
+    <span>Travel</span><span class="star">✦</span>
+
+    <span>Paris</span><span class="star">✦</span>
+    <span>Morocco</span><span class="star">✦</span>
+    <span>India</span><span class="star">✦</span>
+    <span>Mexico</span><span class="star">✦</span>
+    <span>Georgia</span><span class="star">✦</span>
+    <span>Handmade</span><span class="star">✦</span>
+    <span>Embroidery</span><span class="star">✦</span>
+    <span>Vintage</span><span class="star">✦</span>
+    <span>Travel</span>
+  </div>
+</div>
+
+<!-- 01 OUR STORY -->
+<section class="intro">
+  <div class="intro-text">
+
+    <div class="section-no">01 — Our Story</div>
+
+    <h2 class="big-title">Where it<br><em>all</em><br>began.</h2>
+
+    <p class="story-intro">
+      People do not take trips, trips take people. It started with a pile of old shirts at a flea market in Cinq-Mars-la-Pile, a small village in Touraine, France. Alexandra Senes, a journalist and lifelong traveler, found herself standing before a collection of XIXth-century work shirts, simple, worn, untouched for decades.
+    </p>
+
+    <p class="story-intro">
+      They had once belonged to a film set decorator. His wife, who was selling them, simply wished to get rid of them, while Alexandra harbored the desire to craft a narrative of travel. Each shirt was a ‘Piece Unique.’ Alexandra bought them not to resell, but to embroider on. That is Kilometre Paris.
+    </p>
+
+    <p class="story-intro">
+      Kilometre Paris lets them become something else. Every piece carries a story — not a label, not a slogan. A place, a year, a journey. That’s the only luxury we care about. Take the 1950s Bleu de Travail (work uniforms), for instance, we find old fabrics and let them live again.
+    </p>
+
+    <p class="story-intro">
+      We also hand-weave our cotton to embroider it with stories of beaches, mountains and new destinations. With a passion for travel, heritage, and craftsmanship, Alexandra brought the shirts to artisans around the world, in Morocco, India, Mexico, and asked them to embroider.
+    </p>
+
+    <div class="story-highlight">Each shirt was a ‘Piece Unique.’</div>
+
+    <p class="story-intro">
+      Each stitch was made by hand, in a place far from Paris, with a patience that no machine could replace. From this idea, Kilometre Paris was born.
+    </p>
+
+    <p class="story-intro">
+      Alexandra Senes is not a fashion designer in the conventional sense. She calls herself a pilot, someone who navigates between cultures, crafts, and stories. The brand she built, Kilometre Paris, reflects that restlessness, and that respect: for the people who make, for the materials that endure, and for the places that leave a mark on us.
+    </p>
+
+  </div>
+
+  <div class="intro-image">
+    <span class="vertical">Cinq-Mars-la-Pile · Touraine · France</span>
+
+    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300&width=1800" alt="Vintage Kilometre Paris shirt">
+
+    <div class="photo-caption caption">
+      An old shirt. A new route.<br>
+      One piece, one story.
+    </div>
+  </div>
+</section>
+
+<!-- 02 OUR GPS -->
+<section class="gps">
+  <div class="gps-inner">
+
+    <div class="gps-left">
+      <div class="gps-kicker kicker">02 — Our GPS</div>
+
+      <div class="coords">
+        48°51′<br>
+        11″N<br>
+        2°20′59″E
+        <small>NOTRE-DAME DE PARIS · KILOMETRE ZERO</small>
+      </div>
+
+      <div class="route"></div>
+    </div>
+
+    <div class="gps-copy">
+
+      <h2>
+        The point<br>
+        is fixed.<br>
+        <span style="color:var(--red)">The story<br>moves.</span>
+      </h2>
+
+      <div class="gps-story">
+        <p>
+          The GPS coordinates stitched into each of our piece’s teleport you to point zero: the front of the Notre-Dame Cathedral in Paris, kilometre zero, where all French roads begin.
+        </p>
+
+        <p>
+          This unique feature not only grounds our creations in the heart of our Parisian heritage but also symbolizes a journey where every garment becomes a vessel for exploration and discovery.
+        </p>
+
+        <p>
+          At Kilometre Paris, we start with vintage shirts and treat them as blank canvases, handing them to artisans who embroidery by hand.
+        </p>
+
+        <p>
+          The point is fixed, but the embroidery tells a different story: the place it came from, the hands that made it, and the person who will wear it next.
+        </p>
+
+        <p>
+          Additionally, antique hunting is part of what we do, scouring the globe for hidden treasures. From sniffing out the back of trucks to exploring attics and factory closets, our team unearths unique finds like sailor blouses and overalls, each with its own tale to tell.
+        </p>
+      </div>
+
+      <div class="manifesto">
+        Every garment is a vessel for exploration.
+      </div>
+
+      <div class="coordinates-label mono">
+        48°51′11″N / 2°20′59″E · PARIS, FRANCE
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 THE HUNT -->
+<section class="spread">
+
+  <div class="spread-media">
+    <video autoplay muted loop playsinline>
+      <source src="https://cdn.shopify.com/videos/c/o/v/e5d2a4310dac46ae8d88cf8580aa66ca.mp4" type="video/mp4">
+    </video>
+
+    <div class="film-note">
+      Field notes · Antique hunting
+    </div>
+  </div>
+
+  <div class="spread-copy">
+
+    <div class="section-no">03 — The Hunt</div>
+
+    <h2 class="spread-title">
+      We go<br>
+      <span>looking.</span>
+    </h2>
+
+    <div class="hunt-story">
+      <p>
+        Antique hunting is part of what we do, scouring the globe for hidden treasures.
+      </p>
+
+      <p>
+        From sniffing out the back of trucks to exploring attics and factory closets, our team unearths unique finds like sailor blouses and overalls, each with its own tale to tell.
+      </p>
+    </div>
+
+    <div class="pull">
+      “Not new.<br>
+      Not reproduced.<br>
+      Found.”
+    </div>
+
+  </div>
+</section>
+
+<!-- 04 OUR HANDS -->
+<section class="hands">
+
+  <div class="hands-media">
+    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/LIONEL_JADOT_-_BLEU_DE_TRAVAIL_AUGMENTE_BREAKING_POINT_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_362_TAE_WEB.jpg?v=1744963707&width=1800" alt="Kilometre Paris artisan work">
+  </div>
+
+  <div class="hands-copy">
+
+    <div class="section-no">04 — Our Hands</div>
+
+    <h2 class="hands-title">
+      Every stitch<br>
+      is a <i>conversation.</i>
+    </h2>
+
+    <p class="hands-story">
+      At Kilometre Paris, every stitch we make is a conversation, between past and present, between Paris and the places our artisans call home.
+    </p>
+
+    <p class="hands-story">
+      We work with artisans whose craft has been passed down through generations, not as a relic of the past, but as a living language.
+    </p>
+
+    <p class="hands-story">
+      Each piece is embroidered slowly, by hand, in a place where time moves differently.
+    </p>
+
+    <p class="hands-story">
+      We believe that people’s art is a true mirror of their minds, which makes our brand deeply human and vibrant.
+    </p>
+
+    <p class="hands-story">
+      Our Travelers’ Club invites artists, thinkers, and creators to collaborate with us, not to design, but to translate.
+    </p>
+
+    <p class="hands-story">
+      Using vintage shirts from the 19th century, each contributor offers their own visual interpretation of a destination that’s dear to us creating masterpiece souvenirs of our « moments de vie ».
+    </p>
+
+    <div class="hand-list">
+      <div class="hand-row">
+        <b>01 / PLACE</b>
+        <p>The embroidery carries the place: a street, a landscape, a memory, a coordinate.</p>
+      </div>
+
+      <div class="hand-row">
+        <b>02 / HANDS</b>
+        <p>Each piece is worked slowly, by hand, in workshops where the gesture matters as much as the result.</p>
+      </div>
+
+      <div class="hand-row">
+        <b>03 / TIME</b>
+        <p>Vintage gives the garment its first life. Embroidery gives it another. The wearer takes it from there.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat">
+    <b>2015</b>
+    <span>Founded in Paris</span>
+  </div>
+
+  <div class="stat">
+    <b>74+</b>
+    <span>Artisans worldwide</span>
+  </div>
+
+  <div class="stat">
+    <b>09</b>
+    <span>Caravans around the world</span>
+  </div>
+
+  <div class="stat">
+    <b>∞</b>
+    <span>Unique pieces created</span>
+  </div>
+</section>
+
+<!-- 05 THE FOUNDER -->
+<section class="founder">
+
+  <div class="founder-photo">
+    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05297_JULIE_GAYET.jpg?v=1756473305&width=1800" alt="Alexandra Senes — founder of Kilometre Paris">
+  </div>
+
+  <div class="founder-copy">
+
+    <div class="section-no">05 — The Founder</div>
+
+    <h2 class="founder-name">
+      Alexandra<br>Senes
+    </h2>
+
+    <div class="role kicker">
+      Founder · Pilot · Traveler
+    </div>
+
+    <p>
+      Alexandra Senes is not a fashion designer in the conventional sense. She calls herself a pilot, someone who navigates between cultures, crafts, and stories.
+    </p>
+
+    <p>
+      With a passion for travel, heritage, and craftsmanship, Alexandra brought the shirts to artisans around the world, in Morocco, India, Mexico, and asked them to embroider.
+    </p>
+
+    <p>
+      Each stitch was made by hand, in a place far from Paris, with a patience that no machine could replace.
+    </p>
+
+    <p>
+      The brand she built, Kilometre Paris, reflects that restlessness, and that respect: for the people who make, for the materials that endure, and for the places that leave a mark on us.
+    </p>
+
+    <div class="founder-quote">
+      “Not designers.<br>
+      Translators.”
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>Kilometre Paris · About</span>
+  <span>Paris · Morocco · India · Mexico · Georgia</span>
+  <span>Made to travel</span>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+
+  const targets=document.querySelectorAll(
+    "h1,h2,.section-no,.role,.kicker,.stat span,.hand-row b,.manifesto,.coordinates-label"
+  );
+
+  targets.forEach(el=>{
+    if(el.classList.contains("roll"))return;
+
+    el.classList.add("roll");
+
+    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+
+    while(walker.nextNode())nodes.push(walker.currentNode);
+
+    nodes.forEach(node=>{
+      const frag=document.createDocumentFragment();
+
+      [...node.textContent].forEach(char=>{
+
+        if(char===" "){
+          const space=document.createElement("span");
+          space.className="roll-space";
+          space.innerHTML="&nbsp;";
+          frag.appendChild(space);
+          return;
+        }
+
+        const wrap=document.createElement("span");
+        wrap.className="roll-char";
+
+        const front=document.createElement("span");
+        front.textContent=char;
+
+        const back=document.createElement("span");
+        back.className="roll-back";
+        back.textContent=char;
+
+        wrap.append(front,back);
+        wrap.style.animationDelay=`${Math.min(frag.childNodes.length*0.025,.6)}s`;
+
+        frag.appendChild(wrap);
+      });
+
+      node.parentNode.replaceChild(frag,node);
+    });
+  });
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },{
+    threshold:.15,
+    rootMargin:"0px 0px -8% 0px"
+  });
+
+  targets.forEach(el=>observer.observe(el));
+
+});
+</script>
+
+</body>
+</html>
