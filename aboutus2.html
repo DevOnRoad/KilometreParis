@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Kilometre Paris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Barlow:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --rouge: #B82928;
+            --bleu: #2F3E86;
+            --jaune: #FFF8BD;
+            --sable: #F2EDB8;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(--noir); overflow-x: hidden; }
+
+        /* ── HERO VIDEO ── */
+        .hero-video {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-video video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 4rem 5rem;
+            gap: 1.5rem;
+        }
+
+        .hero-sound-btn {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--blanc);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            transition: background 0.2s;
+        }
+
+        .hero-sound-btn:hover { background: rgba(255,255,255,0.25); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+        }
+
+        .hero-left {
+            background: var(--rouge);
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(4rem, 8vw, 9rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            color: var(--blanc);
+        }
+
+        .hero-title span {
+            color: var(--jaune);
+        }
+
+        .hero-quote {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            font-style: italic;
+            border-left: 2px solid rgba(255,255,255,0.3);
+            padding-left: 1.5rem;
+            max-width: 380px;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee-bar { background: var(--noir); padding: 0.8rem 0; overflow: hidden; white-space: nowrap; }
+        .marquee-inner { display: inline-flex; gap: 3rem; animation: mq 20s linear infinite; }
+        .marquee-inner span { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+        .marquee-inner .dot { color: var(--rouge); }
+        @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ── OUR STORY ── */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .story-text {
+            padding: 6rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+            background: var(--blanc);
+        }
+
+        .story-img {
+            background: var(--sable);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 900;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--rouge);
+        }
+
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.88;
+            letter-spacing: -0.02em;
+            color: var(--bleu);
+        }
+
+        .section-body {
+            font-size: 0.9rem;
+            line-height: 1.95;
+            color: rgba(0,0,0,0.55);
+            font-weight: 300;
+            max-width: 480px;
+        }
+
+        /* ── GPS SECTION ── */
+        .gps-section {
+            background: var(--sable);
+            padding: 7rem 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .gps-coord {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3rem, 6vw, 7rem);
+            font-weight: 900;
+            color: var(--rouge);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            -webkit-text-stroke: 2px var(--rouge);
+        }
+
+        .gps-coord-sub {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .gps-coord-sub::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background: var(--bleu);
+        }
+
+        /* ── VIDEO SECTION ── */
+        .video-section {
+            position: relative;
+            overflow: hidden;
+            background: var(--noir);
+        }
+
+        .video-section video {
+            width: 100%;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .video-text {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 5vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--blanc);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .video-text span { color: var(--jaune); }
+
+        /* ── OUR HANDS ── */
+        .hands-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .hands-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hands-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .hands-text {
+            padding: 6rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+            background: var(--blanc);
+            border-left: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* ── STATS ── */
+        .stats-section {
+            background: var(--bleu);
+            padding: 5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3rem, 5vw, 5.5rem);
+            font-weight: 900;
+            color: var(--jaune);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-top: 0.5rem;
+        }
+
+        /* ── TRAVELERS CLUB ── */
+        .club-section {
+            background: var(--blanc);
+            padding: 7rem 5rem;
+            text-align: center;
+            border-top: 2px solid var(--noir);
+        }
+
+        .club-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--rouge);
+            line-height: 0.88;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .club-body {
+            font-size: 0.9rem;
+            line-height: 1.95;
+            color: rgba(0,0,0,0.55);
+            font-weight: 300;
+            max-width: 680px;
+            margin: 0 auto 3rem;
+        }
+
+        .club-cta {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--rouge);
+            color: var(--blanc);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .club-cta:hover { background: var(--bleu); }
+
+        /* ── ALEXANDRA ── */
+        .alexandra-section {
+            background: var(--sable);
+            display: grid;
+            grid-template-columns: 40% 1fr;
+            min-height: 70vh;
+        }
+
+        .alexandra-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alexandra-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .alexandra-text {
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .alexandra-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 3vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--rouge);
+            line-height: 0.9;
+        }
+
+        .alexandra-role {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--bleu);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero, .story-section, .hands-section, .alexandra-section { grid-template-columns: 1fr; }
+            .hero-right, .story-img, .hands-img, .alexandra-img { min-height: 60vw; }
+            .hero-left, .story-text, .hands-text, .alexandra-text { padding: 3rem 1.5rem; }
+            .gps-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+            .stats-section { grid-template-columns: 1fr 1fr; padding: 3rem 1.5rem; }
+            .club-section { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO VIDEO -->
+    <div class="hero-video">
+        <video id="hero-vid" autoplay muted loop playsinline>
+            <source src="./videos/Romain movie - Piece unique, Villa Ephrussi, Saint Jean Cap Ferrat.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay">
+            <span class="hero-eyebrow">Kilometre Paris · Est. 2015</span>
+            <h1 class="hero-title">About<br><span>Us</span></h1>
+            <p class="hero-quote">"People do not take trips,<br>trips take people."</p>
+        </div>
+        <button class="hero-sound-btn" id="sound-btn" onclick="toggleSound()" aria-label="Toggle sound">
+            <svg id="icon-mute" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <svg id="icon-sound" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-bar">
+        <div class="marquee-inner">
+            <span>Paris</span><span class="dot">✦</span>
+            <span>Morocco</span><span class="dot">✦</span>
+            <span>India</span><span class="dot">✦</span>
+            <span>Mexico</span><span class="dot">✦</span>
+            <span>Georgia</span><span class="dot">✦</span>
+            <span>Handmade</span><span class="dot">✦</span>
+            <span>Embroidery</span><span class="dot">✦</span>
+            <span>Vintage</span><span class="dot">✦</span>
+            <span>Travel</span><span class="dot">✦</span>
+            <span>Paris</span><span class="dot">✦</span>
+            <span>Morocco</span><span class="dot">✦</span>
+            <span>India</span><span class="dot">✦</span>
+            <span>Mexico</span><span class="dot">✦</span>
+            <span>Georgia</span><span class="dot">✦</span>
+            <span>Handmade</span><span class="dot">✦</span>
+            <span>Embroidery</span><span class="dot">✦</span>
+            <span>Vintage</span><span class="dot">✦</span>
+            <span>Travel</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <!-- OUR STORY -->
+    <div class="story-section">
+        <div class="story-text">
+            <span class="section-label">Our Story</span>
+            <h2 class="section-title">Where it<br>all began.</h2>
+            <p class="section-body">It started with a pile of old shirts at a flea market in Cinq-Mars-la-Pile, a small village in Touraine, France. Alexandra Senes, a journalist and lifelong traveler, found herself standing before a collection of XIXth-century work shirts, simple, worn, untouched for decades. They had once belonged to a film set decorator.</p>
+            <p class="section-body">His wife, who was selling them, simply wished to get rid of them, while Alexandra harbored the desire to craft a narrative of travel. Each shirt was a 'Piece Unique.' Alexandra bought them not to resell, but to embroider on. That is Kilometre Paris.</p>
+            <p class="section-body">Kilometre Paris lets them become something else. Every piece carries a story — not a label, not a slogan. A place, a year, a journey. That's the only luxury we care about.</p>
+        </div>
+        <div class="story-img">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300&width=1800" alt="Kilometre Paris — Our Story">
+        </div>
+    </div>
+
+    <!-- GPS -->
+    <div class="gps-section">
+        <div>
+            <p class="section-label" style="margin-bottom:1.5rem;">Our GPS</p>
+            <div class="gps-coord">48°51′<br>11″N<br>2°20′59″E</div>
+            <p class="gps-coord-sub">Notre-Dame de Paris · Kilometre Zero</p>
+        </div>
+        <div>
+            <p class="section-body" style="max-width:100%;">The GPS coordinates stitched into each of our pieces teleport you to point zero: the front of the Notre-Dame Cathedral in Paris, kilometre zero, where all French roads begin.</p>
+            <br>
+            <p class="section-body" style="max-width:100%;">This unique feature not only grounds our creations in the heart of our Parisian heritage but also symbolizes a journey where every garment becomes a vessel for exploration and discovery.</p>
+            <br>
+            <p class="section-body" style="max-width:100%;">At Kilometre Paris, we start with vintage shirts and treat them as blank canvases, handing them to artisans who embroider by hand. The point is fixed, but the embroidery tells a different story: the place it came from, the hands that made it, and the person who will wear it next.</p>
+        </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-section">
+        <video autoplay muted loop playsinline>
+            <source src="https://cdn.shopify.com/videos/c/o/v/e5d2a4310dac46ae8d88cf8580aa66ca.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <p class="video-text">Antique hunting<br>is part of<br><span>what we do.</span></p>
+        </div>
+    </div>
+
+    <!-- OUR HANDS -->
+    <div class="hands-section">
+        <div class="hands-img">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/LIONEL_JADOT_-_BLEU_DE_TRAVAIL_AUGMENTE_BREAKING_POINT_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_362_TAE_WEB.jpg?v=1744963707&width=1800" alt="Our Hands — Kilometre Paris">
+        </div>
+        <div class="hands-text">
+            <span class="section-label">Our Hands</span>
+            <h2 class="section-title">Every stitch<br>is a<br>conversation.</h2>
+            <p class="section-body">At Kilometre Paris, every stitch we make is a conversation, between past and present, between Paris and the places our artisans call home. We work with artisans whose craft has been passed down through generations, not as a relic of the past, but as a living language.</p>
+            <p class="section-body">Each piece is embroidered slowly, by hand, in a place where time moves differently. We believe that people's art is a true mirror of their minds, which makes our brand deeply human and vibrant.</p>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-section">
+        <div class="stat-item">
+            <p class="stat-number">2015</p>
+            <p class="stat-label">Founded in Paris</p>
+        </div>
+        <div class="stat-item">
+            <p class="stat-number">74+</p>
+            <p class="stat-label">Artisans worldwide</p>
+        </div>
+        <div class="stat-item">
+            <p class="stat-number">9</p>
+            <p class="stat-label">Caravans around the world</p>
+        </div>
+        <div class="stat-item">
+            <p class="stat-number">∞</p>
+            <p class="stat-label">Unique pieces created</p>
+        </div>
+    </div>
+
+    <!-- ALEXANDRA -->
+    <div class="alexandra-section">
+        <div class="alexandra-img">
+            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05297_JULIE_GAYET.jpg?v=1756473305&width=1800" alt="Alexandra Senes — Fondatrice Kilometre Paris">
+        </div>
+        <div class="alexandra-text">
+            <span class="section-label">The founder</span>
+            <h2 class="alexandra-name">Alexandra<br>Senes</h2>
+            <p class="alexandra-role">Founder · Pilot · Traveler</p>
+            <p class="section-body">Alexandra Senes is not a fashion designer in the conventional sense. She calls herself a pilot, someone who navigates between cultures, crafts, and stories.</p>
+            <p class="section-body">The brand she built, Kilometre Paris, reflects that restlessness, and that respect: for the people who make, for the materials that endure, and for the places that leave a mark on us.</p>
+        </div>
+    </div>
+
+    <!-- TRAVELERS CLUB -->
+    <div class="club-section">
+        <p class="section-label" style="margin-bottom:1rem;">Our Travelers' Club</p>
+        <h2 class="club-title">Not designers.<br>Translators.</h2>
+        <p class="club-body">Our Travelers' Club invites artists, thinkers, and creators to collaborate with us, not to design, but to translate. Using vintage shirts from the 19th century, each contributor offers their own visual interpretation of a destination that's dear to us — creating masterpiece souvenirs of our moments de vie.</p>
+        <a href="https://kilometre.paris" class="club-cta" target="_blank">Discover the collection →</a>
+    </div>
+
+
+</body>
+</html>

@@ -18,7 +18,10 @@
   --sand:#F2EDB8;
   --ink:#171717;
   --paper:#F7F5EE;
-  --line:rgba(23,23,23,.16)
+  --line:rgba(23,23,23,.16);
+  --blanc:#FFFFFF;
+  --jaune:#FFF8BD;
+  --rouge:#B82928
 }
 html{scroll-behavior:smooth}
 body{
@@ -38,97 +41,176 @@ a{color:inherit}
 .kicker{font-size:11px}
 .mono{font-size:10px}
 .caption{font-size:9px;letter-spacing:.16em;line-height:1.5}
+  /* ── HERO VIDEO ── */
+        .hero-video {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-.hero{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:46% 54%
-}
-.hero-copy{
-  position:relative;
-  overflow:hidden;
-  padding:28px 42px 34px;
-  background:var(--red);
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between
-}
-.hero-copy:after{
-  content:"K";
-  position:absolute;
-  right:-.04em;
-  bottom:-.18em;
-  font:900 34vw/.7 "Barlow Condensed";
-  color:rgba(255,255,255,.055)
-}
-.topline,.hero-bottom{
-  position:relative;
-  z-index:1
-}
-.topline{
-  display:flex;
-  justify-content:space-between;
-  gap:20px
-}
-.hero-title{
-  position:relative;
-  z-index:1;
-  font:900 clamp(5.8rem,12vw,12.5rem)/.77 "Barlow Condensed";
-  text-transform:uppercase;
-  letter-spacing:-.045em
-}
-.hero-title i{color:var(--yellow)}
-.hero-bottom{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:30px;
-  align-items:end
-}
-.hero-quote{
-  max-width:390px;
-  font-size:15px;
-  line-height:1.5;
-  font-weight:300
-}
-.hero-stamp{
-  padding:10px 12px;
-  border:1px solid rgba(255,255,255,.55);
-  text-align:center;
-  transform:rotate(-4deg)
-}
-.hero-stamp b{
-  display:block;
-  font:900 20px/1 "Barlow Condensed"
-}
-.hero-stamp span{
-  font-size:8px;
-  letter-spacing:.18em;
-  text-transform:uppercase
-}
-.hero-media{
-  position:relative;
-  min-height:100vh
-}
-.hero-media:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg,rgba(0,0,0,.12),transparent 35%)
-}
-.hero-note{
-  position:absolute;
-  z-index:2;
-  right:22px;
-  bottom:20px;
-  padding:9px 12px;
-  background:var(--blue);
-  color:#fff;
-  font:700 10px "Barlow Condensed";
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  transform:rotate(-2deg)
-}
+        .hero-video video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 4rem 5rem;
+            gap: 1.5rem;
+        }
+
+        .hero-sound-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            background: rgba(23,23,23,0.55);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--blanc);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            transition: background 0.2s;
+        }
+
+        .hero-sound-btn:hover { background: rgba(23,23,23,0.75); }
+
+        /* ── LANGUE ── */
+        .lang-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 50;
+            display: flex;
+            gap: 8px;
+            background: rgba(23,23,23,0.55);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 999px;
+            padding: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        .lang-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            line-height: 1;
+            padding: 0;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+        }
+
+        .lang-btn:hover { transform: translateY(-1px); }
+
+        .lang-btn.active {
+            background: rgba(255,255,255,0.25);
+            border-color: var(--jaune);
+        }
+
+        .lang-btn:focus-visible {
+            outline: 2px solid var(--jaune);
+            outline-offset: 2px;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.65) 2px, transparent 2px),
+                linear-gradient(to right, rgba(255,255,255,0.65) 2px, transparent 2px),
+                linear-gradient(to bottom, rgba(255,255,255,0.65) 2px, transparent 2px),
+                linear-gradient(to bottom, rgba(255,255,255,0.65) 2px, transparent 2px);
+            background-position: 33.333% 0, 66.666% 0, 0 33.333%, 0 66.666%;
+            background-size: 2px 100%, 2px 100%, 100% 2px, 100% 2px;
+            background-repeat: no-repeat;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+        }
+
+        .hero-left {
+            background: var(--rouge);
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(4rem, 8vw, 9rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            color: var(--blanc);
+        }
+
+        .hero-title span {
+            color: var(--jaune);
+        }
+
+        .hero-quote {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            font-style: italic;
+            border-left: 2px solid rgba(255,255,255,0.3);
+            padding-left: 1.5rem;
+            max-width: 380px;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
 
 .ticker{
   height:37px;
@@ -360,7 +442,7 @@ a{color:inherit}
   grid-template-columns:48% 52%;
   min-height:100vh
 }
-.hands-media{position:relative}
+.hands-media{position:relative;min-height:100%}
 .hands-media:after{
   content:"04° — HANDS";
   position:absolute;
@@ -521,10 +603,12 @@ footer span:nth-child(2){color:var(--red)}
 }
 
 @media(max-width:900px){
-  .hero,.intro,.spread,.hands,.founder{grid-template-columns:1fr}
-  .hero-copy{min-height:72vh;padding:22px}
-  .hero-media{min-height:72vh}
-  .hero-title{font-size:clamp(5rem,23vw,9rem)}
+  .hero-video{height:88svh;min-height:540px;padding:10px}
+  .hero-video-frame{border-radius:12px}
+  .hero-title{font-size:clamp(4.8rem,23vw,8rem)}
+  .lang-switcher{top:1rem;right:1rem;padding:4px}
+  .lang-btn{width:32px;height:32px;font-size:.95rem}
+  .hero-sound-btn{bottom:1.25rem;right:1.25rem;width:42px;height:42px}
   .intro-image,.hands-media,.founder-photo{min-height:78vw}
   .intro-text,.hands-copy,.founder-copy{padding:18vw 7vw}
   .story-intro{font-size:16px;line-height:1.7}
@@ -548,8 +632,46 @@ footer span:nth-child(2){color:var(--red)}
 
 <body>
 
-<!-- HERO -->
- <p>test test </p>
+<!-- HERO VIDEO -->
+<section class="hero-video">
+  <div class="hero-video-frame">
+    <video id="hero-vid" autoplay muted loop playsinline>
+      <source src="./videos/Romain movie - Piece unique, Villa Ephrussi, Saint Jean Cap Ferrat.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-info">
+      <strong>KILOMETRE PARIS</strong>
+      EST. 2015 · PARIS → EVERYWHERE
+    </div>
+
+    <!-- Sélecteur de langue -->
+    <div class="lang-switcher" role="group" aria-label="Choisir la langue">
+      <button class="lang-btn active" data-lang="fr" title="Français" aria-label="Français" aria-pressed="true">🇫🇷</button>
+      <button class="lang-btn" data-lang="en" title="English" aria-label="English" aria-pressed="false">🇬🇧</button>
+      <button class="lang-btn" data-lang="es" title="Español" aria-label="Español" aria-pressed="false">🇪🇸</button>
+      <button class="lang-btn" data-lang="zh" title="中文" aria-label="中文" aria-pressed="false">🇨🇳</button>
+    </div>
+
+    <div class="hero-video-overlay">
+      <span class="hero-eyebrow" data-i18n="eyebrow">No. 01 / About</span>
+      <h1 class="hero-title" data-i18n="title">About<br><span>Us</span></h1>
+      <p class="hero-quote" data-i18n="quote">“People do not take trips,<br>trips take people.”</p>
+    </div>
+
+    <button class="hero-sound-btn" id="sound-btn" type="button" aria-label="Turn sound on" aria-pressed="false">
+      <svg id="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+      <svg id="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+    </button>
+
+    <div class="hero-grid" aria-hidden="true"></div>
+  </div>
+</section>
 
 <!-- TICKER -->
 <div class="ticker">
@@ -685,14 +807,21 @@ footer span:nth-child(2){color:var(--red)}
 
 <!-- 03 THE HUNT -->
 <section class="spread">
-
   <div class="spread-media">
     <video autoplay muted loop playsinline>
       <source src="https://cdn.shopify.com/videos/c/o/v/e5d2a4310dac46ae8d88cf8580aa66ca.mp4" type="video/mp4">
     </video>
-
+    <div class="film-note">Field notes · Antique hunting</div>
+  </div>
   <div class="spread-copy">
-
+    <div class="section-no">03 — The Hunt</div>
+    <h2 class="spread-title">We go<br><span>looking.</span></h2>
+    <div class="hunt-story">
+      <p>Antique hunting is part of what we do, scouring the globe for hidden treasures.</p>
+      <p>We search for the things that already have a life in them: old work shirts, forgotten textiles, imperfect surfaces, traces left by someone else.</p>
+      <p>From the back of trucks to attics and factory closets, our team follows the unexpected trail of objects that still have another story to tell.</p>
+    </div>
+    <div class="pull">“Not new.<br>Not reproduced.<br>Found.”</div>
   </div>
 </section>
 
@@ -701,6 +830,7 @@ footer span:nth-child(2){color:var(--red)}
 
   <div class="hands-media">
     <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/LIONEL_JADOT_-_BLEU_DE_TRAVAIL_AUGMENTE_BREAKING_POINT_-_BY_JULIE_ANSIAU_-_CARAVAN_BRUSSELS_362_TAE_WEB.jpg?v=1744963707&width=1800" alt="Kilometre Paris artisan work">
+    <div class="hero-grid" aria-hidden="true"></div>
   </div>
 
   <div class="hands-copy">
@@ -830,68 +960,96 @@ footer span:nth-child(2){color:var(--red)}
 
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
-
-  const targets=document.querySelectorAll(
-    "h1,h2,.section-no,.role,.kicker,.stat span,.hand-row b,.manifesto,.coordinates-label"
-  );
+  const targets=document.querySelectorAll("h1,h2,.section-no,.role,.kicker,.stat span,.hand-row b,.manifesto,.coordinates-label");
 
   targets.forEach(el=>{
     if(el.classList.contains("roll"))return;
-
     el.classList.add("roll");
-
-    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
-    const nodes=[];
-
+    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];
     while(walker.nextNode())nodes.push(walker.currentNode);
-
     nodes.forEach(node=>{
       const frag=document.createDocumentFragment();
-
       [...node.textContent].forEach(char=>{
-
-        if(char===" "){
-          const space=document.createElement("span");
-          space.className="roll-space";
-          space.innerHTML="&nbsp;";
-          frag.appendChild(space);
-          return;
-        }
-
-        const wrap=document.createElement("span");
-        wrap.className="roll-char";
-
-        const front=document.createElement("span");
-        front.textContent=char;
-
-        const back=document.createElement("span");
-        back.className="roll-back";
-        back.textContent=char;
-
-        wrap.append(front,back);
-        wrap.style.animationDelay=`${Math.min(frag.childNodes.length*0.025,.6)}s`;
-
-        frag.appendChild(wrap);
+        if(char===" "){const s=document.createElement("span");s.className="roll-space";s.innerHTML="&nbsp;";frag.append(s);return}
+        const wrap=document.createElement("span");wrap.className="roll-char";
+        const front=document.createElement("span");front.textContent=char;
+        const back=document.createElement("span");back.className="roll-back";back.textContent=char;
+        wrap.append(front,back);wrap.style.animationDelay=Math.min(frag.childNodes.length*.025,.65)+"s";frag.append(wrap);
       });
-
       node.parentNode.replaceChild(frag,node);
     });
   });
 
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },{
-    threshold:.15,
-    rootMargin:"0px 0px -8% 0px"
-  });
-
+  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}
+  }),{threshold:.15,rootMargin:"0px 0px -8% 0px"});
   targets.forEach(el=>observer.observe(el));
 
+  // ----- MUTE / DEMUTE DE LA VIDÉO -----
+  const vid=document.getElementById("hero-vid"),btn=document.getElementById("sound-btn"),mute=document.getElementById("icon-mute"),sound=document.getElementById("icon-sound");
+  if(vid&&btn)btn.addEventListener("click",()=>{
+    vid.muted=!vid.muted;
+    mute.hidden=!vid.muted;sound.hidden=vid.muted;
+    btn.setAttribute("aria-pressed",String(!vid.muted));
+    btn.setAttribute("aria-label",vid.muted?"Turn sound on":"Turn sound off");
+  });
+
+  // ----- SÉLECTEUR DE LANGUE -----
+  // Dictionnaire de traduction : on ne traduit ici que le hero (titre, phrase d'accroche)
+  // en exemple fonctionnel. Ajoute d'autres clés / data-i18n sur les autres blocs
+  // de texte (section-no, big-title, etc.) pour étendre la traduction à toute la page.
+  const translations = {
+    fr: {
+      eyebrow: "N° 01 / À propos",
+      title: 'À propos<br><span>de nous</span>',
+      quote: "« On ne voyage pas,<br>c'est le voyage qui nous emmène. »"
+    },
+    en: {
+      eyebrow: "No. 01 / About",
+      title: "About<br><span>Us</span>",
+      quote: "“People do not take trips,<br>trips take people.”"
+    },
+    es: {
+      eyebrow: "N.º 01 / Acerca de",
+      title: "Sobre<br><span>Nosotros</span>",
+      quote: "«No somos nosotros quienes viajamos,<br>es el viaje quien nos lleva.»"
+    },
+    zh: {
+      eyebrow: "第 01 号 / 关于我们",
+      title: "关于<br><span>我们</span>",
+      quote: "「不是我们去旅行，<br>而是旅行带走了我们。」"
+    }
+  };
+
+  const langButtons = document.querySelectorAll(".lang-btn");
+  const i18nEls = document.querySelectorAll("[data-i18n]");
+
+  function applyLang(lang){
+    const dict = translations[lang];
+    if(!dict) return;
+
+    i18nEls.forEach(el=>{
+      const key = el.dataset.i18n;
+      if(dict[key]) el.innerHTML = dict[key];
+    });
+
+    langButtons.forEach(b=>{
+      const isActive = b.dataset.lang === lang;
+      b.classList.toggle("active", isActive);
+      b.setAttribute("aria-pressed", String(isActive));
+    });
+
+    document.documentElement.lang = lang;
+    localStorage.setItem("kmp-lang", lang);
+  }
+
+  langButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=> applyLang(btn.dataset.lang));
+  });
+
+  // Rétablit la langue choisie précédemment (si déjà visitée)
+  const savedLang = localStorage.getItem("kmp-lang");
+  if(savedLang && translations[savedLang]) applyLang(savedLang);
 });
 </script>
 
