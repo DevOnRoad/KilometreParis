@@ -24,59 +24,122 @@
             overflow-x: hidden;
         }
 
-        /* ── HEADER ── */
-        .page-header {
-            padding: 4rem 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--noir);
+        /* ── MODAL LOADER (Paris → destination) ── */
+        .modal-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 10001;
+            background: var(--blanc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        .header-eyebrow {
+        .modal-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-inner {
+            width: min(360px, 70vw);
+            text-align: center;
+        }
+
+        .loader-cities {
+            display: flex;
+            justify-content: space-between;
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.62rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .loader-cities span:first-child { color: var(--noir); }
+        .loader-cities span:last-child { color: var(--rouge); }
+
+        .loader-path {
+            position: relative;
+            width: 100%;
+            height: 60px;
+        }
+
+        .loader-path svg.route {
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: visible;
+        }
+
+        .loader-path .dashed {
+            fill: none;
+            stroke: rgba(0,0,0,0.28);
+            stroke-width: 2;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+        }
+
+        .modal-loader.playing .dashed {
+            animation: bp-draw 1.5s ease forwards 0.1s;
+        }
+
+        @keyframes bp-draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .loader-plane {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            fill: var(--bleu);
+            left: 0;
+            top: 78%;
+            opacity: 0;
+        }
+
+        .modal-loader.playing .loader-plane {
+            animation: bp-fly 1.7s cubic-bezier(0.45, 0, 0.55, 1) forwards 0.05s;
+        }
+
+        @keyframes bp-fly {
+            0%   { left: 0%;   top: 78%; transform: translate(-50%, -50%) rotate(84deg); opacity: 0; }
+            8%   { opacity: 1; }
+            50%  { left: 50%;  top: -6%; transform: translate(-50%, -50%) rotate(106deg); }
+            92%  { opacity: 1; }
+            100% { left: 100%; top: 32%; transform: translate(-50%, -50%) rotate(92deg); opacity: 0; }
+        }
+
+        .loader-brand {
+            margin-top: 1.2rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.6rem;
             font-weight: 700;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--rouge);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
+            opacity: 0;
         }
 
-        .header-eyebrow::before,
-        .header-eyebrow::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 1px;
-            background: var(--rouge);
+        .modal-loader.playing .loader-brand {
+            animation: bp-fadein 0.5s ease forwards 1.3s;
         }
 
-        .header-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.9;
-            letter-spacing: -0.02em;
-            color: var(--rouge);
-            -webkit-text-stroke: 2px var(--rouge);
+        @keyframes bp-fadein {
+            to { opacity: 1; }
         }
 
-        .header-title span {
-            color: var(--bleu);
-            -webkit-text-stroke: 2px var(--bleu);
-        }
-
-        .header-sub {
-            font-size: 0.9rem;
-            line-height: 1.8;
-            color: rgba(0,0,0,0.5);
-            font-weight: 300;
-            max-width: 600px;
-            margin: 1.5rem auto 0;
+        @media (prefers-reduced-motion: reduce) {
+            .modal-loader.playing .dashed,
+            .modal-loader.playing .loader-plane,
+            .modal-loader.playing .loader-brand {
+                animation: none !important;
+                opacity: 1 !important;
+            }
         }
 
         /* ── MAP SECTION ── */
@@ -183,35 +246,8 @@
             padding-left: 1rem;
         }
 
-        /* ── MARQUEE ── */
-        .marquee-bar {
-            background: var(--bleu);
-            color: #FFF8BD;
-            padding: 0.85rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-inner {
-            display: inline-flex;
-            gap: 3rem;
-            animation: mq 25s linear infinite;
-        }
-
-        .marquee-inner span {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-        }
-
-        .marquee-inner .dot { color: var(--rouge); }
-
-        @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 968px) {
-            .page-header { padding: 2.5rem 1.5rem 1.5rem; }
             .suppliers-section { padding: 3rem 1.5rem; }
             .suppliers-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -219,6 +255,7 @@
         @media (max-width: 600px) {
             .suppliers-grid { grid-template-columns: 1fr; }
         }
+
         /* ── MODAL ── */
         .modal-overlay {
             position: fixed;
@@ -244,7 +281,7 @@
             background: var(--blanc);
             width: 100%;
             max-width: 1100px;
-            padding: 4rem;
+            padding: 0 4rem 4rem;
             position: relative;
             transform: translateY(30px);
             transition: transform 0.35s ease;
@@ -258,7 +295,7 @@
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
-            background: none;
+            background: var(--blanc);
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
@@ -267,46 +304,137 @@
             font-weight: 900;
             letter-spacing: 0.1em;
             transition: color 0.2s;
+            z-index: 5;
+            padding: 0.4rem 0.6rem;
         }
 
         .modal-close:hover { color: var(--rouge); }
 
-        .modal-eyebrow {
+        /* ── BOARDING PASS BANNER ── */
+        .boarding-pass {
+            position: relative;
+            margin: 0 -4rem 3rem;
+            padding: 2.4rem 3.5rem;
+            background: var(--blanc);
+            border-top: 3px solid var(--rouge);
+            border-bottom: 3px solid var(--bleu);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .bp-eyebrow {
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 0.6rem;
             font-weight: 700;
-            letter-spacing: 0.4em;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: var(--rouge);
-            margin-bottom: 0.5rem;
+            color: var(--bleu);
+            margin-bottom: 0.6rem;
         }
 
-        .modal-title {
+        .bp-route {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+
+        .bp-city {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 5rem);
             font-weight: 900;
             text-transform: uppercase;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 0.95;
             color: var(--rouge);
-            line-height: 0.9;
-            margin-bottom: 0.3rem;
         }
 
-        .modal-country {
+        .bp-city.origin { color: var(--noir); }
+
+        .bp-plane {
+            width: 20px;
+            height: 20px;
+            fill: var(--bleu);
+            flex-shrink: 0;
+            transform: rotate(90deg);
+        }
+
+        .bp-meta {
+            margin-top: 0.9rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .bp-meta div p:first-child {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.58rem;
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--bleu);
-            margin-bottom: 2rem;
+            color: rgba(0,0,0,0.4);
+            margin-bottom: 0.2rem;
         }
 
-        .modal-divider {
-            height: 2px;
-            background: var(--noir);
-            margin-bottom: 2.5rem;
+        .bp-meta div p:last-child {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--noir);
         }
 
+        /* perforated divider */
+        .bp-divider {
+            align-self: stretch;
+            width: 0;
+            border-left: 2px dashed rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        .bp-divider::before,
+        .bp-divider::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.92); /* matches modal-overlay so it reads as a punch-through */
+        }
+        .bp-divider::before { top: -11px; }
+        .bp-divider::after { bottom: -11px; }
+
+        /* stamp logo */
+        .bp-stamp {
+            justify-self: end;
+            width: 110px;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .bp-stamp svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-9deg);
+            mix-blend-mode: multiply;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 700px) {
+            .boarding-pass {
+                grid-template-columns: 1fr;
+                margin: 0 -1.5rem 2rem;
+                padding: 2rem 1.5rem;
+                text-align: center;
+            }
+            .bp-route { justify-content: center; }
+            .bp-divider { display: none; }
+            .bp-stamp { justify-self: center; margin-top: 0.5rem; }
+        }
+
+        /* ── MODAL BODY TEXT ── */
         .modal-text {
             font-size: 0.9rem;
             line-height: 1.9;
@@ -316,18 +444,90 @@
             max-width: 700px;
         }
 
-        .modal-photos {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 2.5rem;
+        .modal-section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--bleu);
+            margin: 2.4rem 0 0.9rem;
         }
 
-        .modal-photos img {
+        /* ── VIDEOS SIDE BY SIDE (YouTube, autoplay muted loop) ── */
+        .modal-videos {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        .yt-embed {
+            width: 50%;
+            aspect-ratio: 9/16;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .yt-embed iframe {
             width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
+            height: 100%;
+            border: 0;
             display: block;
+            pointer-events: none; /* pas de son, pas de contrôles : lecture purement décorative */
+        }
+
+        @media (max-width: 700px) {
+            .modal-videos {
+                flex-direction: column;
+            }
+            .yt-embed {
+                width: 100%;
+            }
+        }
+
+        /* ── PHOTO GALLERY (horizontal scroll, uniform frame, no distortion) ── */
+        .modal-gallery {
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .modal-gallery::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .modal-gallery figure {
+            flex: 0 0 auto;
+            width: 380px;
+            height: 480px;
+            background: #F4F3F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .modal-gallery img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 700px) {
+            .modal-gallery figure { width: 78vw; height: 340px; }
         }
 
         /* Carte cliquable */
@@ -342,47 +542,13 @@
     </style>
 </head>
 <body>
-
-    <!-- HEADER
-    <header class="page-header">
-        <p class="header-eyebrow">Kilometre Paris</p>
-        <h1 class="header-title">Our Galaxy of<br><span>Talented Hands</span></h1>
-        <p class="header-sub">Behind every stitch, every thread, every embroidery — a pair of hands. From Morocco to India, from Georgia to Mexico, our artisans are the soul of every piece we make.</p>
-    </header> -->
+    <script src="navbar.js"></script>
 
     <!-- MAP -->
     <div class="map-section">
         <img class="map-img" src="./imgTalentedHands/mapOfTalentedHands.jpg" alt="Our Galaxy of Talented Hands — Kilometre Paris world map">
         <img class="map-overlay" src="./imgTalentedHands/arow.png" alt="Arrows pointing to our artisans">
     </div>
-
-    <!-- MARQUEE -->
-    <!-- <div class="marquee-bar">
-        <div class="marquee-inner">
-            <span>Essaouira</span><span class="dot">✦</span>
-            <span>Tuscany</span><span class="dot">✦</span>
-            <span>Kashmir</span><span class="dot">✦</span>
-            <span>Georgia</span><span class="dot">✦</span>
-            <span>Kabul</span><span class="dot">✦</span>
-            <span>Mumbai</span><span class="dot">✦</span>
-            <span>Cairo</span><span class="dot">✦</span>
-            <span>Tunis</span><span class="dot">✦</span>
-            <span>Mahdia</span><span class="dot">✦</span>
-            <span>Mexico City</span><span class="dot">✦</span>
-            <span>New Delhi</span><span class="dot">✦</span>
-            <span>Essaouira</span><span class="dot">✦</span>
-            <span>Tuscany</span><span class="dot">✦</span>
-            <span>Kashmir</span><span class="dot">✦</span>
-            <span>Georgia</span><span class="dot">✦</span>
-            <span>Kabul</span><span class="dot">✦</span>
-            <span>Mumbai</span><span class="dot">✦</span>
-            <span>Cairo</span><span class="dot">✦</span>
-            <span>Tunis</span><span class="dot">✦</span>
-            <span>Mahdia</span><span class="dot">✦</span>
-            <span>Mexico City</span><span class="dot">✦</span>
-            <span>New Delhi</span><span class="dot">✦</span>
-        </div>
-    </div> -->
 
     <!-- SUPPLIERS LIST -->
     <section class="suppliers-section">
@@ -402,95 +568,170 @@
             </div>
 
             <div class="supplier-card">
-                <p class="supplier-city">New Delhi</p>
-                <p class="supplier-country">India</p>
-                <p class="supplier-role">Packaging manufacturers</p>
-            </div>
-
-            <div class="supplier-card">
                 <p class="supplier-city">Mexico City</p>
                 <p class="supplier-country">Mexico</p>
                 <p class="supplier-role">Embroiderers</p>
             </div> 
-<!-- 
-            <div class="supplier-card">
-                <p class="supplier-city">Tuscany</p>
-                <p class="supplier-country">Italy</p>
-                <p class="supplier-role">Wine-tanned leather maker</p>
-            </div>
 
             <div class="supplier-card">
-                <p class="supplier-city">Adjara Mountains</p>
-                <p class="supplier-country">Georgia</p>
-                <p class="supplier-role">Embroiderers</p>
-            </div>
-
-            <div class="supplier-card">
-                <p class="supplier-city">Srinagar, Kashmir</p>
+                <p class="supplier-city">New Delhi</p>
                 <p class="supplier-country">India</p>
-                <p class="supplier-role">Cushion embroiderers · Pashmina weavers</p>
+                <p class="supplier-role">Packaging manufacturers</p>
             </div>
-
-            <div class="supplier-card">
-                <p class="supplier-city">Kabul</p>
-                <p class="supplier-country">Afghanistan</p>
-                <p class="supplier-role">Embroiderers</p>
-            </div>
-
-            <div class="supplier-card">
-                <p class="supplier-city">Tunis</p>
-                <p class="supplier-country">Tunisia</p>
-                <p class="supplier-role">"Espadrilles" makers</p>
-            </div>
-
-            <div class="supplier-card">
-                <p class="supplier-city">Mahdia</p>
-                <p class="supplier-country">Tunisia</p>
-                <p class="supplier-role">Embroiderers</p>
-            </div>
-
-            <div class="supplier-card">
-                <p class="supplier-city">Cairo</p>
-                <p class="supplier-country">Egypt</p>
-                <p class="supplier-role">Towel & Home manufacturers</p>
-            </div>
-
-          -->
-
-        </div>
+</div>
     </section>
 
 <!-- MODAL ESSAOUIRA -->
 <div class="modal-overlay" id="modal-essaouira">
+
+    <!-- Loader affiché à l'ouverture, avant les infos — hors de .modal-box pour ne pas être piégé par son transform -->
+    <div class="modal-loader" data-destination="Maroc">
+        <div class="loader-inner">
+            <div class="loader-cities">
+                <span>Paris</span>
+                <span>Maroc</span>
+            </div>
+            <div class="loader-path">
+                <svg class="route" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="dashed" d="M10,62 Q200,-8 390,26" pathLength="1"></path>
+                </svg>
+                <svg class="loader-plane" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5l3.5-1 3.5 1V21l-2.5-2v-5.5z"></path>
+                </svg>
+            </div>
+            <p class="loader-brand">Kilometre Paris</p>
+        </div>
+    </div>
+
     <div class="modal-box">
         <button class="modal-close" onclick="closeModal('essaouira')">✕ Close</button>
-        <p class="modal-eyebrow">Our Artisans · Morocco</p>
-        <h2 class="modal-title">Essaouira</h2>
-        <p class="modal-country">Morocco — Embroiderers · Knitters</p>
-        <div class="modal-divider"></div>
+
+        <!-- Bandeau carte d'embarquement -->
+        <div class="boarding-pass">
+            <div>
+                <p class="bp-eyebrow">Boarding Pass · Kilometre Paris</p>
+                <div class="bp-route">
+                    <span class="bp-city origin">Paris</span>
+                    <svg class="bp-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5l3.5-1 3.5 1V21l-2.5-2v-5.5z"/></svg>
+                    <span class="bp-city">Essaouira</span>
+                </div>
+                <div class="bp-meta">
+                    <div>
+                        <p>Country</p>
+                        <p>Morocco</p>
+                    </div>
+                    <div>
+                        <p>Craft</p>
+                        <p>Embroidery · Knit</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bp-divider" aria-hidden="true"></div>
+
+            <div class="bp-stamp" aria-hidden="true">
+                <svg viewBox="0 0 200 200">
+                    <defs>
+                        <path id="stampArcTop" d="M 25,100 A 75,75 0 0 1 175,100" fill="none"/>
+                        <path id="stampArcBottom" d="M 175,100 A 75,75 0 0 1 25,100" fill="none"/>
+                    </defs>
+                    <circle cx="100" cy="100" r="92" fill="none" stroke="#B82928" stroke-width="3"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#B82928" stroke-width="1.5"/>
+                    <text font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="900" letter-spacing="3" fill="#B82928">
+                        <textPath href="#stampArcTop" startOffset="50%" text-anchor="middle">KILOMETRE PARIS</textPath>
+                    </text>
+                    <text font-family="Barlow Condensed, sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#2F3E86">
+                        <textPath href="#stampArcBottom" startOffset="50%" text-anchor="middle">ARTISAN · MAROC</textPath>
+                    </text>
+                    <text x="100" y="107" font-family="Barlow Condensed, sans-serif" font-size="34" font-weight="900" fill="#2F3E86" text-anchor="middle">✦</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Texte 1 -->
         <p class="modal-text">Essaouira is where the story of the Undercover Basket begins. Nestled on the Atlantic coast of Morocco, this ancient port city has been a centre of craftsmanship for centuries. The women here weave and knit with a precision passed down through generations — each stitch a gesture of memory, each basket a conversation between hands.</p>
+
+        <!-- Vidéos côte à côte — YouTube, injectées à l'ouverture (voir openModal) -->
+        <div class="modal-videos">
+            <div class="yt-embed" data-yt-id="BUnh1OGokxU"></div>
+            <div class="yt-embed" data-yt-id="0mKecZTf7sM"></div>
+        </div>
+
+        <!-- Texte 2 -->
+        <p class="modal-section-label">The Process</p>
         <p class="modal-text">Said and his family — Hafsa, Aicha, Imane — orchestrate the entire process. The metal structure, the "gabarit", is built here. The palm leaves are woven in the Atlas Mountains and brought down. Latifa gives the final eye for quality control. Nothing leaves without her approval.</p>
         <p class="modal-text">The threads are sourced from Essaouira, Casablanca and Marrakech, Said searching every souk for the exact colour that Alexandra has drawn. What comes back is not just a product. It is a collaboration between Paris and the Atlantic coast of Morocco, between a sketch on a screen and hands that have never touched a screen at all.</p>
-        <!-- Ajoute tes vraies photos ici -->
-        <div class="modal-photos">
-            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300&width=1800" alt="Essaouira artisans">
-            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_8484.jpg?v=1742478860&width=1800" alt="Essaouira artisans">
-            <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/IMG_7264.jpg?v=1742478861&width=1800" alt="Essaouira artisans">
+
+        <!-- Galerie photo verticale, cadre uniforme, sans déformation -->
+        <p class="modal-section-label">Gallery</p>
+        <div class="modal-gallery">
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04398%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04474%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04546%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04556%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04728%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04729%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04757%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04761%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04771%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04774%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04776%202.jpg" alt="Essaouira artisans at work"></figure>
+            <figure><img src="./imgTalentedHands/MarocCont/DSC04778%202.jpg" alt="Essaouira artisans at work"></figure>
         </div>
-        <!-- Vidéo -->
-        <video style="width:100%; margin-top:1.5rem; display:block;" controls playsinline>
-            <source src="https://cdn.shopify.com/videos/c/o/v/e5d2a4310dac46ae8d88cf8580aa66ca.mp4" type="video/mp4">
-        </video>
     </div>
 </div>
 
 <script>
+    function loadModalVideos(modal) {
+        modal.querySelectorAll('.yt-embed').forEach(function (el) {
+            const id = el.getAttribute('data-yt-id');
+            if (!id || el.querySelector('iframe')) return; // déjà chargée
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                '?autoplay=1&mute=1&loop=1&playlist=' + id +
+                '&controls=0&modestbranding=1&rel=0&playsinline=1';
+            iframe.title = 'Kilometre Paris — Essaouira';
+            iframe.allow = 'autoplay; encrypted-media';
+            iframe.setAttribute('frameborder', '0');
+            el.appendChild(iframe);
+        });
+    }
+
+    function unloadModalVideos(modal) {
+        modal.querySelectorAll('.yt-embed').forEach(function (el) {
+            el.innerHTML = ''; // stoppe la lecture et libère la bande passante
+        });
+    }
+
     function openModal(id) {
         const modal = document.getElementById('modal-' + id);
-        if (modal) {
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
+        if (!modal) return;
+
+        modal.classList.add('open');
+        modal.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+        loadModalVideos(modal);
+
+        const loader = modal.querySelector('.modal-loader');
+        if (!loader) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Réinitialise le loader à chaque ouverture pour rejouer l'animation
+        loader.classList.remove('hide', 'playing');
+
+        if (reduceMotion) {
+            loader.classList.add('hide');
+            return;
         }
+
+        // force reflow pour permettre de rejouer l'animation CSS
+        void loader.offsetWidth;
+        loader.classList.add('playing');
+
+        setTimeout(function () {
+            loader.classList.add('hide');
+        }, 1900);
     }
 
     function closeModal(id) {
@@ -498,6 +739,7 @@
         if (modal) {
             modal.classList.remove('open');
             document.body.style.overflow = '';
+            unloadModalVideos(modal);
         }
     }
 
@@ -507,6 +749,7 @@
             if (e.target === this) {
                 this.classList.remove('open');
                 document.body.style.overflow = '';
+                unloadModalVideos(this);
             }
         });
     });
@@ -517,9 +760,11 @@
             document.querySelectorAll('.modal-overlay.open').forEach(modal => {
                 modal.classList.remove('open');
                 document.body.style.overflow = '';
+                unloadModalVideos(modal);
             });
         }
     });
+
 </script>
 
 </body>
