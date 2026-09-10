@@ -19,9 +19,7 @@
   --ink:#171717;
   --paper:#F7F5EE;
   --line:rgba(23,23,23,.16);
-  --blanc:#FFFFFF;
-  --jaune:#FFF8BD;
-  --rouge:#B82928
+  --blanc:#FFFFFF
 }
 html{scroll-behavior:smooth}
 body{
@@ -41,559 +39,172 @@ a{color:inherit}
 .kicker{font-size:11px}
 .mono{font-size:10px}
 .caption{font-size:9px;letter-spacing:.16em;line-height:1.5}
-  /* ── HERO VIDEO ── */
-        .hero-video {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
 
-        .hero-video video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .hero-video-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 4rem 5rem;
-            gap: 1.5rem;
-        }
-
-        .hero-sound-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 50;
-            background: rgba(23,23,23,0.55);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: var(--blanc);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(4px);
-            transition: background 0.2s;
-        }
-
-        .hero-sound-btn:hover { background: rgba(23,23,23,0.75); }
-
-        /* ── LANGUE ── */
-        .lang-switcher {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 50;
-            display: flex;
-            gap: 8px;
-            background: rgba(23,23,23,0.55);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 999px;
-            padding: 6px;
-            backdrop-filter: blur(4px);
-        }
-
-        .lang-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid transparent;
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.05rem;
-            line-height: 1;
-            padding: 0;
-            transition: background 0.2s, border-color 0.2s, transform 0.15s;
-        }
-
-        .lang-btn:hover { transform: translateY(-1px); }
-
-        .lang-btn.active {
-            background: rgba(255,255,255,0.25);
-            border-color: var(--jaune);
-        }
-
-        .lang-btn:focus-visible {
-            outline: 2px solid var(--jaune);
-            outline-offset: 2px;
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            background-image:
-                linear-gradient(to right, rgba(255,255,255,0.65) 2px, transparent 2px),
-                linear-gradient(to right, rgba(255,255,255,0.65) 2px, transparent 2px),
-                linear-gradient(to bottom, rgba(255,255,255,0.65) 2px, transparent 2px),
-                linear-gradient(to bottom, rgba(255,255,255,0.65) 2px, transparent 2px);
-            background-position: 33.333% 0, 66.666% 0, 0 33.333%, 0 66.666%;
-            background-size: 2px 100%, 2px 100%, 100% 2px, 100% 2px;
-            background-repeat: no-repeat;
-        }
-
-        /* ── HERO ── */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
-        }
-
-        .hero-left {
-            background: var(--rouge);
-            padding: 5rem 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .hero-eyebrow {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 0.45em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .hero-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(4rem, 8vw, 9rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.85;
-            letter-spacing: -0.03em;
-            color: var(--blanc);
-        }
-
-        .hero-title span {
-            color: var(--jaune);
-        }
-
-        .hero-quote {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.6);
-            font-weight: 300;
-            font-style: italic;
-            border-left: 2px solid rgba(255,255,255,0.3);
-            padding-left: 1.5rem;
-            max-width: 380px;
-        }
-
-        .hero-right {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
-
-
-.ticker{
-  height:37px;
-  background:var(--ink);
-  color:var(--yellow);
-  overflow:hidden;
-  white-space:nowrap;
-  display:flex;
-  align-items:center
+/* ── HERO VIDEO ── */
+.hero-video{position:relative;width:100%;height:100vh;overflow:hidden}
+.hero-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-video-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:4rem 5rem;gap:1.5rem
 }
-.track{
-  display:flex;
-  gap:34px;
-  min-width:max-content;
-  animation:marquee 28s linear infinite
+.hero-sound-btn{
+  position:fixed;bottom:2rem;right:2rem;z-index:50;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.3);color:var(--blanc);
+  width:48px;height:48px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);transition:background .2s
 }
-.track span{
-  font:700 10px "Barlow Condensed";
-  letter-spacing:.25em;
-  text-transform:uppercase
+.hero-sound-btn:hover{background:rgba(23,23,23,.75)}
+
+/* ── LANGUE ── */
+.lang-switcher{
+  position:fixed;top:2rem;right:2rem;z-index:50;display:flex;gap:8px;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:6px;backdrop-filter:blur(4px)
 }
-.track .star{color:var(--red);font-size:13px}
-@keyframes marquee{to{transform:translateX(-50%)}}
+.lang-btn{
+  width:36px;height:36px;border-radius:50%;border:1px solid transparent;background:transparent;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;line-height:1;padding:0;
+  transition:background .2s,border-color .2s,transform .15s
+}
+.lang-btn:hover{transform:translateY(-1px)}
+.lang-btn.active{background:rgba(255,255,255,.25);border-color:var(--yellow)}
+.lang-btn:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;
+  letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.5)
+}
+.hero-title{
+  font-family:'Barlow Condensed',sans-serif;font-size:clamp(4rem,8vw,9rem);font-weight:900;
+  text-transform:uppercase;line-height:.85;letter-spacing:-.03em;color:var(--blanc)
+}
+.hero-title span{color:var(--yellow)}
+.hero-quote{
+  font-size:1rem;line-height:1.8;color:rgba(255,255,255,.6);font-weight:300;font-style:italic;
+  border-left:2px solid rgba(255,255,255,.3);padding-left:1.5rem;max-width:380px
+}
+
+.hero-grid{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,.65) 2px,transparent 2px),
+    linear-gradient(to right,rgba(255,255,255,.65) 2px,transparent 2px),
+    linear-gradient(to bottom,rgba(255,255,255,.65) 2px,transparent 2px),
+    linear-gradient(to bottom,rgba(255,255,255,.65) 2px,transparent 2px);
+  background-position:33.333% 0,66.666% 0,0 33.333%,0 66.666%;
+  background-size:2px 100%,2px 100%,100% 2px,100% 2px;
+  background-repeat:no-repeat
+}
 
 .intro{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  min-height:92vh;
-  border-bottom:1px solid var(--line)
+  display:grid;grid-template-columns:1.1fr .9fr;min-height:92vh;border-bottom:1px solid var(--line)
 }
-.intro-text{
-  padding:10vw 7vw;
-  display:flex;
-  flex-direction:column;
-  justify-content:center
-}
-.section-no{
-  margin-bottom:26px;
-  font:900 13px "Barlow Condensed";
-  color:var(--red);
-  letter-spacing:.18em
-}
+.intro-text{padding:10vw 7vw;display:flex;flex-direction:column;justify-content:center}
+.section-no{margin-bottom:26px;font:900 13px "Barlow Condensed";color:var(--red);letter-spacing:.18em}
 .big-title{
-  font:900 clamp(4rem,7.5vw,8rem)/.78 "Barlow Condensed";
-  text-transform:uppercase;
-  color:var(--blue);
-  letter-spacing:-.035em
+  font:900 clamp(4rem,7.5vw,8rem)/.78 "Barlow Condensed";text-transform:uppercase;
+  color:var(--blue);letter-spacing:-.035em
 }
 .big-title em{color:var(--red);font-style:italic}
-.story-intro{
-  max-width:680px;
-  margin-top:38px;
-  font-size:18px;
-  line-height:1.8;
-  color:rgba(23,23,23,.78)
-}
+.story-intro{max-width:680px;margin-top:38px;font-size:18px;line-height:1.8;color:rgba(23,23,23,.78)}
 .story-intro + .story-intro{margin-top:24px}
 .story-highlight{
-  max-width:650px;
-  margin-top:42px;
-  padding-left:22px;
-  border-left:2px solid var(--red);
-  color:var(--red);
-  font:900 italic clamp(2rem,3vw,3.5rem)/.92 "Barlow Condensed";
-  text-transform:uppercase
+  max-width:650px;margin-top:42px;padding-left:22px;border-left:2px solid var(--red);
+  color:var(--red);font:900 italic clamp(2rem,3vw,3.5rem)/.92 "Barlow Condensed";text-transform:uppercase
 }
 .intro-image{position:relative;background:var(--sand)}
 .intro-image .vertical{
-  position:absolute;
-  z-index:2;
-  left:17px;
-  top:18px;
-  writing-mode:vertical-rl;
-  font:700 9px "Barlow Condensed";
-  letter-spacing:.2em;
-  text-transform:uppercase
+  position:absolute;z-index:2;left:17px;top:18px;writing-mode:vertical-rl;
+  font:700 9px "Barlow Condensed";letter-spacing:.2em;text-transform:uppercase
 }
-.photo-caption{
-  position:absolute;
-  right:16px;
-  bottom:16px;
-  max-width:190px;
-  padding:9px 11px;
-  background:var(--paper)
-}
+.photo-caption{position:absolute;right:16px;bottom:16px;max-width:190px;padding:9px 11px;background:var(--paper)}
 
-.gps{
-  position:relative;
-  min-height:110vh;
-  padding:7vw;
-  overflow:hidden;
-  background:var(--sand)
-}
+.gps{position:relative;min-height:110vh;padding:7vw;overflow:hidden;background:var(--sand)}
 .gps:before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:"";position:absolute;inset:0;
   background:
     linear-gradient(rgba(47,62,134,.09) 1px,transparent 1px),
     linear-gradient(90deg,rgba(47,62,134,.09) 1px,transparent 1px);
   background-size:42px 42px
 }
-.gps-inner{
-  position:relative;
-  z-index:1;
-  display:grid;
-  grid-template-columns:42% 58%;
-  gap:6vw;
-  align-items:center
-}
+.gps-inner{position:relative;z-index:1;display:grid;grid-template-columns:42% 58%;gap:6vw;align-items:center}
 .gps-kicker{color:var(--blue);margin-bottom:15px}
-.coords{
-  font:900 clamp(5rem,11vw,12rem)/.72 "Barlow Condensed";
-  color:var(--red);
-  letter-spacing:-.055em
-}
-.coords small{
-  display:block;
-  margin-top:25px;
-  font:700 12px/1.2 "Barlow Condensed";
-  letter-spacing:.22em;
-  color:var(--blue)
-}
+.coords{font:900 clamp(5rem,11vw,12rem)/.72 "Barlow Condensed";color:var(--red);letter-spacing:-.055em}
+.coords small{display:block;margin-top:25px;font:700 12px/1.2 "Barlow Condensed";letter-spacing:.22em;color:var(--blue)}
 .route{
-  position:absolute;
-  left:38%;
-  top:14%;
-  width:230px;
-  height:430px;
-  border-left:1px dashed var(--blue);
-  transform:rotate(14deg);
-  opacity:.6
+  position:absolute;left:38%;top:14%;width:230px;height:430px;
+  border-left:1px dashed var(--blue);transform:rotate(14deg);opacity:.6
 }
 .route:before,.route:after{
-  content:"";
-  position:absolute;
-  width:9px;
-  height:9px;
-  border:2px solid var(--red);
-  border-radius:50%;
-  background:var(--sand)
+  content:"";position:absolute;width:9px;height:9px;border:2px solid var(--red);border-radius:50%;background:var(--sand)
 }
 .route:before{top:-5px;left:-5px}
 .route:after{bottom:-5px;left:-5px}
 .gps-copy{max-width:650px}
 .gps-copy h2{
-  margin-bottom:32px;
-  font:900 clamp(3rem,6vw,6.5rem)/.8 "Barlow Condensed";
-  text-transform:uppercase;
-  color:var(--blue)
+  margin-bottom:32px;font:900 clamp(3rem,6vw,6.5rem)/.8 "Barlow Condensed";text-transform:uppercase;color:var(--blue)
 }
-.gps-story p{
-  max-width:590px;
-  font-size:17px;
-  line-height:1.7
-}
+.gps-story p{max-width:590px;font-size:17px;line-height:1.7}
 .gps-story p + p{margin-top:20px}
 .manifesto{
-  margin-top:38px;
-  color:var(--red);
-  font:900 italic clamp(2rem,3.5vw,4rem)/.9 "Barlow Condensed";
-  text-transform:uppercase
+  margin-top:38px;color:var(--red);font:900 italic clamp(2rem,3.5vw,4rem)/.9 "Barlow Condensed";text-transform:uppercase
 }
-.story-small-title{
-  margin:48px 0 15px;
-  font:900 15px "Barlow Condensed";
-  text-transform:uppercase;
-  letter-spacing:.15em;
-  color:var(--blue)
-}
-.coordinates-label{
-  margin-top:45px;
-  padding-top:12px;
-  border-top:1px solid rgba(47,62,134,.35);
-  color:var(--blue)
-}
+.coordinates-label{margin-top:45px;padding-top:12px;border-top:1px solid rgba(47,62,134,.35);color:var(--blue)}
 
-.spread{
-  display:grid;
-  grid-template-columns:58% 42%;
-  min-height:95vh;
-  background:var(--ink);
-  color:#fff
-}
-.spread-media{position:relative;min-height:95vh}
-.spread-media video{opacity:.78}
-.film-note{
-  position:absolute;
-  left:18px;
-  top:18px;
-  padding:8px 10px;
-  border:1px solid rgba(255,255,255,.55);
-  font:700 9px "Barlow Condensed";
-  letter-spacing:.18em;
-  text-transform:uppercase
-}
-.spread-copy{
-  padding:7vw 5vw;
-  display:flex;
-  flex-direction:column;
-  justify-content:center
-}
-.spread-copy .section-no{color:var(--yellow)}
-.spread-title{
-  font:900 clamp(4rem,7vw,8rem)/.76 "Barlow Condensed";
-  text-transform:uppercase;
-  letter-spacing:-.04em
-}
-.spread-title span{color:var(--yellow);font-style:italic}
-.hunt-story{margin-top:30px}
-.hunt-story p{
-  max-width:500px;
-  font-size:16px;
-  line-height:1.75;
-  color:rgba(255,255,255,.7)
-}
-.hunt-story p + p{margin-top:20px}
-.pull{
-  max-width:400px;
-  margin-top:55px;
-  padding-left:20px;
-  border-left:2px solid var(--red);
-  font:900 italic 25px/.95 "Barlow Condensed";
-  text-transform:uppercase
-}
-
-.hands{
-  display:grid;
-  grid-template-columns:48% 52%;
-  min-height:100vh
-}
+.hands{display:grid;grid-template-columns:48% 52%;min-height:100vh}
 .hands-media{position:relative;min-height:100%}
 .hands-media:after{
-  content:"04° — HANDS";
-  position:absolute;
-  left:18px;
-  bottom:18px;
-  color:#fff;
-  font:700 10px "Barlow Condensed";
-  letter-spacing:.2em
+  content:"04° — HANDS";position:absolute;left:18px;bottom:18px;color:#fff;
+  font:700 10px "Barlow Condensed";letter-spacing:.2em
 }
-.hands-copy{
-  padding:8vw 7vw;
-  display:flex;
-  flex-direction:column;
-  justify-content:center
-}
+.hands-copy{padding:8vw 7vw;display:flex;flex-direction:column;justify-content:center}
 .hands-title{
-  font:900 clamp(4rem,7vw,8rem)/.77 "Barlow Condensed";
-  text-transform:uppercase;
-  color:var(--blue);
-  letter-spacing:-.04em
+  font:900 clamp(4rem,7vw,8rem)/.77 "Barlow Condensed";text-transform:uppercase;
+  color:var(--blue);letter-spacing:-.04em
 }
 .hands-title i{color:var(--red)}
-.hands-story{
-  max-width:650px;
-  margin-top:32px;
-  font-size:17px;
-  line-height:1.75
-}
+.hands-story{max-width:650px;margin-top:32px;font-size:17px;line-height:1.75}
 .hands-story + .hands-story{margin-top:20px}
-.hand-list{
-  margin-top:42px;
-  border-top:1px solid var(--line)
-}
-.hand-row{
-  display:grid;
-  grid-template-columns:95px 1fr;
-  gap:25px;
-  padding:18px 0;
-  border-bottom:1px solid var(--line)
-}
-.hand-row b{
-  font:900 13px "Barlow Condensed";
-  color:var(--red);
-  letter-spacing:.1em
-}
-.hand-row p{
-  font-size:14px;
-  line-height:1.55;
-  color:rgba(23,23,23,.65)
-}
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  background:var(--blue);
-  color:#fff
+.hands-cta{
+  display:inline-flex;align-items:center;gap:12px;width:fit-content;margin-top:48px;
+  padding:17px 34px;background:var(--red);color:#fff;text-decoration:none;
+  font:700 11px "Barlow Condensed";letter-spacing:.22em;text-transform:uppercase;
+  transition:background .2s ease,transform .2s ease
 }
+.hands-cta svg{width:16px;height:16px;stroke:currentColor;transition:transform .2s ease}
+.hands-cta:hover{background:var(--ink);transform:translateX(4px)}
+.hands-cta:hover svg{transform:translateX(3px)}
+
+/* ── ARTISANS MARQUEE (immersif, fond jaune, sans marge) ── */
+.artisans-marquee{background:var(--yellow);overflow:hidden}
+.artisans-marquee-heading{text-align:center;padding:10px 0 6px}
+.artisans-marquee-heading .section-no{color:var(--red);justify-content:center;display:flex;margin:0}
+.artisans-track{display:flex;width:max-content;gap:2px;animation:artisansScroll 48s linear infinite}
+.artisans-marquee:hover .artisans-track{animation-play-state:paused}
+.artisans-track img{height:460px;width:auto;aspect-ratio:3/4;object-fit:cover;flex-shrink:0}
+@keyframes artisansScroll{to{transform:translateX(-50%)}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--blue);color:#fff}
 .stat{
-  min-height:245px;
-  padding:65px 25px;
-  border-right:1px solid rgba(255,255,255,.18);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between
+  min-height:245px;padding:65px 25px;border-right:1px solid rgba(255,255,255,.18);
+  display:flex;flex-direction:column;justify-content:space-between
 }
 .stat:last-child{border:0}
-.stat b{
-  font:900 clamp(4rem,7vw,8rem)/.7 "Barlow Condensed";
-  color:var(--yellow);
-  letter-spacing:-.04em
-}
-.stat span{
-  font:700 10px "Barlow Condensed";
-  text-transform:uppercase;
-  letter-spacing:.22em;
-  color:rgba(255,255,255,.6)
-}
-
-.founder{
-  display:grid;
-  grid-template-columns:38% 62%;
-  min-height:85vh;
-  background:var(--paper)
-}
-.founder-photo{position:relative}
-.founder-copy{
-  padding:8vw 7vw;
-  display:flex;
-  flex-direction:column;
-  justify-content:center
-}
-.founder-name{
-  font:900 clamp(4rem,7vw,8rem)/.72 "Barlow Condensed";
-  text-transform:uppercase;
-  color:var(--red)
-}
-.role{margin-top:15px;color:var(--blue)}
-.founder-copy p{
-  max-width:650px;
-  margin-top:28px;
-  font-size:17px;
-  line-height:1.75
-}
-.founder-quote{
-  max-width:700px;
-  margin-top:55px;
-  color:var(--blue);
-  font:900 italic clamp(2.5rem,4.5vw,5rem)/.82 "Barlow Condensed"
-}
-
-footer{
-  padding:20px 28px;
-  background:var(--ink);
-  color:#fff;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  font:700 9px "Barlow Condensed";
-  letter-spacing:.18em;
-  text-transform:uppercase
-}
-footer span:nth-child(2){color:var(--red)}
+.stat b{font:900 clamp(4rem,7vw,8rem)/.7 "Barlow Condensed";color:var(--yellow);letter-spacing:-.04em}
+.stat span{font:700 10px "Barlow Condensed";text-transform:uppercase;letter-spacing:.22em;color:rgba(255,255,255,.6)}
 
 /* ROLLING TEXT */
-.roll{
-  display:inline-block;
-  perspective:700px
-}
-.roll-char{
-  display:inline-block;
-  transform-style:preserve-3d;
-  transform-origin:50% 50%;
-  will-change:transform
-}
-.roll-char>*{
-  display:block;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden
-}
-.roll-back{
-  position:absolute;
-  inset:0;
-  transform:rotateX(180deg)
-}
-.roll-space{
-  display:inline-block;
-  width:.25em
-}
-.roll.visible .roll-char{
-  animation:flip .65s cubic-bezier(.22,.61,.36,1) both
-}
+.roll{display:inline-block;perspective:700px}
+.roll-char{display:inline-block;transform-style:preserve-3d;transform-origin:50% 50%;will-change:transform}
+.roll-char>*{display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.roll-back{position:absolute;inset:0;transform:rotateX(180deg)}
+.roll-space{display:inline-block;width:.25em}
+.roll.visible .roll-char{animation:flip .65s cubic-bezier(.22,.61,.36,1) both}
 @keyframes flip{
   0%{transform:rotateX(0)}
   30%{transform:rotateX(-110deg)}
@@ -603,28 +214,26 @@ footer span:nth-child(2){color:var(--red)}
 }
 
 @media(max-width:900px){
-  .hero-video{height:88svh;min-height:540px;padding:10px}
-  .hero-video-frame{border-radius:12px}
+  .hero-video{height:88svh;min-height:540px}
   .hero-title{font-size:clamp(4.8rem,23vw,8rem)}
   .lang-switcher{top:1rem;right:1rem;padding:4px}
   .lang-btn{width:32px;height:32px;font-size:.95rem}
   .hero-sound-btn{bottom:1.25rem;right:1.25rem;width:42px;height:42px}
-  .intro-image,.hands-media,.founder-photo{min-height:78vw}
-  .intro-text,.hands-copy,.founder-copy{padding:18vw 7vw}
+  .intro-image,.hands-media{min-height:78vw}
+  .intro-text,.hands-copy{padding:18vw 7vw}
   .story-intro{font-size:16px;line-height:1.7}
   .story-highlight{font-size:2rem}
   .gps{padding:14vw 7vw}
   .gps-inner{grid-template-columns:1fr;gap:14vw}
   .route{left:55%;top:10%}
-  .spread-media{min-height:75vw}
-  .spread-copy{padding:15vw 7vw}
   .stats{grid-template-columns:1fr 1fr}
   .stat{min-height:190px;padding:35px 18px}
-  footer{flex-direction:column}
+  .hands-cta{width:100%;justify-content:center;padding:18px}
+  .artisans-track img{height:220px}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .track{animation:none}
+  .artisans-track{animation:none}
   .roll-char{animation:none!important}
 }
 </style>
@@ -634,69 +243,37 @@ footer span:nth-child(2){color:var(--red)}
 
 <!-- HERO VIDEO -->
 <section class="hero-video">
-  <div class="hero-video-frame">
-    <video id="hero-vid" autoplay muted loop playsinline>
-      <source src="./videos/Romain movie - Piece unique, Villa Ephrussi, Saint Jean Cap Ferrat.mp4" type="video/mp4">
-    </video>
+  <video id="hero-vid" autoplay muted loop playsinline>
+    <source src="./videos/Romain movie - Piece unique, Villa Ephrussi, Saint Jean Cap Ferrat.mp4" type="video/mp4">
+  </video>
 
-    <div class="hero-info">
-      <strong>KILOMETRE PARIS</strong>
-      EST. 2015 · PARIS → EVERYWHERE
-    </div>
-
-    <!-- Sélecteur de langue -->
-    <div class="lang-switcher" role="group" aria-label="Choisir la langue">
-      <button class="lang-btn active" data-lang="fr" title="Français" aria-label="Français" aria-pressed="true">🇫🇷</button>
-      <button class="lang-btn" data-lang="en" title="English" aria-label="English" aria-pressed="false">🇬🇧</button>
-      <button class="lang-btn" data-lang="es" title="Español" aria-label="Español" aria-pressed="false">🇪🇸</button>
-      <button class="lang-btn" data-lang="zh" title="中文" aria-label="中文" aria-pressed="false">🇨🇳</button>
-    </div>
-
-    <div class="hero-video-overlay">
-      <span class="hero-eyebrow" data-i18n="eyebrow">No. 01 / About</span>
-      <h1 class="hero-title" data-i18n="title">About<br><span>Us</span></h1>
-      <p class="hero-quote" data-i18n="quote">“People do not take trips,<br>trips take people.”</p>
-    </div>
-
-    <button class="hero-sound-btn" id="sound-btn" type="button" aria-label="Turn sound on" aria-pressed="false">
-      <svg id="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
-      </svg>
-      <svg id="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-      </svg>
-    </button>
-
-    <div class="hero-grid" aria-hidden="true"></div>
+  <!-- Sélecteur de langue -->
+  <div class="lang-switcher" role="group" aria-label="Choisir la langue">
+    <button class="lang-btn active" data-lang="fr" title="Français" aria-label="Français" aria-pressed="true">🇫🇷</button>
+    <button class="lang-btn" data-lang="en" title="English" aria-label="English" aria-pressed="false">🇬🇧</button>
+    <button class="lang-btn" data-lang="es" title="Español" aria-label="Español" aria-pressed="false">🇪🇸</button>
+    <button class="lang-btn" data-lang="zh" title="中文" aria-label="中文" aria-pressed="false">🇨🇳</button>
   </div>
+
+  <div class="hero-video-overlay">
+    <span class="hero-eyebrow" data-i18n="eyebrow">No. 01 / About</span>
+    <h1 class="hero-title" data-i18n="title">About<br><span>Us</span></h1>
+    <p class="hero-quote" data-i18n="quote">“People do not take trips,<br>trips take people.”</p>
+  </div>
+
+  <button class="hero-sound-btn" id="sound-btn" type="button" aria-label="Turn sound on" aria-pressed="false">
+    <svg id="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <svg id="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+  </button>
+
+  <div class="hero-grid" aria-hidden="true"></div>
 </section>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="track">
-    <span>Paris</span><span class="star">✦</span>
-    <span>Morocco</span><span class="star">✦</span>
-    <span>India</span><span class="star">✦</span>
-    <span>Mexico</span><span class="star">✦</span>
-    <span>Georgia</span><span class="star">✦</span>
-    <span>Handmade</span><span class="star">✦</span>
-    <span>Embroidery</span><span class="star">✦</span>
-    <span>Vintage</span><span class="star">✦</span>
-    <span>Travel</span><span class="star">✦</span>
-
-    <span>Paris</span><span class="star">✦</span>
-    <span>Morocco</span><span class="star">✦</span>
-    <span>India</span><span class="star">✦</span>
-    <span>Mexico</span><span class="star">✦</span>
-    <span>Georgia</span><span class="star">✦</span>
-    <span>Handmade</span><span class="star">✦</span>
-    <span>Embroidery</span><span class="star">✦</span>
-    <span>Vintage</span><span class="star">✦</span>
-    <span>Travel</span>
-  </div>
-</div>
 
 <!-- 01 OUR STORY -->
 <section class="intro">
@@ -805,27 +382,7 @@ footer span:nth-child(2){color:var(--red)}
   </div>
 </section>
 
-<!-- 03 THE HUNT -->
-<section class="spread">
-  <div class="spread-media">
-    <video autoplay muted loop playsinline>
-      <source src="https://cdn.shopify.com/videos/c/o/v/e5d2a4310dac46ae8d88cf8580aa66ca.mp4" type="video/mp4">
-    </video>
-    <div class="film-note">Field notes · Antique hunting</div>
-  </div>
-  <div class="spread-copy">
-    <div class="section-no">03 — The Hunt</div>
-    <h2 class="spread-title">We go<br><span>looking.</span></h2>
-    <div class="hunt-story">
-      <p>Antique hunting is part of what we do, scouring the globe for hidden treasures.</p>
-      <p>We search for the things that already have a life in them: old work shirts, forgotten textiles, imperfect surfaces, traces left by someone else.</p>
-      <p>From the back of trucks to attics and factory closets, our team follows the unexpected trail of objects that still have another story to tell.</p>
-    </div>
-    <div class="pull">“Not new.<br>Not reproduced.<br>Found.”</div>
-  </div>
-</section>
-
-<!-- 04 OUR HANDS -->
+<!-- 03 OUR HANDS -->
 <section class="hands">
 
   <div class="hands-media">
@@ -835,7 +392,7 @@ footer span:nth-child(2){color:var(--red)}
 
   <div class="hands-copy">
 
-    <div class="section-no">04 — Our Hands</div>
+    <div class="section-no">03 — Our Hands</div>
 
     <h2 class="hands-title">
       Every stitch<br>
@@ -866,22 +423,10 @@ footer span:nth-child(2){color:var(--red)}
       Using vintage shirts from the 19th century, each contributor offers their own visual interpretation of a destination that’s dear to us creating masterpiece souvenirs of our « moments de vie ».
     </p>
 
-    <div class="hand-list">
-      <div class="hand-row">
-        <b>01 / PLACE</b>
-        <p>The embroidery carries the place: a street, a landscape, a memory, a coordinate.</p>
-      </div>
-
-      <div class="hand-row">
-        <b>02 / HANDS</b>
-        <p>Each piece is worked slowly, by hand, in workshops where the gesture matters as much as the result.</p>
-      </div>
-
-      <div class="hand-row">
-        <b>03 / TIME</b>
-        <p>Vintage gives the garment its first life. Embroidery gives it another. The wearer takes it from there.</p>
-      </div>
-    </div>
+    <a class="hands-cta" href="our-talented-hands.html">
+      Our talents
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+    </a>
 
   </div>
 </section>
@@ -909,58 +454,42 @@ footer span:nth-child(2){color:var(--red)}
   </div>
 </section>
 
-<!-- 05 THE FOUNDER -->
-<section class="founder">
-
-  <div class="founder-photo">
-    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/DSC05297_JULIE_GAYET.jpg?v=1756473305&width=1800" alt="Alexandra Senes — founder of Kilometre Paris">
+<!-- ARTISANS MARQUEE -->
+<section class="artisans-marquee">
+  <div class="artisans-marquee-heading">
+    <div class="section-no">Our Hands, Around The World</div>
   </div>
-
-  <div class="founder-copy">
-
-    <div class="section-no">05 — The Founder</div>
-
-    <h2 class="founder-name">
-      Alexandra<br>Senes
-    </h2>
-
-    <div class="role kicker">
-      Founder · Pilot · Traveler
-    </div>
-
-    <p>
-      Alexandra Senes is not a fashion designer in the conventional sense. She calls herself a pilot, someone who navigates between cultures, crafts, and stories.
-    </p>
-
-    <p>
-      With a passion for travel, heritage, and craftsmanship, Alexandra brought the shirts to artisans around the world, in Morocco, India, Mexico, and asked them to embroider.
-    </p>
-
-    <p>
-      Each stitch was made by hand, in a place far from Paris, with a patience that no machine could replace.
-    </p>
-
-    <p>
-      The brand she built, Kilometre Paris, reflects that restlessness, and that respect: for the people who make, for the materials that endure, and for the places that leave a mark on us.
-    </p>
-
-    <div class="founder-quote">
-      “Not designers.<br>
-      Translators.”
-    </div>
-
+  <div class="artisans-track">
+    <img src="./imgTalentedHands/MarocCont/DSC04398%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04474%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04546%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04556%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04728%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04729%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04757%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04761%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04771%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04774%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04776%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04778%202.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./imgTalentedHands/MarocCont/DSC04398%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04474%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04546%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04556%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04728%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04729%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04757%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04761%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04771%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04774%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04776%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./imgTalentedHands/MarocCont/DSC04778%202.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
   </div>
 </section>
 
-<footer>
-  <span>Kilometre Paris · About</span>
-  <span>Paris · Morocco · India · Mexico · Georgia</span>
-  <span>Made to travel</span>
-</footer>
-
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
-  const targets=document.querySelectorAll("h1,h2,.section-no,.role,.kicker,.stat span,.hand-row b,.manifesto,.coordinates-label");
+  const targets=document.querySelectorAll("h1,h2,.section-no,.role,.kicker,.stat span,.manifesto,.coordinates-label");
 
   targets.forEach(el=>{
     if(el.classList.contains("roll"))return;
@@ -995,9 +524,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 
   // ----- SÉLECTEUR DE LANGUE -----
-  // Dictionnaire de traduction : on ne traduit ici que le hero (titre, phrase d'accroche)
-  // en exemple fonctionnel. Ajoute d'autres clés / data-i18n sur les autres blocs
-  // de texte (section-no, big-title, etc.) pour étendre la traduction à toute la page.
   const translations = {
     fr: {
       eyebrow: "N° 01 / À propos",
@@ -1047,7 +573,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     btn.addEventListener("click", ()=> applyLang(btn.dataset.lang));
   });
 
-  // Rétablit la langue choisie précédemment (si déjà visitée)
   const savedLang = localStorage.getItem("kmp-lang");
   if(savedLang && translations[savedLang]) applyLang(savedLang);
 });
