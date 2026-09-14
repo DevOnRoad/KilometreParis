@@ -215,21 +215,62 @@ a{color:inherit}
 
 @media(max-width:900px){
   .hero-video{height:88svh;min-height:540px}
-  .hero-title{font-size:clamp(4.8rem,23vw,8rem)}
+  .hero-video-overlay{padding:2rem 1.5rem;gap:1rem}
+  .hero-title{font-size:clamp(3.6rem,18vw,8rem)}
+  .hero-quote{font-size:.9rem;max-width:100%}
   .lang-switcher{top:calc(72px + .75rem);right:1rem;padding:4px}
   .lang-btn{width:32px;height:32px;font-size:.95rem}
   .hero-sound-btn{bottom:1.25rem;right:1.25rem;width:42px;height:42px}
-  .intro-image,.hands-media{min-height:78vw}
-  .intro-text,.hands-copy{padding:18vw 7vw}
+
+  /* Empiler les sections 2 colonnes au lieu de les écraser côte à côte */
+  .intro,.hands{grid-template-columns:1fr}
+  .intro-image,.hands-media{min-height:82vw}
+  .intro-text,.hands-copy{padding:12vw 7vw}
+
+  .big-title,.hands-title{font-size:clamp(2.8rem,13vw,4.5rem)}
   .story-intro{font-size:16px;line-height:1.7}
-  .story-highlight{font-size:2rem}
-  .gps{padding:14vw 7vw}
-  .gps-inner{grid-template-columns:1fr;gap:14vw}
-  .route{left:55%;top:10%}
+  .story-highlight{font-size:1.8rem;padding-left:16px}
+  .hands-story{font-size:16px;line-height:1.7}
+
+  .gps{padding:14vw 6vw;min-height:auto}
+  .gps-inner{grid-template-columns:1fr;gap:12vw}
+  .coords{font-size:clamp(2.6rem,15vw,4.5rem)}
+  .gps-copy h2{font-size:clamp(2.2rem,11vw,3.5rem);margin-bottom:22px}
+  .gps-story p{font-size:15.5px;line-height:1.65}
+  .manifesto{font-size:1.6rem}
+  .route{display:none}
+
   .stats{grid-template-columns:1fr 1fr}
-  .stat{min-height:190px;padding:35px 18px}
+  .stat{min-height:170px;padding:28px 16px}
+  .stat b{font-size:clamp(2.4rem,10vw,3.6rem)}
+
   .hands-cta{width:100%;justify-content:center;padding:18px}
   .artisans-track img{height:220px}
+}
+
+@media(max-width:480px){
+  .hero-video-overlay{padding:1.5rem 1.1rem}
+  .hero-title{font-size:clamp(3rem,16vw,4.5rem)}
+  .hero-eyebrow{letter-spacing:.3em}
+  .lang-switcher{top:calc(64px + .6rem);right:.75rem}
+  .lang-btn{width:30px;height:30px;font-size:.85rem}
+
+  .intro-text,.hands-copy{padding:10vw 6vw}
+  .big-title,.hands-title{font-size:clamp(2.4rem,12vw,3.4rem)}
+  .story-intro,.hands-story{font-size:15px;line-height:1.65}
+  .story-highlight{font-size:1.5rem}
+
+  .gps{padding:12vw 5vw}
+  .coords{font-size:clamp(2.2rem,14vw,3.2rem)}
+  .gps-copy h2{font-size:clamp(1.9rem,10vw,2.6rem)}
+  .gps-story p{font-size:14.5px}
+  .manifesto{font-size:1.35rem}
+
+  .stats{grid-template-columns:1fr}
+  .stat{min-height:auto;padding:22px 18px;flex-direction:row;align-items:center;justify-content:space-between}
+  .stat b{font-size:2.2rem}
+
+  .artisans-track img{height:170px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -259,7 +300,7 @@ a{color:inherit}
   <div class="hero-video-overlay">
     <span class="hero-eyebrow" data-i18n="eyebrow">No. 01 / About</span>
     <h1 class="hero-title" data-i18n="title">About<br><span>Us</span></h1>
-    <p class="hero-quote" data-i18n="quote">“People do not take trips,<br>trips take people.”</p>
+    <p class="hero-quote" data-i18n="quote">"People do not take trips,<br>trips take people."</p>
   </div>
 
   <button class="hero-sound-btn" id="sound-btn" type="button" aria-label="Turn sound on" aria-pressed="false">
@@ -573,7 +614,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     en: {
       eyebrow: "No. 01 / About",
       title: "About<br><span>Us</span>",
-      quote: "“People do not take trips,<br>trips take people.”",
+      quote: "\u201cPeople do not take trips,<br>trips take people.\u201d",
 
       kicker01: "01 — Our Story",
       title01: "Where it<br><em>all</em><br>began.",
@@ -627,7 +668,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       story3: "Cada pieza lleva consigo un relato. No una etiqueta ni un eslogan, sino un lugar, un año, un viaje. Ese es el único lujo que realmente nos importa.",
       highlight01: "Eso es Kilometre Paris.",
       story4: "Alexandra Senes, periodista y viajera de toda la vida, se encontró un día frente a una colección de camisas de trabajo del siglo XIX: sencillas, desgastadas por el tiempo y olvidadas durante décadas. Habían pertenecido a un decorador de sets de cine.",
-      story5: "La mujer que las vendía simplemente quería deshacerse de ellas, mientras que Alexandra veía en ellas la oportunidad de contar una historia de viaje. Cada camisa era una “Pieza Única”. Alexandra las compró no para revenderlas, sino para bordarlas.",
+      story5: "La mujer que las vendía simplemente quería deshacerse de ellas, mientras que Alexandra veía en ellas la oportunidad de contar una historia de viaje. Cada camisa era una \u201cPieza Única\u201d. Alexandra las compró no para revenderlas, sino para bordarlas.",
       story6: "Movida por su pasión por los viajes, el patrimonio cultural y la artesanía, llevó estas camisas a artesanos de distintas partes del mundo, Marruecos, India, México, y les pidió que las bordaran. Cada puntada fue realizada a mano, en lugares lejanos a París, con una paciencia y una dedicación que ninguna máquina podría reproducir. De esa idea nació Kilometre Paris.",
       story7: "Alexandra Senes no se considera una diseñadora de moda en el sentido tradicional. Se define como una piloto: alguien que navega entre culturas, oficios y relatos. La marca que creó, Kilometre Paris, refleja ese espíritu inquieto y, al mismo tiempo, ese profundo respeto por quienes crean con sus manos, por los materiales que resisten el paso del tiempo y por los lugares que dejan una huella imborrable en nosotros.",
       photoCaption: "Una camisa antigua. Una nueva ruta.<br>Una pieza, una historia.",
@@ -716,7 +757,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     i18nEls.forEach(el=>{
       const key = el.dataset.i18n;
-      // Repli automatique sur l'anglais si une traduction manque pour cette langue
       const value = dict[key] || translations.en[key];
       if(value) el.innerHTML = value;
     });
