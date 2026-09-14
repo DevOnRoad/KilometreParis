@@ -171,6 +171,45 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
+        /* ── MAP LABELS (positioned to match the reference artwork) ── */
+        .map-labels {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .map-label {
+            position: absolute;
+            line-height: 1.15;
+            font-family: 'Barlow Condensed', sans-serif;
+            color: var(--rouge);
+            white-space: nowrap;
+        }
+
+        .map-label b {
+            font-weight: 900;
+            font-size: clamp(8px, 1.05vw, 20px);
+            letter-spacing: 0.01em;
+        }
+
+        .map-label span {
+            display: block;
+            font-weight: 500;
+            font-size: clamp(6.5px, 0.75vw, 14px);
+        }
+
+        .map-caption {
+            position: absolute;
+            left: 13.6%;
+            top: 93.7%;
+            width: 55%;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            color: var(--rouge);
+            font-size: clamp(7px, 0.85vw, 15px);
+            text-align: center;
+        }
+
         /* ── SUPPLIERS LIST ── */
         .suppliers-section {
             padding: 5rem 4rem;
@@ -191,7 +230,7 @@
 
         .suppliers-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2px;
             max-width: 1400px;
             margin: 0 auto;
@@ -551,8 +590,63 @@
 
     <!-- MAP -->
     <div class="map-section">
-        <img class="map-img" src="./imgTalentedHands/mapOfTalentedHands.jpg" alt="Our Galaxy of Talented Hands — Kilometre Paris world map">
-        <img class="map-overlay" src="./imgTalentedHands/arow.png" alt="Arrows pointing to our artisans">
+        <img class="map-img" src="./imgTalentedHands/map.png" alt="Our Galaxy of Talented Hands — Kilometre Paris world map">
+        <img class="map-overlay" src="./imgTalentedHands/arowpng.png" alt="Arrows pointing to our artisans">
+
+        <div class="map-labels" aria-hidden="true">
+            <div class="map-label" style="left:43.4%; top:3.0%;">
+                <b>TUSCANY, ITALY</b>
+                <span>Wine-tanned leather maker</span>
+            </div>
+            <div class="map-label" style="left:59.8%; top:1.1%;">
+                <b>ADJARA MOUNTAINS, GEORGIA</b>
+                <span>Embroiderers</span>
+            </div>
+            <div class="map-label" style="left:76.9%; top:7.5%;">
+                <b>SRINAGAR, KASHMIR, INDIA</b>
+                <span>Cushion embroiderers</span>
+                <span>Pashmina weavers</span>
+            </div>
+            <div class="map-label" style="left:62.1%; top:21.2%;">
+                <b>KABUL, AFGHANISTAN</b>
+                <span>Embroiderers</span>
+            </div>
+            <div class="map-label" style="left:30.6%; top:25.4%;">
+                <b>ESSAOUIRA, MOROCCO</b>
+                <span>Embroiderers</span>
+                <span>Knitters</span>
+            </div>
+            <div class="map-label" style="left:25.3%; top:43.5%;">
+                <b>TUNIS, TUNISIA</b>
+                <span>"Espadrilles" Makers</span>
+            </div>
+            <div class="map-label" style="left:83.9%; top:44.0%;">
+                <b>NEW DEHLI, DEHLI, INDIA</b>
+                <span>Packaging manufacturers</span>
+            </div>
+            <div class="map-label" style="left:0.5%; top:58.1%;">
+                <b>MEXICO CITY, MEXICO</b>
+                <span>Embroiderers</span>
+            </div>
+            <div class="map-label" style="left:60.8%; top:61.9%;">
+                <b>MUMBAI, MAHARASHTRA, INDIA</b>
+                <span>Embroiderers</span>
+            </div>
+            <div class="map-label" style="left:33.1%; top:70.6%;">
+                <b>MAHDIA, TUNISIA</b>
+                <span>Embroiderers</span>
+            </div>
+            <div class="map-label" style="left:56.6%; top:74.7%;">
+                <b>CAIRO, EGYPT</b>
+                <span>Towel & Home manufacturers</span>
+            </div>
+            <div class="map-label" style="left:68.6%; top:84.3%;">
+                <b>KOLKATA, BENGAL, INDIA</b>
+                <span>Khadi weavers & embroiderers</span>
+            </div>
+
+            <p class="map-caption">Each point on the map represents a place where we work with skilled hands &amp; trusted partners.</p>
+        </div>
     </div>
 
     <!-- SUPPLIERS LIST -->
@@ -572,16 +666,16 @@
                 <p class="supplier-role">Embroiderers</p>
             </div>
 
-            <div class="supplier-card">
+            <div class="supplier-card clickable" onclick="openModal('mexico')">
                 <p class="supplier-city">Mexico City</p>
                 <p class="supplier-country">Mexico</p>
                 <p class="supplier-role">Embroiderers</p>
             </div> 
 
-            <div class="supplier-card">
-                <p class="supplier-city">New Delhi</p>
+            <div class="supplier-card clickable" onclick="openModal('kolkata')">
+                <p class="supplier-city">Kolkata, Bengal</p>
                 <p class="supplier-country">India</p>
-                <p class="supplier-role">Packaging manufacturers</p>
+                <p class="supplier-role">Khadi weavers & embroiderers</p>
             </div>
 </div>
     </section>
@@ -683,6 +777,182 @@
             <figure><img src="./imgTalentedHands/MarocCont/DSC04776%202.jpg" alt="Essaouira artisans at work"></figure>
             <figure><img src="./imgTalentedHands/MarocCont/DSC04778%202.jpg" alt="Essaouira artisans at work"></figure>
         </div>
+    </div>
+</div>
+
+<!-- MODAL MEXICO CITY -->
+<div class="modal-overlay" id="modal-mexico">
+
+    <!-- Loader affiché à l'ouverture, avant les infos — hors de .modal-box pour ne pas être piégé par son transform -->
+    <div class="modal-loader" data-destination="Mexique">
+        <div class="loader-inner">
+            <div class="loader-cities">
+                <span>Paris</span>
+                <span>Mexique</span>
+            </div>
+            <div class="loader-path">
+                <svg class="route" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="dashed" d="M10,62 Q200,-8 390,26" pathLength="1"></path>
+                </svg>
+                <svg class="loader-plane" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5l3.5-1 3.5 1V21l-2.5-2v-5.5z"></path>
+                </svg>
+            </div>
+            <p class="loader-brand">Kilometre Paris</p>
+        </div>
+    </div>
+
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('mexico')">✕ Close</button>
+
+        <!-- Bandeau carte d'embarquement -->
+        <div class="boarding-pass">
+            <div>
+                <p class="bp-eyebrow">Boarding Pass · Kilometre Paris</p>
+                <div class="bp-route">
+                    <span class="bp-city origin">Paris</span>
+                    <svg class="bp-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5l3.5-1 3.5 1V21l-2.5-2v-5.5z"/></svg>
+                    <span class="bp-city">Mexico City</span>
+                </div>
+                <div class="bp-meta">
+                    <div>
+                        <p>Country</p>
+                        <p>Mexico</p>
+                    </div>
+                    <div>
+                        <p>Craft</p>
+                        <p>Embroidery</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bp-divider" aria-hidden="true"></div>
+
+            <div class="bp-stamp" aria-hidden="true">
+                <svg viewBox="0 0 200 200">
+                    <defs>
+                        <path id="stampArcTopMx" d="M 25,100 A 75,75 0 0 1 175,100" fill="none"/>
+                        <path id="stampArcBottomMx" d="M 175,100 A 75,75 0 0 1 25,100" fill="none"/>
+                    </defs>
+                    <circle cx="100" cy="100" r="92" fill="none" stroke="#B82928" stroke-width="3"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#B82928" stroke-width="1.5"/>
+                    <text font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="900" letter-spacing="3" fill="#B82928">
+                        <textPath href="#stampArcTopMx" startOffset="50%" text-anchor="middle">KILOMETRE PARIS</textPath>
+                    </text>
+                    <text font-family="Barlow Condensed, sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#2F3E86">
+                        <textPath href="#stampArcBottomMx" startOffset="50%" text-anchor="middle">ARTISAN · MEXIQUE</textPath>
+                    </text>
+                    <text x="100" y="107" font-family="Barlow Condensed, sans-serif" font-size="34" font-weight="900" fill="#2F3E86" text-anchor="middle">✦</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Crédit artisan -->
+        <p class="modal-section-label">Leonora — Chimalhuacán, Estado de México</p>
+
+        <!-- Texte 1 -->
+        <p class="modal-text">For the past ten years, Leonora has been the bridge between Kilometre and a remarkable group of artisans in Chimalhuacán, on the outskirts of Mexico City. Since 2006, this collective has brought together women from different parts of Mexico — Oaxaca, Veracruz, Hidalgo, Mexico City — who, although coming from different traditions, all found a shared home in Chimalhuacán.</p>
+
+        <!-- Vidéos côte à côte — YouTube, injectées à l'ouverture (voir openModal) -->
+        <div class="modal-videos">
+            <div class="yt-embed" data-yt-id="i_l2TIqV-28"></div>
+            <div class="yt-embed" data-yt-id="bAtZmJ6DfRA"></div>
+        </div>
+
+        <!-- Texte 2 -->
+        <p class="modal-section-label">The Process</p>
+        <p class="modal-text">Unlike many embroidery ateliers, their craft was not always inherited. For many of the women, embroidery began out of necessity: a way to support their families while working from home. Over time, necessity became passion, and today their hands master a wide range of stitches, from rococo and satin stitch to blanket stitch, back stitch, cross stitch, daisy stitch, and ladder stitch. Every Kilometre design calls for a different combination of techniques, carefully chosen to bring each illustration to life.</p>
+        <p class="modal-text">The workshop itself has no permanent address. Instead, it moves from one artisan's home to another, wherever the group decides to gather. Most of the embroidery is completed in their own homes, allowing the artisans to balance their work with family life. Leonora stays in constant contact with each embroiderer, drawing every design by hand, preparing full-scale patterns, and visiting Chimalhuacán every two weeks to answer questions and ensure every piece reflects the highest level of craftsmanship.</p>
+        <p class="modal-text">Each shirt is entrusted to a single artisan. Though everyone masters the same stitches, every hand has its own rhythm, its own tension, its own signature. Completing one Kilometre shirt can take around two to three months.</p>
+        <p class="modal-text">More than an embroidery collective, this is a community built on collaboration, trust, and resilience. Through every stitch, these women have transformed embroidery into a source of independence, proving that craft is not only something inherited, it is also something learned, shared, and passed on to the next generation.</p>
+
+        <!-- Galerie photo, cadre uniforme, sans déformation -->
+        <p class="modal-section-label">Gallery</p>
+        <div class="modal-gallery">
+            <figure><img src="./img-our-hands/PHOTO%20-%20MEXICAN%20EMBROIDERERS%20IN%20BLEU%20DE%20TRAVAIL.png" alt="Mexico City artisans at work"></figure>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL KOLKATA -->
+<div class="modal-overlay" id="modal-kolkata">
+
+    <!-- Loader affiché à l'ouverture, avant les infos — hors de .modal-box pour ne pas être piégé par son transform -->
+    <div class="modal-loader" data-destination="Inde">
+        <div class="loader-inner">
+            <div class="loader-cities">
+                <span>Paris</span>
+                <span>Inde</span>
+            </div>
+            <div class="loader-path">
+                <svg class="route" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="dashed" d="M10,62 Q200,-8 390,26" pathLength="1"></path>
+                </svg>
+                <svg class="loader-plane" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5l3.5-1 3.5 1V21l-2.5-2v-5.5z"></path>
+                </svg>
+            </div>
+            <p class="loader-brand">Kilometre Paris</p>
+        </div>
+    </div>
+
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('kolkata')">✕ Close</button>
+
+        <!-- Bandeau carte d'embarquement -->
+        <div class="boarding-pass">
+            <div>
+                <p class="bp-eyebrow">Boarding Pass · Kilometre Paris</p>
+                <div class="bp-route">
+                    <span class="bp-city origin">Paris</span>
+                    <svg class="bp-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5l3.5-1 3.5 1V21l-2.5-2v-5.5z"/></svg>
+                    <span class="bp-city">Kolkata</span>
+                </div>
+                <div class="bp-meta">
+                    <div>
+                        <p>Country</p>
+                        <p>India</p>
+                    </div>
+                    <div>
+                        <p>Craft</p>
+                        <p>Aari Embroidery</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bp-divider" aria-hidden="true"></div>
+
+            <div class="bp-stamp" aria-hidden="true">
+                <svg viewBox="0 0 200 200">
+                    <defs>
+                        <path id="stampArcTopKo" d="M 25,100 A 75,75 0 0 1 175,100" fill="none"/>
+                        <path id="stampArcBottomKo" d="M 175,100 A 75,75 0 0 1 25,100" fill="none"/>
+                    </defs>
+                    <circle cx="100" cy="100" r="92" fill="none" stroke="#B82928" stroke-width="3"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#B82928" stroke-width="1.5"/>
+                    <text font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="900" letter-spacing="3" fill="#B82928">
+                        <textPath href="#stampArcTopKo" startOffset="50%" text-anchor="middle">KILOMETRE PARIS</textPath>
+                    </text>
+                    <text font-family="Barlow Condensed, sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#2F3E86">
+                        <textPath href="#stampArcBottomKo" startOffset="50%" text-anchor="middle">ARTISAN · INDE</textPath>
+                    </text>
+                    <text x="100" y="107" font-family="Barlow Condensed, sans-serif" font-size="34" font-weight="900" fill="#2F3E86" text-anchor="middle">✦</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Crédit artisan -->
+        <p class="modal-section-label">Devi — Kolkata, India</p>
+
+        <!-- Texte 1 -->
+        <p class="modal-text">Based in Kolkata, Devi has been bringing together some of India's finest embroidery artisans for the past 28 years. Founded by Archana and now run alongside her daughter Divanshi, the family company works with skilled craftspeople from across the country's embroidery belt, preserving techniques that have flourished since the Mughal Empire and continue to be passed from one generation to the next.</p>
+
+        <!-- Texte 2 -->
+        <p class="modal-section-label">The Process</p>
+        <p class="modal-text">Many of the artisans have never learned their craft in a classroom. They grew up watching their fathers and grandfathers embroider, eventually taking their place around the same wooden frames. Sitting on the floor, shoulder to shoulder, they stretch the fabric across large embroidery hoops and work with only a hooked Aari needle, thread, and a pair of scissors. It is a simple set of tools, mastered through years of repetition and extraordinary precision.</p>
+        <p class="modal-text">Aari embroidery is at the heart of Devi's work. Using a small hooked needle, artisans create fluid chain stitches that allow drawings to come to life with remarkable detail. Depending on the design, they combine the technique with French knots and other hand-finished details, adding texture and depth to every composition.</p>
+        <p class="modal-text">Several of Kilometre's embroidered journeys have come to life in their hands. Pieces such as the Octopus shirt and the K-Shirt combine different embroidery techniques and require days of meticulous work, while simpler designs may be completed in just a few hours. Every stitch is guided by the artisan's hand, making no two pieces exactly alike.</p>
+        <p class="modal-text">What makes Devi truly special is not only its embroidery, but the community behind it. For nearly three decades, they have worked with artisans whose families have dedicated generations to this craft. Together, they preserve a living tradition while transforming Kilometre's drawings into stories that can be worn, one stitch, one journey, one pair of hands at a time.</p>
     </div>
 </div>
 
