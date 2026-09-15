@@ -209,7 +209,7 @@
 
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
-    <!-- NEWSLETTER -->
+    <!-- NEWSLETTER 
     <section id="km-newsletter">
       <p class="nl-label">Club des Voyageurs</p>
       <h2 class="nl-title">Join the caravan.</h2>
@@ -221,7 +221,8 @@
       </div>
       <p class="nl-note">New collections, exclusive travels, member offers.</p>
     </section>
-
+    -->
+    
     <!-- FOOTER -->
     <footer id="km-footer">
       <div class="footer-top">
