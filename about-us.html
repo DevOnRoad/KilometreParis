@@ -57,6 +57,12 @@ a{color:inherit}
   backdrop-filter:blur(4px);transition:background .2s
 }
 .hero-sound-btn:hover{background:rgba(23,23,23,.75)}
+.hero-sound-btn svg{
+  width:20px;
+  height:20px;
+  flex-shrink:0;
+  overflow:visible
+}
 
 /* ── LANGUE ── */
 .lang-switcher{
@@ -221,6 +227,7 @@ a{color:inherit}
   .lang-switcher{top:calc(72px + .75rem);right:1rem;padding:4px}
   .lang-btn{width:32px;height:32px;font-size:.95rem}
   .hero-sound-btn{bottom:1.25rem;right:1.25rem;width:42px;height:42px}
+  .hero-sound-btn svg{width:18px;height:18px}
 
   /* Empiler les sections 2 colonnes au lieu de les écraser côte à côte */
   .intro,.hands{grid-template-columns:1fr}
@@ -254,6 +261,7 @@ a{color:inherit}
   .hero-eyebrow{letter-spacing:.3em}
   .lang-switcher{top:calc(64px + .6rem);right:.75rem}
   .lang-btn{width:30px;height:30px;font-size:.85rem}
+  .hero-sound-btn svg{width:16px;height:16px}
 
   .intro-text,.hands-copy{padding:10vw 6vw}
   .big-title,.hands-title{font-size:clamp(2.4rem,12vw,3.4rem)}
