@@ -110,6 +110,28 @@
       font-weight: 400;
     }
 
+    /* Liens rapides sous le tagline (About Us / Our Hands) */
+    #km-footer .footer-quicklinks {
+      list-style: none;
+      padding: 0;
+      margin: 1.2rem 0 0;
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    #km-footer .footer-quicklinks a {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #FFF8BD;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    #km-footer .footer-quicklinks a:hover { color: #ffffff; }
+
     #km-footer .footer-col h4 {
       font-size: 0.65rem;
       letter-spacing: 0.25em;
@@ -206,6 +228,10 @@
         <div>
           <p class="footer-brand">Kilometre · Paris</p>
           <p class="footer-tagline">A Parisian fashion house that believes getting dressed is the most beautiful way to travel.</p>
+          <!-- <ul class="footer-quicklinks">
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="our-talented-hands.html">Our Hands</a></li>
+          </ul> -->
         </div>
         <div class="footer-col">
           <h4>Our Travels</h4>
@@ -247,8 +273,8 @@
             <li><a href="https://kilometre.paris/collections/short-shirt" target="_blank">Ready to Travel</a></li>
             <li><a href="https://kilometre.paris/collections/undercover" target="_blank">Undercover Bags</a></li>
             <li><a href="https://kilometre.paris/pages/customize-basket" target="_blank">Make it Yours</a></li>
-            <li><a href="https://kilometre.paris/pages/about-us" target="_blank">Our Story</a></li>
-            <li><a href="https://kilometre.paris/pages/our-hands" target="_blank">Our Artisans</a></li>
+            <li><a href="file:///C:/Users/lahlo/OneDrive/Bureau/KilometreParis/about-us.html" target="_blank">About Us</a></li>
+            <li><a href="file:///C:/Users/lahlo/OneDrive/Bureau/KilometreParis/our-talented-hands.html" target="_blank">Our Hands</a></li>
             <li><a href="https://kilometre.paris/pages/contact" target="_blank">Contact</a></li>
           </ul>
         </div>
