@@ -265,7 +265,7 @@
         <div class="footer-col">
           <h4>Our Pieces</h4>
           <ul>
-            <li><a href="pieces-maitresses-final.html">The Worker's Jacket</a></li>
+            <li><a href="bleu-de-travail.html">The Worker's Jacket</a></li>
           </ul>
         </div>
         <div class="footer-col">
