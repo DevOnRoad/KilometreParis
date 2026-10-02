@@ -247,12 +247,12 @@
            alt="Kilometre Paris" style="height:50px;width:auto;display:block;">
     </a>
     <ul class="km-links">
-      <li><a href="index.html#about">The House</a></li>
+      <li><a href="about-us.html">About Us</a></li>
       <li><a href="index.html#miy">Bespoke</a></li>
       <li><a href="index.html#travels">Our Travels</a></li>
+      <li><a href="our-talented-hands.html">Our Hands</a></li>
       <li><a href="index.html#pieces">Our Pieces</a></li>
-      <!--<li><a href="index.html#philosophy">Our DNA</a></li>
-      <li><a href="pieces-maitresses-final.html">The Works</a></li>-->
+      <!--<li><a href="index.html#philosophy">About us</a></li>-->
       <li><a href="https://kilometre.paris" class="km-shop" target="_blank">Shop</a></li>
     </ul>
     <button class="km-burger" aria-label="Menu">
@@ -266,10 +266,10 @@
   mobile.id = 'km-mobile-menu';
   mobile.innerHTML = `
     <ul>
-      <li><a href="index.html#about">The House</a></li>
+      <li><a href="about-us.html">About Us</a></li>
       <li><a href="index.html#miy">Bespoke</a></li>
-      <li><a href="index.html#philosophy">Our DNA</a></li>
-      <li><a href="pieces-maitresses-final.html">The Works</a></li>
+      <li><a href="index.html#travels">Our Travels</a></li>
+      <li><a href="our-talented-hands.html">Our Hands</a></li>
     </ul>
 
     <span class="km-mobile-travels-title">Our Travels</span>
@@ -285,6 +285,8 @@
       <a href="paris-part-3.html">Paris — Part III <span>France</span></a>
       <a href="venice.html">Venice <span>Italy</span></a>
       <a href="ibiza.html">Ibiza <span>Spain</span></a>
+      <a href="ibiza-part-2.html">Ibiza — Part II <span>Spain</span></a>
+      <a href="ibiza-part-3.html">Ibiza — Part III <span>Spain</span></a>
     </div>
 
     <span class="km-mobile-pieces-title">Our Pieces</span>
