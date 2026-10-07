@@ -242,17 +242,17 @@
   const nav = document.createElement('nav');
   nav.id = 'km-nav';
   nav.innerHTML = `
-    <a href="index.html" class="km-logo">
+    <a href="./" class="km-logo">
       <img src="https://kilometre.paris/cdn/shop/files/kilometre_logo.png?v=1699240779&width=80"
            alt="Kilometre Paris" style="height:50px;width:auto;display:block;">
     </a>
     <ul class="km-links">
-      <li><a href="about-us.html">About Us</a></li>
-      <li><a href="index.html#miy">Bespoke</a></li>
-      <li><a href="index.html#travels">Our Travels</a></li>
-      <li><a href="our-talented-hands.html">Our Hands</a></li>
-      <li><a href="index.html#pieces">Our Pieces</a></li>
-      <!--<li><a href="index.html#philosophy">About us</a></li>-->
+      <li><a href="about-us">About Us</a></li>
+      <li><a href="./#miy">Bespoke</a></li>
+      <li><a href="./#travels">Our Travels</a></li>
+      <li><a href="our-talented-hands">Our Hands</a></li>
+      <li><a href="./#pieces">Our Pieces</a></li>
+      <!--<li><a href="./#philosophy">About us</a></li>-->
       <li><a href="https://kilometre.paris" class="km-shop" target="_blank">Shop</a></li>
     </ul>
     <button class="km-burger" aria-label="Menu">
@@ -266,32 +266,32 @@
   mobile.id = 'km-mobile-menu';
   mobile.innerHTML = `
     <ul>
-      <li><a href="about-us.html">About Us</a></li>
-      <li><a href="index.html#miy">Bespoke</a></li>
-      <li><a href="index.html#travels">Our Travels</a></li>
-      <li><a href="our-talented-hands.html">Our Hands</a></li>
+      <li><a href="about-us">About Us</a></li>
+      <li><a href="./#miy">Bespoke</a></li>
+      <li><a href="./#travels">Our Travels</a></li>
+      <li><a href="our-talented-hands">Our Hands</a></li>
     </ul>
 
     <span class="km-mobile-travels-title">Our Travels</span>
     <div class="km-mobile-travels">
-      <a href="melbourne.html">Melbourne <span>Australia</span></a>
-      <a href="tbilisi.html">Tbilisi <span>Georgia</span></a>
-      <a href="los-angeles.html">Los Angeles <span>United States</span></a>
-      <a href="addis-ababa.html">Addis Ababa <span>Ethiopia</span></a>
-      <a href="brussels.html">Brussels <span>Belgium</span></a>
-      <a href="mallorca.html">Mallorca <span>Spain</span></a>
-      <a href="paris.html">Paris — Part I <span>France</span></a>
-      <a href="paris-part-2.html">Paris — Part II <span>France</span></a>
-      <a href="paris-part-3.html">Paris — Part III <span>France</span></a>
-      <a href="venice.html">Venice <span>Italy</span></a>
-      <a href="ibiza.html">Ibiza <span>Spain</span></a>
-      <a href="ibiza-part-2.html">Ibiza — Part II <span>Spain</span></a>
-      <a href="ibiza-part-3.html">Ibiza — Part III <span>Spain</span></a>
+      <a href="melbourne">Melbourne <span>Australia</span></a>
+      <a href="tbilisi">Tbilisi <span>Georgia</span></a>
+      <a href="los-angeles">Los Angeles <span>United States</span></a>
+      <a href="addis-ababa">Addis Ababa <span>Ethiopia</span></a>
+      <a href="brussels">Brussels <span>Belgium</span></a>
+      <a href="mallorca">Mallorca <span>Spain</span></a>
+      <a href="paris">Paris — Part I <span>France</span></a>
+      <a href="paris-part-2">Paris — Part II <span>France</span></a>
+      <a href="paris-part-3">Paris — Part III <span>France</span></a>
+      <a href="venice">Venice <span>Italy</span></a>
+      <a href="ibiza">Ibiza <span>Spain</span></a>
+      <a href="ibiza-part-2">Ibiza — Part II <span>Spain</span></a>
+      <a href="ibiza-part-3">Ibiza — Part III <span>Spain</span></a>
     </div>
 
     <span class="km-mobile-pieces-title">Our Pieces</span>
     <div class="km-mobile-pieces">
-      <a href="bleu-de-travail.html">The Worker's Jacket</a>
+      <a href="bleu-de-travail">The Worker's Jacket</a>
     </div>
 
     <a href="https://kilometre.paris" class="km-shop-mobile" target="_blank">Shop</a>
@@ -302,10 +302,10 @@
   document.body.style.paddingTop = '72px';
 
   /* --- 6. Lien actif --- */
-  const page = window.location.pathname.split('/').pop() || 'index.html';
+  const page = (window.location.pathname.split('/').pop() || 'index').replace(/\.html$/, '');
   nav.querySelectorAll('.km-links a').forEach(link => {
     const href = link.getAttribute('href').split('#')[0];
-    if (href && page && page !== 'index.html' && page === href) {
+    if (href && page && page !== 'index' && page === href) {
       link.classList.add('active');
     }
   });

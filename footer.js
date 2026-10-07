@@ -230,34 +230,34 @@
           <p class="footer-brand">Kilometre · Paris</p>
           <p class="footer-tagline">A Parisian fashion house that believes getting dressed is the most beautiful way to travel.</p>
           <!-- <ul class="footer-quicklinks">
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="our-talented-hands.html">Our Hands</a></li>
+            <li><a href="about-us">About Us</a></li>
+            <li><a href="our-talented-hands">Our Hands</a></li>
           </ul> -->
         </div>
         <div class="footer-col">
           <h4>Our Travels</h4>
           <ul>
-            <li><a href="melbourne.html">Melbourne</a></li>
-            <li><a href="tbilisi.html">Tbilisi</a></li>
-            <li><a href="los-angeles.html">Los Angeles</a></li>
-            <li><a href="addis-ababa.html">Addis Ababa</a></li>
-            <li><a href="brussels.html">Brussels</a></li>
-            <li><a href="mallorca.html">Mallorca</a></li>
+            <li><a href="melbourne">Melbourne</a></li>
+            <li><a href="tbilisi">Tbilisi</a></li>
+            <li><a href="los-angeles">Los Angeles</a></li>
+            <li><a href="addis-ababa">Addis Ababa</a></li>
+            <li><a href="brussels">Brussels</a></li>
+            <li><a href="mallorca">Mallorca</a></li>
             <li>
-              <a href="paris.html">Paris</a>
+              <a href="paris">Paris</a>
               <div class="paris-sub">
-                <a href="paris.html">— Part I</a>
-                <a href="paris-part-2.html">— Part II</a>
-                <a href="paris-part-3.html">— Part III</a>
+                <a href="paris">— Part I</a>
+                <a href="paris-part-2">— Part II</a>
+                <a href="paris-part-3">— Part III</a>
               </div>
             </li>
-            <li><a href="venice.html">Venice</a></li>
+            <li><a href="venice">Venice</a></li>
             <li>
-              <a href="ibiza.html">Ibiza</a>
+              <a href="ibiza">Ibiza</a>
               <div class="paris-sub">
-                <a href="ibiza.html">— Part I</a>
-                <a href="ibiza-part-2.html">— Part II</a>
-                <a href="ibiza-part-3.html">— Part III</a>
+                <a href="ibiza">— Part I</a>
+                <a href="ibiza-part-2">— Part II</a>
+                <a href="ibiza-part-3">— Part III</a>
               </div>
             </li>
           </ul>
@@ -265,7 +265,7 @@
         <div class="footer-col">
           <h4>Our Pieces</h4>
           <ul>
-            <li><a href="bleu-de-travail.html">The Worker's Jacket</a></li>
+            <li><a href="bleu-de-travail">The Worker's Jacket</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -274,8 +274,8 @@
             <li><a href="https://kilometre.paris/collections/short-shirt" target="_blank">Ready to Travel</a></li>
             <li><a href="https://kilometre.paris/collections/undercover" target="_blank">Undercover Bags</a></li>
             <li><a href="https://kilometre.paris/pages/customize-basket" target="_blank">Make it Yours</a></li>
-            <li><a href="file:///C:/Users/lahlo/OneDrive/Bureau/KilometreParis/about-us.html" target="_blank">About Us</a></li>
-            <li><a href="file:///C:/Users/lahlo/OneDrive/Bureau/KilometreParis/our-talented-hands.html" target="_blank">Our Hands</a></li>
+            <li><a href="about-us" target="_blank">About Us</a></li>
+            <li><a href="our-talented-hands" target="_blank">Our Hands</a></li>
             <li><a href="https://kilometre.paris/pages/contact" target="_blank">Contact</a></li>
           </ul>
         </div>
