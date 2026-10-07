@@ -8,6 +8,20 @@
     document.head.appendChild(f);
   }
 
+  /* --- 1b. Favicon (sur toutes les pages) --- */
+  [
+    ['icon', '/favicon-96x96.png', 'image/png', '96x96'],
+    ['shortcut icon', '/favicon.ico'],
+    ['apple-touch-icon', '/apple-touch-icon.png']
+  ].forEach(([rel, href, type, sizes]) => {
+    if (document.querySelector('link[rel="' + rel + '"]')) return;
+    const l = document.createElement('link');
+    l.rel = rel; l.href = href;
+    if (type) l.type = type;
+    if (sizes) l.sizes = sizes;
+    document.head.appendChild(l);
+  });
+
   /* --- 2. CSS --- */
   const style = document.createElement('style');
   style.textContent = `
