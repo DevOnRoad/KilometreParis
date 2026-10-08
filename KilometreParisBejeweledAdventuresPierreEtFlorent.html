@@ -12,8 +12,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bejeweled Adventures — Pierre &amp; Florent · Kilometre Paris</title>
-<meta name="description" content="Bejeweled Adventures — Pierre &amp; Florent. Fashion Week by Kilometre Paris.">
+<title>Coming Soon · Kilometre Paris</title>
+<meta name="description" content="Coming soon — Kilometre Paris.">
 <link rel="canonical" href="https://travelwithkilometreparis.com/KilometreParisBejeweledAdventuresPierreEtFlorent">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +106,30 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
 }
 .intro-skip:hover{background:rgba(23,23,23,.8)}
 @media(max-width:900px){.intro-skip{bottom:1.25rem;right:1.25rem}}
+
+/* ── COMING SOON : points qui se chargent en continu  .  ..  ...  ── */
+.dots{display:inline-block;width:.95em;margin-left:.08em;text-align:left;color:var(--yellow);letter-spacing:.02em}
+.dots i{font-style:normal;display:inline-block;width:.2em;height:.2em;margin-right:.1em;border-radius:50%;background:var(--yellow);opacity:0;vertical-align:baseline}
+.dots i:nth-child(1){animation:dot1 1.8s steps(1,end) infinite}
+.dots i:nth-child(2){animation:dot2 1.8s steps(1,end) infinite}
+.dots i:nth-child(3){animation:dot3 1.8s steps(1,end) infinite}
+@keyframes dot1{0%{opacity:1}92%{opacity:0}}
+@keyframes dot2{0%{opacity:0}33%{opacity:1}92%{opacity:0}}
+@keyframes dot3{0%{opacity:0}66%{opacity:1}92%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.dots i{animation:none;opacity:1}}
+
+/* bouton « tap to play » si le téléphone bloque la lecture automatique */
+.intro-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  display:none;width:84px;height:84px;border-radius:50%;cursor:pointer;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.5);
+  backdrop-filter:blur(4px)
+}
+.intro-play.show{display:block}
+.intro-play:before{
+  content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);
+  border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent
+}
 </style>
 <noscript><style>#intro-loader{display:none}html.intro-lock,html.intro-lock body{overflow:auto}</style></noscript>
 </head>
@@ -113,9 +137,10 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
 <body>
 <!-- INTRO VIDEO : joue en plein écran, puis révèle la page -->
 <div id="intro-loader" aria-label="Intro video">
-  <video id="intro-video" muted playsinline preload="auto" poster="./fashionWeek/fw.jpg">
+  <video id="intro-video" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture poster="./fashionWeek/fw.jpg">
     <source src="./videos/PierreFlorentcollaborationwithBejeweledAdventures.mp4" type="video/mp4">
   </video>
+  <button class="intro-play" id="intro-play" type="button" aria-label="Play intro"></button>
   <button class="intro-skip" id="intro-skip" type="button">Skip</button>
 </div>
 
@@ -123,11 +148,10 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
 
 <!-- HERO PHOTO -->
 <section class="hero-photo">
-  <img src="./fashionWeek/fw.jpg" alt="Bejeweled Adventures — Pierre &amp; Florent, Fashion Week Kilometre Paris">
+  <img src="./fashionWeek/fw.jpg" alt="Kilometre Paris — coming soon">
 
   <div class="hero-photo-overlay">
-    <span class="hero-eyebrow">Fashion Week</span>
-    <h1 class="hero-title">Bejeweled<br>Adventures<br><span>Pierre &amp; Florent</span></h1>
+    <h1 class="hero-title" role="status"><span>Coming soon</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></h1>
   </div>
 
   <div class="hero-grid" aria-hidden="true"></div>
@@ -141,12 +165,13 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
   var loader=document.getElementById('intro-loader');
   var video=document.getElementById('intro-video');
   var skip=document.getElementById('intro-skip');
-  var finished=false, startTimer;
+  var playBtn=document.getElementById('intro-play');
+  var finished=false, startTimer, maxTimer, stallTimer;
 
   function reveal(){
     if(finished) return;
     finished=true;
-    clearTimeout(startTimer);
+    clearTimeout(startTimer); clearTimeout(maxTimer); clearTimeout(stallTimer);
     document.documentElement.classList.remove('intro-lock');
     loader.classList.add('done');
     try{video.pause();}catch(e){}
@@ -155,18 +180,49 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
 
   if(!loader||!video){ reveal(); return; }
 
+  /* iOS / Android : forcer le mode muet (condition pour l'autoplay) */
+  video.muted=true; video.defaultMuted=true; video.setAttribute('muted','');
+
   video.addEventListener('ended',reveal);
   video.addEventListener('error',reveal);
   var src=video.querySelector('source');
   if(src) src.addEventListener('error',reveal); /* erreur de fichier : l'event part de <source> */
   skip.addEventListener('click',reveal);
 
-  /* Si la vidéo ne démarre pas (réseau lent, lecture bloquée), on n'enferme pas le visiteur */
+  /* 1. La vidéo n'a pas démarré après 8 s (réseau lent...) : on affiche la page */
   startTimer=setTimeout(reveal,8000);
-  video.addEventListener('playing',function(){ clearTimeout(startTimer); });
 
-  var p=video.play();
-  if(p&&p.catch) p.catch(reveal);
+  /* 2. Une fois lancée : garde-fou = durée de la vidéo + 5 s, quoi qu'il arrive */
+  video.addEventListener('playing',function(){
+    clearTimeout(startTimer); clearTimeout(stallTimer);
+    playBtn.classList.remove('show');
+    if(!maxTimer){
+      var d=isFinite(video.duration)&&video.duration>0?video.duration:30;
+      maxTimer=setTimeout(reveal,(d+5)*1000);
+    }
+  });
+
+  /* 3. La lecture se fige (connexion coupée en route) plus de 7 s : on affiche la page */
+  video.addEventListener('waiting',function(){
+    clearTimeout(stallTimer); stallTimer=setTimeout(reveal,7000);
+  });
+
+  /* 4. Lecture automatique bloquée (mode économie d'énergie iPhone...) :
+        on propose un bouton « play » (un tap autorise la lecture) */
+  function tryPlay(){
+    var p=video.play();
+    if(p&&p.catch) p.catch(function(){
+      clearTimeout(startTimer);
+      playBtn.classList.add('show');
+      startTimer=setTimeout(reveal,15000); /* sans tap au bout de 15 s : on affiche la page */
+    });
+  }
+  playBtn.addEventListener('click',function(){
+    playBtn.classList.remove('show'); clearTimeout(startTimer);
+    startTimer=setTimeout(reveal,8000);
+    var p=video.play(); if(p&&p.catch) p.catch(reveal);
+  });
+  tryPlay();
 })();
 </script>
 
