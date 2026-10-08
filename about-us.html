@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" class="intro-lock">
+<html lang="en">
 <head>
-
-<!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NL69ZMS77E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -12,9 +11,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bejeweled Adventures — Pierre &amp; Florent · Kilometre Paris</title>
-<meta name="description" content="Bejeweled Adventures — Pierre &amp; Florent. Fashion Week by Kilometre Paris.">
-<link rel="canonical" href="https://travelwithkilometreparis.com/KilometreParisBejeweledAdventuresPierreEtFlorent">
+<title>Kilometre Paris — About</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +23,10 @@
   --red:#B82928;
   --blue:#2F3E86;
   --yellow:#FFF8BD;
+  --sand:#F2EDB8;
   --ink:#171717;
   --paper:#F7F5EE;
+  --line:rgba(23,23,23,.16);
   --blanc:#FFFFFF
 }
 html{scroll-behavior:smooth}
@@ -37,30 +36,71 @@ body{
   color:var(--ink);
   overflow-x:hidden
 }
-img{display:block}
-
-/* ── HERO PHOTO (même principe que la vidéo de About Us) ── */
-.hero-photo{position:relative;width:100%;height:calc(100vh - 72px);min-height:480px;overflow:hidden;background:var(--ink)}
-.hero-photo img{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center
+img,video{width:100%;height:100%;object-fit:cover;display:block}
+a{color:inherit}
+.kicker,.mono,.caption,.label{
+  font-family:"Barlow Condensed",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  font-weight:700
 }
-.hero-photo-overlay{
+.kicker{font-size:11px}
+.mono{font-size:10px}
+.caption{font-size:9px;letter-spacing:.16em;line-height:1.5}
+
+/* ── HERO VIDEO ── */
+.hero-video{position:relative;width:100%;height:100vh;overflow:hidden}
+.hero-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-video-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%);
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:4rem 5rem;gap:1.5rem
 }
+.hero-sound-btn{
+  position:fixed;bottom:2rem;right:2rem;z-index:1010;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.3);color:var(--blanc);
+  width:48px;height:48px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);transition:background .2s
+}
+.hero-sound-btn:hover{background:rgba(23,23,23,.75)}
+.hero-sound-btn svg{
+  width:20px;
+  height:20px;
+  flex-shrink:0;
+  overflow:visible
+}
+
+/* ── LANGUE ── */
+.lang-switcher{
+  position:fixed;top:calc(72px + 1rem);right:2rem;z-index:1010;display:flex;gap:8px;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:6px;backdrop-filter:blur(4px)
+}
+.lang-btn{
+  width:36px;height:36px;border-radius:50%;border:1px solid transparent;background:transparent;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;line-height:1;padding:0;
+  transition:background .2s,border-color .2s,transform .15s
+}
+.lang-btn:hover{transform:translateY(-1px)}
+.lang-btn.active{background:rgba(255,255,255,.25);border-color:var(--yellow)}
+.lang-btn:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
 .hero-eyebrow{
   font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;
-  letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.6)
+  letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.5)
 }
 .hero-title{
-  font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.2rem,7vw,8rem);font-weight:900;
-  text-transform:uppercase;line-height:.88;letter-spacing:-.03em;color:var(--blanc)
+  font-family:'Barlow Condensed',sans-serif;font-size:clamp(4rem,8vw,9rem);font-weight:900;
+  text-transform:uppercase;line-height:.85;letter-spacing:-.03em;color:var(--blanc)
 }
 .hero-title span{color:var(--yellow)}
+.hero-quote{
+  font-size:1rem;line-height:1.8;color:rgba(255,255,255,.6);font-weight:300;font-style:italic;
+  border-left:2px solid rgba(255,255,255,.3);padding-left:1.5rem;max-width:380px
+}
 
 .hero-grid{
   position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -74,101 +114,689 @@ img{display:block}
   background-repeat:no-repeat
 }
 
-@media(max-width:900px){
-  .hero-photo{height:calc(88svh - 72px);min-height:480px}
-  .hero-photo-overlay{padding:2rem 1.5rem;gap:1rem}
-  .hero-title{font-size:clamp(2.6rem,13vw,6rem)}
+.intro{
+  display:grid;grid-template-columns:1.1fr .9fr;min-height:92vh;border-bottom:1px solid var(--line)
 }
-@media(max-width:480px){
-  .hero-photo-overlay{padding:1.5rem 1.1rem}
-  .hero-title{font-size:clamp(2.3rem,12vw,3.6rem)}
-  .hero-eyebrow{letter-spacing:.3em}
+.intro-text{padding:10vw 7vw;display:flex;flex-direction:column;justify-content:center}
+.section-no{margin-bottom:26px;font:900 13px "Barlow Condensed";color:var(--red);letter-spacing:.18em}
+.big-title{
+  font:900 clamp(4rem,7.5vw,8rem)/.78 "Barlow Condensed";text-transform:uppercase;
+  color:var(--blue);letter-spacing:-.035em
+}
+.big-title em{color:var(--red);font-style:italic}
+.story-intro{max-width:680px;margin-top:38px;font-size:18px;line-height:1.8;color:rgba(23,23,23,.78)}
+.story-intro + .story-intro{margin-top:24px}
+.story-highlight{
+  max-width:650px;margin-top:42px;padding-left:22px;border-left:2px solid var(--red);
+  color:var(--red);font:900 italic clamp(2rem,3vw,3.5rem)/.92 "Barlow Condensed";text-transform:uppercase
+}
+.intro-image{position:relative;background:var(--sand)}
+.intro-image .vertical{
+  position:absolute;z-index:2;left:17px;top:18px;writing-mode:vertical-rl;
+  font:700 9px "Barlow Condensed";letter-spacing:.2em;text-transform:uppercase
+}
+.photo-caption{position:absolute;right:16px;bottom:16px;max-width:190px;padding:9px 11px;background:var(--paper)}
+
+.gps{position:relative;min-height:110vh;padding:7vw;overflow:hidden;background:var(--sand)}
+.gps:before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(47,62,134,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(47,62,134,.09) 1px,transparent 1px);
+  background-size:42px 42px
+}
+.gps-inner{position:relative;z-index:1;display:grid;grid-template-columns:42% 58%;gap:6vw;align-items:center}
+.gps-kicker{color:var(--blue);margin-bottom:15px}
+.coords{font:900 clamp(5rem,11vw,12rem)/.72 "Barlow Condensed";color:var(--red);letter-spacing:-.055em}
+.coords small{display:block;margin-top:25px;font:700 12px/1.2 "Barlow Condensed";letter-spacing:.22em;color:var(--blue)}
+.route{
+  position:absolute;left:38%;top:14%;width:230px;height:430px;
+  border-left:1px dashed var(--blue);transform:rotate(14deg);opacity:.6
+}
+.route:before,.route:after{
+  content:"";position:absolute;width:9px;height:9px;border:2px solid var(--red);border-radius:50%;background:var(--sand)
+}
+.route:before{top:-5px;left:-5px}
+.route:after{bottom:-5px;left:-5px}
+.gps-copy{max-width:650px}
+.gps-copy h2{
+  margin-bottom:32px;font:900 clamp(3rem,6vw,6.5rem)/.8 "Barlow Condensed";text-transform:uppercase;color:var(--blue)
+}
+.gps-story p{max-width:590px;font-size:17px;line-height:1.7}
+.gps-story p + p{margin-top:20px}
+.manifesto{
+  margin-top:38px;color:var(--red);font:900 italic clamp(2rem,3.5vw,4rem)/.9 "Barlow Condensed";text-transform:uppercase
+}
+.coordinates-label{margin-top:45px;padding-top:12px;border-top:1px solid rgba(47,62,134,.35);color:var(--blue)}
+
+.hands{display:grid;grid-template-columns:48% 52%;min-height:100vh}
+.hands-media{position:relative;min-height:100%}
+.hands-media:after{
+  content:"04° — HANDS";position:absolute;left:18px;bottom:18px;color:#fff;
+  font:700 10px "Barlow Condensed";letter-spacing:.2em
+}
+.hands-copy{padding:8vw 7vw;display:flex;flex-direction:column;justify-content:center}
+.hands-title{
+  font:900 clamp(4rem,7vw,8rem)/.77 "Barlow Condensed";text-transform:uppercase;
+  color:var(--blue);letter-spacing:-.04em
+}
+.hands-title i{color:var(--red)}
+.hands-story{max-width:650px;margin-top:32px;font-size:17px;line-height:1.75}
+.hands-story + .hands-story{margin-top:20px}
+
+.hands-cta{
+  display:inline-flex;align-items:center;gap:12px;width:fit-content;margin-top:48px;
+  padding:17px 34px;background:var(--red);color:#fff;text-decoration:none;
+  font:700 11px "Barlow Condensed";letter-spacing:.22em;text-transform:uppercase;
+  transition:background .2s ease,transform .2s ease
+}
+.hands-cta svg{width:16px;height:16px;stroke:currentColor;transition:transform .2s ease}
+.hands-cta:hover{background:var(--ink);transform:translateX(4px)}
+.hands-cta:hover svg{transform:translateX(3px)}
+
+/* ── ARTISANS MARQUEE (immersif, fond jaune, sans marge) ── */
+.artisans-marquee{background:var(--yellow);overflow:hidden}
+.artisans-marquee-heading{text-align:center;padding:10px 0 6px}
+.artisans-marquee-heading .section-no{color:var(--red);justify-content:center;display:flex;margin:0}
+.artisans-track{display:flex;width:max-content;gap:2px;animation:artisansScroll 48s linear infinite}
+.artisans-marquee:hover .artisans-track{animation-play-state:paused}
+.artisans-track img{height:460px;width:auto;aspect-ratio:3/4;object-fit:cover;flex-shrink:0}
+@keyframes artisansScroll{to{transform:translateX(-50%)}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--blue);color:#fff}
+.stat{
+  min-height:245px;padding:65px 25px;border-right:1px solid rgba(255,255,255,.18);
+  display:flex;flex-direction:column;justify-content:space-between
+}
+.stat:last-child{border:0}
+.stat b{font:900 clamp(4rem,7vw,8rem)/.7 "Barlow Condensed";color:var(--yellow);letter-spacing:-.04em}
+.stat span{font:700 10px "Barlow Condensed";text-transform:uppercase;letter-spacing:.22em;color:rgba(255,255,255,.6)}
+
+/* ROLLING TEXT */
+.roll{display:inline-block;perspective:700px}
+.roll-char{display:inline-block;transform-style:preserve-3d;transform-origin:50% 50%;will-change:transform}
+.roll-char>*{display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.roll-back{position:absolute;inset:0;transform:rotateX(180deg)}
+.roll-space{display:inline-block;width:.25em}
+.roll.visible .roll-char{animation:flip .65s cubic-bezier(.22,.61,.36,1) both}
+@keyframes flip{
+  0%{transform:rotateX(0)}
+  30%{transform:rotateX(-110deg)}
+  60%{transform:rotateX(25deg)}
+  80%{transform:rotateX(-8deg)}
+  100%{transform:rotateX(0)}
 }
 
-/* ── INTRO VIDEO (loader plein écran) ── */
-html.intro-lock,html.intro-lock body{overflow:hidden}
-#intro-loader{
-  position:fixed;inset:0;z-index:9999;background:#000;
-  opacity:1;transition:opacity .9s ease
+@media(max-width:900px){
+  .hero-video{height:88svh;min-height:540px}
+  .hero-video-overlay{padding:2rem 1.5rem;gap:1rem}
+  .hero-title{font-size:clamp(3.6rem,18vw,8rem)}
+  .hero-quote{font-size:.9rem;max-width:100%}
+  .lang-switcher{top:calc(72px + .75rem);right:1rem;padding:4px}
+  .lang-btn{width:32px;height:32px;font-size:.95rem}
+  .hero-sound-btn{bottom:1.25rem;right:1.25rem;width:42px;height:42px}
+  .hero-sound-btn svg{width:18px;height:18px}
+
+  /* Empiler les sections 2 colonnes au lieu de les écraser côte à côte */
+  .intro,.hands{grid-template-columns:1fr}
+  .intro-image,.hands-media{min-height:82vw}
+  .intro-text,.hands-copy{padding:12vw 7vw}
+
+  .big-title,.hands-title{font-size:clamp(2.8rem,13vw,4.5rem)}
+  .story-intro{font-size:16px;line-height:1.7}
+  .story-highlight{font-size:1.8rem;padding-left:16px}
+  .hands-story{font-size:16px;line-height:1.7}
+
+  .gps{padding:14vw 6vw;min-height:auto}
+  .gps-inner{grid-template-columns:1fr;gap:12vw}
+  .coords{font-size:clamp(2.6rem,15vw,4.5rem)}
+  .gps-copy h2{font-size:clamp(2.2rem,11vw,3.5rem);margin-bottom:22px}
+  .gps-story p{font-size:15.5px;line-height:1.65}
+  .manifesto{font-size:1.6rem}
+  .route{display:none}
+
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{min-height:170px;padding:28px 16px}
+  .stat b{font-size:clamp(2.4rem,10vw,3.6rem)}
+
+  .hands-cta{width:100%;justify-content:center;padding:18px}
+  .artisans-track img{height:220px}
 }
-#intro-loader.done{opacity:0;pointer-events:none}
-#intro-loader video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center
+
+@media(max-width:480px){
+  .hero-video-overlay{padding:1.5rem 1.1rem}
+  .hero-title{font-size:clamp(3rem,16vw,4.5rem)}
+  .hero-eyebrow{letter-spacing:.3em}
+  .lang-switcher{top:calc(64px + .6rem);right:.75rem}
+  .lang-btn{width:30px;height:30px;font-size:.85rem}
+  .hero-sound-btn svg{width:16px;height:16px}
+
+  .intro-text,.hands-copy{padding:10vw 6vw}
+  .big-title,.hands-title{font-size:clamp(2.4rem,12vw,3.4rem)}
+  .story-intro,.hands-story{font-size:15px;line-height:1.65}
+  .story-highlight{font-size:1.5rem}
+
+  .gps{padding:12vw 5vw}
+  .coords{font-size:clamp(2.2rem,14vw,3.2rem)}
+  .gps-copy h2{font-size:clamp(1.9rem,10vw,2.6rem)}
+  .gps-story p{font-size:14.5px}
+  .manifesto{font-size:1.35rem}
+
+  .stats{grid-template-columns:1fr}
+  .stat{min-height:auto;padding:22px 18px;flex-direction:row;align-items:center;justify-content:space-between}
+  .stat b{font-size:2.2rem}
+
+  .artisans-track img{height:170px}
 }
-.intro-skip{
-  position:absolute;bottom:2rem;right:2rem;z-index:2;
-  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.35);color:#fff;
-  font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;
-  letter-spacing:.3em;text-transform:uppercase;
-  padding:.85rem 1.4rem;border-radius:999px;cursor:pointer;
-  backdrop-filter:blur(4px);transition:background .2s
+
+@media(prefers-reduced-motion:reduce){
+  .artisans-track{animation:none}
+  .roll-char{animation:none!important}
 }
-.intro-skip:hover{background:rgba(23,23,23,.8)}
-@media(max-width:900px){.intro-skip{bottom:1.25rem;right:1.25rem}}
 </style>
-<noscript><style>#intro-loader{display:none}html.intro-lock,html.intro-lock body{overflow:auto}</style></noscript>
 </head>
 
 <body>
-<!-- INTRO VIDEO : joue en plein écran, puis révèle la page -->
-<div id="intro-loader" aria-label="Intro video">
-  <video id="intro-video" muted playsinline preload="auto" poster="./fashionWeek/fw.jpg">
-    <source src="./videos/Pierre%20%26%20Florent%2C%20collaboration%20with%20Bejeweled%20Adventures.mp4" type="video/mp4">
+  <script src="navbar.js"></script>
+
+<!-- HERO VIDEO -->
+<section class="hero-video">
+  <video id="hero-vid" autoplay muted loop playsinline>
+    <source src="./videos/Romain%20movie%20-%20Piece%20unique%2C%20Villa%20Ephrussi%2C%20Saint%20Jean%20Cap%20Ferrat.mp4" type="video/mp4">
   </video>
-  <button class="intro-skip" id="intro-skip" type="button">Skip</button>
-</div>
 
-<script src="navbar.js"></script>
-
-<!-- HERO PHOTO -->
-<section class="hero-photo">
-  <img src="./fashionWeek/fw.jpg" alt="Bejeweled Adventures — Pierre &amp; Florent, Fashion Week Kilometre Paris">
-
-  <div class="hero-photo-overlay">
-    <span class="hero-eyebrow">Fashion Week</span>
-    <h1 class="hero-title">Bejeweled<br>Adventures<br><span>Pierre &amp; Florent</span></h1>
+  <!-- Sélecteur de langue -->
+  <div class="lang-switcher" role="group" aria-label="Choisir la langue">
+    <button class="lang-btn active" data-lang="fr" title="Français" aria-label="Français" aria-pressed="true">🇫🇷</button>
+    <button class="lang-btn" data-lang="en" title="English" aria-label="English" aria-pressed="false">🇬🇧</button>
+    <button class="lang-btn" data-lang="es" title="Español" aria-label="Español" aria-pressed="false">🇪🇸</button>
+    <button class="lang-btn" data-lang="zh" title="中文" aria-label="中文" aria-pressed="false">🇨🇳</button>
   </div>
+
+  <div class="hero-video-overlay">
+    <span class="hero-eyebrow" data-i18n="eyebrow">No. 01 / About</span>
+    <h1 class="hero-title" data-i18n="title">About<br><span>Us</span></h1>
+    <p class="hero-quote" data-i18n="quote">"People do not take trips,<br>trips take people."</p>
+  </div>
+
+  <button class="hero-sound-btn" id="sound-btn" type="button" aria-label="Turn sound on" aria-pressed="false">
+    <svg id="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <svg id="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+  </button>
 
   <div class="hero-grid" aria-hidden="true"></div>
 </section>
 
-<script src="footer.js"></script>
+<!-- 01 OUR STORY -->
+<section class="intro">
+  <div class="intro-text">
+
+    <div class="section-no" data-i18n="kicker01">01 — Our Story</div>
+
+    <h2 class="big-title" data-i18n="title01">Where it<br><em>all</em><br>began.</h2>
+
+    <p class="story-intro" data-i18n="story1">
+      People do not take trips, trips take people. It started with a pile of old shirts at a flea market in Cinq-Mars-la-Pile, a small village in Touraine, France.
+    </p>
+
+    <p class="story-intro" data-i18n="story2">
+      Chez Kilometre Paris, we do not manufacture new fabrics. We search for old materials — XIXth-century shirts, linens that have already lived a first life — and we give them a new destiny.
+    </p>
+
+    <p class="story-intro" data-i18n="story3">
+      Each piece carries a story — not a label, not a slogan. A place, a year, a journey. That's the only luxury we care about.
+    </p>
+
+    <div class="story-highlight" data-i18n="highlight01">Voilà ce qu'est Kilometre Paris.</div>
+
+    <p class="story-intro" data-i18n="story4">
+      Alexandra Senes, a journalist and lifelong traveler, found herself standing before a collection of XIXth-century work shirts, simple, worn, untouched for decades. They had once belonged to a film set decorator.
+    </p>
+
+    <p class="story-intro" data-i18n="story5">
+      His wife, who was selling them, simply wished to get rid of them, while Alexandra harbored the desire to craft a narrative of travel. Each shirt was a 'Piece Unique.' Alexandra bought them not to resell, but to embroider on.
+    </p>
+
+    <p class="story-intro" data-i18n="story6">
+      With a passion for travel, heritage, and craftsmanship, Alexandra brought the shirts to artisans around the world — in Morocco, India, Mexico — and asked them to embroider. Each stitch was made by hand, in a place far from Paris, with a patience that no machine could replace. From this idea, Kilometre Paris was born.
+    </p>
+
+    <p class="story-intro" data-i18n="story7">
+      Alexandra Senes is not a fashion designer in the conventional sense. She calls herself a pilot, someone who navigates between cultures, crafts, and stories. The brand she built, Kilometre Paris, reflects that restlessness, and that respect: for the people who make, for the materials that endure, and for the places that leave a mark on us.
+    </p>
+
+  </div>
+
+  <div class="intro-image">
+    <span class="vertical">Cinq-Mars-la-Pile · Touraine · France</span>
+
+    <img src="https://cdn.shopify.com/s/files/1/0785/4804/2051/files/048_SF_Kilometre.Paris_240212.jpg?v=1735571300&width=1800" alt="Vintage Kilometre Paris shirt">
+
+    <div class="photo-caption caption" data-i18n="photoCaption">
+      An old shirt. A new route.<br>
+      One piece, one story.
+    </div>
+  </div>
+</section>
+
+<!-- 02 OUR GPS -->
+<section class="gps">
+  <div class="gps-inner">
+
+    <div class="gps-left">
+      <div class="gps-kicker kicker" data-i18n="kicker02">02 — Our GPS</div>
+
+      <div class="coords">
+        48°51′<br>
+        11″N<br>
+        2°20′59″E
+        <small data-i18n="coordsLabel">NOTRE-DAME DE PARIS · KILOMETRE ZERO</small>
+      </div>
+
+      <div class="route"></div>
+    </div>
+
+    <div class="gps-copy">
+
+      <h2 data-i18n="title02">
+        The point<br>
+        is fixed.<br>
+        <span style="color:var(--red)">The story<br>moves.</span>
+      </h2>
+
+      <div class="gps-story">
+        <p data-i18n="gps1">
+          The GPS coordinates stitched into each of our piece's teleport you to point zero: the front of the Notre-Dame Cathedral in Paris, kilometre zero, where all French roads begin.
+        </p>
+
+        <p data-i18n="gps2">
+          This unique feature not only grounds our creations in the heart of our Parisian heritage but also symbolizes a journey where every garment becomes a vessel for exploration and discovery.
+        </p>
+
+        <p data-i18n="gps3">
+          At Kilometre Paris, we start with vintage shirts and treat them as blank canvases, handing them to artisans who embroidery by hand.
+        </p>
+
+        <p data-i18n="gps4">
+          The point is fixed, but the embroidery tells a different story: the place it came from, the hands that made it, and the person who will wear it next.
+        </p>
+
+        <p data-i18n="gps5">
+          Additionally, antique hunting is part of what we do, scouring the globe for hidden treasures. From sniffing out the back of trucks to exploring attics and factory closets, our team unearths unique finds like sailor blouses and overalls, each with its own tale to tell.
+        </p>
+      </div>
+
+      <div class="manifesto" data-i18n="manifesto02">
+        Every garment is a vessel for exploration.
+      </div>
+
+      <div class="coordinates-label mono" data-i18n="coordsFooter">
+        48°51′11″N / 2°20′59″E · PARIS, FRANCE
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 OUR HANDS -->
+<section class="hands">
+
+  <div class="hands-media">
+    <img src="./img-our-hands/57cbe570-99fb-4acb-9b1c-82969776f1e1.JPG" alt="Kilometre Paris artisan work">  
+    <div class="hero-grid" aria-hidden="true"></div>
+  </div>
+
+  <div class="hands-copy">
+
+    <div class="section-no" data-i18n="kicker03">03 — Our Hands</div>
+
+    <h2 class="hands-title" data-i18n="title03">
+      Every stitch<br>
+      is a <i>conversation.</i>
+    </h2>
+
+    <p class="hands-story" data-i18n="hands1">
+      At Kilometre Paris, every stitch we make is a conversation, between past and present, between Paris and the places our artisans call home.
+    </p>
+
+    <p class="hands-story" data-i18n="hands2">
+      We work with artisans whose craft has been passed down through generations, not as a relic of the past, but as a living language.
+    </p>
+
+    <p class="hands-story" data-i18n="hands3">
+      Each piece is embroidered slowly, by hand, in a place where time moves differently.
+    </p>
+
+    <p class="hands-story" data-i18n="hands4">
+      We believe that people's art is a true mirror of their minds, which makes our brand deeply human and vibrant.
+    </p>
+
+    <p class="hands-story" data-i18n="hands5">
+      Our Travelers' Club invites artists, thinkers, and creators to collaborate with us, not to design, but to translate.
+    </p>
+
+    <p class="hands-story" data-i18n="hands6">
+      Using vintage shirts from the 19th century, each contributor offers their own visual interpretation of a destination that's dear to us creating masterpiece souvenirs of our « moments de vie ».
+    </p>
+
+    <a class="hands-cta" href="our-talented-hands.html">
+      <span data-i18n="ctaText">Our talents</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat">
+    <b>2015</b>
+    <span data-i18n="stat1">Founded in Paris</span>
+  </div>
+
+  <div class="stat">
+    <b>74+</b>
+    <span data-i18n="stat2">Artisans worldwide</span>
+  </div>
+
+  <div class="stat">
+    <b>09</b>
+    <span data-i18n="stat3">Caravans around the world</span>
+  </div>
+
+  <div class="stat">
+    <b>∞</b>
+    <span data-i18n="stat4">Unique pieces created</span>
+  </div>
+</section>
+
+<!-- ARTISANS MARQUEE -->
+<section class="artisans-marquee">
+  <div class="artisans-marquee-heading">
+    <div class="section-no" data-i18n="marqueeTitle">Our Hands, Around The World</div>
+  </div>
+  <div class="artisans-track">
+    <img src="./img-our-hands/PHOTO%20-%20KOLKATA%20-%20EMBROIDERERS%20%281%29.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/PHOTO%20-%20MEXICAN%20EMBROIDERERS%20IN%20BLEU%20DE%20TRAVAIL.png" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/PIECE%20UNIQUE%20COAT-%20MARIE-HELENE%20DE%20TAILLAC-JAIPUR-DSC08458.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/UNDERCOVER-GABRIELLE%20GREISS%20PARIS-IMG_1402.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/Genderless-Daniela Villegas-Mexico-IMG_4282.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/UNDERCOVER-GABRIELLE%20GREISS%20PARIS-IMG_1450.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/UNDERCOVER-SHINOBU%20MAROTTA-TOKYO%20BAY-IMG_1561.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/UNDERCOVER-SILVIA%20FURMANOVICH-SAO%20PAULO-IMG_1712.jpg" alt="Kilometre Paris artisans at work">
+    <!-- doublon pour boucle infinie sans coupure -->
+    
+    <img src="./img-our-hands/PHOTO%20-%20KOLKATA%20-%20EMBROIDERERS%20%281%29.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./img-our-hands/PHOTO%20-%20MEXICAN%20EMBROIDERERS%20IN%20BLEU%20DE%20TRAVAIL.png" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./img-our-hands/PIECE%20UNIQUE%20COAT-%20MARIE-HELENE%20DE%20TAILLAC-JAIPUR-DSC08458.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./img-our-hands/UNDERCOVER-GABRIELLE%20GREISS%20PARIS-IMG_1402.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./img-our-hands/Genderless-Daniela Villegas-Mexico-IMG_4282.jpg" alt="Kilometre Paris artisans at work">
+    <img src="./img-our-hands/UNDERCOVER-GABRIELLE%20GREISS%20PARIS-IMG_1450.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./img-our-hands/UNDERCOVER-SHINOBU%20MAROTTA-TOKYO%20BAY-IMG_1561.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+    <img src="./img-our-hands/UNDERCOVER-SILVIA%20FURMANOVICH-SAO%20PAULO-IMG_1712.jpg" alt="Kilometre Paris artisans at work" aria-hidden="true">
+  </div>
+</section>
 
 
 <script>
-(function(){
-  var loader=document.getElementById('intro-loader');
-  var video=document.getElementById('intro-video');
-  var skip=document.getElementById('intro-skip');
-  var finished=false, startTimer;
+document.addEventListener("DOMContentLoaded",()=>{
+  const targets=document.querySelectorAll("h1,h2,.section-no,.role,.kicker,.stat span,.manifesto,.coordinates-label");
 
-  function reveal(){
-    if(finished) return;
-    finished=true;
-    clearTimeout(startTimer);
-    document.documentElement.classList.remove('intro-lock');
-    loader.classList.add('done');
-    try{video.pause();}catch(e){}
-    setTimeout(function(){ if(loader.parentNode) loader.parentNode.removeChild(loader); },1000);
+  targets.forEach(el=>{
+    if(el.classList.contains("roll"))return;
+    el.classList.add("roll");
+    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const frag=document.createDocumentFragment();
+      [...node.textContent].forEach(char=>{
+        if(char===" "){const s=document.createElement("span");s.className="roll-space";s.innerHTML="&nbsp;";frag.append(s);return}
+        const wrap=document.createElement("span");wrap.className="roll-char";
+        const front=document.createElement("span");front.textContent=char;
+        const back=document.createElement("span");back.className="roll-back";back.textContent=char;
+        wrap.append(front,back);wrap.style.animationDelay=Math.min(frag.childNodes.length*.025,.65)+"s";frag.append(wrap);
+      });
+      node.parentNode.replaceChild(frag,node);
+    });
+  });
+
+  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}
+  }),{threshold:.15,rootMargin:"0px 0px -8% 0px"});
+  targets.forEach(el=>observer.observe(el));
+
+  // ----- MUTE / DEMUTE DE LA VIDÉO -----
+  const vid=document.getElementById("hero-vid"),btn=document.getElementById("sound-btn"),mute=document.getElementById("icon-mute"),sound=document.getElementById("icon-sound");
+  if(vid&&btn)btn.addEventListener("click",()=>{
+    vid.muted=!vid.muted;
+    mute.hidden=!vid.muted;sound.hidden=vid.muted;
+    btn.setAttribute("aria-pressed",String(!vid.muted));
+    btn.setAttribute("aria-label",vid.muted?"Turn sound on":"Turn sound off");
+  });
+
+  // ----- SÉLECTEUR DE LANGUE -----
+  const translations = {
+    fr: {
+      eyebrow: "N° 01 / À propos",
+      title: 'À propos<br><span>de nous</span>',
+      quote: "« On ne voyage pas,<br>c'est le voyage qui nous emmène. »",
+
+      kicker01: "01 — Notre Histoire",
+      title01: "Notre<br><em>histoire</em>",
+      story1: "Ce ne sont pas les gens qui font les voyages, ce sont les voyages qui façonnent les gens. Tout a commencé avec une pile de vieilles chemises sur un marché aux puces de Cinq-Mars-la-Pile, un petit village de Touraine, en France.",
+      story2: "Chez Kilometre Paris, nous ne fabriquons pas de nouveaux tissus. Nous recherchons des matières anciennes — des chemises du XIX<sup>e</sup> siècle, des linges qui ont déjà vécu une première vie — et nous leur offrons une nouvelle destinée.",
+      story3: "Chaque pièce porte une histoire — pas une étiquette, pas un slogan. Un lieu, une époque, un voyage. C'est le seul luxe qui nous importe.",
+      highlight01: "Voilà ce qu'est Kilometre Paris.",
+      story4: "Alexandra Senes, journaliste et voyageuse dans l'âme, s'est un jour retrouvée devant une collection de chemises de travail du XIX<sup>e</sup> siècle : simples, usées, restées intactes pendant des décennies. Elles avaient autrefois appartenu à un décorateur de cinéma.",
+      story5: "La femme qui les vendait souhaitait simplement s'en débarrasser, tandis qu'Alexandra y voyait la possibilité de raconter une histoire de voyage. Chaque chemise était une pièce unique. Alexandra les a achetées non pour les revendre, mais pour les faire broder.",
+      story6: "Animée par sa passion du voyage, du patrimoine et de l'artisanat, Alexandra a confié ces chemises à des artisans du monde entier — au Maroc, en Inde, au Mexique — pour qu'ils y apposent leur savoir-faire. Chaque point est réalisé à la main, loin de Paris, avec une patience qu'aucune machine ne saurait remplacer. C'est de cette idée qu'est né Kilometre Paris.",
+      story7: "Alexandra Senes n'est pas une créatrice de mode au sens traditionnel du terme. Elle se décrit comme une pilote, une personne qui navigue entre les cultures, les savoir-faire et les récits. La marque qu'elle a fondée, Kilometre Paris, reflète à la fois cette envie permanente d'exploration et ce profond respect : pour celles et ceux qui créent, pour les matières qui traversent le temps et pour les lieux qui laissent leur empreinte en nous.",
+      photoCaption: "Une vieille chemise. Une nouvelle route.<br>Une pièce, une histoire.",
+
+      kicker02: "02 — Notre GPS",
+      coordsLabel: "NOTRE-DAME DE PARIS · KILOMETRE ZERO",
+      title02: "Le point<br>est fixe.<br><span style=\"color:var(--red)\">L'histoire<br>avance.</span>",
+      gps1: "Les coordonnées GPS brodées sur chacune de nos pièces vous ramènent au point zéro : le parvis de la cathédrale Notre-Dame de Paris, le kilomètre zéro à partir duquel commencent toutes les routes de France.",
+      gps2: "Cette signature unique ancre nos créations au cœur de notre héritage parisien tout en symbolisant un voyage où chaque vêtement devient un vecteur d'exploration et de découverte.",
+      gps3: "Chez Kilometre Paris, nous partons de chemises vintage que nous considérons comme des toiles vierges, confiées ensuite à des artisans qui les brodent entièrement à la main.",
+      gps4: "Le point de départ reste le même, mais chaque broderie raconte une histoire différente : celle du lieu dont elle est issue, des mains qui l'ont créée et de la personne qui la portera ensuite.",
+      gps5: "La chasse aux trésors fait également partie de notre quotidien. Nous parcourons le monde à la recherche de pièces rares et oubliées. Des fonds de camions aux greniers poussiéreux, en passant par les réserves d'anciennes usines, notre équipe déniche des trouvailles uniques — vareuses de marin, salopettes anciennes et autres vêtements chargés d'histoire — chacune porteuse de son propre récit.",
+      manifesto02: "Chaque vêtement est un vecteur d'exploration.",
+      coordsFooter: "48°51′11″N / 2°20′59″E · PARIS, FRANCE",
+
+      kicker03: "03 — Nos Mains",
+      title03: "Chaque point<br>est une <i>conversation.</i>",
+      hands1: "Chez Kilometre Paris, chaque point de couture est une conversation entre le passé et le présent, entre Paris et les terres que nos artisans appellent leur foyer.",
+      hands2: "Nous collaborons avec des artisans dont le savoir-faire se transmet de génération en génération, non comme une relique du passé, mais comme un langage vivant.",
+      hands3: "Chaque pièce est brodée lentement, à la main, dans des lieux où le temps semble suivre un autre rythme.",
+      hands4: "Nous croyons que l'art créé par l'être humain est le reflet fidèle de son esprit. C'est ce qui rend notre marque profondément humaine et vibrante.",
+      hands5: "Notre Travelers' Club invite artistes, penseurs et créateurs à collaborer avec nous, non pas pour concevoir, mais pour traduire.",
+      hands6: "À partir de chemises vintage du XIX<sup>e</sup> siècle, chaque participant propose sa propre interprétation visuelle d'une destination qui nous est chère, créant ainsi de véritables souvenirs d'exception de nos moments de vie.",
+      ctaText: "Nos talents",
+
+      stat1: "Fondée à Paris",
+      stat2: "Artisans dans le monde",
+      stat3: "Caravanes à travers le monde",
+      stat4: "Pièces uniques créées",
+
+      marqueeTitle: "Nos mains, aux quatre coins du monde"
+    },
+    en: {
+      eyebrow: "No. 01 / About",
+      title: "About<br><span>Us</span>",
+      quote: "\u201cPeople do not take trips,<br>trips take people.\u201d",
+
+      kicker01: "01 — Our Story",
+      title01: "Where it<br><em>all</em><br>began.",
+      story1: "People do not take trips, trips take people. It started with a pile of old shirts at a flea market in Cinq-Mars-la-Pile, a small village in Touraine, France.",
+      story2: "Kilometre Paris does not manufacture new fabrics. We search for old materials — XIXth-century shirts, linens that have already lived a first life — and we give them a new destiny.",
+      story3: "Each piece carries a story — not a label, not a slogan. A place, a year, a journey. That's the only luxury we care about.",
+      highlight01: "Each shirt was a 'Piece Unique.'",
+      story4: "Alexandra Senes, a journalist and lifelong traveler, found herself standing before a collection of XIXth-century work shirts, simple, worn, untouched for decades. They had once belonged to a film set decorator.",
+      story5: "His wife, who was selling them, simply wished to get rid of them, while Alexandra harbored the desire to craft a narrative of travel. Each shirt was a 'Piece Unique.' Alexandra bought them not to resell, but to embroider on.",
+      story6: "With a passion for travel, heritage, and craftsmanship, Alexandra brought the shirts to artisans around the world — in Morocco, India, Mexico — and asked them to embroider. Each stitch was made by hand, in a place far from Paris, with a patience that no machine could replace. From this idea, Kilometre Paris was born.",
+      story7: "Alexandra Senes is not a fashion designer in the conventional sense. She calls herself a pilot, someone who navigates between cultures, crafts, and stories. The brand she built, Kilometre Paris, reflects that restlessness, and that respect: for the people who make, for the materials that endure, and for the places that leave a mark on us.",
+      photoCaption: "An old shirt. A new route.<br>One piece, one story.",
+
+      kicker02: "02 — Our GPS",
+      coordsLabel: "NOTRE-DAME DE PARIS · KILOMETRE ZERO",
+      title02: "The point<br>is fixed.<br><span style=\"color:var(--red)\">The story<br>moves.</span>",
+      gps1: "The GPS coordinates stitched into each of our piece's teleport you to point zero: the front of the Notre-Dame Cathedral in Paris, kilometre zero, where all French roads begin.",
+      gps2: "This unique feature not only grounds our creations in the heart of our Parisian heritage but also symbolizes a journey where every garment becomes a vessel for exploration and discovery.",
+      gps3: "At Kilometre Paris, we start with vintage shirts and treat them as blank canvases, handing them to artisans who embroider by hand.",
+      gps4: "The point is fixed, but the embroidery tells a different story: the place it came from, the hands that made it, and the person who will wear it next.",
+      gps5: "Additionally, antique hunting is part of what we do, scouring the globe for hidden treasures. From sniffing out the back of trucks to exploring attics and factory closets, our team unearths unique finds like sailor blouses and overalls, each with its own tale to tell.",
+      manifesto02: "Every garment is a vessel for exploration.",
+      coordsFooter: "48°51′11″N / 2°20′59″E · PARIS, FRANCE",
+
+      kicker03: "03 — Our Hands",
+      title03: "Every stitch<br>is a <i>conversation.</i>",
+      hands1: "At Kilometre Paris, every stitch we make is a conversation, between past and present, between Paris and the places our artisans call home.",
+      hands2: "We work with artisans whose craft has been passed down through generations, not as a relic of the past, but as a living language.",
+      hands3: "Each piece is embroidered slowly, by hand, in a place where time moves differently.",
+      hands4: "We believe that people's art is a true mirror of their minds, which makes our brand deeply human and vibrant.",
+      hands5: "Our Travelers' Club invites artists, thinkers, and creators to collaborate with us, not to design, but to translate.",
+      hands6: "Using vintage shirts from the 19th century, each contributor offers their own visual interpretation of a destination that's dear to us, creating masterpiece souvenirs of our « moments de vie ».",
+      ctaText: "Our talents",
+
+      stat1: "Founded in Paris",
+      stat2: "Artisans worldwide",
+      stat3: "Caravans around the world",
+      stat4: "Unique pieces created",
+
+      marqueeTitle: "Our Hands, Around The World"
+    },
+    es: {
+      eyebrow: "N.º 01 / Acerca de",
+      title: "Sobre<br><span>Nosotros</span>",
+      quote: "«No somos nosotros quienes viajamos,<br>es el viaje quien nos lleva.»",
+
+      kicker01: "01 — Nuestra Historia",
+      title01: "Nuestra<br><em>historia</em>",
+      story1: "Las personas no hacen los viajes; los viajes hacen a las personas. Todo comenzó con una pila de camisas antiguas en un mercado de pulgas de Cinq-Mars-la-Pile, un pequeño pueblo de la región de Touraine, en Francia.",
+      story2: "En Kilometre Paris no creamos telas nuevas. Encontramos telas antiguas: camisas del siglo XIX, linos que ya han vivido una vida antes que nosotros, y les damos una nueva historia.",
+      story3: "Cada pieza lleva consigo un relato. No una etiqueta ni un eslogan, sino un lugar, un año, un viaje. Ese es el único lujo que realmente nos importa.",
+      highlight01: "Eso es Kilometre Paris.",
+      story4: "Alexandra Senes, periodista y viajera de toda la vida, se encontró un día frente a una colección de camisas de trabajo del siglo XIX: sencillas, desgastadas por el tiempo y olvidadas durante décadas. Habían pertenecido a un decorador de sets de cine.",
+      story5: "La mujer que las vendía simplemente quería deshacerse de ellas, mientras que Alexandra veía en ellas la oportunidad de contar una historia de viaje. Cada camisa era una \u201cPieza Única\u201d. Alexandra las compró no para revenderlas, sino para bordarlas.",
+      story6: "Movida por su pasión por los viajes, el patrimonio cultural y la artesanía, llevó estas camisas a artesanos de distintas partes del mundo, Marruecos, India, México, y les pidió que las bordaran. Cada puntada fue realizada a mano, en lugares lejanos a París, con una paciencia y una dedicación que ninguna máquina podría reproducir. De esa idea nació Kilometre Paris.",
+      story7: "Alexandra Senes no se considera una diseñadora de moda en el sentido tradicional. Se define como una piloto: alguien que navega entre culturas, oficios y relatos. La marca que creó, Kilometre Paris, refleja ese espíritu inquieto y, al mismo tiempo, ese profundo respeto por quienes crean con sus manos, por los materiales que resisten el paso del tiempo y por los lugares que dejan una huella imborrable en nosotros.",
+      photoCaption: "Una camisa antigua. Una nueva ruta.<br>Una pieza, una historia.",
+
+      kicker02: "02 — Nuestro GPS",
+      coordsLabel: "NOTRE-DAME DE PARIS · KILOMETRE ZERO",
+      title02: "El punto<br>es fijo.<br><span style=\"color:var(--red)\">La historia<br>avanza.</span>",
+      gps1: "Las coordenadas GPS bordadas en cada una de nuestras piezas te transportan al punto cero: frente a la Catedral de Notre-Dame de París, el kilómetro cero desde donde parten todas las carreteras de Francia.",
+      gps2: "Este detalle único no solo conecta nuestras creaciones con el corazón de nuestra herencia parisina, sino que también simboliza un viaje en el que cada prenda se convierte en un vehículo de exploración y descubrimiento.",
+      gps3: "En Kilometre Paris comenzamos con camisas vintage, que tratamos como lienzos en blanco y confiamos a artesanos que las bordan completamente a mano.",
+      gps4: "El punto de partida es siempre el mismo, pero cada bordado cuenta una historia diferente: el lugar del que proviene, las manos que lo crearon y la persona que lo llevará después.",
+      gps5: "La búsqueda de piezas antiguas también forma parte esencial de nuestro trabajo. Recorremos el mundo en busca de tesoros escondidos: desde inspeccionar la parte trasera de camiones hasta explorar áticos, almacenes y antiguos talleres. Así descubrimos piezas únicas, como blusas de marinero, overoles y prendas llenas de carácter, cada una con una historia propia esperando ser contada.",
+      manifesto02: "Cada prenda es un vehículo de exploración.",
+      coordsFooter: "48°51′11″N / 2°20′59″E · PARIS, FRANCE",
+
+      kicker03: "03 — Nuestras Manos",
+      title03: "Cada puntada<br>es una <i>conversación.</i>",
+      hands1: "En Kilometre Paris, cada puntada es una conversación: entre el pasado y el presente, entre París y los lugares que nuestros artesanos llaman hogar.",
+      hands2: "Trabajamos con artesanos cuyos conocimientos y técnicas se han transmitido de generación en generación, no como un vestigio del pasado, sino como un lenguaje vivo que sigue evolucionando.",
+      hands3: "Cada pieza se borda lentamente, a mano, en lugares donde el tiempo parece transcurrir de otra manera.",
+      hands4: "Creemos que el arte de las personas es un reflejo auténtico de su manera de ver el mundo, por eso nuestra marca es profundamente humana y vibrante.",
+      hands5: "Nuestro Travelers' Club reúne a artistas, pensadores y creadores para colaborar con nosotros, no como diseñadores, sino como intérpretes de lugares, recuerdos y emociones.",
+      hands6: "Utilizando camisas vintage del siglo XIX como lienzos, cada colaborador ofrece su propia visión de un destino que nos inspira y nos acompaña en el camino. El resultado son piezas únicas, verdaderos recuerdos de colección que capturan nuestros « moments de vie », esos momentos de vida que merecen ser conservados para siempre.",
+      ctaText: "Nuestros talentos",
+
+      stat1: "Fundada en París",
+      stat2: "Artesanos en el mundo",
+      stat3: "Caravanas alrededor del mundo",
+      stat4: "Piezas únicas creadas",
+
+      marqueeTitle: "Nuestras manos, alrededor del mundo"
+    },
+    zh: {
+      eyebrow: "第 01 号 / 关于我们",
+      title: "关于<br><span>我们</span>",
+      quote: "「不是我们去旅行，<br>而是旅行带走了我们。」",
+
+      kicker01: "01 — 我们的故事",
+      title01: "我们的<br><em>故事</em>",
+      story1: "旅行并不是去收集目的地，而是让目的地在你身上留下痕迹。故事始于法国都兰地区的 Cinq-Mars-la-Pile 村庄，这里跳蚤市场上的一些旧衣服，是一切的开端。",
+      story2: "Kilometre Paris 不使用全新的面料，而是寻找那些存在于 19 世纪，曾在时光中沉淀过的衣服，让他们以另一种形态延续生命。",
+      story3: "每件衣服都有一重叙事——无关标签，无关口号。它只关乎一处风景、一段时光、一程旅途。这才是我们唯一珍视的价值。",
+      highlight01: "这就是 Kilometre Paris。",
+      story4: "品牌创始人 Alexandra Senes 曾是一名记者，旅行即为她的生活。她在跳蚤市场里停下脚步，面前是一批 19 世纪工装衬衫，简朴，磨损，被人们遗忘了几十年。它们曾属于一位电影布景师，也是摊主的丈夫。",
+      story5: "那位女士只想清掉这些旧物，Alexandra 却从中看见了一段旅行的叙事。每件衬衫都是独一无二的，Alexandra 将它们买下，打算在上面进行刺绣。",
+      story6: "出于对旅行、传承与手工艺的热爱，Alexandra 将这些衬衫带往世界各地，由摩洛哥、印度和墨西哥的匠人们进行刺绣。每一针都来自远方，每一线都缝进时间。机器可以提速，却缝不出这样的节奏。Kilometre Paris 便诞生于这个理念。",
+      story7: "Alexandra 不是传统意义上的设计师，她称自己为引航员，穿行于不同的文化，手艺，和故事之间。她创建的时尚品牌 Kilometre Paris，既承载着那份按捺不住的漂泊感，也体现了那份对手艺人，对经得起时间考验的面料，对在我们身上留下印记的地方的那份敬意。",
+      photoCaption: "一件旧衣，一段新程。<br>一件单品，一个故事。",
+
+      kicker02: "02 — 我们的 GPS",
+      coordsLabel: "NOTRE-DAME DE PARIS · KILOMETRE ZERO",
+      title02: "起点<br>不变。<br><span style=\"color:var(--red)\">故事<br>流动。</span>",
+      gps1: "缝制在每件单品上的 GPS 坐标，都指向同一个起点——巴黎圣母院大教堂前，这是法国所有道路的起点。",
+      gps2: "这一独特设计，不仅将我们的创作深根巴黎传统的原点，更让每一件衣服都化身为一趟旅途，承载探索，承载发现。",
+      gps3: "在 Kilometre Paris，我们从古着衬衫出发，将它们视为空白的画布，交由匠人亲手缝制。",
+      gps4: "坐标是死的，但刺绣是活的——它记得来处，记得那双手，也记得下一个穿上它的人。",
+      gps5: "此外，满世界寻宝也是我们乐此不疲的「正事」。那些散落在各处的遗珍，总让我们心甘情愿踏上征途。从卡车货箱的角落里，到阁楼深处的尘埃中，再到工厂封存的旧仓库里——我们的目光所及，总能在这些不起眼的地方淘到些别致旧物，一件水手服，一条工装裤，每一样都带着它们之间的过往。",
+      manifesto02: "每件衣服，都是探索的载体。",
+      coordsFooter: "48°51′11″N / 2°20′59″E · PARIS, FRANCE",
+
+      kicker03: "03 — 我们的双手",
+      title03: "每一针<br>都是一次<i>对话。</i>",
+      hands1: "在 Kilometre Paris，每一针，皆是一段低语，连接旧日与今朝，连接巴黎与匠人远方的故乡。",
+      hands2: "与我们合作的匠人，他们的手艺代代相传，不是凝固在旧时光里的遗存，而是作为一种仍在诉说，仍在呼吸的语言。",
+      hands3: "在那些时间流淌得不同的地方，一针一线，慢工细活。",
+      hands4: "我们相信，手作即心镜。镜中映出的，不只是技艺，更是人的温度。这份温度，让 Kilometre Paris 始终鲜活，始终温暖。",
+      hands5: "我们的「旅行者俱乐部」邀请艺术家，思想家，和创作者一同参与，将存在于时间中的气息，翻译在针线上。",
+      hands6: "19 世纪的古着衬衫，是每位创作者手中的素筏。他们以针线为笔，将那些我们心之所向的地方，织成可以带走的纪念。",
+      ctaText: "查看匠人",
+
+      stat1: "始创于巴黎",
+      stat2: "全球匠人网络",
+      stat3: "环球商队",
+      stat4: "独一无二的作品",
+
+      marqueeTitle: "我们的双手，遍布世界"
+    }
+  };
+
+  const langButtons = document.querySelectorAll(".lang-btn");
+  const i18nEls = document.querySelectorAll("[data-i18n]");
+
+  function applyLang(lang){
+    const dict = translations[lang];
+    if(!dict) return;
+
+    i18nEls.forEach(el=>{
+      const key = el.dataset.i18n;
+      const value = dict[key] || translations.en[key];
+      if(value) el.innerHTML = value;
+    });
+
+    langButtons.forEach(b=>{
+      const isActive = b.dataset.lang === lang;
+      b.classList.toggle("active", isActive);
+      b.setAttribute("aria-pressed", String(isActive));
+    });
+
+    document.documentElement.lang = lang;
+    localStorage.setItem("kmp-lang", lang);
   }
 
-  if(!loader||!video){ reveal(); return; }
+  langButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=> applyLang(btn.dataset.lang));
+  });
 
-  video.addEventListener('ended',reveal);
-  video.addEventListener('error',reveal);
-  var src=video.querySelector('source');
-  if(src) src.addEventListener('error',reveal); /* erreur de fichier : l'event part de <source> */
-  skip.addEventListener('click',reveal);
-
-  /* Si la vidéo ne démarre pas (réseau lent, lecture bloquée), on n'enferme pas le visiteur */
-  startTimer=setTimeout(reveal,8000);
-  video.addEventListener('playing',function(){ clearTimeout(startTimer); });
-
-  var p=video.play();
-  if(p&&p.catch) p.catch(reveal);
-})();
+  const savedLang = localStorage.getItem("kmp-lang");
+  if(savedLang && translations[savedLang]) applyLang(savedLang);
+});
 </script>
+
+<script src="footer.js"></script>
 
 </body>
 </html>
