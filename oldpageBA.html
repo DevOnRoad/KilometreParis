@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" class="intro-lock">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NL69ZMS77E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NL69ZMS77E');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coming Soon · Kilometre Paris</title>
+<meta name="description" content="Coming soon — Kilometre Paris.">
+<link rel="canonical" href="https://travelwithkilometreparis.com/KilometreParisBejeweledAdventuresPierreEtFlorent">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,900&family=Barlow:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B82928;
+  --blue:#2F3E86;
+  --yellow:#FFF8BD;
+  --ink:#171717;
+  --paper:#F7F5EE;
+  --blanc:#FFFFFF
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:Barlow,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden
+}
+img{display:block}
+
+/* ── HERO PHOTO (même principe que la vidéo de About Us) ── */
+.hero-photo{position:relative;width:100%;height:calc(100vh - 72px);min-height:480px;overflow:hidden;background:var(--ink)}
+.hero-photo img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center
+}
+.hero-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:4rem 5rem;gap:1.5rem
+}
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;
+  letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.6)
+}
+.hero-title{
+  font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.2rem,7vw,8rem);font-weight:900;
+  text-transform:uppercase;line-height:.88;letter-spacing:-.03em;color:var(--blanc)
+}
+.hero-title span{color:var(--yellow)}
+
+.hero-grid{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,.65) 2px,transparent 2px),
+    linear-gradient(to right,rgba(255,255,255,.65) 2px,transparent 2px),
+    linear-gradient(to bottom,rgba(255,255,255,.65) 2px,transparent 2px),
+    linear-gradient(to bottom,rgba(255,255,255,.65) 2px,transparent 2px);
+  background-position:33.333% 0,66.666% 0,0 33.333%,0 66.666%;
+  background-size:2px 100%,2px 100%,100% 2px,100% 2px;
+  background-repeat:no-repeat
+}
+
+@media(max-width:900px){
+  .hero-photo{height:calc(88svh - 72px);min-height:480px}
+  .hero-photo-overlay{padding:2rem 1.5rem;gap:1rem}
+  .hero-title{font-size:clamp(2.6rem,13vw,6rem)}
+}
+@media(max-width:480px){
+  .hero-photo-overlay{padding:1.5rem 1.1rem}
+  .hero-title{font-size:clamp(2.3rem,12vw,3.6rem)}
+  .hero-eyebrow{letter-spacing:.3em}
+}
+
+/* ── INTRO VIDEO (loader plein écran) ── */
+html.intro-lock,html.intro-lock body{overflow:hidden}
+#intro-loader{
+  position:fixed;inset:0;z-index:9999;background:#000;
+  opacity:1;transition:opacity .9s ease
+}
+#intro-loader.done{opacity:0;pointer-events:none}
+#intro-loader video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center
+}
+.intro-skip{
+  position:absolute;bottom:2rem;right:2rem;z-index:2;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.35);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  padding:.85rem 1.4rem;border-radius:999px;cursor:pointer;
+  backdrop-filter:blur(4px);transition:background .2s
+}
+.intro-skip:hover{background:rgba(23,23,23,.8)}
+@media(max-width:900px){.intro-skip{bottom:1.25rem;right:1.25rem}}
+
+/* ── COMING SOON : points qui se chargent en continu  .  ..  ...  ── */
+.dots{display:inline-block;width:.95em;margin-left:.08em;text-align:left;color:var(--yellow);letter-spacing:.02em}
+.dots i{font-style:normal;display:inline-block;width:.2em;height:.2em;margin-right:.1em;border-radius:50%;background:var(--yellow);opacity:0;vertical-align:baseline}
+.dots i:nth-child(1){animation:dot1 1.8s steps(1,end) infinite}
+.dots i:nth-child(2){animation:dot2 1.8s steps(1,end) infinite}
+.dots i:nth-child(3){animation:dot3 1.8s steps(1,end) infinite}
+@keyframes dot1{0%{opacity:1}92%{opacity:0}}
+@keyframes dot2{0%{opacity:0}33%{opacity:1}92%{opacity:0}}
+@keyframes dot3{0%{opacity:0}66%{opacity:1}92%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.dots i{animation:none;opacity:1}}
+
+/* bouton « tap to play » si le téléphone bloque la lecture automatique */
+.intro-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  display:none;width:84px;height:84px;border-radius:50%;cursor:pointer;
+  background:rgba(23,23,23,.55);border:1px solid rgba(255,255,255,.5);
+  backdrop-filter:blur(4px)
+}
+.intro-play.show{display:block}
+.intro-play:before{
+  content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);
+  border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent
+}
+</style>
+<noscript><style>#intro-loader{display:none}html.intro-lock,html.intro-lock body{overflow:auto}</style></noscript>
+</head>
+
+<body>
+<!-- INTRO VIDEO : joue en plein écran, puis révèle la page -->
+<div id="intro-loader" aria-label="Intro video">
+  <video id="intro-video" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture poster="./fashionWeek/fw.jpg">
+    <source src="./videos/PierreFlorentcollaborationwithBejeweledAdventures.mp4" type="video/mp4">
+  </video>
+  <button class="intro-play" id="intro-play" type="button" aria-label="Play intro"></button>
+  <button class="intro-skip" id="intro-skip" type="button">Skip</button>
+</div>
+
+<script src="navbar.js"></script>
+
+<!-- HERO PHOTO -->
+<section class="hero-photo">
+  <img src="./fashionWeek/fw.jpg" alt="Kilometre Paris — coming soon">
+
+  <div class="hero-photo-overlay">
+    <h1 class="hero-title" role="status"><span>Coming soon</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></h1>
+  </div>
+
+  <div class="hero-grid" aria-hidden="true"></div>
+</section>
+
+<script src="footer.js"></script>
+
+
+<script>
+(function(){
+  var loader=document.getElementById('intro-loader');
+  var video=document.getElementById('intro-video');
+  var skip=document.getElementById('intro-skip');
+  var playBtn=document.getElementById('intro-play');
+  var finished=false, startTimer, maxTimer, stallTimer;
+
+  function reveal(){
+    if(finished) return;
+    finished=true;
+    clearTimeout(startTimer); clearTimeout(maxTimer); clearTimeout(stallTimer);
+    document.documentElement.classList.remove('intro-lock');
+    loader.classList.add('done');
+    try{video.pause();}catch(e){}
+    setTimeout(function(){ if(loader.parentNode) loader.parentNode.removeChild(loader); },1000);
+  }
+
+  if(!loader||!video){ reveal(); return; }
+
+  /* iOS / Android : forcer le mode muet (condition pour l'autoplay) */
+  video.muted=true; video.defaultMuted=true; video.setAttribute('muted','');
+
+  video.addEventListener('ended',reveal);
+  video.addEventListener('error',reveal);
+  var src=video.querySelector('source');
+  if(src) src.addEventListener('error',reveal); /* erreur de fichier : l'event part de <source> */
+  skip.addEventListener('click',reveal);
+
+  /* 1. La vidéo n'a pas démarré après 8 s (réseau lent...) : on affiche la page */
+  startTimer=setTimeout(reveal,8000);
+
+  /* 2. Une fois lancée : garde-fou = durée de la vidéo + 5 s, quoi qu'il arrive */
+  video.addEventListener('playing',function(){
+    clearTimeout(startTimer); clearTimeout(stallTimer);
+    playBtn.classList.remove('show');
+    if(!maxTimer){
+      var d=isFinite(video.duration)&&video.duration>0?video.duration:30;
+      maxTimer=setTimeout(reveal,(d+5)*1000);
+    }
+  });
+
+  /* 3. La lecture se fige (connexion coupée en route) plus de 7 s : on affiche la page */
+  video.addEventListener('waiting',function(){
+    clearTimeout(stallTimer); stallTimer=setTimeout(reveal,7000);
+  });
+
+  /* 4. Lecture automatique bloquée (mode économie d'énergie iPhone...) :
+        on propose un bouton « play » (un tap autorise la lecture) */
+  function tryPlay(){
+    var p=video.play();
+    if(p&&p.catch) p.catch(function(){
+      clearTimeout(startTimer);
+      playBtn.classList.add('show');
+      startTimer=setTimeout(reveal,15000); /* sans tap au bout de 15 s : on affiche la page */
+    });
+  }
+  playBtn.addEventListener('click',function(){
+    playBtn.classList.remove('show'); clearTimeout(startTimer);
+    startTimer=setTimeout(reveal,8000);
+    var p=video.play(); if(p&&p.catch) p.catch(reveal);
+  });
+  tryPlay();
+})();
+</script>
+
+</body>
+</html>

@@ -12,13 +12,28 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Coming Soon · Kilometre Paris</title>
-<meta name="description" content="Coming soon — Kilometre Paris.">
+<title>Bejeweled Adventures · Kilometre Paris</title>
+<meta name="description" content="Bejeweled Adventures — a Hand in Hand capsule collection by Kilometre Paris with 8 women jewelry designers from 8 cities around the world. First stop: Paris Fashion Week, October 2026.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bejeweled Adventures · Kilometre Paris">
+<meta property="og:description" content="8 women jewelry designers. 8 cities. Nomadic jewels embroidered on the timeless pieces of Kilometre Paris.">
+<meta property="og:image" content="https://travelwithkilometreparis.com/fashionWeek/fw.jpg">
+<meta property="og:url" content="https://travelwithkilometreparis.com/KilometreParisBejeweledAdventuresPierreEtFlorent">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://travelwithkilometreparis.com/KilometreParisBejeweledAdventuresPierreEtFlorent">
 
+<script>
+(function(){
+  var d=document.documentElement; d.classList.add('js');
+  try{
+    var l=localStorage.getItem('kmp-lang')||(navigator.language||'en').slice(0,2);
+    d.lang=(l==='fr')?'fr':'en';
+  }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,900&family=Barlow:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,900&family=Barlow:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -130,6 +145,272 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
   content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);
   border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent
 }
+
+/* ════════════════════════════════════════════════
+   BEJEWELED ADVENTURES — immersion bleu nuit
+   ════════════════════════════════════════════════ */
+/* bj-marker */
+:root{
+  --night:#070B24;
+  --deep:#0C1233;
+  --navy:#111A4A;
+  --mid:#1B2765;
+  --line:rgba(255,248,189,.16);
+  --soft:rgba(255,255,255,.78);
+  --gut:clamp(1.25rem,5vw,3.5rem)
+}
+body{background:var(--night);color:#fff}
+
+/* langue : EN / FR */
+html[lang="fr"] .en{display:none!important}
+html:not([lang="fr"]) .fr{display:none!important}
+
+/* sélecteur de langue (même style que About Us) */
+.lang-switcher{
+  position:fixed;top:calc(72px + 1rem);right:2rem;z-index:1010;display:flex;gap:8px;
+  background:rgba(7,11,36,.55);border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:6px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)
+}
+.lang-btn{
+  min-width:36px;height:36px;border-radius:999px;border:1px solid transparent;background:transparent;color:#fff;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font:700 .68rem "Barlow Condensed",sans-serif;letter-spacing:.18em;padding:0 .7rem;
+  transition:background .2s,border-color .2s
+}
+.lang-btn.active{background:rgba(255,255,255,.22);border-color:var(--yellow);color:var(--yellow)}
+.lang-btn:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+@media(max-width:900px){.lang-switcher{top:calc(72px + .75rem);right:1rem;padding:4px}.lang-btn{min-width:32px;height:32px}}
+
+/* HERO : la photo se fond dans le bleu nuit */
+.hero-photo-overlay{
+  background:linear-gradient(to top,var(--night) 0%,rgba(7,11,36,.6) 24%,rgba(0,0,0,.15) 62%,rgba(0,0,0,.1) 100%)
+}
+.scroll-cue{
+  position:absolute;right:var(--gut);bottom:2.2rem;z-index:3;display:flex;align-items:center;gap:.9rem;
+  font:700 .62rem "Barlow Condensed",sans-serif;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.85)
+}
+.scroll-cue i{display:block;width:1px;height:52px;background:linear-gradient(var(--yellow),transparent);transform-origin:top;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media(max-width:900px){.scroll-cue{bottom:1.4rem;right:1.1rem}.scroll-cue span{display:none}}
+
+/* conteneur général : halos de bleu + grain */
+.story{
+  position:relative;
+  background:
+    radial-gradient(55vw 38vw at 88% 6%,rgba(47,62,134,.55),transparent 70%),
+    radial-gradient(50vw 40vw at 4% 24%,rgba(47,62,134,.38),transparent 70%),
+    radial-gradient(60vw 44vw at 94% 46%,rgba(47,62,134,.42),transparent 70%),
+    radial-gradient(55vw 40vw at 0% 70%,rgba(47,62,134,.36),transparent 70%),
+    radial-gradient(60vw 40vw at 80% 92%,rgba(47,62,134,.45),transparent 70%),
+    var(--night)
+}
+.story:after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
+}
+.story>*{position:relative;z-index:1}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
+.sec{padding:clamp(4.5rem,11vw,9rem) 0}
+
+/* typo */
+.kicker{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.6rem;
+  font:700 .7rem "Barlow Condensed",sans-serif;letter-spacing:.34em;text-transform:uppercase;color:var(--yellow)
+}
+.kicker:before{content:"";width:38px;height:1px;background:var(--red);flex:none}
+.sec-title{
+  font:900 clamp(2.9rem,7.4vw,7.2rem)/.86 "Barlow Condensed",sans-serif;text-transform:uppercase;
+  letter-spacing:-.03em;color:#fff
+}
+.sec-title em{color:var(--yellow);font-style:italic}
+.copy{font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.85;color:var(--soft);font-weight:300;max-width:60ch}
+.copy+.copy{margin-top:1.3rem}
+.copy b{font-weight:500;color:#fff}
+.lead-serif{
+  font:italic 400 clamp(1.5rem,3.3vw,2.8rem)/1.32 "DM Serif Display",serif;color:#fff;max-width:26em
+}
+.lead-serif .em{color:var(--yellow)}
+
+/* révélation au scroll */
+html.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease var(--d,0ms),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms)}
+html.js .rv.in{opacity:1;transform:none}
+
+/* effet « tableau d'aéroport » (comme About Us) */
+.roll{display:inline-block;perspective:700px}
+.roll-char{display:inline-block;transform-style:preserve-3d;transform-origin:50% 50%;will-change:transform}
+.roll-char>*{display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.roll-back{position:absolute;inset:0;transform:rotateX(180deg)}
+.roll-space{display:inline-block;width:.25em}
+.roll.visible .roll-char{animation:flip .65s cubic-bezier(.22,.61,.36,1) both}
+@keyframes flip{
+  0%{transform:rotateX(0)}30%{transform:rotateX(-110deg)}60%{transform:rotateX(25deg)}80%{transform:rotateX(-8deg)}100%{transform:rotateX(0)}
+}
+
+/* 01 MANIFESTE */
+.manifesto{padding-top:clamp(3rem,7vw,6rem)}
+.manifesto .lead-serif{margin-bottom:2.2rem}
+.manifesto .after{
+  margin-top:3rem;padding-left:1.4rem;border-left:2px solid var(--red);
+  font:900 italic clamp(1.9rem,4vw,3.8rem)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--yellow);max-width:15em
+}
+
+/* image « cadre » */
+.feature{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--deep);box-shadow:0 40px 90px rgba(0,0,0,.55)}
+.feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.feature:before{content:"";position:absolute;inset:14px;border:1px solid rgba(255,248,189,.38);z-index:2;pointer-events:none}
+.feature:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(7,11,36,.55),transparent 38%)}
+.credit{margin-top:.9rem;font:700 .62rem "Barlow Condensed",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* 02 DEUX OBSESSIONS */
+.duo{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2.5rem,7vw,7rem);align-items:start}
+.duo .feature-col{margin-top:clamp(0rem,6vw,5rem)}
+.duo .sec-title{margin-bottom:2rem}
+.duo .closing{margin-top:2rem;font:italic 400 clamp(1.2rem,2vw,1.7rem)/1.4 "DM Serif Display",serif;color:var(--yellow)}
+
+/* 03 LA COLLECTION */
+.collection{border-top:1px solid var(--line)}
+.collection .sec-title{margin-bottom:2.2rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(3rem,6vw,5rem);border-top:1px solid var(--line)}
+.stat{padding:2.2rem 1.4rem 0 0}
+.stat+.stat{padding-left:1.6rem;border-left:1px solid var(--line)}
+.stat b{display:block;font:900 clamp(4.5rem,11vw,10rem)/.8 "Barlow Condensed",sans-serif;color:var(--yellow);letter-spacing:-.04em}
+.stat span{display:block;margin-top:1rem;font:700 .66rem "Barlow Condensed",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:clamp(2.2rem,4vw,3.4rem)}
+.chips span{padding:.62rem 1.05rem;border:1px solid rgba(255,248,189,.35);border-radius:999px;font:700 .64rem "Barlow Condensed",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow)}
+
+/* bandeau des villes */
+.marq{border-block:1px solid var(--line);background:rgba(7,11,36,.7);overflow:hidden;white-space:nowrap;padding:1.05rem 0}
+.marq-in{display:inline-flex;gap:2.6rem;animation:marq 46s linear infinite}
+.marq-in span{font:700 .72rem "Barlow Condensed",sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--yellow)}
+.marq-in .d{color:var(--red)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* 04 HUIT VILLES */
+.cities-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:end;margin-bottom:clamp(3rem,6vw,5rem)}
+.cities{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.city{position:relative;display:flex;flex-direction:column;gap:.9rem;min-height:340px;padding:2rem 1.7rem 2.2rem;background:var(--night);transition:background .35s ease}
+.city:before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.city:hover{background:var(--navy)}
+.city:hover:before{transform:scaleX(1)}
+.city-n{font:700 .66rem "Barlow Condensed",sans-serif;letter-spacing:.3em;color:rgba(255,255,255,.4)}
+.city-name{font:900 clamp(1.9rem,2.7vw,2.7rem)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.02em;color:#fff}
+.city-des{font:700 .68rem "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--yellow)}
+.city-hook{font-size:.92rem;line-height:1.65;color:var(--soft);font-weight:300}
+.city-place{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);font:italic 400 1rem/1.4 "DM Serif Display",serif;color:rgba(255,248,189,.85)}
+
+/* 05 PIÈCES */
+.pieces{border-top:1px solid var(--line)}
+.pieces-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2.5rem,7vw,7rem);align-items:start}
+.pieces-img{position:sticky;top:104px}
+.pieces .sec-title{margin-bottom:2.4rem}
+.piece{padding:1.8rem 0 1.9rem 1.5rem;border-left:2px solid var(--red)}
+.piece+.piece{margin-top:1.4rem}
+.piece h3{font:900 clamp(1.7rem,3vw,2.5rem)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--yellow);margin-bottom:.9rem}
+.piece .copy{max-width:56ch}
+.result{margin-top:clamp(2.5rem,5vw,4rem)}
+.result .big{font:900 italic clamp(2.2rem,5vw,4.4rem)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#fff;margin-bottom:1.4rem}
+.result .big span{color:var(--yellow)}
+
+/* 06 GALERIE « TÉLÉPORTÉS » */
+.gallery{border-top:1px solid var(--line);padding-bottom:clamp(4rem,8vw,7rem)}
+.gallery-head{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;margin-bottom:clamp(2.2rem,5vw,3.6rem)}
+.gallery-head .sec-title{margin-bottom:1.4rem}
+.rail-ctl{display:flex;gap:.7rem}
+.rail-btn{width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,248,189,.4);background:transparent;color:var(--yellow);cursor:pointer;font-size:1.1rem;transition:background .2s,color .2s}
+.rail-btn:hover{background:var(--yellow);color:var(--night)}
+.rail-btn:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.rail{
+  display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding:0 var(--gut) 1.2rem;scrollbar-width:none;cursor:grab
+}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{scroll-snap-type:none;cursor:grabbing;scroll-behavior:auto}
+.shot{position:relative;flex:0 0 clamp(250px,26vw,400px);aspect-ratio:2/3;overflow:hidden;scroll-snap-align:start;background:var(--deep)}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none;user-select:none}
+.shot:hover img{transform:scale(1.05)}
+.shot:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(7,11,36,.92) 0%,rgba(7,11,36,.35) 28%,transparent 52%)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.2rem 1.25rem 1.35rem}
+.shot-i{display:block;margin-bottom:.55rem;font:700 .6rem "Barlow Condensed",sans-serif;letter-spacing:.3em;color:rgba(255,255,255,.5)}
+.shot-line{line-height:1.25}
+.shot-line+.shot-line{margin-top:.7rem}
+.shot-line b{display:block;font:900 1.35rem/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.01em;color:#fff}
+.shot-tp{display:block;margin-top:.35rem;font:700 .58rem "Barlow Condensed",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.shot-city{display:block;font:italic 400 .98rem/1.25 "DM Serif Display",serif;color:var(--yellow)}
+.rail-bar{height:2px;margin:1.6rem var(--gut) 0;background:rgba(255,255,255,.14);overflow:hidden}
+.rail-bar i{display:block;height:100%;background:var(--yellow);transform-origin:left;transform:scaleX(.1);transition:transform .15s linear}
+.photo-credit{margin:1.1rem var(--gut) 0;font:700 .62rem "Barlow Condensed",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* 07 MAINS */
+.hands{border-top:1px solid var(--line)}
+.hands-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:end;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.hands-list{list-style:none;border-top:1px solid var(--line)}
+.hands-list li{display:grid;grid-template-columns:1.2fr .8fr 1.2fr;gap:1rem;align-items:baseline;padding:1.25rem .3rem;border-bottom:1px solid var(--line);transition:background .3s}
+.hands-list li:hover{background:rgba(255,255,255,.035)}
+.hands-list b{font:900 clamp(1.4rem,2.4vw,2rem)/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#fff}
+.hands-list .hl-c{font:700 .66rem "Barlow Condensed",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--yellow)}
+.hands-list .hl-d{font:italic 400 1rem "DM Serif Display",serif;color:var(--soft);text-align:right}
+.btn{
+  display:inline-flex;align-items:center;gap:.8rem;padding:1.05rem 2rem;text-decoration:none;
+  font:700 .7rem "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;
+  border:1px solid var(--yellow);color:var(--yellow);transition:background .25s,color .25s,transform .25s
+}
+.btn:hover{background:var(--yellow);color:var(--night);transform:translateX(4px)}
+.btn.solid{background:var(--red);border-color:var(--red);color:#fff}
+.btn.solid:hover{background:#fff;border-color:#fff;color:var(--night)}
+.btn-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.4rem}
+
+/* 08 FINAL */
+.final{position:relative;text-align:center;padding:clamp(6rem,14vw,12rem) 0 clamp(5rem,11vw,9rem);border-top:1px solid var(--line);overflow:hidden}
+.final:before{content:"";position:absolute;left:50%;top:50%;width:90vw;height:90vw;max-width:1100px;max-height:1100px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(47,62,134,.7),transparent);z-index:0}
+.final .wrap{position:relative;z-index:1}
+.final .kicker{justify-content:center}
+.final .kicker:before{display:none}
+.final-first{font:700 clamp(.8rem,1.4vw,1rem) "Barlow Condensed",sans-serif;letter-spacing:.5em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.4rem}
+.final-paris{
+  font:900 clamp(6rem,24vw,22rem)/.8 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.05em;
+  color:transparent;-webkit-text-stroke:1.5px var(--yellow)
+}
+.final-fw{margin-top:1.4rem;font:900 clamp(2rem,6vw,5.5rem)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.02em;color:#fff}
+.final-date{margin-top:1rem;font:italic 400 clamp(1.2rem,2.4vw,2rem) "DM Serif Display",serif;color:var(--yellow)}
+.final .btn-row{justify-content:center;margin-top:3rem}
+.credits{margin-top:3.5rem;font:700 .62rem/2 "Barlow Condensed",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.credits b{color:rgba(255,255,255,.85);font-weight:700}
+
+/* responsive */
+@media(max-width:1000px){
+  .cities{grid-template-columns:repeat(2,1fr)}
+  .duo,.pieces-grid,.cities-head,.hands-head{grid-template-columns:1fr}
+  .pieces-img{position:static;max-width:460px}
+  .duo .feature-col{margin-top:0;max-width:460px}
+  .hands-list li{grid-template-columns:1fr 1fr}
+  .hands-list .hl-d{grid-column:1/-1;text-align:left}
+}
+@media(max-width:600px){
+  .cities{grid-template-columns:1fr}
+  .city{min-height:0}
+  .stat b{font-size:clamp(3.6rem,19vw,5rem)}
+  .stat{padding-right:.6rem}
+  .stat+.stat{padding-left:.9rem}
+  .gallery-head{grid-template-columns:1fr}
+  .rail-ctl{display:none}
+  .shot{flex-basis:76vw}
+  .hands-list li{grid-template-columns:1fr}
+  .final-paris{-webkit-text-stroke-width:1px}
+}
+@media(prefers-reduced-motion:reduce){
+  html.js .rv{opacity:1;transform:none;transition:none}
+  .marq-in,.scroll-cue i{animation:none}
+  .roll-char{animation:none!important}
+  .feature img{transform:none!important}
+}
+
+/* fixes mise en page titres */
+.roll-word{display:inline-block;white-space:nowrap}
+.kicker.roll{display:flex}
+.sec-title.roll{display:block}
+.roll-char{position:relative}
+.sec-title em .roll-word,.sec-title .roll-word{vertical-align:baseline}
+
 </style>
 <noscript><style>#intro-loader{display:none}html.intro-lock,html.intro-lock body{overflow:auto}</style></noscript>
 </head>
@@ -146,16 +427,369 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
 
 <script src="navbar.js"></script>
 
+<!-- Sélecteur de langue -->
+<div class="lang-switcher" role="group" aria-label="Language">
+  <button class="lang-btn" data-lang="fr" aria-pressed="false" title="Français">FR</button>
+  <button class="lang-btn" data-lang="en" aria-pressed="false" title="English">EN</button>
+</div>
+
 <!-- HERO PHOTO -->
 <section class="hero-photo">
-  <img src="./fashionWeek/fw.jpg" alt="Kilometre Paris — coming soon">
+  <img src="./fashionWeek/fw.jpg" alt="Kilometre Paris — Bejeweled Adventures">
 
   <div class="hero-photo-overlay">
-    <h1 class="hero-title" role="status"><span>Coming soon</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></h1>
+    <h1 class="hero-title" role="status"><span class="en">Coming soon</span><span class="fr">Bientôt</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></h1>
   </div>
 
+  <div class="scroll-cue" aria-hidden="true"><span class="en">Scroll</span><span class="fr">Défiler</span><i></i></div>
   <div class="hero-grid" aria-hidden="true"></div>
 </section>
+
+<main class="story">
+
+  <!-- 01 · LE PREMIER NOMADE -->
+  <section class="sec manifesto" id="nomad">
+    <div class="wrap">
+      <div class="kicker rv"><span class="en">01 — The first nomad</span><span class="fr">01 — Le premier nomade</span></div>
+      <p class="lead-serif rv">
+        <span class="en">A jewel never stays in one place. It passes from hand to hand, from neck to neck, from generation to generation. It crosses borders in a pocket, slips through customs beneath a scarf, is inherited, stolen, lost and found again. We think it is safely at home and it is already packed in a suitcase. We think it is gone forever and it resurfaces on a flea market table, between two strangers, waiting for the next hand.</span>
+        <span class="fr">Un bijou ne tient pas en place. Il passe de main en main, de cou en cou, de génération en génération. Il traverse les frontières dans une poche, il franchit les douanes sous une écharpe, il s’hérite, il se vole, il se perd, il se retrouve. On le croit chez soi et il est déjà dans une valise. On le croit perdu et il refait surface sur une table de brocante, entre deux inconnus, attendant la main suivante.</span>
+      </p>
+      <p class="after rv"><span class="en">The jewel is the first nomad. It was travelling long before we were.</span><span class="fr">Le bijou est le premier nomade. Avant nous il voyageait déjà.</span></p>
+    </div>
+  </section>
+
+  <!-- 02 · DEUX OBSESSIONS -->
+  <section class="sec" id="obsessions">
+    <div class="wrap duo">
+      <div>
+        <div class="kicker rv"><span class="en">02 — Two obsessions</span><span class="fr">02 — Deux obsessions</span></div>
+        <h2 class="sec-title"><span class="en">Travel.<br><em>Jewelry.</em></span><span class="fr">Le voyage.<br><em>Le bijou.</em></span></h2>
+        <p class="copy rv">
+          <span class="en"><b>Bejeweled Adventures</b> was born from the meeting of two obsessions. Travel and jewelry. On one side, <b>Alexandra Senes</b> and Kilometre Paris, which has always embroidered distances, routes, kilometres. On the other, <b>Valery Demure</b>, who lives with jewels, collects them, represents them, wears them against her skin, to the point of having the bow brooch of Empress Eugénie, that jewel of 1855, tattooed on her body the day it was stolen from the Louvre.</span>
+          <span class="fr"><b>Bejeweled Adventures</b> naît de la rencontre de deux obsessions. Celle du voyage et celle du bijou. D’un côté <b>Alexandra Senes</b> et Kilometre Paris, qui depuis toujours brode les distances, les trajets, les GPS. De l’autre <b>Valery Demure</b>, qui vit avec les bijoux, les collectionne, les représente, les porte à même la peau, au point de se faire tatouer le nœud de corsage de l’impératrice Eugénie, ce bijou de 1855, le jour où il a été volé au Louvre.</span>
+        </p>
+        <p class="closing rv"><span class="en">Two women, two passions, brought together in a single project. Travel and jewelry. Jewelry and travel.</span><span class="fr">Deux femmes, deux manies, réunies dans un même projet. Le voyage et le bijou. Le bijou et le voyage.</span></p>
+      </div>
+      <div class="feature-col rv">
+        <div class="feature plx"><img src="./fashionWeek/BEJEWELLED%20ADVENTURES_ALEXANDRA-LEONORA%20%283%29.jpg" width="900" height="1333" loading="lazy" decoding="async" alt="Portrait from the Bejeweled Adventures shoot — photo Ana Hop"></div>
+        <p class="credit"><span class="en">Photo — Ana Hop</span><span class="fr">Photo — Ana Hop</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · LA COLLECTION -->
+  <section class="sec collection" id="collection">
+    <div class="wrap">
+      <div class="kicker rv"><span class="en">03 — The collection</span><span class="fr">03 — La collection</span></div>
+      <h2 class="sec-title"><span class="en">What is<br><em>Bejeweled<br>Adventures?</em></span><span class="fr">Qu’est-ce que<br><em>Bejeweled<br>Adventures ?</em></span></h2>
+      <p class="copy rv">
+        <span class="en">A <b>Hand in Hand</b> collection celebrating the natural connection between travel, jewelry and fashion. A Kilometre Paris “capsule collection” with 8 women jewelry designers from around the world. Each piece tells the story of a destination through illustrations, colours and craftsmanship, celebrating their roots, itineraries, uniqueness, memories and inspirations into wearable works of art.</span>
+        <span class="fr">Une collection <b>Main dans la Main</b> célébrant le lien naturel entre le voyage, le bijou et la mode. Une « collection capsule » Kilometre Paris réunissant 8 créatrices de bijoux du monde entier. Chaque pièce raconte l’histoire d’une destination à travers des illustrations, des couleurs et un savoir-faire artisanal, une célébration de leurs racines, de leurs parcours, de leur singularité, de leurs souvenirs et de leurs inspirations, transformés en véritables œuvres d’art à porter.</span>
+      </p>
+      <div class="stats">
+        <div class="stat rv"><b data-count="8">8</b><span><span class="en">Women jewelry designers</span><span class="fr">Créatrices de bijoux</span></span></div>
+        <div class="stat rv" style="--d:100ms"><b data-count="8">8</b><span><span class="en">Global cities</span><span class="fr">Villes dans le monde</span></span></div>
+        <div class="stat rv" style="--d:200ms"><b data-count="4">4</b><span><span class="en">Items</span><span class="fr">Pièces</span></span></div>
+      </div>
+      <div class="chips rv">
+        <span class="en">Limited edition pieces</span><span class="fr">Pièces en édition limitée</span>
+        <span class="en">Hand-illustrated</span><span class="fr">Illustré à la main</span>
+        <span class="en">Hand-knitted</span><span class="fr">Tricoté à la main</span>
+        <span class="en">Hand-crocheted</span><span class="fr">Crocheté à la main</span>
+        <span class="en">Hand-woven</span><span class="fr">Tissé à la main</span>
+        <span class="en">Hand-embroidered</span><span class="fr">Brodé à la main</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div class="marq-in"><span>Jaipur</span><span class="d">✦</span><span>Paris</span><span class="d">✦</span><span>Athens</span><span class="d">✦</span><span>São Paulo</span><span class="d">✦</span><span>Tokyo Bay</span><span class="d">✦</span><span>Mexico City</span><span class="d">✦</span><span>Byron Bay</span><span class="d">✦</span><span>Los Angeles</span><span class="d">✦</span><span>Jaipur</span><span class="d">✦</span><span>Paris</span><span class="d">✦</span><span>Athens</span><span class="d">✦</span><span>São Paulo</span><span class="d">✦</span><span>Tokyo Bay</span><span class="d">✦</span><span>Mexico City</span><span class="d">✦</span><span>Byron Bay</span><span class="d">✦</span><span>Los Angeles</span><span class="d">✦</span></div></div>
+
+  <!-- 04 · HUIT FEMMES, HUIT VILLES -->
+  <section class="sec" id="cities">
+    <div class="wrap">
+      <div class="cities-head">
+        <div>
+          <div class="kicker rv"><span class="en">04 — Eight women, eight cities</span><span class="fr">04 — Huit femmes, huit villes</span></div>
+          <h2 class="sec-title"><span class="en">Far from<br>a <em>postcard.</em></span><span class="fr">Loin de la<br><em>carte postale.</em></span></h2>
+        </div>
+        <p class="copy rv">
+          <span class="en">Eight women who create jewelry, in eight cities. They chose their jewels and their places. Not a postcard: real spots, what they truly love about their city. Some are known around the world, others not yet. It does not matter. They have all agreed to be mingled with one another, as equals, on the same pieces. <b>It is a collective.</b></span>
+          <span class="fr">Huit femmes qui créent des bijoux, dans huit villes. Chacune a choisi ses bijoux et ses endroits. On est loin de la carte postale : de vrais spots et éléments qu’elles aiment vraiment de leur ville. Certaines sont connues dans le monde entier, d’autres ne le sont pas encore. Ça n’a aucune importance. Elles ont toutes accepté d’être mêlées les unes aux autres, à égalité, sur les mêmes pièces. <b>C’est un collectif.</b></span>
+        </p>
+      </div>
+      <div class="cities">
+      <article class="city rv" style="--d:0ms">
+        <span class="city-n">01</span>
+        <h3 class="city-name"><span class="en">Jaipur</span><span class="fr">Jaipur</span></h3>
+        <p class="city-des">Marie-Hélène de Taillac</p>
+        <p class="city-hook"><span class="en">The woman who brought colour into fine jewelry.</span><span class="fr">La femme qui a mis la couleur dans la haute joaillerie.</span></p>
+        <p class="city-place"><span class="en">Stones, palaces and parakeets.</span><span class="fr">Des pierres, des palais et des perruches.</span></p>
+      </article>
+      <article class="city rv" style="--d:80ms">
+        <span class="city-n">02</span>
+        <h3 class="city-name"><span class="en">Paris</span><span class="fr">Paris</span></h3>
+        <p class="city-des">Gabrielle Greiss</p>
+        <p class="city-hook"><span class="en">The hidden hand of Paris’s great fashion houses, turned sculptor.</span><span class="fr">La main de l’ombre des grandes maisons parisiennes, passée à la sculpture.</span></p>
+        <p class="city-place"><span class="en">A dreamy city, its animals and the Eiffel Tower seen from afar.</span><span class="fr">Une ville rêveuse, ses animaux et la tour Eiffel vue de loin.</span></p>
+      </article>
+      <article class="city rv" style="--d:160ms">
+        <span class="city-n">03</span>
+        <h3 class="city-name"><span class="en">Athens</span><span class="fr">Athènes</span></h3>
+        <p class="city-des">Ileana Makri</p>
+        <p class="city-hook"><span class="en">An eye, a snake, a thread of diamonds: three thousand years of Athens turned into everyday talismans.</span><span class="fr">Un œil, un serpent, un fil de diamants : trois mille ans d’Athènes en talismans de tous les jours.</span></p>
+        <p class="city-place"><span class="en">Olive trees, the blue eye and the sea.</span><span class="fr">Les oliviers, l’œil bleu et la mer.</span></p>
+      </article>
+      <article class="city rv" style="--d:240ms">
+        <span class="city-n">04</span>
+        <h3 class="city-name"><span class="en">São Paulo</span><span class="fr">São Paulo</span></h3>
+        <p class="city-des">Silvia Furmanovich</p>
+        <p class="city-hook"><span class="en">She brings the forest into the jewel.</span><span class="fr">Elle fait entrer la forêt dans le bijou.</span></p>
+        <p class="city-place"><span class="en">A green city, its forest, its butterflies and the ironwork of its gardens.</span><span class="fr">Une ville verte, sa forêt, ses papillons et la ferronnerie de ses jardins.</span></p>
+      </article>
+      <article class="city rv" style="--d:0ms">
+        <span class="city-n">05</span>
+        <h3 class="city-name"><span class="en">Tokyo Bay</span><span class="fr">Baie de Tokyo</span></h3>
+        <p class="city-des">Shinobu Marotta</p>
+        <p class="city-hook"><span class="en">Jewels with wit: an agate becomes a landscape, and precious Japan starts to speak.</span><span class="fr">Des bijoux qui ont de l’esprit : une agate devient paysage et le Japon précieux se met à parler.</span></p>
+        <p class="city-place"><span class="en">Cascading mimosa and the light of the city resting on the water.</span><span class="fr">Des mimosas en cascade et la lumière de la ville posée sur l’eau.</span></p>
+      </article>
+      <article class="city rv" style="--d:80ms">
+        <span class="city-n">06</span>
+        <h3 class="city-name"><span class="en">Mexico City</span><span class="fr">Mexico</span></h3>
+        <p class="city-des">Daniela Villegas</p>
+        <p class="city-hook"><span class="en">She dissects life, turns it inside out, then sutures it back together with gold.</span><span class="fr">Elle dissèque la vie, la retourne, puis la recoud au fil d’or.</span></p>
+        <p class="city-place"><span class="en">The electric sprawl of Mexico City, where colour refuses moderation.</span><span class="fr">L’étendue électrique de Mexico, où la couleur refuse toute modération.</span></p>
+      </article>
+      <article class="city rv" style="--d:160ms">
+        <span class="city-n">07</span>
+        <h3 class="city-name"><span class="en">Byron Bay</span><span class="fr">Byron Bay</span></h3>
+        <p class="city-des">Karen Liberman</p>
+        <p class="city-hook"><span class="en">Gold with stories to tell, set with genuine ancient coins.</span><span class="fr">Un or qui a des histoires à raconter, serti de vraies pièces antiques.</span></p>
+        <p class="city-place"><span class="en">Coastal light, shells and the profile of an ancient medallion.</span><span class="fr">La lumière côtière, ses coquillages et le profil d’une médaille ancienne.</span></p>
+      </article>
+      <article class="city rv" style="--d:240ms">
+        <span class="city-n">08</span>
+        <h3 class="city-name"><span class="en">Los Angeles</span><span class="fr">Los Angeles</span></h3>
+        <p class="city-des">Brooke Gregson</p>
+        <p class="city-hook"><span class="en">She holds earth and sky together.</span><span class="fr">Elle tient la terre et le ciel ensemble.</span></p>
+        <p class="city-place"><span class="en">Palm trees, roller skaters and the precious heart of Venice.</span><span class="fr">Ses palmiers, ses rollers et le cœur précieux de Venice.</span></p>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · BIJOUX NOMADES -->
+  <section class="sec pieces" id="pieces">
+    <div class="wrap pieces-grid">
+      <div class="pieces-img rv">
+        <div class="feature plx"><img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Sofia%20Mariscal%20%283%29.jpg" width="900" height="1333" loading="lazy" decoding="async" alt="Embroidered coat from the Bejeweled Adventures collection — photo Ana Hop"></div>
+        <p class="credit"><span class="en">Photo — Ana Hop</span><span class="fr">Photo — Ana Hop</span></p>
+      </div>
+      <div>
+        <div class="kicker rv"><span class="en">05 — Nomadic jewels</span><span class="fr">05 — Des bijoux nomades</span></div>
+        <h2 class="sec-title"><span class="en">Embroidered on<br>the <em>timeless.</em></span><span class="fr">Brodés sur<br>l’<em>intemporel.</em></span></h2>
+        <p class="copy rv" style="margin-top:1.6rem">
+          <span class="en">All of it embroidered on the timeless pieces of our brand.</span>
+          <span class="fr">On a brodé tout ça sur les intemporelles de la maison.</span>
+        </p>
+
+        <div class="piece rv" style="margin-top:2.4rem">
+          <h3><span class="en">The Piece Unique</span><span class="fr">La Pièce Unique</span></h3>
+          <p class="copy">
+            <span class="en">A coat that could be Haute Couture. Her city becomes a route, and that route becomes a jewel. Where journeys are usually traced in dotted lines, this time we hand embroidered their chains, necklaces and elements of their jewelry, and that is what draws the path. All along, the route is scattered with her spots and her jewels, front and back.</span>
+            <span class="fr">Un manteau digne de la Haute Couture. Sa ville devient une route, et cette route devient bijou. Là où d’habitude on trace nos trajets en pointillé, cette fois on a brodé une chaîne, un collier, un élément de leur joaillerie, et c’est lui qui dessine le chemin. Tout au long, la route est parsemée de ses spots et de ses bijoux, devant et derrière.</span>
+          </p>
+        </div>
+        <div class="piece rv">
+          <h3><span class="en">The Giga Scarf</span><span class="fr">La Giga Scarf</span></h3>
+          <p class="copy">
+            <span class="en">A giant postcard wrap. A love letter to her city, with its flower, and a stamp. And inside the stamp, instead of a queen or a president, a jewel. Because a jewel stamps a letter as well as any face, and it travels further.</span>
+            <span class="fr">Une étole carte postale géante. Une déclaration d’amour à sa ville, avec sa fleur, et un timbre. Et dans le timbre, à la place de la reine ou du président, un bijou. Parce qu’un bijou, ça affranchit aussi bien qu’un visage, et ça voyage plus loin.</span>
+          </p>
+        </div>
+        <div class="piece rv">
+          <h3><span class="en">The Undercover</span><span class="fr">L’Undercover</span></h3>
+          <p class="copy">
+            <span class="en">The basket shows a jewel on one side and her city on the other.</span>
+            <span class="fr">Sur le panier, un bijou sur une face, sa ville sur l’autre.</span>
+          </p>
+        </div>
+
+        <div class="result rv">
+          <p class="big"><span class="en">The result:<br><span>nomadic jewels.</span></span><span class="fr">Le résultat :<br><span>des bijoux nomades.</span></span></p>
+          <p class="copy">
+            <span class="en">Pieces that carry on them eight places of the world and eight women. A court of jewelers gathered on the same fabric, like the stones of a single tiara. <b>Each one shines, none outshines the others.</b></span>
+            <span class="fr">Des pièces qui se portent, qui voyagent, qui gardent sur elles huit endroits du monde et huit femmes. Une cour de joaillières réunies sur la même étoffe, comme les pierres d’une même tiare. <b>Chacune brille, aucune ne dépasse.</b></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · TÉLÉPORTÉS -->
+  <section class="sec gallery" id="gallery">
+    <div class="wrap gallery-head">
+      <div>
+        <div class="kicker rv"><span class="en">06 — Teleported</span><span class="fr">06 — Téléportés</span></div>
+        <h2 class="sec-title"><span class="en">Los Elegantes<br><em>of Mexico City.</em></span><span class="fr">Los Elegantes<br><em>de Mexico.</em></span></h2>
+        <p class="copy rv" style="margin-top:1.6rem">
+          <span class="en">Fifteen portraits, each one teleported into the city of a designer.</span>
+          <span class="fr">Quinze portraits, chacun téléporté dans la ville d’une créatrice.</span>
+        </p>
+      </div>
+      <div class="rail-ctl" aria-label="Gallery">
+        <button class="rail-btn" id="rail-prev" type="button" aria-label="Previous">←</button>
+        <button class="rail-btn" id="rail-next" type="button" aria-label="Next">→</button>
+      </div>
+    </div>
+
+    <div class="rail" id="rail" tabindex="0" aria-label="Portraits">
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Carla%20Ortega.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Carla Ortega teleported in Ileana Makri’s Athens — photo Ana Hop">
+        <figcaption><span class="shot-i">01</span><p class="shot-line"><b>Carla Ortega</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Ileana Makri’s Athens</span><span class="fr">l’Athènes d’Ileana Makri</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_%20Pierre%20Violet-Atenea%20Herrera-Terrence-Phoenix.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Pierre &amp; Atenea Violet teleported in Brooke Gregson’s Los Angeles — photo Ana Hop">
+        <figcaption><span class="shot-i">02</span><p class="shot-line"><b>Pierre &amp; Atenea Violet</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportés dans</span></span>
+            <span class="shot-city"><span class="en">Brooke Gregson’s Los Angeles</span><span class="fr">le Los Angeles de Brooke Gregson</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED_ADVENTURES_Emmanuel_Picault.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Emmanuel Picaut teleported in Silvia Furmanovich’s São Paulo — photo Ana Hop">
+        <figcaption><span class="shot-i">03</span><p class="shot-line"><b>Emmanuel Picaut</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléporté dans</span></span>
+            <span class="shot-city"><span class="en">Silvia Furmanovich’s São Paulo</span><span class="fr">le São Paulo de Silvia Furmanovich</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Rudy%20F.%20Weissenberg%20%282%29.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Rudy F. Weissenberg teleported in Karen Liberman’s Byron Bay — photo Ana Hop">
+        <figcaption><span class="shot-i">04</span><p class="shot-line"><b>Rudy F. Weissenberg</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléporté dans</span></span>
+            <span class="shot-city"><span class="en">Karen Liberman’s Byron Bay</span><span class="fr">le Byron Bay de Karen Liberman</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_JULIO%20AMEZCUA%20.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Julio Amezcua teleported in Daniela Villegas’s Mexico — photo Ana Hop">
+        <figcaption><span class="shot-i">05</span><p class="shot-line"><b>Julio Amezcua</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléporté dans</span></span>
+            <span class="shot-city"><span class="en">Daniela Villegas’s Mexico</span><span class="fr">le Mexico de Daniela Villegas</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_GABRIEL%20LOPEZ%20MORTON.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Gabriel Lopez Morton teleported in Shinobu Marotta’s Tokyo Bay — photo Ana Hop">
+        <figcaption><span class="shot-i">06</span><p class="shot-line"><b>Gabriel Lopez Morton</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléporté dans</span></span>
+            <span class="shot-city"><span class="en">Shinobu Marotta’s Tokyo Bay</span><span class="fr">la baie de Tokyo de Shinobu Marotta</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_ANA%20HOP.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Ana Hop teleported in Karen Liberman’s Byron Bay — photo Ana Hop">
+        <figcaption><span class="shot-i">07</span><p class="shot-line"><b>Ana Hop</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Karen Liberman’s Byron Bay</span><span class="fr">le Byron Bay de Karen Liberman</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Fabiola%20Zamora%20%282%29.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Fabiola Zamora teleported in Gabrielle Greiss’s Paris — photo Ana Hop">
+        <figcaption><span class="shot-i">08</span><p class="shot-line"><b>Fabiola Zamora</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Gabrielle Greiss’s Paris</span><span class="fr">le Paris de Gabrielle Greiss</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Sofia%20Mariscal%20%282%29.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Sofia Mariscal teleported in Silvia Furmanovich’s São Paulo — photo Ana Hop">
+        <figcaption><span class="shot-i">09</span><p class="shot-line"><b>Sofia Mariscal</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Silvia Furmanovich’s São Paulo</span><span class="fr">le São Paulo de Silvia Furmanovich</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Marcelo%20Ramirez%20Romero.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Marcelo Ramirez Romero teleported in Gabrielle Greiss’s Paris — photo Ana Hop">
+        <figcaption><span class="shot-i">10</span><p class="shot-line"><b>Marcelo Ramirez Romero</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléporté dans</span></span>
+            <span class="shot-city"><span class="en">Gabrielle Greiss’s Paris</span><span class="fr">le Paris de Gabrielle Greiss</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Sofia%20Mariscal%20%283%29.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Sofia Mariscal teleported in Marie-Hélène de Taillac’s Jaipur — photo Ana Hop">
+        <figcaption><span class="shot-i">11</span><p class="shot-line"><b>Sofia Mariscal</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Marie-Hélène de Taillac’s Jaipur</span><span class="fr">le Jaipur de Marie-Hélène de Taillac</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Mariana%20Villarreal.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Mariana Villarreal teleported in Shinobu Marotta’s Tokyo Bay — photo Ana Hop">
+        <figcaption><span class="shot-i">12</span><p class="shot-line"><b>Mariana Villarreal</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Shinobu Marotta’s Tokyo Bay</span><span class="fr">la baie de Tokyo de Shinobu Marotta</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_ALONSO%20TERUEL.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Alonso Teruel teleported in Gabrielle Greiss’s Paris — photo Ana Hop">
+        <figcaption><span class="shot-i">13</span><p class="shot-line"><b>Alonso Teruel</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléporté dans</span></span>
+            <span class="shot-city"><span class="en">Gabrielle Greiss’s Paris</span><span class="fr">le Paris de Gabrielle Greiss</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED%20ADVENTURES_Stephanie%20Arouesty%20%282%29.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Stephanie Arouesty teleported in Daniela Villegas’s Mexico — photo Ana Hop">
+        <figcaption><span class="shot-i">14</span><p class="shot-line"><b>Stephanie Arouesty</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Daniela Villegas’s Mexico</span><span class="fr">le Mexico de Daniela Villegas</span></span></p></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="./fashionWeek/BEJEWELLED_ADVENTURE_ALEXANDRA-LEONORA.jpg" width="900" height="1333" loading="lazy" decoding="async" draggable="false" alt="Alexandra Senes teleported in Shinobu Marotta’s Tokyo Bay · Leonora Viveros teleported in Ileana Makri’s Athens — photo Ana Hop">
+        <figcaption><span class="shot-i">15</span><p class="shot-line"><b>Alexandra Senes</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Shinobu Marotta’s Tokyo Bay</span><span class="fr">la baie de Tokyo de Shinobu Marotta</span></span></p><p class="shot-line"><b>Leonora Viveros</b>
+            <span class="shot-tp"><span class="en">teleported in</span><span class="fr">téléportée dans</span></span>
+            <span class="shot-city"><span class="en">Ileana Makri’s Athens</span><span class="fr">l’Athènes d’Ileana Makri</span></span></p></figcaption>
+      </figure>
+    </div>
+    <div class="rail-bar" aria-hidden="true"><i id="rail-prog"></i></div>
+    <p class="photo-credit"><span class="en">Photography — Ana Hop</span><span class="fr">Photographie — Ana Hop</span></p>
+  </section>
+
+  <!-- 07 · LES MAINS -->
+  <section class="sec hands" id="hands">
+    <div class="wrap">
+      <div class="hands-head">
+        <div>
+          <div class="kicker rv"><span class="en">07 — Behind the pieces</span><span class="fr">07 — Derrière les pièces</span></div>
+          <h2 class="sec-title"><span class="en">The talented<br><em>hands.</em></span><span class="fr">Les mains<br><em>talentueuses.</em></span></h2>
+        </div>
+        <p class="copy rv">
+          <span class="en">A huge applause to the talented hands behind the 8 Pieces Uniques.</span>
+          <span class="fr">Un immense applaudissement aux mains talentueuses derrière les 8 Pièces Uniques.</span>
+        </p>
+      </div>
+      <ul class="hands-list">
+        <li class="rv"><b>Emi</b><span class="hl-c"><span class="en">Jaipur</span><span class="fr">Jaipur</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Marie-Hélène de Taillac</span></li>
+        <li class="rv"><b>Gabriela</b><span class="hl-c"><span class="en">Paris</span><span class="fr">Paris</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Gabrielle Greiss</span></li>
+        <li class="rv"><b>Doña Angelina</b><span class="hl-c"><span class="en">Athens</span><span class="fr">Athènes</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Ileana Makri</span></li>
+        <li class="rv"><b>Doña Senorina &amp; Jonathan</b><span class="hl-c"><span class="en">São Paulo</span><span class="fr">São Paulo</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Silvia Furmanovich</span></li>
+        <li class="rv"><b>Sofia</b><span class="hl-c"><span class="en">Tokyo Bay</span><span class="fr">Baie de Tokyo</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Shinobu Marotta</span></li>
+        <li class="rv"><b>Anita</b><span class="hl-c"><span class="en">Mexico</span><span class="fr">Mexico</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Daniela Villegas</span></li>
+        <li class="rv"><b>Doña Demetria</b><span class="hl-c"><span class="en">Byron Bay</span><span class="fr">Byron Bay</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Karen Liberman</span></li>
+        <li class="rv"><b>Doña Cari</b><span class="hl-c"><span class="en">Los Angeles</span><span class="fr">Los Angeles</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Brooke Gregson</span></li>
+      </ul>
+      <div class="btn-row rv">
+        <a class="btn" href="our-talented-hands"><span class="en">Meet our hands</span><span class="fr">Découvrir nos mains</span> →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · PREMIÈRE ESCALE -->
+  <section class="final" id="first-stop">
+    <div class="wrap">
+      <p class="final-first rv"><span class="en">First stop</span><span class="fr">Première escale</span></p>
+      <div class="final-paris rv" aria-hidden="true">Paris</div>
+      <h2 class="final-fw rv"><span class="en">Paris Fashion Week</span><span class="fr">Paris Fashion Week</span></h2>
+      <p class="final-date rv"><span class="en">October 2026</span><span class="fr">Octobre 2026</span></p>
+      <div class="btn-row rv">
+        <a class="btn solid" href="https://kilometre.paris" target="_blank" rel="noopener"><span class="en">Discover the shop</span><span class="fr">Découvrir la boutique</span> →</a>
+        <a class="btn" href="https://www.instagram.com/kilometre.paris/" target="_blank" rel="noopener">@kilometre.paris</a>
+      </div>
+      <p class="credits rv">
+        <span class="en"><b>Photography</b> Ana Hop &nbsp;·&nbsp; <b>Film</b> Pierre &amp; Florent</span>
+        <span class="fr"><b>Photographie</b> Ana Hop &nbsp;·&nbsp; <b>Film</b> Pierre &amp; Florent</span>
+      </p>
+    </div>
+  </section>
+
+</main>
 
 <script src="footer.js"></script>
 
@@ -224,6 +858,135 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
   });
   tryPlay();
 })();
+</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Langue FR / EN (même clé que About Us) ── */
+  var btns = document.querySelectorAll('.lang-btn');
+  function paint(l){
+    btns.forEach(function(b){
+      var on = b.dataset.lang === l;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+  }
+  paint(document.documentElement.lang === 'fr' ? 'fr' : 'en');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      document.documentElement.lang = b.dataset.lang;
+      paint(b.dataset.lang);
+      try{ localStorage.setItem('kmp-lang', b.dataset.lang); }catch(e){}
+    });
+  });
+
+  /* ── Effet « tableau d'aéroport » sur les titres (comme About Us) ── */
+  document.querySelectorAll('.sec-title,.kicker').forEach(function(el){
+    el.classList.add('roll');
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(node){
+      if(!node.textContent.trim() && node.textContent.indexOf(' ') < 0) return;
+      var frag = document.createDocumentFragment(), n = 0;
+      node.textContent.split(/(\s+)/).forEach(function(part){
+        if(!part) return;
+        if(/^\s+$/.test(part)){ frag.append(document.createTextNode(' ')); return; }
+        var word=document.createElement('span'); word.className='roll-word';
+        Array.from(part).forEach(function(ch){
+          var wrap=document.createElement('span'); wrap.className='roll-char';
+          var f=document.createElement('span'); f.textContent=ch;
+          var b=document.createElement('span'); b.className='roll-back'; b.textContent=ch;
+          wrap.append(f,b); wrap.style.animationDelay=Math.min((n++)*.022,.6)+'s'; word.append(wrap);
+        });
+        frag.append(word);
+      });
+      node.parentNode.replaceChild(frag,node);
+    });
+  });
+
+  /* ── Révélation au scroll ── */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(e.target.classList.contains('roll')) e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv,.roll').forEach(function(el){ io.observe(el); });
+
+  /* ── Compteurs 8 · 8 · 4 ── */
+  var co = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      co.unobserve(e.target);
+      var el = e.target, to = +el.dataset.count;
+      if(reduce){ el.textContent = to; return; }
+      var t0 = null;
+      (function tick(t){
+        if(!t0) t0 = t;
+        var p = Math.min((t - t0)/1400, 1), v = Math.round(to*(1-Math.pow(1-p,3)));
+        el.textContent = v;
+        if(p < 1) requestAnimationFrame(tick);
+      })(performance.now());
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){ el.textContent='0'; co.observe(el); });
+
+  /* ── Parallaxe douce des deux grandes photos ── */
+  var plx = Array.prototype.slice.call(document.querySelectorAll('.plx img')), ticking = false;
+  function parallax(){
+    ticking = false;
+    var vh = window.innerHeight;
+    plx.forEach(function(im){
+      var r = im.parentNode.getBoundingClientRect();
+      if(r.bottom < 0 || r.top > vh) return;
+      var p = (r.top + r.height/2 - vh/2)/vh;
+      im.style.transform = 'translate3d(0,' + (p*-34).toFixed(1) + 'px,0) scale(1.1)';
+    });
+  }
+  if(!reduce && plx.length){
+    window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(parallax); } }, {passive:true});
+    window.addEventListener('resize', parallax);
+    parallax();
+  }
+
+  /* ── Galerie : flèches, barre de progression, glisser à la souris ── */
+  var rail = document.getElementById('rail'), prog = document.getElementById('rail-prog');
+  if(rail){
+    function step(dir){
+      var c = rail.querySelector('.shot');
+      rail.scrollBy({left: dir*(c.offsetWidth + 16), behavior: reduce ? 'auto' : 'smooth'});
+    }
+    document.getElementById('rail-prev').addEventListener('click', function(){ step(-1); });
+    document.getElementById('rail-next').addEventListener('click', function(){ step(1); });
+    rail.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight'){ step(1); e.preventDefault(); }
+      if(e.key === 'ArrowLeft'){ step(-1); e.preventDefault(); }
+    });
+    function progress(){
+      var max = rail.scrollWidth - rail.clientWidth;
+      var p = max > 0 ? rail.scrollLeft/max : 1;
+      prog.style.transform = 'scaleX(' + (0.08 + p*0.92).toFixed(3) + ')';
+    }
+    rail.addEventListener('scroll', progress, {passive:true});
+    window.addEventListener('resize', progress); progress();
+
+    var down = false, sx = 0, sl = 0;
+    rail.addEventListener('pointerdown', function(e){
+      if(e.pointerType !== 'mouse') return;
+      down = true; sx = e.clientX; sl = rail.scrollLeft; rail.classList.add('drag');
+    });
+    window.addEventListener('pointermove', function(e){ if(down) rail.scrollLeft = sl - (e.clientX - sx); });
+    window.addEventListener('pointerup', function(){
+      if(!down) return; down = false; rail.classList.remove('drag');
+    });
+  }
+})();
+
 </script>
 
 </body>
