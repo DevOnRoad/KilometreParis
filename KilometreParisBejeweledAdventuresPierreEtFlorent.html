@@ -515,6 +515,17 @@ body{background:#fff;color:var(--ink)}
 #cities .city-jewel img{aspect-ratio:3/2}
 #cities .city-name{font-size:clamp(2.2rem,3.4vw,3.4rem)}
 @media(max-width:700px){#cities .cities{grid-template-columns:1fr}}
+
+/* partie 1 : photos bijoux jusqu'aux bords, sans bordures sur les côtés */
+#cities .cities{width:100vw;margin-left:calc(50% - 50vw);border-left:0;border-right:0}
+#cities .city{--cp:2.2rem;padding:2.2rem var(--cp) 0}
+#cities .city-jewel{margin:1.1rem calc(var(--cp) * -1) 0;gap:0}
+#cities .city-jewel img{border:0}
+#cities .city-jewel figcaption{padding:.8rem var(--cp) 1.6rem}
+@media(max-width:700px){#cities .city{--cp:1.4rem}}
+
+/* tous les h2 en bleu Kilometre */
+h2,h2.sec-title,.sec-title,.sec-title em,.final-fw{color:#2F3E86}
 </style>
 <noscript><style>#intro-loader{display:none}html.intro-lock,html.intro-lock body{overflow:auto}</style></noscript>
 </head>
@@ -589,7 +600,7 @@ body{background:#fff;color:var(--ink)}
     <div class="wrap">
       <div class="cities-head">
         <div>
-          <div class="kicker rv"><span class="en">03 — Eight women, eight cities</span><span class="fr">03 — Huit femmes, huit villes</span></div>
+          <div class="kicker rv"><span class="en">01 — Eight women, eight cities</span><span class="fr">01 — Huit femmes, huit villes</span></div>
           <h2 class="sec-title"><span class="en">Far from<br>a <em>postcard.</em></span><span class="fr">Loin de la<br><em>carte postale.</em></span></h2>
         </div>
         <p class="copy rv">
@@ -692,10 +703,10 @@ body{background:#fff;color:var(--ink)}
 
 
   <!-- 06 · TÉLÉPORTÉS -->
-  <section class="sec gallery" id="gallery">
+  <!-- <section class="sec gallery" id="gallery">
     <div class="wrap gallery-head">
       <div>
-        <div class="kicker rv"><span class="en">04 — Teleported</span><span class="fr">04 — Téléportés</span></div>
+        <div class="kicker rv"><span class="en">02 — Teleported</span><span class="fr">02 — Téléportés</span></div>
         <h2 class="sec-title"><span class="en">Los Elegantes<br><em>of Mexico City.</em></span><span class="fr">Los Elegantes<br><em>de Mexico.</em></span></h2>
         <p class="copy rv" style="margin-top:1.6rem">
           <span class="en">Fifteen portraits, each one teleported into the city of a designer.</span>
@@ -804,7 +815,7 @@ body{background:#fff;color:var(--ink)}
     </div>
     <div class="rail-bar" aria-hidden="true"><i id="rail-prog"></i></div>
     <p class="photo-credit"><span class="en">Photography — Ana Hop</span><span class="fr">Photographie — Ana Hop</span></p>
-  </section>
+  </section> -->
 
 
   <!-- 08 · PREMIÈRE ESCALE -->
