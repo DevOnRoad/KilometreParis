@@ -417,6 +417,104 @@ html.js .rv.in{opacity:1;transform:none}
 .city-jewel figcaption{font:700 .62rem "Barlow Condensed",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--soft)}
 .city{min-height:0}
 
+
+/* ════════ THÈME CLAIR : fond blanc, section 3 + final en bleu Kilometre ════════ */
+:root{--kb:#2F3E86;--ink:#171717;--line:rgba(47,62,134,.2);--soft:rgba(23,23,23,.78)}
+body{background:#fff;color:var(--ink)}
+.story{background:#fff}
+.story:after{display:none}
+.hero-photo-overlay{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%)}
+.lang-switcher{background:rgba(255,255,255,.9);border-color:var(--kb)}
+.lang-btn{color:var(--ink)}
+.lang-btn.active{background:var(--kb);border-color:var(--kb);color:#fff}
+.kicker{color:var(--kb)}
+.sec-title{color:var(--ink)}
+.sec-title em{color:var(--kb)}
+.copy{color:var(--soft)}
+.copy b{color:var(--ink)}
+.lead-serif{color:var(--ink)}
+.lead-serif .em{color:var(--kb)}
+.manifesto .after{color:var(--kb)}
+.feature{background:#eee;box-shadow:0 30px 70px rgba(23,23,23,.22)}
+.feature:after{background:linear-gradient(to top,rgba(0,0,0,.35),transparent 38%)}
+.credit,.photo-credit{color:rgba(23,23,23,.55)}
+.duo .closing{color:var(--kb)}
+
+/* 03 : bleu Kilometre */
+.collection{background:var(--kb);border-top:0}
+.collection .kicker{color:var(--yellow)}
+.collection .sec-title{color:#fff}
+.collection .sec-title em{color:var(--yellow)}
+.collection .copy{color:rgba(255,255,255,.85)}
+.collection .copy b{color:#fff}
+.collection .stats,.collection .stat+.stat{border-color:rgba(255,248,189,.28)}
+.collection .stat b{color:var(--yellow)}
+.collection .stat span{color:rgba(255,255,255,.75)}
+.collection .chips span{color:var(--yellow);border-color:rgba(255,248,189,.5)}
+
+.marq{background:#fff;border-block:1px solid var(--line)}
+.marq-in span{color:var(--kb)}
+
+/* 04 : villes */
+.cities{background:var(--line);border-color:var(--line)}
+.city{background:#fff}
+.city:hover{background:#F7F5EE}
+.city:before{background:var(--kb)}
+.city-n{color:rgba(23,23,23,.4)}
+.city-name{color:var(--ink)}
+.city-des{color:var(--kb)}
+.city-hook{color:var(--soft)}
+.city-place{color:var(--kb);border-top-color:var(--line)}
+.city-jewel img{background:#eee;border-color:var(--line)}
+.city-jewel figcaption{color:var(--ink)}
+
+/* 05 : pièces */
+.pieces{border-top:1px solid var(--line)}
+.piece h3{color:var(--kb)}
+.result .big{color:var(--ink)}
+.result .big span{color:var(--kb)}
+
+/* 06 : galerie (photos sombres, légendes blanches sur la photo) */
+.gallery{border-top:1px solid var(--line)}
+.shot{background:#eee}
+.rail-btn{border-color:var(--kb);color:var(--kb)}
+.rail-btn:hover{background:var(--kb);color:#fff}
+.rail-bar{background:rgba(47,62,134,.18)}
+.rail-bar i{background:var(--kb)}
+
+/* 07 : mains */
+.hands{border-top:1px solid var(--line)}
+.hands-list{border-top-color:var(--line)}
+.hands-list li{border-bottom-color:var(--line)}
+.hands-list li:hover{background:rgba(47,62,134,.05)}
+.hands-list b{color:var(--ink)}
+.hands-list .hl-c{color:var(--kb)}
+.hands-list .hl-d{color:var(--soft)}
+.btn{border-color:var(--kb);color:var(--kb)}
+.btn:hover{background:var(--kb);color:#fff}
+.btn.solid{background:var(--red);border-color:var(--red);color:#fff}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* 08 : final en bleu Kilometre */
+.final{background:var(--kb);border-top:0}
+.final:before{background:radial-gradient(closest-side,rgba(255,255,255,.12),transparent)}
+.final .btn{border-color:var(--yellow);color:var(--yellow)}
+.final .btn:hover{background:var(--yellow);color:var(--kb)}
+.final .btn.solid{background:var(--red);border-color:var(--red);color:#fff}
+.final .btn.solid:hover{background:#fff;border-color:#fff;color:var(--kb)}
+.final .kicker{color:var(--yellow)}
+
+/* titres en noir, villes en rouge, section villes en format paysage */
+.sec-title,.sec-title em,.lead-serif .em,.manifesto .after,.duo .closing,.kicker{color:var(--ink)}
+.kicker:before{background:var(--red)}
+.city-name{color:var(--red)}
+.city-des{color:var(--ink)}
+#cities .wrap{max-width:1500px}
+#cities .cities{grid-template-columns:repeat(2,1fr)}
+#cities .city{padding:2.2rem 2.2rem 2.4rem}
+#cities .city-jewel img{aspect-ratio:3/2}
+#cities .city-name{font-size:clamp(2.2rem,3.4vw,3.4rem)}
+@media(max-width:700px){#cities .cities{grid-template-columns:1fr}}
 </style>
 <noscript><style>#intro-loader{display:none}html.intro-lock,html.intro-lock body{overflow:auto}</style></noscript>
 </head>
@@ -454,7 +552,7 @@ html.js .rv.in{opacity:1;transform:none}
 <main class="story">
 
   <!-- 01 · LE PREMIER NOMADE -->
-  <section class="sec manifesto" id="nomad">
+  <!-- <section class="sec manifesto" id="nomad">
     <div class="wrap">
       <div class="kicker rv"><span class="en">01 — The first nomad</span><span class="fr">01 — Le premier nomade</span></div>
       <p class="lead-serif rv">
@@ -463,10 +561,10 @@ html.js .rv.in{opacity:1;transform:none}
       </p>
       <p class="after rv"><span class="en">The jewel is the first nomad. It was travelling long before we were.</span><span class="fr">Le bijou est le premier nomade. Avant nous il voyageait déjà.</span></p>
     </div>
-  </section>
+  </section> -->
 
   <!-- 02 · DEUX OBSESSIONS -->
-  <section class="sec" id="obsessions">
+  <!-- <section class="sec" id="obsessions">
     <div class="wrap duo">
       <div>
         <div class="kicker rv"><span class="en">02 — Two obsessions</span><span class="fr">02 — Deux obsessions</span></div>
@@ -482,41 +580,16 @@ html.js .rv.in{opacity:1;transform:none}
         <p class="credit"><span class="en">Photo — Ana Hop</span><span class="fr">Photo — Ana Hop</span></p>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <!-- 03 · LA COLLECTION -->
-  <section class="sec collection" id="collection">
-    <div class="wrap">
-      <div class="kicker rv"><span class="en">03 — The collection</span><span class="fr">03 — La collection</span></div>
-      <h2 class="sec-title"><span class="en">What is<br><em>Bejeweled<br>Adventures?</em></span><span class="fr">Qu’est-ce que<br><em>Bejeweled<br>Adventures ?</em></span></h2>
-      <p class="copy rv">
-        <span class="en">A <b>Hand in Hand</b> collection celebrating the natural connection between travel, jewelry and fashion. A Kilometre Paris “capsule collection” with 8 women jewelry designers from around the world. Each piece tells the story of a destination through illustrations, colours and craftsmanship, celebrating their roots, itineraries, uniqueness, memories and inspirations into wearable works of art.</span>
-        <span class="fr">Une collection <b>Main dans la Main</b> célébrant le lien naturel entre le voyage, le bijou et la mode. Une « collection capsule » Kilometre Paris réunissant 8 créatrices de bijoux du monde entier. Chaque pièce raconte l’histoire d’une destination à travers des illustrations, des couleurs et un savoir-faire artisanal, une célébration de leurs racines, de leurs parcours, de leur singularité, de leurs souvenirs et de leurs inspirations, transformés en véritables œuvres d’art à porter.</span>
-      </p>
-      <div class="stats">
-        <div class="stat rv"><b data-count="8">8</b><span><span class="en">Women jewelry designers</span><span class="fr">Créatrices de bijoux</span></span></div>
-        <div class="stat rv" style="--d:100ms"><b data-count="8">8</b><span><span class="en">Global cities</span><span class="fr">Villes dans le monde</span></span></div>
-        <div class="stat rv" style="--d:200ms"><b data-count="24">24</b><span><span class="en">Pieces</span><span class="fr">Pièces</span></span></div>
-      </div>
-      <div class="chips rv">
-        <span class="en">Limited edition pieces</span><span class="fr">Pièces en édition limitée</span>
-        <span class="en">Hand-illustrated</span><span class="fr">Illustré à la main</span>
-        <span class="en">Hand-knitted</span><span class="fr">Tricoté à la main</span>
-        <span class="en">Hand-crocheted</span><span class="fr">Crocheté à la main</span>
-        <span class="en">Hand-woven</span><span class="fr">Tissé à la main</span>
-        <span class="en">Hand-embroidered</span><span class="fr">Brodé à la main</span>
-      </div>
-    </div>
-  </section>
 
-  <div class="marq" aria-hidden="true"><div class="marq-in"><span>Jaipur</span><span class="d">✦</span><span>Paris</span><span class="d">✦</span><span>Athens</span><span class="d">✦</span><span>São Paulo</span><span class="d">✦</span><span>Tokyo Bay</span><span class="d">✦</span><span>Mexico City</span><span class="d">✦</span><span>Byron Bay</span><span class="d">✦</span><span>Los Angeles</span><span class="d">✦</span><span>Jaipur</span><span class="d">✦</span><span>Paris</span><span class="d">✦</span><span>Athens</span><span class="d">✦</span><span>São Paulo</span><span class="d">✦</span><span>Tokyo Bay</span><span class="d">✦</span><span>Mexico City</span><span class="d">✦</span><span>Byron Bay</span><span class="d">✦</span><span>Los Angeles</span><span class="d">✦</span></div></div>
 
   <!-- 04 · HUIT FEMMES, HUIT VILLES -->
   <section class="sec" id="cities">
     <div class="wrap">
       <div class="cities-head">
         <div>
-          <div class="kicker rv"><span class="en">04 — Eight women, eight cities</span><span class="fr">04 — Huit femmes, huit villes</span></div>
+          <div class="kicker rv"><span class="en">03 — Eight women, eight cities</span><span class="fr">03 — Huit femmes, huit villes</span></div>
           <h2 class="sec-title"><span class="en">Far from<br>a <em>postcard.</em></span><span class="fr">Loin de la<br><em>carte postale.</em></span></h2>
         </div>
         <p class="copy rv">
@@ -617,59 +690,12 @@ html.js .rv.in{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 05 · BIJOUX NOMADES -->
-  <section class="sec pieces" id="pieces">
-    <div class="wrap pieces-grid">
-      <div class="pieces-img rv">
-        <div class="feature plx"><img src="./fashionWeek/fw.jpg" width="900" height="1333" loading="lazy" decoding="async" alt="Embroidered coat from the Bejeweled Adventures collection — photo Ana Hop"></div>
-        <p class="credit"><span class="en">Photo — Ana Hop</span><span class="fr">Photo — Ana Hop</span></p>
-      </div>
-      <div>
-        <div class="kicker rv"><span class="en">05 — Nomadic jewels</span><span class="fr">05 — Des bijoux nomades</span></div>
-        <h2 class="sec-title"><span class="en">Embroidered on<br>the <em>timeless.</em></span><span class="fr">Brodés sur<br>l’<em>intemporel.</em></span></h2>
-        <p class="copy rv" style="margin-top:1.6rem">
-          <span class="en">All of it embroidered on the timeless pieces of our brand.</span>
-          <span class="fr">On a brodé tout ça sur les intemporelles de la maison.</span>
-        </p>
-
-        <div class="piece rv" style="margin-top:2.4rem">
-          <h3><span class="en">The Piece Unique</span><span class="fr">La Pièce Unique</span></h3>
-          <p class="copy">
-            <span class="en">A coat that could be Haute Couture. Her city becomes a route, and that route becomes a jewel. Where journeys are usually traced in dotted lines, this time we hand embroidered their chains, necklaces and elements of their jewelry, and that is what draws the path. All along, the route is scattered with her spots and her jewels, front and back.</span>
-            <span class="fr">Un manteau digne de la Haute Couture. Sa ville devient une route, et cette route devient bijou. Là où d’habitude on trace nos trajets en pointillé, cette fois on a brodé une chaîne, un collier, un élément de leur joaillerie, et c’est lui qui dessine le chemin. Tout au long, la route est parsemée de ses spots et de ses bijoux, devant et derrière.</span>
-          </p>
-        </div>
-        <div class="piece rv">
-          <h3><span class="en">The Giga Scarf</span><span class="fr">La Giga Scarf</span></h3>
-          <p class="copy">
-            <span class="en">A giant postcard wrap. A love letter to her city, with its flower, and a stamp. And inside the stamp, instead of a queen or a president, a jewel. Because a jewel stamps a letter as well as any face, and it travels further.</span>
-            <span class="fr">Une étole carte postale géante. Une déclaration d’amour à sa ville, avec sa fleur, et un timbre. Et dans le timbre, à la place de la reine ou du président, un bijou. Parce qu’un bijou, ça affranchit aussi bien qu’un visage, et ça voyage plus loin.</span>
-          </p>
-        </div>
-        <div class="piece rv">
-          <h3><span class="en">The Undercover</span><span class="fr">L’Undercover</span></h3>
-          <p class="copy">
-            <span class="en">The basket shows a jewel on one side and her city on the other.</span>
-            <span class="fr">Sur le panier, un bijou sur une face, sa ville sur l’autre.</span>
-          </p>
-        </div>
-
-        <div class="result rv">
-          <p class="big"><span class="en">The result:<br><span>nomadic jewels.</span></span><span class="fr">Le résultat :<br><span>des bijoux nomades.</span></span></p>
-          <p class="copy">
-            <span class="en">Pieces that carry on them eight places of the world and eight women. A court of jewelers gathered on the same fabric, like the stones of a single tiara. <b>Each one shines, none outshines the others.</b></span>
-            <span class="fr">Des pièces qui se portent, qui voyagent, qui gardent sur elles huit endroits du monde et huit femmes. Une cour de joaillières réunies sur la même étoffe, comme les pierres d’une même tiare. <b>Chacune brille, aucune ne dépasse.</b></span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- 06 · TÉLÉPORTÉS -->
   <section class="sec gallery" id="gallery">
     <div class="wrap gallery-head">
       <div>
-        <div class="kicker rv"><span class="en">06 — Teleported</span><span class="fr">06 — Téléportés</span></div>
+        <div class="kicker rv"><span class="en">04 — Teleported</span><span class="fr">04 — Téléportés</span></div>
         <h2 class="sec-title"><span class="en">Los Elegantes<br><em>of Mexico City.</em></span><span class="fr">Los Elegantes<br><em>de Mexico.</em></span></h2>
         <p class="copy rv" style="margin-top:1.6rem">
           <span class="en">Fifteen portraits, each one teleported into the city of a designer.</span>
@@ -780,37 +806,9 @@ html.js .rv.in{opacity:1;transform:none}
     <p class="photo-credit"><span class="en">Photography — Ana Hop</span><span class="fr">Photographie — Ana Hop</span></p>
   </section>
 
-  <!-- 07 · LES MAINS -->
-  <section class="sec hands" id="hands">
-    <div class="wrap">
-      <div class="hands-head">
-        <div>
-          <div class="kicker rv"><span class="en">07 — Behind the pieces</span><span class="fr">07 — Derrière les pièces</span></div>
-          <h2 class="sec-title"><span class="en">The talented<br><em>hands.</em></span><span class="fr">Les mains<br><em>talentueuses.</em></span></h2>
-        </div>
-        <p class="copy rv">
-          <span class="en">A huge applause to the talented hands behind the 8 Pieces Uniques.</span>
-          <span class="fr">Un immense applaudissement aux mains talentueuses derrière les 8 Pièces Uniques.</span>
-        </p>
-      </div>
-      <ul class="hands-list">
-        <li class="rv"><b>Emi</b><span class="hl-c"><span class="en">Jaipur</span><span class="fr">Jaipur</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Marie-Hélène de Taillac</span></li>
-        <li class="rv"><b>Gabriela</b><span class="hl-c"><span class="en">Paris</span><span class="fr">Paris</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Gabrielle Greiss</span></li>
-        <li class="rv"><b>Doña Angelina</b><span class="hl-c"><span class="en">Athens</span><span class="fr">Athènes</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Ileana Makri</span></li>
-        <li class="rv"><b>Doña Senorina &amp; Jonathan</b><span class="hl-c"><span class="en">São Paulo</span><span class="fr">São Paulo</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Silvia Furmanovich</span></li>
-        <li class="rv"><b>Sofia</b><span class="hl-c"><span class="en">Tokyo Bay</span><span class="fr">Baie de Tokyo</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Shinobu Marotta</span></li>
-        <li class="rv"><b>Anita</b><span class="hl-c"><span class="en">Mexico</span><span class="fr">Mexico</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Daniela Villegas</span></li>
-        <li class="rv"><b>Doña Demetria</b><span class="hl-c"><span class="en">Byron Bay</span><span class="fr">Byron Bay</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Karen Liberman</span></li>
-        <li class="rv"><b>Doña Cari</b><span class="hl-c"><span class="en">Los Angeles</span><span class="fr">Los Angeles</span></span><span class="hl-d"><span class="en">by</span><span class="fr">par</span> Brooke Gregson</span></li>
-      </ul>
-      <div class="btn-row rv">
-        <a class="btn" href="our-talented-hands"><span class="en">Meet our hands</span><span class="fr">Découvrir nos mains</span> →</a>
-      </div>
-    </div>
-  </section>
 
   <!-- 08 · PREMIÈRE ESCALE -->
-  <section class="final" id="first-stop">
+  <!-- <section class="final" id="first-stop">
     <div class="wrap">
       <p class="final-first rv"><span class="en">First stop</span><span class="fr">Première escale</span></p>
       <div class="final-paris rv" aria-hidden="true">Paris</div>
@@ -825,7 +823,7 @@ html.js .rv.in{opacity:1;transform:none}
         <span class="fr"><b>Photographie</b> Ana Hop &nbsp;·&nbsp; <b>Film</b> Pierre &amp; Florent</span>
       </p>
     </div>
-  </section>
+  </section> -->
 
 </main>
 
